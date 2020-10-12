@@ -19,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Hello World - Hexo</title>
+  <title>我的第一篇博客 - Hexo</title>
+  
+    <meta name="keywords" content="test,随笔">
   
 
   
@@ -398,7 +400,7 @@
     
     
       <h1 class="title">
-        Hello World
+        我的第一篇博客
       </h1>
       <div class='new-meta-box'>
         
@@ -415,6 +417,13 @@
         
           
             
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">搭建博客</a>
+    </a>
+  </div>
+
 
           
         
@@ -422,7 +431,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 10, 2020</p>
+    <p>发布于：Oct 12, 2020</p>
   </a>
 </div>
 
@@ -433,7 +442,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Hello World" data-path="/2020/10/10/hello-world/">
+      <div id="lc-pv" data-title="我的第一篇博客" data-path="/2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -450,20 +459,9 @@
 
 
   
-  <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+  <h3 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h3><p><strong>记录一下最近使用hexo搭建的博客</strong>  </p>
+<p>&ensp;&ensp;周六晚上开始搭建，安装node、npm等等，碰到了一系列问题，换了一个主题后，总算把博客整体框架搭建好了，接着周日本是完整的一天，但早上九点多才起床，到实验室接近10点了，继续研究配置文件，以及主题的源代码，但是没啥效果，github有时候也抽风，就问了问学长,最后重新配置了仓库，总算解决了。<br>&ensp;&ensp;周一中午开始研究上传到github以及自动部署脚本文件，到了晚上都没解决，最后才知道博客仓库只是部署编译出来的网站静态文件，如果想要使用github进行代码托管，只有新建一个代码库，把所有文件上传上去。<br><strong>脚本文件如下</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">D:</span><br><span class="line">cd D:\PersonalFile\HexoBlog</span><br><span class="line">echo &#39;start git sync&#39;</span><br><span class="line">git add .</span><br><span class="line">git add -A</span><br><span class="line">git add -u</span><br><span class="line">git commit -m &quot;update...&quot;</span><br><span class="line">git pull HexoBlog master</span><br><span class="line">git push HexoBlog master</span><br><span class="line"></span><br><span class="line">call hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
   
   
     
@@ -480,7 +478,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2020/10/10/hello-world/>http://example.com/2020/10/10/hello-world/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/>http://example.com/2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</a></p>
               
             
           </blockquote>
@@ -497,10 +495,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-10T22:35:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-12T20:32:12+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 10, 2020</p>
+    <p>更新于：Oct 12, 2020</p>
   </a>
 </div>
 
@@ -508,6 +506,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/test/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>test</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%9A%8F%E7%AC%94/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>随笔</p></a></div>
+
 
         
       
@@ -519,7 +520,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/10/10/hello-world/&title=Hello World - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&title=我的第一篇博客 - Hexo&summary="
           
           >
           
@@ -531,7 +532,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/10/10/hello-world/&title=Hello World - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&title=我的第一篇博客 - Hexo&summary="
           
           >
           
@@ -543,7 +544,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/10/10/hello-world/&title=Hello World - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&title=我的第一篇博客 - Hexo&summary="
           
           >
           
@@ -570,19 +571,6 @@
   
   
 
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2020/10/11/my-first-blog/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>my-first-blog</p>
-          <p class='content'>第一章内容
-
-第二章内容
-参考文献</p>
-        </a>
-      
-      
-    </div>
   
 </article>
 
@@ -622,7 +610,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2"><span class="toc-text">我的第一篇博客</span></a></li></ol>
     </div>
   </section>
 
@@ -642,7 +630,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Hello World";
+  pdata.postTitle="我的第一篇博客";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
