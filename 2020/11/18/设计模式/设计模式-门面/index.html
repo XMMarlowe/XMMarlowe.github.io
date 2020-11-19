@@ -19,9 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Leetcode两数-四数之和题解 - Hexo</title>
+  <title>设计模式-门面 - Hexo</title>
   
-    <meta name="keywords" content="Leetcode">
+    <meta name="keywords" content="门面,java">
   
 
   
@@ -400,7 +400,7 @@
     
     
       <h1 class="title">
-        Leetcode两数-四数之和题解
+        设计模式-门面
       </h1>
       <div class='new-meta-box'>
         
@@ -420,7 +420,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/">LeetCode题解</a>
+      <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
     </a>
   </div>
 
@@ -431,7 +431,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 12, 2020</p>
+    <p>发布于：Nov 18, 2020</p>
   </a>
 </div>
 
@@ -442,7 +442,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Leetcode两数-四数之和题解" data-path="/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/">
+      <div id="lc-pv" data-title="设计模式-门面" data-path="/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -459,34 +459,20 @@
 
 
   
-  <h3 id="Leecode两数-四数之和题解"><a href="#Leecode两数-四数之和题解" class="headerlink" title="Leecode两数-四数之和题解"></a>Leecode两数-四数之和题解</h3><p>最近两天做了两数之和，四数之和，并且之前也做过三数之和，感觉这几道题解法都差不多，并且用同样的方法能求解n数之和。</p>
-<h4 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/">1. 两数之和</a></h4><p>给定一个整数数组 <code>nums</code> 和一个目标值 <code>target</code>，请你在该数组中找出和为目标值的那 <strong>两个</strong> 整数，并返回他们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums &#x3D; [2, 7, 11, 15], target &#x3D; 9</span><br><span class="line"></span><br><span class="line">因为 nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure>
-
-<h5 id="题解（哈希表）"><a href="#题解（哈希表）" class="headerlink" title="题解（哈希表）"></a>题解（哈希表）</h5><h5 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h5><p>利用哈希map，key存放数字，value存放索引，遍历数组，依次取一个数，然后计算出另外一个数，如果哈希map中存在，直接取出索引，返回结果，如果不存在，向哈希map中添加当前元素和对应的下标。</p>
-<h5 id="具体步骤如下："><a href="#具体步骤如下：" class="headerlink" title="具体步骤如下："></a>具体步骤如下：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="comment">// key存放数字，value存放index</span></span><br><span class="line">        HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> num2 = target - nums[i];</span><br><span class="line">            <span class="comment">// 如果哈希map中存在当前数，直接返回i和当前数的下标</span></span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(num2))&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; map.get(num2), i &#125;;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 将当前数放入哈希map</span></span><br><span class="line">                map.put(nums[i],i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">15. 三数之和</a></h4><p>给你一个包含 <em>n</em> 个整数的数组 <code>nums</code>，判断 <code>nums</code> 中是否存在三个元素 <em>a，b，c ，</em>使得 <em>a + b + c =</em> 0 ？请你找出所有满足条件且不重复的三元组。</p>
-<p><strong>注意：</strong>答案中不可以包含重复的三元组。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">给定数组 nums &#x3D; [-1, 0, 1, 2, -1, -4]，</span><br><span class="line"></span><br><span class="line">满足要求的三元组集合为：</span><br><span class="line">[</span><br><span class="line">  [-1, 0, 1],</span><br><span class="line">  [-1, -1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<h5 id="题解（排序，双指针）"><a href="#题解（排序，双指针）" class="headerlink" title="题解（排序，双指针）"></a>题解（排序，双指针）</h5><h5 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h5><p>此题要求出三个数的和为0的结果集，则只需对原数组排序，然后从最小的数开始选，接着设置左右指针，如果当前三个数和为0，将这三个数加入结果集，继续寻找，如果当前三个数和大于0，右指针左移，小于0，左指针右移。</p>
-<h5 id="具体步骤如下：-1"><a href="#具体步骤如下：-1" class="headerlink" title="具体步骤如下："></a>具体步骤如下：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="comment">//如果数组为空 或者长度小于三 直接返回空</span></span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || len &lt;<span class="number">3</span>)</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        <span class="comment">//对数组排序</span></span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; len;i++)&#123;</span><br><span class="line">            <span class="comment">//如果当前最小的数大于0，直接结束循环</span></span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//去重</span></span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="comment">//设置左右指针</span></span><br><span class="line">            <span class="keyword">int</span> left = i + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> right = len - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[left] + nums[right]; </span><br><span class="line">                <span class="keyword">if</span>( sum == <span class="number">0</span>)&#123;</span><br><span class="line">                    ans.add(Arrays.asList(nums[i],nums[left],nums[right]));</span><br><span class="line">                    <span class="comment">//左边元素去重</span></span><br><span class="line">                    <span class="keyword">while</span>(left &lt; right &amp;&amp; nums[left] == nums[left + <span class="number">1</span>])</span><br><span class="line">                        left++;</span><br><span class="line">                    <span class="comment">//右边元素去重</span></span><br><span class="line">                    <span class="keyword">while</span>(left &lt; right &amp;&amp; nums[right] == nums[right - <span class="number">1</span>])</span><br><span class="line">                        right--;</span><br><span class="line">                    <span class="comment">//移动左右指针</span></span><br><span class="line">                    left++;</span><br><span class="line">                    right--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(sum &gt; <span class="number">0</span>)</span><br><span class="line">                    right--;</span><br><span class="line">                <span class="keyword">if</span>(sum &lt; <span class="number">0</span>)</span><br><span class="line">                    left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="18-四数之和"><a href="#18-四数之和" class="headerlink" title="18. 四数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/4sum/">18. 四数之和</a></h4><p>给定一个包含 <em>n</em> 个整数的数组 <code>nums</code> 和一个目标值 <code>target</code>，判断 <code>nums</code> 中是否存在四个元素 <em>a，b，c</em> 和 <em>d</em> ，使得 <em>a</em> + <em>b</em> + <em>c</em> + <em>d</em> 的值与 <code>target</code> 相等？找出所有满足条件且不重复的四元组。</p>
-<p><strong>注意：</strong></p>
-<p>答案中不可以包含重复的四元组。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">给定数组 nums &#x3D; [1, 0, -1, 0, -2, 2]，和 target &#x3D; 0。</span><br><span class="line"></span><br><span class="line">满足要求的四元组集合为：</span><br><span class="line">[</span><br><span class="line">  [-1,  0, 0, 1],</span><br><span class="line">  [-2, -1, 1, 2],</span><br><span class="line">  [-2,  0, 0, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<h5 id="题解（排序，双指针）-1"><a href="#题解（排序，双指针）-1" class="headerlink" title="题解（排序，双指针）"></a>题解（排序，双指针）</h5><h5 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h5><p>此题要求出四个数的和为target的结果集，则只需对原数组排序，然后将四数之和降为三数之和，接着设置左右指针，如果当前四个数和为target，将这四个数加入结果集，继续寻找，如果当前四个数和大于target，右指针左移，小于0，左指针右移，具体步骤见代码注释。</p>
-<h5 id="具体步骤如下：-2"><a href="#具体步骤如下：-2" class="headerlink" title="具体步骤如下："></a>具体步骤如下：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; fourSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="comment">// 边界条件判断</span></span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">4</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 对原数组排序</span></span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="comment">// 获取原数组长度</span></span><br><span class="line">        <span class="keyword">int</span> l = nums.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l - <span class="number">3</span>; i++)&#123;</span><br><span class="line">            <span class="comment">// 去重</span></span><br><span class="line">            <span class="keyword">if</span>( i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 如果当前数加上后面最小的三个数都比target大，直接跳出</span></span><br><span class="line">            <span class="keyword">if</span>(nums[i] + nums[i + <span class="number">1</span>] + nums[i + <span class="number">2</span>] + nums[i + <span class="number">3</span>] &gt; target)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 如果当前数加上最大的三个数逗比target小，跳过当前数</span></span><br><span class="line">            <span class="keyword">if</span>(nums[i] + nums[l - <span class="number">3</span>] + nums[l - <span class="number">2</span>] + nums[l - <span class="number">1</span>] &lt; target)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 同上（n数之和直接重复此操作即可）</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; l - <span class="number">2</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j &gt; i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>])&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(nums[i] + nums[j] + nums[j + <span class="number">1</span>] + nums[j + <span class="number">2</span>] &gt; target)&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(nums[i] + nums[j] + nums[l - <span class="number">1</span>] + nums[l - <span class="number">2</span>] &lt; target)&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 将n树之和转为两数之和</span></span><br><span class="line">                <span class="keyword">int</span> left = j + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> right = l - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">                    <span class="keyword">int</span> sum = nums[i] + nums[j] + nums[left] + nums[right];</span><br><span class="line">                    <span class="keyword">if</span>(sum == target)&#123;</span><br><span class="line">                        <span class="comment">// 加入结果集</span></span><br><span class="line">                      res.add(Arrays.asList(nums[i],nums[j],nums[left],nums[right]));</span><br><span class="line">                        <span class="comment">// 去重</span></span><br><span class="line">                        <span class="keyword">while</span>(left &lt; right &amp;&amp; nums[left] == nums[left + <span class="number">1</span>])&#123;</span><br><span class="line">                            left++;</span><br><span class="line">                        &#125;</span><br><span class="line">                        left++;</span><br><span class="line">                        <span class="comment">// 去重</span></span><br><span class="line">                        <span class="keyword">while</span>(left &lt; right &amp;&amp; nums[right] == nums[right - <span class="number">1</span>])&#123;</span><br><span class="line">                            right--;</span><br><span class="line">                        &#125;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sum &gt; target)&#123;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>由三数之和和四数之和可以得出n数之和的解法，思想是一样的，都是枚举，去重，再将最后两个数的和转换为双指针，降低时间复杂度</strong></p>
-
+  <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>门面模式，是指提供一个统一的接口去访问多个子系统的多个不同的接口，它为子系统中的一组接口提供一个统一的高层接口。使得子系统更容易使用。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>当你要为了一个复杂子系统提供一个简单接口时。在上面已经描述了原因。</li>
+<li>由于抽象类的实现部分与客户程序之间存在着很大的依赖性。引入 facade 将这个子系统与客户以及其他的子系统分离，可以提高子系统的独立性和可移植性（上面也提到了）。</li>
+<li>当你需要构建一个层次结构的子系统时，使用 facade 模式定义子系统中每层的入口点。如果子系统之间是相互依赖的，你可以让它们仅通过 facade 进行通讯，从而简化了它们之间的依赖关系。</li>
+<li>它可以对客户屏蔽子系统组件，因而减少了客户处理的对象的数目并使得子系统使用起来更加方便。</li>
+<li>它实现了子系统与客户之间的松耦合关系，而子系统内部的功能组件往往是紧耦合的。松耦合关系使得子系统的组件变化不会影响到它的客户。 Facade 模式有助于建立层次结构系统，也有助于对对象之间的依赖关系分层。 Facade 模式可以消除复杂的循环依赖关系。这一点在客户程序与子系统是分别实现的时候尤为重要。在大型软件系统中降低编译依赖性至关重要。在子系统类改变时，希望尽量减少重编译工作以节省时间。用 Facade 可以降低编译依赖性，限制重要系统中较小的变化所需的重编译工作。 Facade 模式同样也有利于简化系统在不同平台之间的移植过程，因为编译一个子系统一般不需要编译所有其他的子系统。</li>
+<li>如果应用需要，它并不限制它们使用子系统类。因此你可以让客户程序在系统易用性和通用性之间加以选择。</li>
+</ol>
+<p><strong>缺点</strong></p>
+<ol>
+<li>不符合开闭原则。所谓的开闭原则是软件工程里面一个最基本的原则：对扩展开放，对修改关闭。换句话说，你的系统可以提供新的功能模块而不必进行修改。</li>
+</ol>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3>
   
   
     
@@ -503,7 +489,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/>http://example.com/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2/>http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2/</a></p>
               
             
           </blockquote>
@@ -520,10 +506,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-20T00:39:11+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-18T22:18:28+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 20, 2020</p>
+    <p>更新于：Nov 18, 2020</p>
   </a>
 </div>
 
@@ -532,7 +518,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Leetcode/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Leetcode</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%97%A8%E9%9D%A2/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>门面</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>java</p></a></div>
 
 
         
@@ -545,7 +531,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/&title=Leetcode两数-四数之和题解 - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2/&title=设计模式-门面 - Hexo&summary="
           
           >
           
@@ -557,7 +543,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/&title=Leetcode两数-四数之和题解 - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2/&title=设计模式-门面 - Hexo&summary="
           
           >
           
@@ -569,7 +555,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/&title=Leetcode两数-四数之和题解 - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2/&title=设计模式-门面 - Hexo&summary="
           
           >
           
@@ -599,15 +585,16 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E5%85%A8%E6%8E%92%E5%88%971-2%E9%A2%98%E9%A2%98%E8%A7%A3/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Leetcode全排列1-2题题解</p>
-          <p class='content'>Leetcode全排列1-2题题解对于全排列问题，可能我们很多人从小在数学课上都做过，并且都能由一定的规律将所有排列情况写出来，但如何用编码的方式求解此类问题成了我的问题，或许也成是你们还未解决...</p>
+        <a class='prev' href='/2020/11/20/Leetcode%E9%A2%98%E8%A7%A3/%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>对链表进行插入排序</p>
+          <p class='content'>147. 对链表进行插入排序对链表进行插入排序。
+插入排序的动画演示如上。从第一个元素开始，该链表可以被认为已经部分排序（用黑色表示）。每次迭代时，从输入数据中移除一个元素（用红色表示），并原地...</p>
         </a>
       
       
-        <a class='next' href='/2020/10/12/test/'>
-          <p class='title'>test<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>testhexohello,world!
+        <a class='next' href='/2020/11/17/Docker/DockerFile/'>
+          <p class='title'>DockerFile<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>dockerfile 是用来构建docker镜像的文件！
 </p>
         </a>
       
@@ -651,7 +638,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Leecode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3"><span class="toc-text">Leecode两数-四数之和题解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">1. 两数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3%EF%BC%88%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%89"><span class="toc-text">题解（哈希表）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-text">分析：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">具体步骤如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">15. 三数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3%EF%BC%88%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89"><span class="toc-text">题解（排序，双指针）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A-1"><span class="toc-text">分析：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B%EF%BC%9A-1"><span class="toc-text">具体步骤如下：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">18. 四数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3%EF%BC%88%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89-1"><span class="toc-text">题解（排序，双指针）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A-2"><span class="toc-text">分析：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B%EF%BC%9A-2"><span class="toc-text">具体步骤如下：</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li></ol>
     </div>
   </section>
 
@@ -671,7 +658,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Leetcode两数-四数之和题解";
+  pdata.postTitle="设计模式-门面";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
