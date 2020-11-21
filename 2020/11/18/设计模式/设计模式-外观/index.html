@@ -19,11 +19,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>test - Hexo</title>
+  <title>设计模式-外观 - Hexo</title>
   
-    <meta name="keywords" content="test">
+    <meta name="keywords" content="java,结构型模式,外观">
   
 
+  
+    <meta name="description" content="要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。外观模式提供一个高层次的接口，使得子系统更易使用。">
   
 
   <!-- feed -->
@@ -400,7 +402,7 @@
     
     
       <h1 class="title">
-        test
+        设计模式-外观
       </h1>
       <div class='new-meta-box'>
         
@@ -417,6 +419,13 @@
         
           
             
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    </a>
+  </div>
+
 
           
         
@@ -424,7 +433,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 12, 2020</p>
+    <p>发布于：Nov 18, 2020</p>
   </a>
 </div>
 
@@ -435,7 +444,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="test" data-path="/2020/10/12/test/">
+      <div id="lc-pv" data-title="设计模式-外观" data-path="/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%96%E8%A7%82/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -452,7 +461,25 @@
 
 
   
-  <h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><p>hexo<br>hello,world!</p>
+  <p>要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。外观模式提供一个高层次的接口，使得子系统更易使用。</p>
+<a id="more"></a>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>外观模式（Facade Pattern）隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。</p>
+<p>这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。<br><strong>传统模式</strong><br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201121171308.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201121171308.png" srcset="data:image/png;base64,666" width = "66%"  alt="传统模式"></p>
+<p><strong>外观模式</strong><br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201121171229.png"
+width = "66%" alt="外观模式"></p>
+<h3 id="优缺点及注意"><a href="#优缺点及注意" class="headerlink" title="优缺点及注意"></a>优缺点及注意</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>为复杂的模块或子系统提供外界访问的模块。</li>
+<li>子系统相对独立。</li>
+<li>预防低水平人员带来的风险。</li>
+</ol>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>不符合开闭原则。所谓的开闭原则是软件工程里面一个最基本的原则：对扩展开放，对修改关闭。换句话说，你的系统可以提供新的功能模块而不必进行修改。</li>
+</ol>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>在层次化结构中，可以使用外观模式定义系统中每一层的入口。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.marlowe;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@program</span>: GoF23</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 外观模式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: Marlowe</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span>: 2020-11-21 17:04</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FacadePattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Facade facade = <span class="keyword">new</span> Facade();</span><br><span class="line">        System.out.println(facade.prove());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubFlow1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isTrue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubFlow2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isOk</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubFlow3</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isGoodMan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Facade</span> </span>&#123;</span><br><span class="line">    SubFlow1 subFlow1 = <span class="keyword">new</span> SubFlow1();</span><br><span class="line">    SubFlow2 subFlow2 = <span class="keyword">new</span> SubFlow2();</span><br><span class="line">    SubFlow3 subFlow3 = <span class="keyword">new</span> SubFlow3();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">prove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> subFlow1.isTrue() &amp;&amp; subFlow2.isOk() &amp;&amp; subFlow3.isGoodMan();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">结果：</span><br><span class="line"><span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+
+
 
   
   
@@ -470,7 +497,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2020/10/12/test/>http://example.com/2020/10/12/test/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%96%E8%A7%82/>http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%96%E8%A7%82/</a></p>
               
             
           </blockquote>
@@ -487,10 +514,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-12T20:42:54+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-21T17:23:54+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 12, 2020</p>
+    <p>更新于：Nov 21, 2020</p>
   </a>
 </div>
 
@@ -499,7 +526,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/test/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>test</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>java</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>结构型模式</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%A4%96%E8%A7%82/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>外观</p></a></div>
 
 
         
@@ -512,7 +539,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/10/12/test/&title=test - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%96%E8%A7%82/&title=设计模式-外观 - Hexo&summary=要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。外观模式提供一个高层次的接口，使得子系统更易使用。"
           
           >
           
@@ -524,7 +551,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/10/12/test/&title=test - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%96%E8%A7%82/&title=设计模式-外观 - Hexo&summary=要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。外观模式提供一个高层次的接口，使得子系统更易使用。"
           
           >
           
@@ -536,7 +563,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/10/12/test/&title=test - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/11/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%96%E8%A7%82/&title=设计模式-外观 - Hexo&summary=要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。外观模式提供一个高层次的接口，使得子系统更易使用。"
           
           >
           
@@ -566,17 +593,17 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Leetcode两数-四数之和题解</p>
-          <p class='content'>Leecode两数-四数之和题解最近两天做了两数之和，四数之和，并且之前也做过三数之和，感觉这几道题解法都差不多，并且用同样的方法能求解n数之和。
-1. 两数之和给定一个整数数组 nums 和一...</p>
+        <a class='prev' href='/2020/11/20/Leetcode%E9%A2%98%E8%A7%A3/%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>对链表进行插入排序</p>
+          <p class='content'>147. 对链表进行插入排序对链表进行插入排序。
+插入排序的动画演示如上。从第一个元素开始，该链表可以被认为已经部分排序（用黑色表示）。每次迭代时，从输入数据中移除一个元素（用红色表示），并原地...</p>
         </a>
       
       
-        <a class='next' href='/2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/'>
-          <p class='title'>我的第一篇博客<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>我的第一篇博客记录一下最近使用hexo搭建的博客  
-&ensp;&ensp;周六晚上开始搭建，安装node、npm等等，碰到了一系列问题，换了一个主题后，总算把博客整体框架搭建好了，接着周日本...</p>
+        <a class='next' href='/2020/11/17/Docker/DockerFile/'>
+          <p class='title'>DockerFile<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>dockerfile 是用来构建docker镜像的文件！
+</p>
         </a>
       
     </div>
@@ -619,7 +646,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-text">test</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%E5%8F%8A%E6%B3%A8%E6%84%8F"><span class="toc-text">优缺点及注意</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li></ol>
     </div>
   </section>
 
@@ -639,7 +666,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="test";
+  pdata.postTitle="设计模式-外观";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
