@@ -21,7 +21,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Category: LeetCode题解 - Hexo</title>
+  <title>Archive: 2020/11 - Hexo</title>
   
 
   
@@ -65,7 +65,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -284,7 +284,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -359,29 +359,11 @@
       <div class='body-wrapper' id="pjax-container">
         
 
-
 <div class='l_main'>
-  
-    
-      
+	
+		
   <section class="post-list">
     
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
     
       
         
@@ -393,20 +375,18 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/11/20/Leetcode%E9%A2%98%E8%A7%A3/%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
-        对链表进行插入排序
+      <a href="/2020/11/16/Docker/Docker%E9%95%9C%E5%83%8F%E8%AE%B2%E8%A7%A3/">
+        Docker镜像讲解
       </a>
     </h2>
   
   <div class='md'>
     
       
-        147. 对链表进行插入排序对链表进行插入排序。
-插入排序的动画演示如上。从第一个元素开始，该链表可以被认为已经部分排序（用黑色表示）。每次迭代时，从输入数据中移除一个元素（用红色表示），并原地将其插入到已排好序的链表中。
-插入排序算法：
-
-插入排序是迭代的，每次只移动一个元素，直到所有元素可以形成一个有序的输出列表。
-每次迭代中，插入排序只从输入数据中移除一个待排序的元素，找到它在序列中适...
+        如何提交一个自己的镜像
+commit镜像1234docker commit 提交容器成为一个新的副本# 命令和git原理类似docker commit -m=&quot;提交的描述信息&quot; -a=&quot;作者&quot; 容器id 目标镜像名：[TAG] 
+实战测试
+1234567891011# 1、启动一个默认的tomcat[root@hecs-x-large-2-linux-...
       
     
   </div>
@@ -414,15 +394,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-11-20</time>
+        <time>2020-11-16</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/">LeetCode题解</a>
+          <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/11/20/Leetcode%E9%A2%98%E8%A7%A3/%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/'>
+          <a class='readmore' href='/2020/11/16/Docker/Docker%E9%95%9C%E5%83%8F%E8%AE%B2%E8%A7%A3/'>
             Read More
           </a>
         </div>
@@ -444,20 +424,18 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E4%B8%AD%E5%90%8E%E5%BA%8F%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95/">
-        二叉树的前中后序非递归遍历算法
+      <a href="/2020/11/11/Docker/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+        Docker常用命令
       </a>
     </h2>
   
   <div class='md'>
     
       
-        二叉树的前中后序非递归遍历算法学过数据结构的同学都知道二叉树的深度优先遍历算法有三种，前序，中序，后序遍历。
-前序：根–&gt;左–&gt;右
-中序：左–&gt;根–&gt;右
-后序：左–&gt;右–&gt;根
-不难发现，后序遍历和前序遍历有相似的地方，如果我们将后序遍历变成根右左的顺序，将结果集翻转后就会变成前序的根左右顺序。
-前中后序非递归遍历的核心算法：前序遍历：12345678910...
+        帮助命令123docker version      # 显示docker的版本信息docker info         # 显示docker的系统信息，包括镜像和容器的数量docker 命令 --help  # 帮助命令
+帮助文档地址：https://docs.docker.com/reference/
+镜像命令docker images 查看所有本地的主机上的镜像
+123456789[...
       
     
   </div>
@@ -465,208 +443,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-10-12</time>
+        <time>2020-11-11</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/">LeetCode题解</a>
+          <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E4%B8%AD%E5%90%8E%E5%BA%8F%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Map%E9%9B%86%E5%90%88%E7%9A%84%E7%BB%9F%E8%AE%A1%E6%AF%8F%E4%B8%AA%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95/">
-        Map集合的统计每个字符出现次数的两种方法
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Map集合的统计每个字符出现次数的两种方法一、map.containsKey()方法Map可以出现在k与v的映射中，v为null的情况。Map集合允许值对象为null，并且没有个数限制，所以当get()方法的返回值为null时，可能有两种情况，一种是在集合中没有该键对象，另一种是该键对象没有映射任何值对象，即值对象为null。因此，在Map集合中不应该利用get()方法来判断是否存在某个键，...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/">LeetCode题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Map%E9%9B%86%E5%90%88%E7%9A%84%E7%BB%9F%E8%AE%A1%E6%AF%8F%E4%B8%AA%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C1-4%E9%A2%98%E9%A2%98%E8%A7%A3/">
-        Leetcode组合总和1-4题题解
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Leetcode组合总和1-4题题解Leecode最近几天的每日一题都是组合总和问题，预测明天是组合总和Ⅳ，因此，提前将组合总和的所有题目刷了，前三题的思路都差不多，最后一题做法有所不同：
-组合总和：candidates 中的数字可以无限制重复被选取。 
-组合总和Ⅱ： candidates 中的每个数字在每个组合中只能使用一次。 
-组合总和Ⅲ：组合中只允许有1-9的数字，并且每种组合中不存在...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/">LeetCode题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C1-4%E9%A2%98%E9%A2%98%E8%A7%A3/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E5%85%A8%E6%8E%92%E5%88%971-2%E9%A2%98%E9%A2%98%E8%A7%A3/">
-        Leetcode全排列1-2题题解
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Leetcode全排列1-2题题解对于全排列问题，可能我们很多人从小在数学课上都做过，并且都能由一定的规律将所有排列情况写出来，但如何用编码的方式求解此类问题成了我的问题，或许也成是你们还未解决的问题，其实这类问题的套路都是 dfs + 回溯算法，然后，根据题目要求进行剪枝，我将通过下面两题来讲解这类问题具体做法。
-46. 全排列给定一个 没有重复 数字的序列，返回其所有可能的全排列。
-示例...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/">LeetCode题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E5%85%A8%E6%8E%92%E5%88%971-2%E9%A2%98%E9%A2%98%E8%A7%A3/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/">
-        Leetcode两数-四数之和题解
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Leecode两数-四数之和题解最近两天做了两数之和，四数之和，并且之前也做过三数之和，感觉这几道题解法都差不多，并且用同样的方法能求解n数之和。
-1. 两数之和给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
-你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
-示例:
-1234给定 nums ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/">LeetCode题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/12/Leetcode%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/'>
+          <a class='readmore' href='/2020/11/11/Docker/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/'>
             Read More
           </a>
         </div>
@@ -683,11 +468,25 @@
   </section>
   
     
-  
-
-
+      <br>
+      <div class="prev-next">
+        
+          <a class="prev" rel="prev" href="/archives/2020/11/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
+            </section>
+          </a>
+        
+        <p class="current">
+          2 / 2
+        </p>
+        
+      </div>
     
   
+
+
+	
 </div>
 <aside class='l_side'>
   
@@ -976,7 +775,7 @@
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
 </script>
 
