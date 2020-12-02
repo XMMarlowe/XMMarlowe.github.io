@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>synchronized和Lock区别</title>
+      <link href="2020/12/02/JUC/synchronized%E5%92%8CLock%E5%8C%BA%E5%88%AB/"/>
+      <url>2020/12/02/JUC/synchronized%E5%92%8CLock%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<p>简述 synchronized 和 Lock 区别…</p><a id="more"></a><ol><li>synchronized 内置的Java关键字；Lock 是一个Java类</li><li>synchronized 无法判断获取锁的状态；Lock 可以判断是否获取了锁</li><li>synchronized 会自动释放锁；Lock 必须要手动释放锁！ 如果不释放，<strong>死锁</strong></li><li>synchronized 线程1（获得锁，阻塞）、线程2（等待、傻傻的等）；Lock 锁就不一定会等待下去</li><li>synchronized 可重入锁，不可以中断的，非公平的；Lock ，可重入锁，可以判断锁，非公平（可以自己设置）</li><li>synchronized 适合锁少量的代码同步问题；Lock 适合锁大量的！</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> JUC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 多线程 </tag>
+            
+            <tag> 锁 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式-策略</title>
       <link href="2020/11/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5/"/>
       <url>2020/11/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5/</url>
@@ -34,8 +63,8 @@
     
     <entry>
       <title>JsonUtils</title>
-      <link href="2020/11/27/JsonUtils/"/>
-      <url>2020/11/27/JsonUtils/</url>
+      <link href="2020/11/27/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JsonUtils/"/>
+      <url>2020/11/27/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JsonUtils/</url>
       
         <content type="html"><![CDATA[<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201127213858.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201127213858.png" srcset="data:image/png;base64,666" alt="20201127213858"></p>]]></content>
       
@@ -460,8 +489,8 @@
     
     <entry>
       <title>test</title>
-      <link href="2020/10/12/test/"/>
-      <url>2020/10/12/test/</url>
+      <link href="2020/10/12/Java%E9%9A%8F%E7%AC%94/test/"/>
+      <url>2020/10/12/Java%E9%9A%8F%E7%AC%94/test/</url>
       
         <content type="html"><![CDATA[<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><p>hexo<br>hello,world!</p>]]></content>
       
@@ -479,8 +508,8 @@
     
     <entry>
       <title>我的第一篇博客</title>
-      <link href="2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
-      <url>2020/10/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+      <link href="2020/10/12/Java%E9%9A%8F%E7%AC%94/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+      <url>2020/10/12/Java%E9%9A%8F%E7%AC%94/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
       
         <content type="html"><![CDATA[<h3 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h3><p><strong>记录一下最近使用hexo搭建的博客</strong>  </p><p>&ensp;&ensp;周六晚上开始搭建，安装node、npm等等，碰到了一系列问题，换了一个主题后，总算把博客整体框架搭建好了，接着周日本是完整的一天，但早上九点多才起床，到实验室接近10点了，继续研究配置文件，以及主题的源代码，但是没啥效果，github有时候也抽风，就问了问学长,最后重新配置了仓库，总算解决了。<br>&ensp;&ensp;周一中午开始研究上传到github以及自动部署脚本文件，到了晚上都没解决，最后才知道博客仓库只是部署编译出来的网站静态文件，如果想要使用github进行代码托管，只有新建一个代码库，把所有文件上传上去。<br><strong>脚本文件如下</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">D:</span><br><span class="line">cd D:\PersonalFile\HexoBlog</span><br><span class="line">echo &#39;start git sync&#39;</span><br><span class="line">git add .</span><br><span class="line">git add -A</span><br><span class="line">git add -u</span><br><span class="line">git commit -m &quot;update...&quot;</span><br><span class="line">git pull HexoBlog master</span><br><span class="line">git push HexoBlog master</span><br><span class="line"></span><br><span class="line">call hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>]]></content>
       
