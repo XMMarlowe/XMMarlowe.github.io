@@ -473,6 +473,12 @@
 <p>注意点：p命名和c命名不能直接使用，需要导入xml约束！</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</span><br><span class="line">xmlns:c=&quot;http://www.springframework.org/schema/c&quot;</span><br></pre></td></tr></table></figure>
 
+<h3 id="bean的作用域"><a href="#bean的作用域" class="headerlink" title="bean的作用域"></a>bean的作用域</h3><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201205114947.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201205114947.png" srcset="data:image/png;base64,666" alt="20201205114947"></p>
+<ol>
+<li>单例模式（spring默认机制）<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.marlowe.pojo.User&quot;</span> <span class="attr">c:name</span>=<span class="string">&quot;marlowe&quot;</span> <span class="attr">c:age</span>=<span class="string">&quot;18&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;singleton&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>原型模式：每次从容器中get的时候，都会产生一个新对象！<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.marlowe.pojo.User&quot;</span> <span class="attr">c:name</span>=<span class="string">&quot;marlowe&quot;</span> <span class="attr">c:age</span>=<span class="string">&quot;18&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;singleton&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>其余的request、session、application 这些只能在web开发中使用到！</li>
+</ol>
 
   
   
@@ -507,7 +513,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-05T11:43:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-05T12:45:43+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Dec 5, 2020</p>
@@ -586,6 +592,20 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/2020/12/05/Spring/Bean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Bean的自动装配</p>
+          <p class='content'>bean的三种自动装配方式…
+
+
+
+自动装配是Spring满足bean依赖的一种方式
+Spring会在上下文中自动寻找，并自动给bean装配属性
+
+在Spring中有三种装配方式
+
+在xml中显...</p>
+        </a>
+      
       
         <a class='next' href='/2020/12/04/Spring/IOC%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F/'>
           <p class='title'>IOC创建对象的方式<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
@@ -638,7 +658,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E6%B3%A8%E5%85%A5"><span class="toc-text">构造器注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91"><span class="toc-text">Set方式注入【重点】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5"><span class="toc-text">扩展方式注入</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E6%B3%A8%E5%85%A5"><span class="toc-text">构造器注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91"><span class="toc-text">Set方式注入【重点】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5"><span class="toc-text">扩展方式注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">bean的作用域</span></a></li></ol>
     </div>
   </section>
 
