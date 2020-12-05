@@ -455,7 +455,27 @@
 <li>byName的时候，需要保证所有bean的id唯一，并且这个bean需要和自动注入的属性的set方法的值一致！<strong>（原理是将set方法后面部分转换成小写，再与id进行比对，例如：setDog ==&gt; id = “dog”、setdog1 ==&gt; id = “dog1”等可以自动注入、但是setDog ==&gt; id = “Dog”就不行）</strong></li>
 <li>byType的时候，需要保证所有bean的class唯一，并且这个bean需要和自动注入的属性的类型一致！</li>
 </ul>
-<h4 id="使用注解实现自动装配"><a href="#使用注解实现自动装配" class="headerlink" title="使用注解实现自动装配"></a>使用注解实现自动装配</h4>
+<h4 id="使用注解实现自动装配"><a href="#使用注解实现自动装配" class="headerlink" title="使用注解实现自动装配"></a>使用注解实现自动装配</h4><p>JDK1.5支持的注解，Spring2.5就支持注解了！<br>要使用注解须知：</p>
+<ol>
+<li>导入约束。context约束</li>
+<li>配置注解的支持 </li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>@Autowired</strong><br> 直接在属性上使用即可！也可以在set方式上使用！<br> 使用Autowired，我们可以不用编写set方法了，前提是你这个自动装配的属性在IOC（Spring）容器中存在，且符合名字byName！</p>
+<p> 科普：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span>  字段标记了这个注解，说明这个字段可以为<span class="keyword">null</span></span><br></pre></td></tr></table></figure><br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="meta">@interface</span> Autowired &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br> 测试代码<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 如果显示定义了Autowired的required属性为false，说明这个对象可以为null，否则不允许为空</span></span><br><span class="line">   <span class="meta">@Autowired(required = false)</span></span><br><span class="line">   <span class="keyword">private</span> Cat cat;</span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> Dog dog;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果@Autowired自动装配的环境比较复杂，自动装配无法通过一个注解【@Autowired】完成额时候、我们可以使用@Qualifier(value = “xxx”)去配置@Autowired的使用，指定一个唯一的bean对象注入！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier(value = &quot;cat11&quot;)</span></span><br><span class="line"><span class="keyword">private</span> Cat cat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier(value = &quot;dog11&quot;)</span></span><br><span class="line"><span class="keyword">private</span> Dog dog;</span><br></pre></td></tr></table></figure>
+
+<p><strong>@Resource注解</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Resource(name = &quot;cat1&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>小结：<br>@Autowired和@Resource的区别：</p>
+<ul>
+<li>都是用来自动装配的，都可以放在属性字段上</li>
+<li>@Autowired 通过byType的方式实现，而且必须要求这个对象存在！【常用】</li>
+<li>@Resource默认通过byName的方式实现，如果找不到名字，则通过byType实现！如果两个都找不到的情况下，就报错！【常用】</li>
+<li>执行顺序不同：@Autowired 通过byType的方式实现。@Resource默认通过byName的方式实现。</li>
+</ul>
+
   
   
     
@@ -489,7 +509,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-05T12:43:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-05T13:38:33+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Dec 5, 2020</p>
@@ -568,9 +588,8 @@
   
     <div class="prev-next">
       
-      
-        <a class='next' href='/2020/12/04/Spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/'>
-          <p class='title'>依赖注入<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='prev' href='/2020/12/05/Spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>依赖注入</p>
           <p class='content'>简述依赖注入的三种方式
 
 
@@ -579,6 +598,18 @@ Set方式注入【重点】
 依赖注入：Set注入！
 依赖：bean对象的创建依赖于容器！
 注入：bean对象中的所有属性，由容器...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/12/04/Spring/IOC%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F/'>
+          <p class='title'>IOC创建对象的方式<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>IOC创建对象的三种方式…
+
+
+
+下标
+
+1234&lt;!--第一种方式：下标赋值--&gt;&lt;bean id=&quot;user&quot; class=&quot;com.marl...</p>
         </a>
       
     </div>
