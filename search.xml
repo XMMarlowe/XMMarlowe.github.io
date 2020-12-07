@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>ElasticSearch之ik插件之究极大坑</title>
+      <link href="2020/12/08/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/ElasticSearch%E4%B9%8Bik%E6%8F%92%E4%BB%B6%E4%B9%8B%E7%A9%B6%E6%9E%81%E5%A4%A7%E5%9D%91/"/>
+      <url>2020/12/08/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/ElasticSearch%E4%B9%8Bik%E6%8F%92%E4%BB%B6%E4%B9%8B%E7%A9%B6%E6%9E%81%E5%A4%A7%E5%9D%91/</url>
+      
+        <content type="html"><![CDATA[<p>由于最近要做搜索引擎课设，可以用ElasticSearch做，因此，开启了ES的学习之路，也开启了ES踩坑之路，入门一小时，配环境两小时！！~</p><a id="more"></a><p>在elasticsearch中安装ik中文分词器，使用的elasticsearch版本是7.10.0，elasticsearch-analysis-ik版本是7.10.0。</p><p>安装后，重新启动报错，报错信息为：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2020-11-18T17:14:56,012][WARN ][o.e.c.r.a.AllocationService] [LAPTOP-TLVIFKFC] failing shard [AccessControlException[access denied (&quot;java.io.FilePermission&quot; &quot;D:\Program%20Files\elasticsearch\elasticsearch-7.10.0\plugins\ik\config\IKAnalyzer.cfg.xml&quot; &quot;read&quot;)]], markAsStale [true]]</span><br><span class="line">java.security.AccessControlException: access denied (&quot;java.io.FilePermission&quot; &quot;D:\Program%20Files\elasticsearch\elasticsearch-7.10.0\plugins\ik\config\IKAnalyzer.cfg.xml&quot; &quot;read&quot;)</span><br></pre></td></tr></table></figure><p>原因是：elasticsearch安装路径中有空格造成的，如安装路径为D:\Program Files\elasticsearch\elasticsearch-7.10.0，其中”Program Files”两个词中间有空格</p><p><strong>解决方法</strong>：elasticsearch选择没有空格的文件目录下安装</p><p>前前后后下载了很多版本的插件，以及找同学烤文件，都没能解决这个问题，在百度重新搜索<code>elasticsearch ik 7.10.0 下载</code>的时候，出现了一篇拯救我的文章，重新安装好es所需要的文件后，将整个文件移动到没有空格的文件夹，问题才得以解决！</p><p>参考：<a href="https://blog.csdn.net/starryzhan2018/article/details/109779035">elasticsearch-7.10.0使用elasticsearch-analysis-ik-7.10.0分词器插件后启动报错</a></p><p>ES学习教程:<a href="https://www.bilibili.com/video/BV17a4y1x7zq?p=1">【狂神说Java】ElasticSearch7.6.x最新完整教程通俗易懂</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置之踩坑 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 踩坑 </tag>
+            
+            <tag> ES </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java中如何跳出多重循环</title>
+      <link href="2020/12/07/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/"/>
+      <url>2020/12/07/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/</url>
+      
+        <content type="html"><![CDATA[<p>Java 基础回顾…</p><a id="more"></a><h3 id="在JAVA中如何跳出当前的多重嵌套循环"><a href="#在JAVA中如何跳出当前的多重嵌套循环" class="headerlink" title="在JAVA中如何跳出当前的多重嵌套循环"></a>在JAVA中如何跳出当前的多重嵌套循环</h3><p>在java中，要想跳出多重循环，可以在外面的循环语句前定义一个标号，然后在里层循环体的代码中使用带有标号的的break语句，即可跳出</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ok:</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">                System.out.println(i);</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">200</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span> ok;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h3 id="return和-break区别"><a href="#return和-break区别" class="headerlink" title="return和 break区别"></a>return和 break区别</h3><p><strong>break</strong><br>break语句虽然可以独立使用，但通常主要用于switch语句中，控制程序的执行流程转移。<br>在switch语句中，其作用是强制退出switch结构，执行switch结构之后的语句。其本质就是在单层循环结构体系中，其作用是强制退出循环结构。</p><p><strong>return</strong><br>return语句用来明确地从一个方法返回。也就是，return 语句使程序控制返回到调用它方法。<br>因此，将它分类为跳转语句.有两个作用，一个是返回方法指定类型的值（这个值总是确定的）;一个是结束方法的执行（仅仅一个return语句）。return 语句可以使其从当前方法中退出，返回到调用该方法的语句处，继续程序的执行 。</p><h3 id="exit-函数-和-return-区别"><a href="#exit-函数-和-return-区别" class="headerlink" title="exit()函数 和 return 区别"></a>exit()函数 和 return 区别</h3><p>exit(0)：正常运行程序并退出程序；<br>exit(1)：非正常运行导致退出程序；<br>return()：返回函数，若在主函数中，则会退出函数并返回一值。</p><p>具体来说：</p><ol><li>return返回函数值，是关键字；  exit 是一个函数。</li><li>return是语言级别的，它表示了调用堆栈的返回；而exit是系统调用级别的，它表示结束一个进程 。</li><li>return是函数的退出(返回)；exit是进程的退出。</li><li>return是C语言提供的，exit是操作系统提供的（或者函数库中给出的）。</li><li>return用于结束一个函数的执行，将函数的执行信息传出个其他调用函数使用；exit函数是退出应用程序，删除进程使用的内存空间，并将应用程序的一个状态返回给OS，这个状态标识了应用程序的一些运行信息，这个信息和机器和操作系统有关，一般是 0 为正常退出， 非0 为非正常退出。</li><li>非主函数中调用return和exit效果很明显，但是在main函数中调用return和exit的现象就很模糊，多数情况下现象都是一致的。</li></ol><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/singit/article/details/47708797">在java中如何跳出当前的多重嵌套循环？</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java基础 </tag>
+            
+            <tag> 面经 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swagger在线文档</title>
       <link href="2020/12/06/Spring/Swagger%E5%9C%A8%E7%BA%BF%E6%96%87%E6%A1%A3/"/>
       <url>2020/12/06/Spring/Swagger%E5%9C%A8%E7%BA%BF%E6%96%87%E6%A1%A3/</url>
