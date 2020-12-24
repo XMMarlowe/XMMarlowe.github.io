@@ -19,13 +19,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>高效的一天 - Hexo</title>
+  <title>Jedis - Hexo</title>
   
-    <meta name="keywords" content="学习,效率,工作方法">
+    <meta name="keywords" content="Redis,Jedis">
   
 
   
-    <meta name="description" content="大佬高效工作的一天…">
+    <meta name="description" content="…">
   
 
   <!-- feed -->
@@ -372,7 +372,7 @@
     
     
       <h1 class="title">
-        高效的一天
+        Jedis
       </h1>
       <div class='new-meta-box'>
         
@@ -392,7 +392,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">学习方法</a>
+      <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
     </a>
   </div>
 
@@ -403,7 +403,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 19, 2020</p>
+    <p>发布于：Dec 23, 2020</p>
   </a>
 </div>
 
@@ -414,7 +414,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="高效的一天" data-path="/2020/12/19/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E9%AB%98%E6%95%88%E7%9A%84%E4%B8%80%E5%A4%A9/">
+      <div id="lc-pv" data-title="Jedis" data-path="/2020/12/23/NoSQL/Jedis/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -431,18 +431,23 @@
 
 
   
-  <p>大佬高效工作的一天…</p>
+  <p>…</p>
 <a id="more"></a>
-<ol>
-<li>半小时整理每日重点和待办事项<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">整理每日计划，梳理一下今天大概要做什么事情，思考每件事情的优先级</span><br><span class="line">软件推荐：Notion</span><br></pre></td></tr></table></figure></li>
-<li>独立的工作区</li>
-<li>回想昨天的工作，处理邮件</li>
-<li>提前准备会议内容<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Visio or PPT 整理要说的内容</span><br></pre></td></tr></table></figure></li>
-<li>避免多任务切换<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">和计算机类似，在计算机里切换任务，或者发生中断，要保存各种状态，上下文和数据，完成中断之后，还要恢复之前保存的数据，保存和恢复的过程，都要花费大量的计算，想办法尽量避免中断</span><br></pre></td></tr></table></figure></li>
-<li>在家工作划分工作和生活的界限</li>
-<li>必要的生产力工具<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iPad Pro + Notability + Notion</span><br></pre></td></tr></table></figure></li>
-<li>琐碎任务集中处理</li>
+
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Jedis 是 Redis官方推荐的Java连接开发工具，使用Java操作Redis中间件。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ol>
+<li>导入对应的依赖<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--导入jedis的依赖--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>编码测试</li>
 </ol>
+<ul>
+<li>连接数据库</li>
+<li>操作命令</li>
+<li>断开连接<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPing</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1、new Jedis对象</span></span><br><span class="line">        Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+输出：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201223212734.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201223212734.png" srcset="data:image/png;base64,666" alt="20201223212734"></li>
+</ul>
+<p>操作事务：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestTx</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">        jedis.flushDB();</span><br><span class="line">        JSONObject jsonObject = <span class="keyword">new</span> JSONObject();</span><br><span class="line">        jsonObject.put(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">        jsonObject.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;marlowe&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开启事务</span></span><br><span class="line">        Transaction multi = jedis.multi();</span><br><span class="line">        String result = jsonObject.toJSONString();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            multi.set(<span class="string">&quot;user1&quot;</span>, result);</span><br><span class="line">            multi.set(<span class="string">&quot;user2&quot;</span>, result);</span><br><span class="line">            <span class="comment">// 代码抛出异常，事务执行失败</span></span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 执行事务</span></span><br><span class="line">            multi.exec();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">// 放弃事务</span></span><br><span class="line">            multi.discard();</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(jedis.get(<span class="string">&quot;user1&quot;</span>));</span><br><span class="line">            System.out.println(jedis.get(<span class="string">&quot;user2&quot;</span>));</span><br><span class="line">            jedis.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201223214213.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201223214213.png" srcset="data:image/png;base64,666" alt="20201223214213"></p>
 
   
   
@@ -460,7 +465,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2020/12/19/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E9%AB%98%E6%95%88%E7%9A%84%E4%B8%80%E5%A4%A9/>http://example.com/2020/12/19/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E9%AB%98%E6%95%88%E7%9A%84%E4%B8%80%E5%A4%A9/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2020/12/23/NoSQL/Jedis/>http://example.com/2020/12/23/NoSQL/Jedis/</a></p>
               
             
           </blockquote>
@@ -477,10 +482,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-20T23:40:18+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-23T21:43:17+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 20, 2020</p>
+    <p>更新于：Dec 23, 2020</p>
   </a>
 </div>
 
@@ -489,7 +494,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>学习</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%95%88%E7%8E%87/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>效率</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>工作方法</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Jedis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Jedis</p></a></div>
 
 
         
@@ -502,7 +507,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/12/19/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E9%AB%98%E6%95%88%E7%9A%84%E4%B8%80%E5%A4%A9/&title=高效的一天 - Hexo&summary=大佬高效工作的一天…"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/12/23/NoSQL/Jedis/&title=Jedis - Hexo&summary=…"
           
           >
           
@@ -514,7 +519,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/12/19/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E9%AB%98%E6%95%88%E7%9A%84%E4%B8%80%E5%A4%A9/&title=高效的一天 - Hexo&summary=大佬高效工作的一天…"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/12/23/NoSQL/Jedis/&title=Jedis - Hexo&summary=…"
           
           >
           
@@ -526,7 +531,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/12/19/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E9%AB%98%E6%95%88%E7%9A%84%E4%B8%80%E5%A4%A9/&title=高效的一天 - Hexo&summary=大佬高效工作的一天…"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/12/23/NoSQL/Jedis/&title=Jedis - Hexo&summary=…"
           
           >
           
@@ -556,27 +561,21 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/12/19/NoSQL/Redis-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis 基础知识</p>
-          <p class='content'>Redis 基础知识
+        <a class='prev' href='/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>SpringBoot整合Redis</p>
+          <p class='content'>
 
-
-Redis 是单线程的！
-
-Redis 是很快的，官方表示，Redis 是基于内存操作，CPU 不是Redis性能瓶颈，Redis 的瓶颈是根据机器的内存和网络带宽，既...</p>
+说明：SpringBoot2.x之后，原来使用jedis被替换为了lettucejedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全，使用jedis pool连接池！ 更...</p>
         </a>
       
       
-        <a class='next' href='/2020/12/08/ElasticSearch/ES-%E6%96%87%E6%A1%A3%E7%9A%84API%E6%93%8D%E4%BD%9C%E8%AF%A6%E6%83%85/'>
-          <p class='title'>ES 文档的API操作详情<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>…
+        <a class='next' href='/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/'>
+          <p class='title'>Redis 事务<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Redis 事务简介
 
 
-
-编写ElasticSearchConfig 配置文件，将ES交给Spring托管
-
-ElasticSearchConfig.java
-1234567891011@Configurati...</p>
+Redis 事务本质：一组命令的集合！一个事务中的所有命令都会被序列化，在事务执行过程中，会按照顺序执行！一次性，顺序性，排他性 执行一系列的命令！
+1-----队列 ...</p>
         </a>
       
     </div>
@@ -609,6 +608,20 @@ ElasticSearchConfig.java
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -625,7 +638,7 @@ ElasticSearchConfig.java
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="高效的一天";
+  pdata.postTitle="Jedis";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
