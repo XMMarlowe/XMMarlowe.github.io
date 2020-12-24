@@ -437,7 +437,6 @@
 <p>在elasticsearch中安装ik中文分词器，使用的elasticsearch版本是7.10.0，elasticsearch-analysis-ik版本是7.10.0。</p>
 <p>安装后，重新启动报错，报错信息为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2020-11-18T17:14:56,012][WARN ][o.e.c.r.a.AllocationService] [LAPTOP-TLVIFKFC] failing shard [AccessControlException[access denied (&quot;java.io.FilePermission&quot; &quot;D:\Program%20Files\elasticsearch\elasticsearch-7.10.0\plugins\ik\config\IKAnalyzer.cfg.xml&quot; &quot;read&quot;)]], markAsStale [true]]</span><br><span class="line">java.security.AccessControlException: access denied (&quot;java.io.FilePermission&quot; &quot;D:\Program%20Files\elasticsearch\elasticsearch-7.10.0\plugins\ik\config\IKAnalyzer.cfg.xml&quot; &quot;read&quot;)</span><br></pre></td></tr></table></figure>
-
 <p>原因是：elasticsearch安装路径中有空格造成的，如安装路径为D:\Program Files\elasticsearch\elasticsearch-7.10.0，其中”Program Files”两个词中间有空格</p>
 <p><strong>解决方法</strong>：elasticsearch选择没有空格的文件目录下安装</p>
 <p>前前后后下载了很多版本的插件，以及找同学烤文件，都没能解决这个问题，在百度重新搜索<code>elasticsearch ik 7.10.0 下载</code>的时候，出现了一篇拯救我的文章，重新安装好es所需要的文件后，将整个文件移动到没有空格的文件夹，问题才得以解决！</p>

@@ -21,7 +21,7 @@
   
   <title>IOC创建对象的方式 - Hexo</title>
   
-    <meta name="keywords" content="Spring,IOC">
+    <meta name="keywords" content="IOC,Spring">
   
 
   
@@ -442,12 +442,10 @@
 <li>类型</li>
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--第二种方式：不建议使用！通过类型创建--&gt;</span><br><span class="line">&lt;bean id=<span class="string">&quot;user&quot;</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;com.marlowe.pojo.User&quot;</span>&gt;</span><br><span class="line">    &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;狂神&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-
 <ol start="3">
 <li>参数名</li>
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--第三种方式，直接通过参数名来设置--&gt;</span><br><span class="line">&lt;bean id=<span class="string">&quot;user&quot;</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;com.marlowe.pojo.User&quot;</span>&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;name&quot; value=&quot;狂神说Java&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-
 <p>总结：在配置文件加载的时候，容器中管理的对象就已经初始化了！</p>
 
   
@@ -495,7 +493,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Spring/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Spring</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/IOC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>IOC</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/IOC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>IOC</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Spring/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Spring</p></a></div>
 
 
         

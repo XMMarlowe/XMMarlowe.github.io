@@ -397,8 +397,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">
-        Redis 发布订阅
+      <a href="/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/">
+        Redis 缓存穿透与雪崩(面试高频)
       </a>
     </h2>
   
@@ -406,13 +406,7 @@
     
       
         
-Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！Redis客户端可以订阅任意数量的频道。订阅/发布消息图：第一个：消息发送者，第二个：频道，第三个：消息订阅者使用场景
 
-实时消息系统
-实时聊天(频道当做聊天室，将信息回显给所有人即可)
-订阅，关注系统
-
-稍微复杂的场景就会使用消息中间件MQ
 
       
     
@@ -429,7 +423,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/'>
+          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/'>
             Read More
           </a>
         </div>
@@ -964,7 +958,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>40 篇</div>
+          <div>41 篇</div>
         </div>
       
 
@@ -1007,8 +1001,8 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Dec 24 2020 15:44:52 GMT+0800 (GMT+08:00)</div>
-            <div id="last-update-show">2020-12-24 日</div>
+            <div id="last-update" style="display: none;">Fri Dec 25 2020 03:49:11 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2020-12-25 日</div>
           
         </div>
         
@@ -1058,7 +1052,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2020-12-24 日';
+            document.getElementById('last-update-show').innerHTML = '2020-12-25 日';
           }
         </script>
         
