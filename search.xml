@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>Redis 缓存穿透与雪崩(面试高频)</title>
-      <link href="2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/"/>
-      <url>2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/</url>
+      <title>Redis 发布与订阅</title>
+      <link href="2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/"/>
+      <url>2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/</url>
       
-        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+        <content type="html"><![CDATA[<a id="more"></a><p>Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！<br>Redis客户端可以订阅任意数量的频道。<br>订阅/发布消息图：<br>第一个：消息发送者，第二个：频道，第三个：消息订阅者<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201224152827.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201224152827.png" srcset="data:image/png;base64,666" alt="20201224152827"><br><strong>使用场景</strong></p><ol><li>实时消息系统</li><li>实时聊天(频道当做聊天室，将信息回显给所有人即可)</li><li>订阅，关注系统</li></ol><p>稍微复杂的场景就会使用消息中间件MQ</p>]]></content>
       
       
       <categories>
@@ -29,13 +29,25 @@
     
     
     <entry>
-      <title></title>
-      <link href="2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/"/>
-      <url>2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/</url>
+      <title>Redis 缓存穿透与雪崩(面试高频)</title>
+      <link href="2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/"/>
+      <url>2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/</url>
       
-        <content type="html"><![CDATA[<hr><p>title: Redis 发布订阅<br>author: Marlowe<br>date: 2020-12-24 15:22:32<br>tags: Redis<br>categories: NoSQL</p><hr><a id="more"></a><p>Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！<br>Redis客户端可以订阅任意数量的频道。<br>订阅/发布消息图：<br>第一个：消息发送者，第二个：频道，第三个：消息订阅者<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201224152827.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201224152827.png" srcset="data:image/png;base64,666" alt="20201224152827"><br><strong>使用场景</strong></p><ol><li>实时消息系统</li><li>实时聊天(频道当做聊天室，将信息回显给所有人即可)</li><li>订阅，关注系统</li></ol><p>稍微复杂的场景就会使用消息中间件MQ</p>]]></content>
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
       
       
+      <categories>
+          
+          <category> NoSQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
       
     </entry>
     
@@ -459,9 +471,9 @@
       
         <tags>
             
-            <tag> Spring </tag>
-            
             <tag> Bean </tag>
+            
+            <tag> Spring </tag>
             
         </tags>
       
@@ -486,9 +498,9 @@
       
         <tags>
             
-            <tag> IOC </tag>
-            
             <tag> Spring </tag>
+            
+            <tag> IOC </tag>
             
         </tags>
       
@@ -542,11 +554,11 @@
       
         <tags>
             
-            <tag> 多线程 </tag>
+            <tag> 锁 </tag>
             
             <tag> Java </tag>
             
-            <tag> 锁 </tag>
+            <tag> 多线程 </tag>
             
         </tags>
       
@@ -571,11 +583,11 @@
       
         <tags>
             
-            <tag> 多线程 </tag>
+            <tag> 锁 </tag>
             
             <tag> Java </tag>
             
-            <tag> 锁 </tag>
+            <tag> 多线程 </tag>
             
         </tags>
       

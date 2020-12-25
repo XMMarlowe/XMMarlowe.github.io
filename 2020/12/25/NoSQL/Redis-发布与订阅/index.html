@@ -19,13 +19,11 @@
 
   <!-- 页面元数据 -->
   
-  <title>Hexo</title>
+  <title>Redis 发布与订阅 - Hexo</title>
+  
+    <meta name="keywords" content="Redis">
   
 
-  
-    <meta name="description" content="
-title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscategories: NoSQL
-">
   
 
   <!-- feed -->
@@ -371,14 +369,67 @@ title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscate
     
     
     
+      <h1 class="title">
+        Redis 发布与订阅
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Dec 25, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Redis 发布与订阅" data-path="/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
   </div>
 
 
   
-  <hr>
-<p>title: Redis 发布订阅<br>author: Marlowe<br>date: 2020-12-24 15:22:32<br>tags: Redis<br>categories: NoSQL</p>
-<hr>
-<a id="more"></a>
+  <a id="more"></a>
 <p>Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！<br>Redis客户端可以订阅任意数量的频道。<br>订阅/发布消息图：<br>第一个：消息发送者，第二个：频道，第三个：消息订阅者<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201224152827.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20201224152827.png" srcset="data:image/png;base64,666" alt="20201224152827"><br><strong>使用场景</strong></p>
 <ol>
 <li>实时消息系统</li>
@@ -403,7 +454,7 @@ title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscate
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/>http://example.com/2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/>http://example.com/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/</a></p>
               
             
           </blockquote>
@@ -420,7 +471,7 @@ title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscate
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-25T03:48:15+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-25T12:00:13+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Dec 25, 2020</p>
@@ -431,6 +482,9 @@ title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscate
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
+
 
         
       
@@ -442,9 +496,7 @@ title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscate
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/&title= - Hexo&summary=
-title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscategories: NoSQL
-"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/&title=Redis 发布与订阅 - Hexo&summary="
           
           >
           
@@ -456,9 +508,7 @@ title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscate
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/&title= - Hexo&summary=
-title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscategories: NoSQL
-"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/&title=Redis 发布与订阅 - Hexo&summary="
           
           >
           
@@ -470,9 +520,7 @@ title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscate
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/12/24/NoSQL/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/&title= - Hexo&summary=
-title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscategories: NoSQL
-"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/&title=Redis 发布与订阅 - Hexo&summary="
           
           >
           
@@ -502,19 +550,12 @@ title: Redis 发布订阅author: Marlowedate: 2020-12-24 15:22:32tags: Rediscate
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis 缓存穿透与雪崩(面试高频)</p>
+      
+        <a class='next' href='/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/'>
+          <p class='title'>Redis 缓存穿透与雪崩(面试高频)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
 </p>
-        </a>
-      
-      
-        <a class='next' href='/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/'>
-          <p class='title'>Redis 持久化<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失，所以Redis提供了持久化功能！
-
-RDB(Redis DataBase)简介...</p>
         </a>
       
     </div>
@@ -562,8 +603,8 @@ RDB(Redis DataBase)简介...</p>
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Redis 发布与订阅";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
