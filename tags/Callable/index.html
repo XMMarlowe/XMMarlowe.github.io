@@ -21,7 +21,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Category: 学习笔记 - Hexo</title>
+  <title>Tag: Callable - Hexo</title>
   
 
   
@@ -370,12 +370,6 @@
         
           
         
-          
-        
-          
-        
-          
-        
       
     
     
@@ -389,16 +383,22 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/11/17/Docker/DockerFile/">
-        DockerFile
+      <a href="/2020/12/26/JUC/Callable/">
+        Callable
       </a>
     </h2>
   
   <div class='md'>
     
       
-        dockerfile 是用来构建docker镜像的文件！
+        
+Callable简介：
 
+可以有返回值
+可以抛出异常
+方法不同，Runnable 是 run()， Callable 是call()
+
+1234567891011121314151617181920212223242526public class CallableTest &#123;    public static void main(String[] args) throws Exe...
       
     
   </div>
@@ -406,159 +406,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-11-17</time>
+        <time>2020-12-26</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+          <a class="category-link" href="/categories/JUC/">JUC</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/11/17/Docker/DockerFile/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/11/16/Docker/%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">
-        容器数据卷
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        什么是容器数据卷docker的理念回顾将应用和环境打包成一个镜像！数据？如果数据都在容器中，那么容器一删除，数据就会丢失！==需求：数据可以持久化==MySQL，容器删了，删库跑路！==需求：MySQL数据可以存储在本地！==容器之间可以有一个数据共享的技术！Docker容器中产生的数据，同步到本地！这就是卷技术！目录的挂载，将我们容器内的目录，挂载到Linux上面！总结一句话：容器的持久化...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-11-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/11/16/Docker/%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/11/16/Docker/Docker%E9%95%9C%E5%83%8F%E8%AE%B2%E8%A7%A3/">
-        Docker镜像讲解
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        如何提交一个自己的镜像
-commit镜像1234docker commit 提交容器成为一个新的副本# 命令和git原理类似docker commit -m=&quot;提交的描述信息&quot; -a=&quot;作者&quot; 容器id 目标镜像名：[TAG] 
-实战测试
-1234567891011# 1、启动一个默认的tomcat[root@hecs-x-large-2-linux-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-11-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/11/16/Docker/Docker%E9%95%9C%E5%83%8F%E8%AE%B2%E8%A7%A3/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/11/11/Docker/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-        Docker常用命令
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        帮助命令123docker version      # 显示docker的版本信息docker info         # 显示docker的系统信息，包括镜像和容器的数量docker 命令 --help  # 帮助命令
-帮助文档地址：https://docs.docker.com/reference/
-镜像命令docker images 查看所有本地的主机上的镜像
-123456789[...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-11-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/11/11/Docker/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/'>
+          <a class='readmore' href='/2020/12/26/JUC/Callable/'>
             Read More
           </a>
         </div>
