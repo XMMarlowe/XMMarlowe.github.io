@@ -462,6 +462,26 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
@@ -475,31 +495,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/27/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BE%85%E5%8A%A9%E7%B1%BB/">
-        常用的辅助类
+      <a href="/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
+        ThreadLocal原理和使用场景
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        countDownLatch12345678910111213141516public class CountDownLatchDemo &#123;    public static void main(String[] args) throws InterruptedException &#123;        CountDownLatch countDownLatch = new C...
-      
+      <p>每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-27</time>
+        <time>2021-03-10</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/JUC/">JUC</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/27/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BE%85%E5%8A%A9%E7%B1%BB/'>
+          <a class='readmore' href='/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
             Read More
           </a>
         </div>
@@ -521,38 +539,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/26/JUC/Callable/">
-        Callable
+      <a href="/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/">
+        浅谈对守护线程的理解
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-Callable简介：
-
-可以有返回值
-可以抛出异常
-方法不同，Runnable 是 run()， Callable 是call()
-
-1234567891011121314151617181920212223242526public class CallableTest &#123;    public static void main(String[] args) throws Exe...
-      
+      <p>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-26</time>
+        <time>2021-03-10</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/JUC/">JUC</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/26/JUC/Callable/'>
+          <a class='readmore' href='/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/'>
             Read More
           </a>
         </div>
@@ -574,39 +583,29 @@ Callable简介：
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/">
-        Redis 发布与订阅
+      <a href="/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/">
+        浅谈对线程安全的理解
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！Redis客户端可以订阅任意数量的频道。订阅/发布消息图：第一个：消息发送者，第二个：频道，第三个：消息订阅者使用场景
-
-实时消息系统
-实时聊天(频道当做聊天室，将信息回显给所有人即可)
-订阅，关注系统
-
-稍微复杂的场景就会使用消息中间件MQ
-
-      
+      <p>当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-25</time>
+        <time>2021-03-10</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/'>
+          <a class='readmore' href='/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/'>
             Read More
           </a>
         </div>
@@ -628,8 +627,8 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/">
-        Redis 缓存穿透与雪崩(面试高频)
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        sleep(),wait(),join(),yield()的区别
       </a>
     </h2>
   
@@ -638,7 +637,8 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       
         
 
-
+锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就绪队列进行等待cpu资源分配。
+等待池当我们调用wait()方法后，线程会放到等待池当中，等待池的线程是不会去竞争同步锁。只有调用了notify()或notifyAll()后等待的线程才会开始去竞争锁...
       
     
   </div>
@@ -646,15 +646,15 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-24</time>
+        <time>2021-03-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/'>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
             Read More
           </a>
         </div>
@@ -676,29 +676,29 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/">
-        Redis 持久化
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/">
+        线程的生命周期包括哪几个阶段
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失，所以Redis提供了持久化功能！</p>
+      <p>线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-24</time>
+        <time>2021-03-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/'>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/'>
             Read More
           </a>
         </div>
@@ -720,8 +720,8 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/">
-        SpringBoot整合Redis
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/">
+        GC如何判断对象可以被回收
       </a>
     </h2>
   
@@ -730,8 +730,11 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       
         
 
-说明：SpringBoot2.x之后，原来使用jedis被替换为了lettucejedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全，使用jedis pool连接池！ 更像BIO模式lettuce：采用netty，示例可以在多个线程中共享，不存在线程不安全的情况！可以减少线程数据了，更像NIO模式原码分析：
-12345678910111213141516171819@...
+引用计数法方式：每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。优点：实现简单，效率高。缺点：无法解决循环引用。
+可达性分析法方式：从一系列被称为GC ROOT的对象开始，向下搜索，搜索走过的路径称为引用链，当一个对象到GC ROOT之间没有引用链，说明这个对象不可用。
+GC ROOT对象：
+虚拟机栈中引用的对象
+方法区内类的静态属性引用的对象...
       
     
   </div>
@@ -739,15 +742,15 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-23</time>
+        <time>2021-03-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/'>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/'>
             Read More
           </a>
         </div>
@@ -769,29 +772,38 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/23/NoSQL/Jedis/">
-        Jedis
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/">
+        Java中的异常体系
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>…</p>
+      
+        
+
+
+所有异常类都是Throwable的子类
+异常可分为Error(错误)和Exception(异常)两类
+Exception又可分为RuntimeException(运行时异常)和非运行时异常两类
+Error是程序无法处理的错误，一旦出现这个错误，则程序被迫停止运行。
+Exception不会导致程序停止，分为RuntimeException运行时异常和CheckedException检查异...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-23</time>
+        <time>2021-03-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/23/NoSQL/Jedis/'>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/'>
             Read More
           </a>
         </div>
@@ -813,29 +825,29 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/">
-        Redis 事务
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/">
+        Java类加载机制和类加载器概述
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Redis 事务简介</p>
+      <p>当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来兑该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-20</time>
+        <time>2021-03-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/'>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/'>
             Read More
           </a>
         </div>
@@ -857,29 +869,29 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/20/NoSQL/Redis-%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-        Redis 三种特殊数据类型
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+        什么是字节码？采用字节码的好处是什么？
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Radis 三种特殊数据类型…</p>
+      <p>字节码：在Java中，供虚拟机理解的代码叫做字节码(也就是Java代码编译后的.class文件),他不面向任何特定的处理器，只面向虚拟机。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-20</time>
+        <time>2021-03-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/20/NoSQL/Redis-%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/'>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -901,29 +913,29 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/19/NoSQL/Redis-%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-        Redis 五大数据类型
+      <a href="/2021/03/02/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JWTUtils/">
+        JWTUtils
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Redis 五大数据类型详述…</p>
+      <p>Jwt 学习</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-19</time>
+        <time>2021-03-02</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/">自定义工具类</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/19/NoSQL/Redis-%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/'>
+          <a class='readmore' href='/2021/03/02/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JWTUtils/'>
             Read More
           </a>
         </div>
@@ -944,7 +956,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       <div class="prev-next">
         
         <p class="current">
-          1 / 5
+          1 / 6
         </p>
         
           <a class="next" rel="next" href="/page/2/">
@@ -1095,6 +1107,11 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
             ><div class='name'>搭建博客</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
+            id="categoriesE698A5E68B9BE99DA2E8AF95"
+            ><div class='name'>春招面试</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
             id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
             ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
@@ -1102,7 +1119,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           <li><a class="flat-box"
             title="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/"
             id="categoriesE887AAE5AE9AE4B989E5B7A5E585B7E7B1BB"
-            ><div class='name'>自定义工具类</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>自定义工具类</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -1131,7 +1148,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
 
 
     <div class='content'>
-      <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/Docker/" style="font-size: 21.5px; color: #666">Docker</a> <a href="/tags/ES/" style="font-size: 19px; color: #777">ES</a> <a href="/tags/HashMap/" style="font-size: 14px; color: #999">HashMap</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 19px; color: #777">Leetcode</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Spring/" style="font-size: 21.5px; color: #666">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 19px; color: #777">SpringBoot</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/test/" style="font-size: 16.5px; color: #888">test</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 14px; color: #999">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 14px; color: #999">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 16.5px; color: #888">创建型模式</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 19px; color: #777">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 16.5px; color: #888">数据类型</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 16.5px; color: #888">结构型模式</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 16.5px; color: #888">行为型模式</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BE%85%E5%8A%A9%E7%B1%BB/" style="font-size: 14px; color: #999">辅助类</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 14px; color: #999">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 16.5px; color: #888">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a>
+      <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/Docker/" style="font-size: 19px; color: #777">Docker</a> <a href="/tags/ES/" style="font-size: 17.33px; color: #828282">ES</a> <a href="/tags/GC/" style="font-size: 14px; color: #999">GC</a> <a href="/tags/HashMap/" style="font-size: 14px; color: #999">HashMap</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/JVM/" style="font-size: 15.67px; color: #8e8e8e">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 17.33px; color: #828282">Leetcode</a> <a href="/tags/Redis/" style="font-size: 22.33px; color: #606060">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Spring/" style="font-size: 19px; color: #777">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 17.33px; color: #828282">SpringBoot</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/test/" style="font-size: 15.67px; color: #8e8e8e">test</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 14px; color: #999">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 14px; color: #999">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">创建型模式</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 17.33px; color: #828282">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 14px; color: #999">异常</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 15.67px; color: #8e8e8e">数据类型</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 20.67px; color: #6c6c6c">线程</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">结构型模式</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">行为型模式</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BE%85%E5%8A%A9%E7%B1%BB/" style="font-size: 14px; color: #999">辅助类</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 14px; color: #999">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 15.67px; color: #8e8e8e">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a>
     </div>
   </section>
 
@@ -1158,7 +1175,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>43 篇</div>
+          <div>53 篇</div>
         </div>
       
 
@@ -1201,8 +1218,8 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon Dec 28 2020 09:28:41 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2020-12-28 日</div>
+            <div id="last-update" style="display: none;">Wed Mar 10 2021 22:29:29 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-03-10 日</div>
           
         </div>
         
@@ -1252,7 +1269,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2020-12-28 日';
+            document.getElementById('last-update-show').innerHTML = '2021-03-10 日';
           }
         </script>
         
