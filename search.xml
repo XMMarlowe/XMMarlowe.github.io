@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title>Spring是什么？</title>
+      <link href="2021/03/11/Spring%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
+      <url>2021/03/11/Spring%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<p>轻量级的开源的J2EE框架。它是一个容器框架，用来装JavaBean，也是一个中间层框架，可以起连接作用。</p><a id="more"></a><h3 id="Spring是什么？"><a href="#Spring是什么？" class="headerlink" title="Spring是什么？"></a>Spring是什么？</h3><p>Spring是一个轻量级的控制反转(Ioc)和面向切面(AOP)的容器框架。</p><p>1、Spring的核心是一个轻量级（Lightweight）的容器（Container）。<br>2、Spring是实现IoC（Inversion of Control）容器和非入侵性（No intrusive）的框架。<br>3、Spring提供AOP（Aspect-oriented programming）概念的实现方式。<br>4、Spring提供对持久层（Persistence）、事物（Transcation）的支持。<br>5、Spring供MVC Web框架的实现，并对一些常用的企业服务API（Application Interface）提供一致的模型封装。<br>6、Spring提供了对现存的各种框架（Structs、JSF、Hibernate、Ibatis、Webwork等）相整合的方案。<br>总之，Spring是一个全方位的应用程序框架。</p><h3 id="对AOP的理解"><a href="#对AOP的理解" class="headerlink" title="对AOP的理解"></a>对AOP的理解</h3><p>AOP:将程序中的交叉业务逻辑(比如安全，日志，事务等)，封装成一个切面,然后注入到目标对象(具体业务逻辑)中去。AOP可以对某个对象或某些对象的功能进行增强，比如对象中的方法进行增强，可以在执行某个方法之前额外的做一些事情，在某个方法执行之后额外的做一些事情。</p><h3 id="对IoC的理解"><a href="#对IoC的理解" class="headerlink" title="对IoC的理解"></a>对IoC的理解</h3><p>IOC:控制反转也叫依赖注入，IOC利用java反射机制，所谓控制反转是指，本来被调用者的实例是由调用者来创建的，这样的缺点是耦合性太强，IOC则是统一交给spring来管理创建，将对象交给容器管理，你只需要在spring配置文件中配置相应的bean，以及设置相关的属性，让spring容器来生成类的实例对象以及管理对象。在spring容器启动的时候，spring会把你在配置文件中配置的bean都初始化好，然后在你需要调用的时候，就把它已经初始化好的那些bean分配给你需要调用这些bean的类。</p><p><strong>控制反转:</strong><br>没有引入I0C容器之前，对象A依赖于对象B,那么对象A在初始化或者运行到某一点的时候， 自己必须主动去创建对象B或者使用已经创建的对象B。无论是创建还是使用对象B,控制权都在自己手上。</p><p>引入I0C容器之后,对象A与对象B之间失去了直接联系,当对象A运行到需要对象B的时候，I0C容器 会主动创建一个对象B注入到对象A需要的地方。</p><p>通过前后的对比，不难看出来:对象A获得依赖对象B的过程,由主动行为变为了被动行为,控制权颠倒过来，这就是”控制反转”这个名称的由来。</p><p>全部对象的控制权全部上缴给”第三方”IOC容器,所以，I0C容器成了整个系统的关键核心，它起到了一种类似“粘合剂”的作用，把系统中的所有对象粘合在一起发挥作用，如果没有这个”粘合剂”，对象与对象之间会彼此失去联系,这就是有人把IoC容器比喻成”粘合剂”的由来。</p><p><strong>依赖注入:</strong><br>“获得依赖对象的过程被反转了”。控制被反转之后，获得依赖对象的过程由自身管理变为了由IOC容器主动注入。<br>依赖注入是实现I0C的方法,就是由IOC容器在运行期间，动态地将某种依赖关系注入到对象之中。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 春招面试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理</title>
+      <link href="2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/"/>
+      <url>2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="线程池中阻塞队列的作用"><a href="#线程池中阻塞队列的作用" class="headerlink" title="线程池中阻塞队列的作用?"></a>线程池中阻塞队列的作用?</h3><p>一般的队列只能保证作为一个有限长度的缓冲区,如果超出了缓冲长度,就无法保留当前的任务了,阻塞队列通过阻塞可以保留住当前想要继续入队的任务。阻塞队列可以保证任务队列中没有任务时阻塞获取任务的线程,使得线程进入wait状态,释放cpu资源。阻塞队列自带阻塞和唤醒的功能,不需要额外处理,无任务执行时,线程池利用阻塞队列的take方法挂起,从而维持核心线程的存活、不至于一直占用cpu资源</p><h3 id="为什么是先添加列队而不是先创建最大线程"><a href="#为什么是先添加列队而不是先创建最大线程" class="headerlink" title="为什么是先添加列队而不是先创建最大线程?"></a>为什么是先添加列队而不是先创建最大线程?</h3><p>在创建新线程的时候,是要获取全局锁的,这个时候其它的就得阻塞,影响了整体效率。</p><p>就好比一个饭店里面有10个(core)正式工的名额,最多招10个正式工,要是任务超过正式工人数(task&gt;core)的情况下,工厂领导(线程池)不是首先扩招工人,还是这10人,但是任务可以稍微积压一下,即先放到队列去(代价低) 。10个正式工慢慢干,迟早会千完的,要是任务还在继续增加,超过正式工的加班忍耐极限了(队列满了) ,就的招外包帮忙了(注意是临时工)要是正式工加上外包还是不能完成任务,那新来的任务就会被领导拒绝了(线程池的拒绝策略)</p><h3 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h3><p>线程池将线程和任务进行解耦,线程是线程,任务是任务,摆脱了之前通过Thread创建线程时的一个线程必须对应一个任务的限制。</p><p>在线程池中,同一个线程可以从阻塞队列中不断获取新任务来执行,其核心原理在于线程池对Thread进行了封装,并不是每次执行任务都会调用Thread.start（)来创建新线程,而是让每个线程去执行一个”循环任务”,在这个”循环任务”中不停检查是否有任务需要被执行,如果有则直接执行,也就是调用任务中的run方法,将run方法当成一个普通的方法执行,通过这种方式只使用固定的线程就将所有任务的run方法串联起来。</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cnblogs.com/yuyyg/p/14508985.html">线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 春招面试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>为什么用线程池？线程池参数解释</title>
+      <link href="2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/"/>
+      <url>2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p>为什么使用线程池?</p><p>1、降低资源消耗;提高线程利用率,降低创建和销毁线程的消耗。</p><p>2、提高响应速度;任务来了,直接有线程可用可执行,而不是先创建线程,再执行。</p><p>3、提高线程的可管理性;线程是稀缺资源,使用线程池可以统一分配调优监控。</p><p><strong>corePoolsize</strong>代表核心线程数,也就是正常情况下创建工作的线程数,这些线程创建后并不会消除,而是一种常驻线程</p><p><strong>maxinumPoolsize</strong>代表的是最大线程数,它与核心线程数相对应,表示最大允许被创建的线程数,比如当前任务较多,将核心线程数都用完了,还无法满足需求时,此时就会创建新的线程,但是线程池内线程总数不会超过最大线程数</p><p><strong>keepAliverime</strong>, unit表示超出核心线程数之外的线程的空闲存活时间,也就是核心线程不会消除,但是超出核心线程数的部分线程如果空闲一定的时间则会被消除,我们可以通过setKeepAliveTime来设置空闲时间</p><p><strong>workQueue</strong>用来存放待执行的任务,假设我们现在核心线程都已被使用,还有任务进来则全部放入队列,直到整个队列被放满但任务还再持续进入则会开始创建新的线程</p><p><strong>ThreadFactory</strong>实际上是一个线程工厂,用来生产线程执行任务。我们可以选择使用默认的创建工厂,产生的线程都在同一个组内,拥有相同的优先级,且都不是守护线程。当然我们也可以选择自定义线程工厂,一般我们会根据业务来制定不同的线程工厂</p><p><strong>Handler</strong>任务拒绝策略,有两种情况,第一种是当我们调用shutdown等方法关闭线程池后,这时候即使线程池内部还有没执行完的任务正在执行,但是由于线程池已经关闭,我们再继续想线程池提交任务就会遭到拒绝。另一种情况就是当达到最大线程数,线程池已经没有能力继续处理新提交的任务时,这时也就拒绝</p><h3 id="执行线程池的流程"><a href="#执行线程池的流程" class="headerlink" title="执行线程池的流程"></a>执行线程池的流程</h3><p>线程池任务开始执行时，会先判断线程池是否已满，如果没有满则创建核心线程执行，如果核心线程已满那么就判断任务队列是否已满，未满则将任务放入到队列中，如果已满则判断最大线程数是否打到，未达到则创建临时线程执行，临时吸线程如果空闲时我们可以设置超时时间也就是KeepAliveTime，当达到超时时间临时线程则被回收。如果全部线程空间都满了那么我们可设置拒绝策略来处理。</p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210311103948.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210311103948.png" srcset="data:image/png;base64,666" alt="20210311103948"></p><h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><p><a href="https://www.cnblogs.com/yuyyg/p/14508729.html">为什么要用线程池，线程池的参数解释</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 春招面试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>并发的三大特性</title>
+      <link href="2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/"/>
+      <url>2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>定义：原子性是指在一个操作中cpu不可以在中途暂停然后再调度,即不被中断操作，要不全部执行完成，要不都不执行。就好比转账，从账户A向账户B转1000元，那么必然包括2个操作:从账户A减去1000元,往账户B加上1000元。2个操作必须全部完成。</p><p>关键字：synchronized</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">calc</span><span class="params">()</span></span>&#123;</span><br><span class="line">    count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在上述代码中，将执行以下步骤：</p><ol><li>将count从主存读取到工作内存中的副本</li><li>+1运算</li><li>将结果写入工作内存</li><li>将工作内存中的值刷回主存(什么时候刷入由操作系统决定，不确定的)</li></ol><h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>定义：当一个线程修改了共享变量的值，其他线程会马上知道这个修改。当其他线程要读取这个变量的时候，最终会去<strong>内存</strong>中读取，而不是从缓存中读取。</p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210311093939.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210311093939.png" srcset="data:image/png;base64,666" alt="20210311093939"></p><p>关键字：volatile、synchronized、final</p><h3 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h3><p>定义：虚拟机在进行代码编译时，对于那些改变顺序之后不会对最终结果造成影响的代码，虚拟机不一定会按照我们写的代码的顺序来执行，有可能将他们重排序。实际上，对于有些代码进行重排序之后，虽然对变量的值没有造成影响，但有可能会出现线程安全问题。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">()</span></span>&#123;</span><br><span class="line">    a = <span class="number">2</span>;                 <span class="comment">//1    //1</span></span><br><span class="line">    flag = <span class="keyword">true</span>;           <span class="comment">//2    //4</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">multiply</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(flag)&#123;              <span class="comment">//3   //2</span></span><br><span class="line">        <span class="keyword">int</span> res = a * a;   <span class="comment">//4   //3</span></span><br><span class="line">    &#125;                      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">如果按照<span class="number">1234</span>执行，结果为：</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line">res = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">如果按照<span class="number">1423</span>执行，结果为：</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line">res = <span class="number">0</span>;</span><br></pre></td></tr></table></figure><p>关键字：volatile、synchronized</p><p>volatile本身就包含了禁止指令重排序的语义，而synchronized关键字是由“一个变量在同一时刻只允许一条线程对其进行lock操作”这条规则明确的。</p><h3 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h3><ol><li>synchronized关键字同时满足以上三种特性，但是volatile关键字不满足原子性。</li><li>在某些情况下，volatile的同步机制的性能确实要优于锁(使用synchronized关键字或java.util.concurrent包里面的锁)，因为volatile的总开销要比锁低。</li><li>我们判断使用volatile还是加锁的唯一依据就是volatile的语义能否满足使用的场景(原子性)</li></ol><h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><p><a href="https://zhuanlan.zhihu.com/p/94145504">高并发的三大特性—原子性、有序性、可见性</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 春招面试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 并发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ThreadLocal原理和使用场景</title>
       <link href="2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
       <url>2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
