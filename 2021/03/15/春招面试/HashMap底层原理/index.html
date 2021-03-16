@@ -19,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>代理模式之静态代理和动态代理 - Hexo</title>
+  <title>HashMap底层原理 - Hexo</title>
+  
+    <meta name="keywords" content="HashMap">
   
 
   
@@ -368,7 +370,7 @@
     
     
       <h1 class="title">
-        代理模式之静态代理和动态代理
+        HashMap底层原理
       </h1>
       <div class='new-meta-box'>
         
@@ -385,6 +387,13 @@
         
           
             
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+    </a>
+  </div>
+
 
           
         
@@ -403,7 +412,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="代理模式之静态代理和动态代理" data-path="/2021/03/15/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
+      <div id="lc-pv" data-title="HashMap底层原理" data-path="/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -420,7 +429,11 @@
 
 
   
-  
+  <a id="more"></a>
+
+<h3 id="JDK1-7"><a href="#JDK1-7" class="headerlink" title="JDK1.7"></a>JDK1.7</h3><p>数据结构则是采用的位桶和链表相结合的形式完成了，即拉链法。具体如下图所示：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210315223328.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210315223328.png" srcset="data:image/png;base64,666" alt="20210315223328"></p>
+<p>HashMap里面存储的是静态内部类Entry的对象，这个对象其实也是一个key-value的结构。</p>
+
   
   
     
@@ -437,7 +450,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/03/15/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/>http://example.com/2021/03/15/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/>http://example.com/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</a></p>
               
             
           </blockquote>
@@ -454,10 +467,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-15T22:35:59+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-16T09:57:30+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 15, 2021</p>
+    <p>更新于：Mar 16, 2021</p>
   </a>
 </div>
 
@@ -465,6 +478,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/HashMap/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>HashMap</p></a></div>
+
 
         
       
@@ -476,7 +492,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/03/15/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/&title=代理模式之静态代理和动态代理 - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/&title=HashMap底层原理 - Hexo&summary="
           
           >
           
@@ -488,7 +504,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/03/15/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/&title=代理模式之静态代理和动态代理 - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/&title=HashMap底层原理 - Hexo&summary="
           
           >
           
@@ -500,7 +516,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/03/15/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/&title=代理模式之静态代理和动态代理 - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/&title=HashMap底层原理 - Hexo&summary="
           
           >
           
@@ -530,19 +546,15 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/03/15/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>JDK动态代理和CGLIB动态代理</p>
+        <a class='prev' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>HashMap是线程安全的吗？</p>
           <p class='content'></p>
         </a>
       
       
-        <a class='next' href='/2021/03/13/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/'>
-          <p class='title'>final,static,this,super关键字总结<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
-
-final 关键字final关键字，意思是最终的、不可修改的，最见不得变化 ，用来修饰类、方法和变量，具有以下特点：
-
-final修饰的类不能被继承，final类中的所有成员方法都会被隐式的...</p>
+        <a class='next' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <p class='title'>常见的IO模型有哪些？Java中的BIO，NIO，AIO的区别<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>从应用程序的视角来看的话，我们的应用程序对操作系统的内核发起 IO 调用（系统调用），操作系统负责的内核执行具体的 IO 操作。也就是说，我们的应用程序实际上只是发起了 IO 操作的调用而已，具...</p>
         </a>
       
     </div>
@@ -575,6 +587,20 @@ final修饰的类不能被继承，final类中的所有成员方法都会被隐�
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-7"><span class="toc-text">JDK1.7</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -591,7 +617,7 @@ final修饰的类不能被继承，final类中的所有成员方法都会被隐�
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="代理模式之静态代理和动态代理";
+  pdata.postTitle="HashMap底层原理";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

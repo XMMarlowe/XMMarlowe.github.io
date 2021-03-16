@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>HashMap是线程安全的吗？ - Hexo</title>
+  <title>ConcurrentHashMap 线程安全的具体实现方式/底层具体实现 - Hexo</title>
   
 
   
@@ -368,7 +368,7 @@
     
     
       <h1 class="title">
-        HashMap是线程安全的吗？
+        ConcurrentHashMap 线程安全的具体实现方式/底层具体实现
       </h1>
       <div class='new-meta-box'>
         
@@ -392,7 +392,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Mar 15, 2021</p>
+    <p>发布于：Mar 16, 2021</p>
   </a>
 </div>
 
@@ -403,7 +403,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="HashMap是线程安全的吗？" data-path="/2021/03/15/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/">
+      <div id="lc-pv" data-title="ConcurrentHashMap 线程安全的具体实现方式/底层具体实现" data-path="/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -437,7 +437,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/03/15/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/>http://example.com/2021/03/15/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/>http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/</a></p>
               
             
           </blockquote>
@@ -454,10 +454,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-15T22:35:59+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-16T09:57:29+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 15, 2021</p>
+    <p>更新于：Mar 16, 2021</p>
   </a>
 </div>
 
@@ -476,7 +476,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/03/15/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/&title=HashMap是线程安全的吗？ - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/&title=ConcurrentHashMap 线程安全的具体实现方式/底层具体实现 - Hexo&summary="
           
           >
           
@@ -488,7 +488,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/03/15/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/&title=HashMap是线程安全的吗？ - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/&title=ConcurrentHashMap 线程安全的具体实现方式/底层具体实现 - Hexo&summary="
           
           >
           
@@ -500,7 +500,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/03/15/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/&title=HashMap是线程安全的吗？ - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/&title=ConcurrentHashMap 线程安全的具体实现方式/底层具体实现 - Hexo&summary="
           
           >
           
@@ -530,21 +530,10 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ArrayList扩容机制</p>
-          <p class='content'>
-
-1234567891、添加元素时，首先进行判断是否大于默认容量102、如果，小于默认容量，直接在原来基础上+1，元素添加完毕3、如果，大于默认容量，则需要进行扩容，扩容核心是grow()方法...</p>
-        </a>
       
-      
-        <a class='next' href='/2021/03/15/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/'>
-          <p class='title'>HashMap底层原理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
-
-JDK1.7数据结构则是采用的位桶和链表相结合的形式完成了，即拉链法。具体如下图所示：
-HashMap里面存储的是静态内部类Entry的对象，这个对象其实也是一个key-value的结构。
-</p>
+        <a class='next' href='/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <p class='title'>ConcurrentHashMap 和 Hashtable 的区别<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'></p>
         </a>
       
     </div>
@@ -593,7 +582,7 @@ HashMap里面存储的是静态内部类Entry的对象，这个对象其实也�
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="HashMap是线程安全的吗？";
+  pdata.postTitle="ConcurrentHashMap 线程安全的具体实现方式/底层具体实现";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
