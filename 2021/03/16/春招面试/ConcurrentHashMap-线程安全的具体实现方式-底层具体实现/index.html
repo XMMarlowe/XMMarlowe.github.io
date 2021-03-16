@@ -21,6 +21,8 @@
   
   <title>ConcurrentHashMap 线程安全的具体实现方式/底层具体实现 - Hexo</title>
   
+    <meta name="keywords" content="HashMap,线程安全">
+  
 
   
 
@@ -385,6 +387,13 @@
         
           
             
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+    </a>
+  </div>
+
 
           
         
@@ -420,7 +429,17 @@
 
 
   
-  
+  <a id="more"></a>
+
+<h3 id="JDK1-7"><a href="#JDK1-7" class="headerlink" title="JDK1.7"></a>JDK1.7</h3><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316204638.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316204638.png" srcset="data:image/png;base64,666" alt="20210316204638"></p>
+<p>首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。</p>
+<p>ConcurrentHashMap 是由 Segment 数组结构和 HashEntry 数组结构组成。</p>
+<p>Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Segment</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">ReentrantLock</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个 ConcurrentHashMap 里包含一个 Segment 数组。Segment 的结构和 HashMap 类似，是一种数组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每个 Segment 守护着一个 HashEntry 数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先获得对应的 Segment 的锁。</p>
+<h3 id="JDK1-8"><a href="#JDK1-8" class="headerlink" title="JDK1.8"></a>JDK1.8</h3><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316204650.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316204650.png" srcset="data:image/png;base64,666" alt="20210316204650"><br>ConcurrentHashMap 取消了 Segment 分段锁，采用 CAS 和 synchronized 来保证并发安全。数据结构跟 HashMap1.8 的结构类似，数组+链表/红黑二叉树。Java 8 在链表长度超过一定阈值（8）时将链表（寻址时间复杂度为 O(N)）转换为红黑树（寻址时间复杂度为 O(log(N))）</p>
+<p>synchronized 只锁定当前链表或红黑二叉树的首节点，这样只要 hash 不冲突，就不会产生并发，效率又提升 N 倍。</p>
+
   
   
     
@@ -454,7 +473,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-16T09:57:29+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-16T20:46:53+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Mar 16, 2021</p>
@@ -465,6 +484,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/HashMap/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>HashMap</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>线程安全</p></a></div>
+
 
         
       
@@ -530,10 +552,24 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>HashMap扩容机制</p>
+          <p class='content'>聊聊HashMap扩容机制
+
+
+1、什么时候才需要扩容
+在首次调用put方法的时候，初始化数组table
+当HashMap中的元素个数超过数组大小(数组长度)*loadFactor(负载因子)时...</p>
+        </a>
+      
       
         <a class='next' href='/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
           <p class='title'>ConcurrentHashMap 和 Hashtable 的区别<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'></p>
+          <p class='content'>ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方式上不同。
+
+
+
+底层数据结构： JDK1.7 的 ConcurrentHashMap 底层采用 分段...</p>
         </a>
       
     </div>
@@ -565,6 +601,20 @@
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-7"><span class="toc-text">JDK1.7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-8"><span class="toc-text">JDK1.8</span></a></li></ol>
+    </div>
+  </section>
 
 
   

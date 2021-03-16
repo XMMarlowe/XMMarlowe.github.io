@@ -21,7 +21,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Category: ElasticSearch - Hexo</title>
+  <title>Category: 春招面试 - Hexo</title>
   
 
   
@@ -366,14 +366,6 @@
       
   <section class="post-list">
     
-      
-        
-          
-        
-          
-        
-      
-    
     
       
         
@@ -385,29 +377,37 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/08/ElasticSearch/ES-%E6%96%87%E6%A1%A3%E7%9A%84API%E6%93%8D%E4%BD%9C%E8%AF%A6%E6%83%85/">
-        ES 文档的API操作详情
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/">
+        GC如何判断对象可以被回收
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>…</p>
+      
+        
+
+引用计数法方式：每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。优点：实现简单，效率高。缺点：无法解决循环引用。
+可达性分析法方式：从一系列被称为GC ROOT的对象开始，向下搜索，搜索走过的路径称为引用链，当一个对象到GC ROOT之间没有引用链，说明这个对象不可用。
+GC ROOT对象：
+虚拟机栈中引用的对象
+方法区内类的静态属性引用的对象...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-08</time>
+        <time>2021-03-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/ElasticSearch/">ElasticSearch</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/08/ElasticSearch/ES-%E6%96%87%E6%A1%A3%E7%9A%84API%E6%93%8D%E4%BD%9C%E8%AF%A6%E6%83%85/'>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/'>
             Read More
           </a>
         </div>
@@ -429,8 +429,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/08/ElasticSearch/Rest%E9%A3%8E%E6%A0%BC%E6%93%8D%E4%BD%9C/">
-        Rest风格操作
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/">
+        Java中的异常体系
       </a>
     </h2>
   
@@ -439,11 +439,12 @@
       
         
 
-关于索引的基本操作12PUT /索引名/~类型名~/文档id&#123;请求体&#125;
 
-完成了自动增加索引！数据也成功的添加了
-指定字段的类型
-12345678910111213141516PUT /test2&#123;  &quot;mappings&quot;: &#123;    &quot;properties&quot;: &#123;      &quot;name&...
+所有异常类都是Throwable的子类
+异常可分为Error(错误)和Exception(异常)两类
+Exception又可分为RuntimeException(运行时异常)和非运行时异常两类
+Error是程序无法处理的错误，一旦出现这个错误，则程序被迫停止运行。
+Exception不会导致程序停止，分为RuntimeException运行时异常和CheckedException检查异...
       
     
   </div>
@@ -451,15 +452,103 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-08</time>
+        <time>2021-03-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/ElasticSearch/">ElasticSearch</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/08/ElasticSearch/Rest%E9%A3%8E%E6%A0%BC%E6%93%8D%E4%BD%9C/'>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/">
+        Java类加载机制和类加载器概述
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来兑该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+        什么是字节码？采用字节码的好处是什么？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>字节码：在Java中，供虚拟机理解的代码叫做字节码(也就是Java代码编译后的.class文件),他不面向任何特定的处理器，只面向虚拟机。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -475,6 +564,21 @@
     
   </section>
   
+    
+      <br>
+      <div class="prev-next">
+        
+          <a class="prev" rel="prev" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/page/2/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
+            </section>
+          </a>
+        
+        <p class="current">
+          3 / 3
+        </p>
+        
+      </div>
     
   
 

@@ -557,7 +557,8 @@ Arraylist 与 LinkedList 区别?
       
         <a class='next' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/'>
           <p class='title'>HashMap是线程安全的吗？<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'></p>
+          <p class='content'>HashMap的线程不安全体现在会造成死循环、数据丢失、数据覆盖这些问题。其中死循环和数据丢失是在JDK1.7中出现的问题，在JDK1.8中已经得到解决，然而1.8中仍会有数据覆盖这样的问题。
+...</p>
         </a>
       
     </div>

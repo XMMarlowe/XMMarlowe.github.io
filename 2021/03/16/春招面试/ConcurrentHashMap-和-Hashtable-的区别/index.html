@@ -21,7 +21,11 @@
   
   <title>ConcurrentHashMap 和 Hashtable 的区别 - Hexo</title>
   
+    <meta name="keywords" content="HashMap,线程安全">
+  
 
+  
+    <meta name="description" content="ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方式上不同。">
   
 
   <!-- feed -->
@@ -385,6 +389,13 @@
         
           
             
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+    </a>
+  </div>
+
 
           
         
@@ -420,7 +431,17 @@
 
 
   
-  
+  <p><code>ConcurrentHashMap</code> 和 <code>Hashtable</code> 的区别主要体现在实现线程安全的方式上不同。</p>
+<a id="more"></a>
+
+<ul>
+<li><strong>底层数据结构：</strong> JDK1.7 的 ConcurrentHashMap 底层采用 <code>分段的数组+链表</code> 实现，JDK1.8 采用的数据结构跟 HashMap1.8 的结构一样，<code>数组+链表/红黑二叉树</code>。Hashtable 和 JDK1.8 之前的 HashMap 的底层数据结构类似都是采用 <code>数组+链表</code> 的形式，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的；</li>
+<li><strong>实现线程安全的方式（重要）：</strong> ① 在 JDK1.7 的时候，ConcurrentHashMap（分段锁） 对整个桶数组进行了分割分段(Segment)，每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。 <strong>到了 JDK1.8 的时候已经摒弃了 Segment 的概念，而是直接用 Node 数组+链表+红黑树的数据结构来实现，并发控制使用 synchronized 和 CAS 来操作。</strong>（JDK1.6 以后 对 synchronized 锁做了很多优化） 整个看起来就像是优化过且线程安全的 HashMap，虽然在 JDK1.8 中还能看到 Segment 的数据结构，但是已经简化了属性，只是为了兼容旧版本；② Hashtable(同一把锁) :使用 synchronized 来保证线程安全，效率非常低下。当一个线程访问同步方法时，其他线程也访问同步方法，可能会进入阻塞或轮询状态，如使用 put 添加元素，另一个线程不能使用 put 添加元素，也不能使用 get，竞争会越来越激烈效率越低。</li>
+</ul>
+<p><strong>两者的对比图</strong>：<br>HashTable:<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316200957.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316200957.png" srcset="data:image/png;base64,666" alt="20210316200957"></p>
+<p>JDK1.7 的 ConcurrentHashMap：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316201014.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316201014.png" srcset="data:image/png;base64,666" alt="20210316201014"></p>
+<p>JDK1.8 的 ConcurrentHashMap：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316201027.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210316201027.png" srcset="data:image/png;base64,666" alt="20210316201027"><br>JDK1.8 的 ConcurrentHashMap 不再是 Segment 数组 + HashEntry 数组 + 链表，而是 Node 数组 + 链表 / 红黑树。不过，Node 只能用于链表的情况，红黑树的情况需要使用 <strong>TreeNode</strong>。当冲突链表达到一定长度时，链表会转换成红黑树。</p>
+
   
   
     
@@ -454,7 +475,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-16T09:57:29+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-16T20:11:10+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Mar 16, 2021</p>
@@ -465,6 +486,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/HashMap/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>HashMap</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>线程安全</p></a></div>
+
 
         
       
@@ -476,7 +500,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/&title=ConcurrentHashMap 和 Hashtable 的区别 - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/&title=ConcurrentHashMap 和 Hashtable 的区别 - Hexo&summary=ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方式上不同。"
           
           >
           
@@ -488,7 +512,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/&title=ConcurrentHashMap 和 Hashtable 的区别 - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/&title=ConcurrentHashMap 和 Hashtable 的区别 - Hexo&summary=ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方式上不同。"
           
           >
           
@@ -500,7 +524,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/&title=ConcurrentHashMap 和 Hashtable 的区别 - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/&title=ConcurrentHashMap 和 Hashtable 的区别 - Hexo&summary=ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方式上不同。"
           
           >
           
@@ -532,7 +556,11 @@
       
         <a class='prev' href='/2021/03/16/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ConcurrentHashMap 线程安全的具体实现方式/底层具体实现</p>
-          <p class='content'></p>
+          <p class='content'>
+
+JDK1.7
+首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。
+ConcurrentHashMap 是由 Seg...</p>
         </a>
       
       
