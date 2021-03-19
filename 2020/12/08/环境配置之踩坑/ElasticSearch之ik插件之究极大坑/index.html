@@ -177,14 +177,6 @@
             
           
           
-            
-            
-              <li class='header'>
-                <i class='fas fa-moon fa-fw'></i>暗黑模式
-              </li>
-            
-          
-          
 				</ul>
 			</div>
 
@@ -279,14 +271,6 @@
                   <i class='fas fa-info-circle fa-fw'></i>关于
                 </a>
                 
-              </li>
-            
-          
-            
-              
-            
-              <li class='header'>
-                <i class='fas fa-moon fa-fw'></i>暗黑模式
               </li>
             
           
@@ -570,7 +554,7 @@
         </a>
       
       
-        <a class='next' href='/2020/12/07/Java/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/'>
+        <a class='next' href='/2020/12/07/Java/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/'>
           <p class='title'>Java中如何跳出多重循环<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>Java 基础回顾…
 
@@ -1206,111 +1190,6 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 </script>
 
 
-
-
-  <script>
-const rootElement = document.documentElement;
-const darkModeStorageKey = "user-color-scheme";
-const rootElementDarkModeAttributeName = "data-user-color-scheme";
-
-const setLS = (k, v) => {
-  try {
-    localStorage.setItem(k, v);
-  } catch (e) {
-    console.log(e.message);
-  }
-};
-
-const removeLS = (k) => {
-  try {
-    localStorage.removeItem(k);
-  } catch (e) {
-    console.log(e.message);
-  }
-};
-
-const getLS = (k) => {
-  try {
-    return localStorage.getItem(k);
-  } catch (e) {
-    console.log(e.message);
-    return null;
-  }
-};
-
-const getModeFromCSSMediaQuery = () => {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-};
-
-const resetRootDarkModeAttributeAndLS = () => {
-  rootElement.removeAttribute(rootElementDarkModeAttributeName);
-  removeLS(darkModeStorageKey);
-};
-
-const validColorModeKeys = {
-  dark: true,
-  light: true,
-};
-
-const applyCustomDarkModeSettings = (mode) => {
-  const currentSetting = mode || getLS(darkModeStorageKey);
-
-  if (currentSetting === getModeFromCSSMediaQuery()) {
-    resetRootDarkModeAttributeAndLS();
-  } else if (validColorModeKeys[currentSetting]) {
-    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
-  } else {
-    resetRootDarkModeAttributeAndLS();
-  }
-};
-
-const invertDarkModeObj = {
-  dark: "light",
-  light: "dark",
-};
-
-/**
- * get target mode
- */
-const toggleCustomDarkMode = () => {
-  let currentSetting = getLS(darkModeStorageKey);
-
-  if (validColorModeKeys[currentSetting]) {
-    currentSetting = invertDarkModeObj[currentSetting];
-  } else if (currentSetting === null) {
-    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
-  } else {
-    return;
-  }
-  setLS(darkModeStorageKey, currentSetting);
-  return currentSetting;
-};
-
-/**
- * bind click event for toggle button
- */
-function bindToggleButton() {
-	var btn=$("#wrapper .toggle-mode-btn");
-    btn.on('click',(e) => {
-      const mode = toggleCustomDarkMode();
-      applyCustomDarkModeSettings(mode);
-    });
-}
-$("#wrapper .darkbtn").parents(".header").addClass("toggle-mode-btn")
-applyCustomDarkModeSettings();
-document.addEventListener("DOMContentLoaded", bindToggleButton);
-document.addEventListener("pjax:success", bindToggleButton);
-var now = new Date();
-var hour = now.getHours();
-if (hour < 7 && hour >= 19) {
-	var mode = toggleCustomDarkMode();
-	if (mode === "dark") {
-	  applyCustomDarkModeSettings(mode);
-	}
-}
-</script>
 
 
 
