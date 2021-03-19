@@ -20,13 +20,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>ThreadLocal原理和使用场景 - Marlowe</title>
+  <title>浅谈对守护线程的理解 - Marlowe</title>
   
     <meta name="keywords" content="线程">
   
 
   
-    <meta name="description" content="每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。">
+    <meta name="description" content="为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。">
   
 
   <!-- feed -->
@@ -389,7 +389,7 @@
     
     
       <h1 class="title">
-        ThreadLocal原理和使用场景
+        浅谈对守护线程的理解
       </h1>
       <div class='new-meta-box'>
         
@@ -434,29 +434,12 @@
 
 
   
-  <p>每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。</p>
+  <p>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。</p>
 <a id="more"></a>
-<p>简介：ThreadLocal保存当前线程的变量，当前线程内，可以任意获取，但每个线程往ThreadLocal中读写数据是线程隔离，互不影响。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocalMap源码：</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">            <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">            Object value;</span><br><span class="line"></span><br><span class="line">            Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">                <span class="keyword">super</span>(k);</span><br><span class="line">                value = v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p><code>ThreadLocalMap</code>由一个个<code>Entry</code>对象构成<br><code>Entry</code>继承自<code>WeakReference&lt;ThreadLoca1&lt;?&gt;&gt;</code>,一个<code>Entry</code>由<code>ThreadLocal</code>对象和<code>Object</code>构成。由此可见，<code>Entry</code> 的key是ThreadLocal对象,并且是一个弱引用。 当没指向key的强引用后, 该key就会被垃圾收集器回收。</p>
-<p><strong>注意</strong></p>
-<blockquote>
-<p>ThreadLocal存在内存泄露：</p>
-</blockquote>
-<p>强引用(StrongReference)： 使用最普遍的引用(new),一个对象具有强引用，不会被GC回收。当JVM的内存空间不足时，宁愿抛出OutOfMemoryError使得程序异常终止也不愿意回收具有强引用的存活着的对象。<br>如果想取消强引用和某个对象之间的关联，可以显式的将引用赋值为null，这样可以是JVM在合适的时候回收该对象。</p>
-<p>弱引⽤(WeakReference)：在GC的时候，不管内存空间足不足都会回收这个对象。可以在缓存中使用弱引用。</p>
-<p>当我们了解完，ThreadLocalMap 中使⽤的 key是以弱引用指向ThreadLocal，这时候垃圾回收器线程运行，发现弱引用就回收，key被回收。ThreadLocalMap里对应的Entry的key会变成null。这时候尴尬出现了，ThreadLocalMap里对应的Entry的value则无法被访问到，value作为一个强引用垃圾回收不到也不能被访问，即造成了内存溢出。</p>
-<p><strong>ThreadLocal正确的使用方法</strong></p>
-<ol>
-<li>在使用完ThreadLocal后，主动调用remove方法进行清理。</li>
-<li>将ThreadLocal变量定义成private static, 这样就一 直存在ThreadLocal的强引用，也就能保证任何时候都能通过ThreadLocal的弱引用访问到Entry的value值， 进而清除掉。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ThreadLocal <span class="title">set</span><span class="params">()</span>方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">        Thread t = Thread.currentThread();</span><br><span class="line">        ThreadLocalMap map = getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">            map.set(<span class="keyword">this</span>, value);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            createMap(t, value);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>当执行set方法时，ThreadLocal首先会获取当前线程对象，然后获取当前线程的ThreadLocalMap对象。再以当前ThreadLocal对象为key,将值存储进ThreadLocalMap对象中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ThreadLocal <span class="title">get</span><span class="params">()</span>方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Thread t = Thread.currentThread();</span><br><span class="line">        ThreadLocalMap map = getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ThreadLocalMap.Entry e = map.getEntry(<span class="keyword">this</span>);</span><br><span class="line">            <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">                T result = (T)e.value;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> setInitialValue();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>get方法执行过程类似。ThreadLocal首先会获取当前线程对象,然后获取当前线程的ThreadLocalMap对象。再以当前ThreadLocal对象为key,获取对应的value。</p>
-<p>由于每一条线程均含有各自私有的ThreadLocalMap容器，这些容器相互独立互不影响，因此不会存在线程安全性问题，从而也无需使用同步机制来保证多条线程访问容器的互斥性。</p>
-<p>使用场景：<br>1、在进行对象跨层传递的时候，使用ThreadLocal可以避免多次传递，打破层次间的约束。<br>2、线程间数据隔离。<br>3、进行事务操作，用于存储线程事务信息。<br>4、数据库连接，Session会话管理。</p>
+
+<p>守护线程的作用：<br>举例，GC垃圾回收线程:就是一个经典的守护线程, 当我们的程序中不再有任何运行的Thread,程序就不会再产生垃圾，垃圾回收器也就无事可做,所以当垃圾回收线程是JVM.上仅剩的线程时,垃圾回收线程会自动离开。它始终在低级别的状态中运行，用于实时监控和管理系统中的可回收资源。</p>
+<p>（守护线程必须在线程开启前设置！）thread.setDaemon(true)必须在thread.start()之前设置,否则会抛出一个llegalThreadStateException异常。 你不能把正在运行的常规线程设置为守护线程。</p>
+<p>在守护(deamon)线程中产生的新线程也是守护线程</p>
 
   
   
@@ -474,7 +457,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/>https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/>https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/</a></p>
               
             
           </blockquote>
@@ -491,10 +474,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-10T22:29:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-19T20:43:04+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 10, 2021</p>
+    <p>更新于：Mar 19, 2021</p>
   </a>
 </div>
 
@@ -516,7 +499,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/&title=ThreadLocal原理和使用场景 - Marlowe&summary=每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对守护线程的理解 - Marlowe&summary=为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。"
           
           >
           
@@ -528,7 +511,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/&title=ThreadLocal原理和使用场景 - Marlowe&summary=每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对守护线程的理解 - Marlowe&summary=为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。"
           
           >
           
@@ -540,7 +523,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/&title=ThreadLocal原理和使用场景 - Marlowe&summary=每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对守护线程的理解 - Marlowe&summary=为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。"
           
           >
           
@@ -570,20 +553,19 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>并发的三大特性</p>
-          <p class='content'>
+        <a class='prev' href='/2021/03/10/Java/%E5%B9%B6%E5%8F%91/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ThreadLocal原理和使用场景</p>
+          <p class='content'>每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。
 
-原子性定义：原子性是指在一个操作中cpu不可以在中途暂停然后再调度,即不被中断操作，要不全部执行完成，要不都不执行。就好比转账，从账户A向账户B转1000元，那么必然包括2个操作:从账户A减...</p>
+简介：ThreadLocal保存...</p>
         </a>
       
       
-        <a class='next' href='/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/'>
-          <p class='title'>浅谈对守护线程的理解<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。
+        <a class='next' href='/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/'>
+          <p class='title'>浅谈对线程安全的理解<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。
 
-
-守护线程的作用：举例，GC垃圾回收线程:就是一个经典的守护线程, 当我们的程序中不再有任...</p>
+简单来说，多线程情况下和单线程执行结果一样，就是线程...</p>
         </a>
       
     </div>
@@ -632,7 +614,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="ThreadLocal原理和使用场景";
+  pdata.postTitle="浅谈对守护线程的理解";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

@@ -20,13 +20,11 @@
 
   <!-- 页面元数据 -->
   
-  <title>浅谈对线程安全的理解 - Marlowe</title>
+  <title>为什么用线程池？线程池参数解释 - Marlowe</title>
   
     <meta name="keywords" content="线程">
   
 
-  
-    <meta name="description" content="当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。">
   
 
   <!-- feed -->
@@ -389,7 +387,7 @@
     
     
       <h1 class="title">
-        浅谈对线程安全的理解
+        为什么用线程池？线程池参数解释
       </h1>
       <div class='new-meta-box'>
         
@@ -420,7 +418,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Mar 10, 2021</p>
+    <p>发布于：Mar 11, 2021</p>
   </a>
 </div>
 
@@ -434,14 +432,20 @@
 
 
   
-  <p>当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。</p>
-<a id="more"></a>
-<p>简单来说，多线程情况下和单线程执行结果一样，就是线程安全的。</p>
-<p><strong>堆</strong>是进程和线程共有的空间，分全局堆和局部堆。全局堆就是所有没有分配的空间，局部堆就是用户分配的空间。堆在操作系统对进程初始化的时候分配，运行过程中也可以向系统要额外的堆,但是用完了要还给操作系统，要不然就是内存泄漏。</p>
-<blockquote>
-<p>在Java中，堆是Java虚拟机所管理的内存中最大的一块,是所有线程共享的一块内存区域，在虚拟机启动时创建。堆所存在的内存区域的唯一目的就是存放对象实例， 几乎所有的对象实例以及数组都在这里分配内存。</p>
-</blockquote>
-<p><strong>栈</strong>是每个线程独有的，保存其运行状态和局部自动变量的。栈在线程开始的时候初始化，每个线程的栈互相独立,因此，栈是线程安全的。操作系统在切换线程的时候会自动切换栈。栈空间不需要在高级语言里面显式的分配和释放。</p>
+  <a id="more"></a>
+<p>为什么使用线程池?</p>
+<p>1、降低资源消耗;提高线程利用率,降低创建和销毁线程的消耗。</p>
+<p>2、提高响应速度;任务来了,直接有线程可用可执行,而不是先创建线程,再执行。</p>
+<p>3、提高线程的可管理性;线程是稀缺资源,使用线程池可以统一分配调优监控。</p>
+<p><strong>corePoolsize</strong>代表核心线程数,也就是正常情况下创建工作的线程数,这些线程创建后并不会消除,而是一种常驻线程</p>
+<p><strong>maxinumPoolsize</strong>代表的是最大线程数,它与核心线程数相对应,表示最大允许被创建的线程数,比如当前任务较多,将核心线程数都用完了,还无法满足需求时,此时就会创建新的线程,但是线程池内线程总数不会超过最大线程数</p>
+<p><strong>keepAliverime</strong>, unit表示超出核心线程数之外的线程的空闲存活时间,也就是核心线程不会消除,但是超出核心线程数的部分线程如果空闲一定的时间则会被消除,我们可以通过setKeepAliveTime来设置空闲时间</p>
+<p><strong>workQueue</strong>用来存放待执行的任务,假设我们现在核心线程都已被使用,还有任务进来则全部放入队列,直到整个队列被放满但任务还再持续进入则会开始创建新的线程</p>
+<p><strong>ThreadFactory</strong>实际上是一个线程工厂,用来生产线程执行任务。我们可以选择使用默认的创建工厂,产生的线程都在同一个组内,拥有相同的优先级,且都不是守护线程。当然我们也可以选择自定义线程工厂,一般我们会根据业务来制定不同的线程工厂</p>
+<p><strong>Handler</strong>任务拒绝策略,有两种情况,第一种是当我们调用shutdown等方法关闭线程池后,这时候即使线程池内部还有没执行完的任务正在执行,但是由于线程池已经关闭,我们再继续想线程池提交任务就会遭到拒绝。另一种情况就是当达到最大线程数,线程池已经没有能力继续处理新提交的任务时,这时也就拒绝</p>
+<h3 id="执行线程池的流程"><a href="#执行线程池的流程" class="headerlink" title="执行线程池的流程"></a>执行线程池的流程</h3><p>线程池任务开始执行时，会先判断线程池是否已满，如果没有满则创建核心线程执行，如果核心线程已满那么就判断任务队列是否已满，未满则将任务放入到队列中，如果已满则判断最大线程数是否打到，未达到则创建临时线程执行，临时吸线程如果空闲时我们可以设置超时时间也就是KeepAliveTime，当达到超时时间临时线程则被回收。如果全部线程空间都满了那么我们可设置拒绝策略来处理。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210311103948.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210311103948.png" srcset="data:image/png;base64,666" alt="20210311103948"></p>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuyyg/p/14508729.html">为什么要用线程池，线程池的参数解释</a></p>
 
   
   
@@ -459,7 +463,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/>https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/03/11/Java/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/>https://xmmarlowe.github.io/2021/03/11/Java/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/</a></p>
               
             
           </blockquote>
@@ -476,10 +480,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-10T22:29:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-19T20:42:41+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 10, 2021</p>
+    <p>更新于：Mar 19, 2021</p>
   </a>
 </div>
 
@@ -501,7 +505,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对线程安全的理解 - Marlowe&summary=当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/11/Java/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/&title=为什么用线程池？线程池参数解释 - Marlowe&summary="
           
           >
           
@@ -513,7 +517,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对线程安全的理解 - Marlowe&summary=当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/11/Java/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/&title=为什么用线程池？线程池参数解释 - Marlowe&summary="
           
           >
           
@@ -525,7 +529,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对线程安全的理解 - Marlowe&summary=当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/11/Java/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/&title=为什么用线程池？线程池参数解释 - Marlowe&summary="
           
           >
           
@@ -555,20 +559,18 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>浅谈对守护线程的理解</p>
-          <p class='content'>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。
-
-
-守护线程的作用：举例，GC垃圾回收线程:就是一个经典的守护线程, 当我们的程序中不再有任...</p>
+        <a class='prev' href='/2021/03/11/Java/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理</p>
+          <p class='content'>
+线程池中阻塞队列的作用?一般的队列只能保证作为一个有限长度的缓冲区,如果超出了缓冲长度,就无法保留当前的任务了,阻塞队列通过阻塞可以保留住当前想要继续入队的任务。阻塞队列可以保证任务队列中没有...</p>
         </a>
       
       
-        <a class='next' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-          <p class='title'>sleep(),wait(),join(),yield()的区别<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='next' href='/2021/03/11/Java/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/'>
+          <p class='title'>并发的三大特性<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
-锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就...</p>
+原子性定义：原子性是指在一个操作中cpu不可以在中途暂停然后再调度,即不被中断操作，要不全部执行完成，要不都不执行。就好比转账，从账户A向账户B转1000元，那么必然包括2个操作:从账户A减...</p>
         </a>
       
     </div>
@@ -601,6 +603,20 @@
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-text">执行线程池的流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-text">参考文档</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -617,7 +633,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="浅谈对线程安全的理解";
+  pdata.postTitle="为什么用线程池？线程池参数解释";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

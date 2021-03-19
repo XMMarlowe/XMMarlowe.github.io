@@ -20,13 +20,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>线程的生命周期包括哪几个阶段 - Marlowe</title>
+  <title>Java中如何跳出多重循环 - Marlowe</title>
   
-    <meta name="keywords" content="线程">
+    <meta name="keywords" content="Java基础,面经">
   
 
   
-    <meta name="description" content="线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。">
+    <meta name="description" content="Java 基础回顾…">
   
 
   <!-- feed -->
@@ -389,7 +389,7 @@
     
     
       <h1 class="title">
-        线程的生命周期包括哪几个阶段
+        Java中如何跳出多重循环
       </h1>
       <div class='new-meta-box'>
         
@@ -409,7 +409,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+      <a class="category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
     </a>
   </div>
 
@@ -420,7 +420,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Mar 9, 2021</p>
+    <p>发布于：Dec 7, 2020</p>
   </a>
 </div>
 
@@ -434,21 +434,24 @@
 
 
   
-  <p>线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。</p>
+  <p>Java 基础回顾…</p>
 <a id="more"></a>
 
-<ul>
-<li><p>新建（New）：就是刚使用new方法，new出来的线程。</p>
-</li>
-<li><p>就绪（Runnable）：就是调用的线程的start()方法。该状态的线程位于可运行线程池中，等待获取CPU的使用权。</p>
-</li>
-<li><p>运行（Running）：当就绪的线程被调度并获得CPU资源时，便进入运行状态。</p>
-</li>
-<li><p>阻塞（Blocked）：在运行状态的时候，可能因为某些原因导致运行状态的线程变成了阻塞状态，比如sleep()、wait()之后线程就处于了阻塞状态，这个时候需要其他机制将处于阻塞状态的线程唤醒，比如调用notify或者notifyAll()方法。唤醒的线程不会立刻执行run方法，它们要再次等待CPU分配资源进入运行状态。</p>
-</li>
-<li><p>销毁（Dead）：线程执行完了或者因异常退出了run方法，该线程结束生命周期。</p>
-</li>
-</ul>
+<h3 id="在JAVA中如何跳出当前的多重嵌套循环"><a href="#在JAVA中如何跳出当前的多重嵌套循环" class="headerlink" title="在JAVA中如何跳出当前的多重嵌套循环"></a>在JAVA中如何跳出当前的多重嵌套循环</h3><p>在java中，要想跳出多重循环，可以在外面的循环语句前定义一个标号，然后在里层循环体的代码中使用带有标号的的break语句，即可跳出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ok:</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">                System.out.println(i);</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">200</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span> ok;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="return和-break区别"><a href="#return和-break区别" class="headerlink" title="return和 break区别"></a>return和 break区别</h3><p><strong>break</strong><br>break语句虽然可以独立使用，但通常主要用于switch语句中，控制程序的执行流程转移。<br>在switch语句中，其作用是强制退出switch结构，执行switch结构之后的语句。其本质就是在单层循环结构体系中，其作用是强制退出循环结构。</p>
+<p><strong>return</strong><br>return语句用来明确地从一个方法返回。也就是，return 语句使程序控制返回到调用它方法。<br>因此，将它分类为跳转语句.有两个作用，一个是返回方法指定类型的值（这个值总是确定的）;一个是结束方法的执行（仅仅一个return语句）。return 语句可以使其从当前方法中退出，返回到调用该方法的语句处，继续程序的执行 。</p>
+<h3 id="exit-函数-和-return-区别"><a href="#exit-函数-和-return-区别" class="headerlink" title="exit()函数 和 return 区别"></a>exit()函数 和 return 区别</h3><p>exit(0)：正常运行程序并退出程序；<br>exit(1)：非正常运行导致退出程序；<br>return()：返回函数，若在主函数中，则会退出函数并返回一值。</p>
+<p>具体来说：</p>
+<ol>
+<li>return返回函数值，是关键字；  exit 是一个函数。</li>
+<li>return是语言级别的，它表示了调用堆栈的返回；而exit是系统调用级别的，它表示结束一个进程 。</li>
+<li>return是函数的退出(返回)；exit是进程的退出。</li>
+<li>return是C语言提供的，exit是操作系统提供的（或者函数库中给出的）。</li>
+<li>return用于结束一个函数的执行，将函数的执行信息传出个其他调用函数使用；exit函数是退出应用程序，删除进程使用的内存空间，并将应用程序的一个状态返回给OS，这个状态标识了应用程序的一些运行信息，这个信息和机器和操作系统有关，一般是 0 为正常退出， 非0 为非正常退出。</li>
+<li>非主函数中调用return和exit效果很明显，但是在main函数中调用return和exit的现象就很模糊，多数情况下现象都是一致的。</li>
+</ol>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/singit/article/details/47708797">在java中如何跳出当前的多重嵌套循环？</a></p>
 
   
   
@@ -466,7 +469,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/>https://xmmarlowe.github.io/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2020/12/07/Java/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/>https://xmmarlowe.github.io/2020/12/07/Java/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/</a></p>
               
             
           </blockquote>
@@ -483,10 +486,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-10T22:29:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-19T20:40:00+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 10, 2021</p>
+    <p>更新于：Mar 19, 2021</p>
   </a>
 </div>
 
@@ -495,7 +498,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>线程</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java基础</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>面经</p></a></div>
 
 
         
@@ -508,7 +511,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/&title=线程的生命周期包括哪几个阶段 - Marlowe&summary=线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2020/12/07/Java/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/&title=Java中如何跳出多重循环 - Marlowe&summary=Java 基础回顾…"
           
           >
           
@@ -520,7 +523,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/&title=线程的生命周期包括哪几个阶段 - Marlowe&summary=线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2020/12/07/Java/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/&title=Java中如何跳出多重循环 - Marlowe&summary=Java 基础回顾…"
           
           >
           
@@ -532,7 +535,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/&title=线程的生命周期包括哪几个阶段 - Marlowe&summary=线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2020/12/07/Java/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/&title=Java中如何跳出多重循环 - Marlowe&summary=Java 基础回顾…"
           
           >
           
@@ -562,20 +565,22 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>sleep(),wait(),join(),yield()的区别</p>
-          <p class='content'>
+        <a class='prev' href='/2020/12/08/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/ElasticSearch%E4%B9%8Bik%E6%8F%92%E4%BB%B6%E4%B9%8B%E7%A9%B6%E6%9E%81%E5%A4%A7%E5%9D%91/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ElasticSearch之ik插件之究极大坑</p>
+          <p class='content'>由于最近要做搜索引擎课设，可以用ElasticSearch做，因此，开启了ES的学习之路，也开启了ES踩坑之路，入门一小时，配环境两小时！！~
 
-锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就...</p>
+
+在elasticsearch中安装ik中文分词...</p>
         </a>
       
       
-        <a class='next' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/'>
-          <p class='title'>GC如何判断对象可以被回收<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
+        <a class='next' href='/2020/12/06/Spring/Swagger%E5%9C%A8%E7%BA%BF%E6%96%87%E6%A1%A3/'>
+          <p class='title'>Swagger在线文档<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Swagger在线文档使用教程…
 
-引用计数法方式：每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。优点：实现简单，效率高。缺点：无法解决循环引用。
-可达性分析法方式：从一系列被称为...</p>
+SpringBoot集成Swagger
+新建一个SpringBoot项目==&gt;web
+导入相关依赖1234567891011&lt;dependency...</p>
         </a>
       
     </div>
@@ -608,6 +613,20 @@
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8JAVA%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E5%BD%93%E5%89%8D%E7%9A%84%E5%A4%9A%E9%87%8D%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF"><span class="toc-text">在JAVA中如何跳出当前的多重嵌套循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#return%E5%92%8C-break%E5%8C%BA%E5%88%AB"><span class="toc-text">return和 break区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exit-%E5%87%BD%E6%95%B0-%E5%92%8C-return-%E5%8C%BA%E5%88%AB"><span class="toc-text">exit()函数 和 return 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -624,7 +643,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="线程的生命周期包括哪几个阶段";
+  pdata.postTitle="Java中如何跳出多重循环";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

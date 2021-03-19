@@ -20,11 +20,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理 - Marlowe</title>
+  <title>浅谈对线程安全的理解 - Marlowe</title>
   
     <meta name="keywords" content="线程">
   
 
+  
+    <meta name="description" content="当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。">
   
 
   <!-- feed -->
@@ -387,7 +389,7 @@
     
     
       <h1 class="title">
-        线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理
+        浅谈对线程安全的理解
       </h1>
       <div class='new-meta-box'>
         
@@ -418,7 +420,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Mar 11, 2021</p>
+    <p>发布于：Mar 10, 2021</p>
   </a>
 </div>
 
@@ -432,13 +434,14 @@
 
 
   
-  <a id="more"></a>
-<h3 id="线程池中阻塞队列的作用"><a href="#线程池中阻塞队列的作用" class="headerlink" title="线程池中阻塞队列的作用?"></a>线程池中阻塞队列的作用?</h3><p>一般的队列只能保证作为一个有限长度的缓冲区,如果超出了缓冲长度,就无法保留当前的任务了,阻塞队列通过阻塞可以保留住当前想要继续入队的任务。阻塞队列可以保证任务队列中没有任务时阻塞获取任务的线程,使得线程进入wait状态,释放cpu资源。阻塞队列自带阻塞和唤醒的功能,不需要额外处理,无任务执行时,线程池利用阻塞队列的take方法挂起,从而维持核心线程的存活、不至于一直占用cpu资源</p>
-<h3 id="为什么是先添加列队而不是先创建最大线程"><a href="#为什么是先添加列队而不是先创建最大线程" class="headerlink" title="为什么是先添加列队而不是先创建最大线程?"></a>为什么是先添加列队而不是先创建最大线程?</h3><p>在创建新线程的时候,是要获取全局锁的,这个时候其它的就得阻塞,影响了整体效率。</p>
-<p>就好比一个饭店里面有10个(core)正式工的名额,最多招10个正式工,要是任务超过正式工人数(task&gt;core)的情况下,工厂领导(线程池)不是首先扩招工人,还是这10人,但是任务可以稍微积压一下,即先放到队列去(代价低) 。10个正式工慢慢干,迟早会千完的,要是任务还在继续增加,超过正式工的加班忍耐极限了(队列满了) ,就的招外包帮忙了(注意是临时工)要是正式工加上外包还是不能完成任务,那新来的任务就会被领导拒绝了(线程池的拒绝策略)</p>
-<h3 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h3><p>线程池将线程和任务进行解耦,线程是线程,任务是任务,摆脱了之前通过Thread创建线程时的一个线程必须对应一个任务的限制。</p>
-<p>在线程池中,同一个线程可以从阻塞队列中不断获取新任务来执行,其核心原理在于线程池对Thread进行了封装,并不是每次执行任务都会调用Thread.start（)来创建新线程,而是让每个线程去执行一个”循环任务”,在这个”循环任务”中不停检查是否有任务需要被执行,如果有则直接执行,也就是调用任务中的run方法,将run方法当成一个普通的方法执行,通过这种方式只使用固定的线程就将所有任务的run方法串联起来。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuyyg/p/14508985.html">线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理</a></p>
+  <p>当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。</p>
+<a id="more"></a>
+<p>简单来说，多线程情况下和单线程执行结果一样，就是线程安全的。</p>
+<p><strong>堆</strong>是进程和线程共有的空间，分全局堆和局部堆。全局堆就是所有没有分配的空间，局部堆就是用户分配的空间。堆在操作系统对进程初始化的时候分配，运行过程中也可以向系统要额外的堆,但是用完了要还给操作系统，要不然就是内存泄漏。</p>
+<blockquote>
+<p>在Java中，堆是Java虚拟机所管理的内存中最大的一块,是所有线程共享的一块内存区域，在虚拟机启动时创建。堆所存在的内存区域的唯一目的就是存放对象实例， 几乎所有的对象实例以及数组都在这里分配内存。</p>
+</blockquote>
+<p><strong>栈</strong>是每个线程独有的，保存其运行状态和局部自动变量的。栈在线程开始的时候初始化，每个线程的栈互相独立,因此，栈是线程安全的。操作系统在切换线程的时候会自动切换栈。栈空间不需要在高级语言里面显式的分配和释放。</p>
 
   
   
@@ -456,7 +459,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/>https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/>https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/</a></p>
               
             
           </blockquote>
@@ -473,10 +476,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-11T21:05:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-19T20:43:03+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 11, 2021</p>
+    <p>更新于：Mar 19, 2021</p>
   </a>
 </div>
 
@@ -498,7 +501,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/&title=线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理 - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对线程安全的理解 - Marlowe&summary=当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。"
           
           >
           
@@ -510,7 +513,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/&title=线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理 - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对线程安全的理解 - Marlowe&summary=当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。"
           
           >
           
@@ -522,7 +525,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/&title=线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理 - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/&title=浅谈对线程安全的理解 - Marlowe&summary=当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。"
           
           >
           
@@ -552,21 +555,20 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Spring%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Spring是什么？</p>
-          <p class='content'>轻量级的开源的J2EE框架。它是一个容器框架，用来装JavaBean，也是一个中间层框架，可以起连接作用。
+        <a class='prev' href='/2021/03/10/Java/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>浅谈对守护线程的理解</p>
+          <p class='content'>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。
 
-Spring是什么？Spring是一个轻量级的控制反转(Ioc)和面向切面(AOP)...</p>
+
+守护线程的作用：举例，GC垃圾回收线程:就是一个经典的守护线程, 当我们的程序中不再有任...</p>
         </a>
       
       
-        <a class='next' href='/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/'>
-          <p class='title'>为什么用线程池？线程池参数解释<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='next' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <p class='title'>sleep(),wait(),join(),yield()的区别<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
-为什么使用线程池?
-1、降低资源消耗;提高线程利用率,降低创建和销毁线程的消耗。
-2、提高响应速度;任务来了,直接有线程可用可执行,而不是先创建线程,再执行。
-3、提高线程的可管理性;线程是稀...</p>
+
+锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就...</p>
         </a>
       
     </div>
@@ -599,20 +601,6 @@ Spring是什么？Spring是一个轻量级的控制反转(Ioc)和面向切面(AO
 
 
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
-    
-  <header>
-    
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">线程池中阻塞队列的作用?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B"><span class="toc-text">为什么是先添加列队而不是先创建最大线程?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86"><span class="toc-text">线程池中线程复用原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
-    </div>
-  </section>
-
 
   
 
@@ -629,7 +617,7 @@ Spring是什么？Spring是一个轻量级的控制反转(Ioc)和面向切面(AO
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理";
+  pdata.postTitle="浅谈对线程安全的理解";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

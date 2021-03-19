@@ -6,6 +6,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -20,9 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>并发的三大特性 - Marlowe</title>
-  
-    <meta name="keywords" content="并发">
+  <title>Category: 并发 - Marlowe</title>
   
 
   
@@ -301,7 +301,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -376,239 +376,79 @@
       <div class='body-wrapper' id="pjax-container">
         
 
+
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-
-
-  
-  <div class="article-meta" id="top">
     
+      
+  <section class="post-list">
     
-    
-      <h1 class="title">
-        并发的三大特性
-      </h1>
-      <div class='new-meta-box'>
+      
         
           
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
-    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
-    <p>Marlowe</p>
-  </a>
-</div>
-
-          
         
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
-    </a>
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/19/Java/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+        线程池原理分析
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+execute方法源码：
+12345678910111213141516171819202122232425262728293031323334353637383940// 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)private final AtomicInteger ctl = new AtomicInteger(ctlOf(RU...
+      
+    
   </div>
-
-
-          
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
         
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Mar 11, 2021</p>
-  </a>
-</div>
-
-          
+        <time>2021-03-19</time>
         
-          
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
-    
-  </div>
-
-
-  
-  <a id="more"></a>
-
-<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>定义：原子性是指在一个操作中cpu不可以在中途暂停然后再调度,即不被中断操作，要不全部执行完成，要不都不执行。就好比转账，从账户A向账户B转1000元，那么必然包括2个操作:从账户A减去1000元,往账户B加上1000元。2个操作必须全部完成。</p>
-<p>关键字：synchronized</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">calc</span><span class="params">()</span></span>&#123;</span><br><span class="line">    count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述代码中，将执行以下步骤：</p>
-<ol>
-<li>将count从主存读取到工作内存中的副本</li>
-<li>+1运算</li>
-<li>将结果写入工作内存</li>
-<li>将工作内存中的值刷回主存(什么时候刷入由操作系统决定，不确定的)</li>
-</ol>
-<h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>定义：当一个线程修改了共享变量的值，其他线程会马上知道这个修改。当其他线程要读取这个变量的时候，最终会去<strong>内存</strong>中读取，而不是从缓存中读取。</p>
-<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210311093939.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210311093939.png" srcset="data:image/png;base64,666" alt="20210311093939"></p>
-<p>关键字：volatile、synchronized、final</p>
-<h3 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h3><p>定义：虚拟机在进行代码编译时，对于那些改变顺序之后不会对最终结果造成影响的代码，虚拟机不一定会按照我们写的代码的顺序来执行，有可能将他们重排序。实际上，对于有些代码进行重排序之后，虽然对变量的值没有造成影响，但有可能会出现线程安全问题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">()</span></span>&#123;</span><br><span class="line">    a = <span class="number">2</span>;                 <span class="comment">//1    //1</span></span><br><span class="line">    flag = <span class="keyword">true</span>;           <span class="comment">//2    //4</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">multiply</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(flag)&#123;              <span class="comment">//3   //2</span></span><br><span class="line">        <span class="keyword">int</span> res = a * a;   <span class="comment">//4   //3</span></span><br><span class="line">    &#125;                      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">如果按照<span class="number">1234</span>执行，结果为：</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line">res = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">如果按照<span class="number">1423</span>执行，结果为：</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line">res = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<p>关键字：volatile、synchronized</p>
-<p>volatile本身就包含了禁止指令重排序的语义，而synchronized关键字是由“一个变量在同一时刻只允许一条线程对其进行lock操作”这条规则明确的。</p>
-<h3 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h3><ol>
-<li>synchronized关键字同时满足以上三种特性，但是volatile关键字不满足原子性。</li>
-<li>在某些情况下，volatile的同步机制的性能确实要优于锁(使用synchronized关键字或java.util.concurrent包里面的锁)，因为volatile的总开销要比锁低。</li>
-<li>我们判断使用volatile还是加锁的唯一依据就是volatile的语义能否满足使用的场景(原子性)</li>
-</ol>
-<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94145504">高并发的三大特性—原子性、有序性、可见性</a></p>
-
-  
-  
-    
-    <div class='footer'>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/>https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/2021/03/19/Java/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/'>
+            Read More
+          </a>
         </div>
       
-      
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-11T21:05:35+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 11, 2021</p>
-  </a>
 </div>
 
+          </div>
         
       
-        
-          
+    
+  </section>
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
     
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/&title=并发的三大特性 - Marlowe&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/&title=并发的三大特性 - Marlowe&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/&title=并发的三大特性 - Marlowe&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-  </div>
-
-
-  
   
 
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2021/03/11/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>为什么用线程池？线程池参数解释</p>
-          <p class='content'>
-为什么使用线程池?
-1、降低资源消耗;提高线程利用率,降低创建和销毁线程的消耗。
-2、提高响应速度;任务来了,直接有线程可用可执行,而不是先创建线程,再执行。
-3、提高线程的可管理性;线程是稀...</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/03/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
-          <p class='title'>ThreadLocal原理和使用场景<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。
 
-简介：ThreadLocal保存...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
     
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
-
-
-
-
-
+  
 </div>
 <aside class='l_side'>
   
@@ -616,28 +456,321 @@
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box circle' href='/about/'>
+          <img no-lazy src='http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Marlowe</h2>
+        
+        
+          <p>有梦不觉人生寒~</p>
 
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/XMMarlowe/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
     
   <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-text">原子性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7"><span class="toc-text">可见性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="toc-text">有序性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-text">参考文档</span></a></li></ol>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
+            id="categoriesElasticSearch"
+            ><div class='name'>ElasticSearch</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/JUC/" href="/categories/JUC/"
+            id="categoriesJUC"
+            ><div class='name'>JUC</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
+            id="categoriesJavaE59FBAE7A180"
+            ><div class='name'>Java基础</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
+            id="categoriesLeetCodeE9A298E8A7A3"
+            ><div class='name'>LeetCode题解</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/NoSQL/" href="/categories/NoSQL/"
+            id="categoriesNoSQL"
+            ><div class='name'>NoSQL</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Spring/" href="/categories/Spring/"
+            id="categoriesSpring"
+            ><div class='name'>Spring</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
+            id="categoriesE5ADA6E4B9A0E696B9E6B395"
+            ><div class='name'>学习方法</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+            id="categoriesE5ADA6E4B9A0E7AC94E8AEB0"
+            ><div class='name'>学习笔记</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
+            id="categoriesE5B9B6E58F91"
+            ><div class='name'>并发</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"
+            id="categoriesE690ADE5BBBAE58D9AE5AEA2"
+            ><div class='name'>搭建博客</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
+            id="categoriesE698A5E68B9BE99DA2E8AF95"
+            ><div class='name'>春招面试</div><div class='badge'>(29)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
+            id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
+            ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/"
+            id="categoriesE887AAE5AE9AE4B989E5B7A5E585B7E7B1BB"
+            ><div class='name'>自定义工具类</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+            id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
+            ><div class='name'>设计模式</div><div class='badge'>(6)</div></a></li>
+        
+      </ul>
     </div>
   </section>
 
 
   
 
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Arrays/" style="font-size: 14px; color: #999">Arrays</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/Docker/" style="font-size: 18.29px; color: #7c7c7c">Docker</a> <a href="/tags/ES/" style="font-size: 16.86px; color: #868686">ES</a> <a href="/tags/GC/" style="font-size: 14px; color: #999">GC</a> <a href="/tags/HashMap/" style="font-size: 21.14px; color: #686868">HashMap</a> <a href="/tags/I-O%E6%A8%A1%E5%9E%8B/" style="font-size: 14px; color: #999">I/O模型</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/JDK/" style="font-size: 14px; color: #999">JDK</a> <a href="/tags/JVM/" style="font-size: 15.43px; color: #8f8f8f">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 16.86px; color: #868686">Leetcode</a> <a href="/tags/List/" style="font-size: 15.43px; color: #8f8f8f">List</a> <a href="/tags/Redis/" style="font-size: 22.57px; color: #5f5f5f">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Spring/" style="font-size: 19.71px; color: #727272">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 16.86px; color: #868686">SpringBoot</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/test/" style="font-size: 15.43px; color: #8f8f8f">test</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 14px; color: #999">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 14px; color: #999">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%85%B3%E9%94%AE%E5%AD%97/" style="font-size: 14px; color: #999">关键字</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.43px; color: #8f8f8f">创建型模式</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">动态代理</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16.86px; color: #868686">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 14px; color: #999">异常</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 15.43px; color: #8f8f8f">数据类型</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 22.57px; color: #5f5f5f">线程</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15.43px; color: #8f8f8f">线程安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" style="font-size: 15.43px; color: #8f8f8f">线程池</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.43px; color: #8f8f8f">结构型模式</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.43px; color: #8f8f8f">行为型模式</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BE%85%E5%8A%A9%E7%B1%BB/" style="font-size: 14px; color: #999">辅助类</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">进程</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 14px; color: #999">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 15.43px; color: #8f8f8f">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a>
+    </div>
+  </section>
+
+
+  
+
+  
+
+  
+    
+    
+
+<section class="widget shadow desktop">
+  
+  <header>
+    
+      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>75 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2020/10/12'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>60.7k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Fri Mar 19 2021 20:47:11 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-03-19 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2021-03-19 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
+
+  
+
 
 </aside>
-
 
 
         
@@ -647,8 +780,8 @@
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="并发的三大特性";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
