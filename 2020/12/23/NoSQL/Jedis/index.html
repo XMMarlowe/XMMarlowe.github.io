@@ -2,6 +2,7 @@
 <html lang="en">
 <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1'>
   <meta charset="utf-8">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- SEO相关 -->
   
     
@@ -19,7 +20,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Jedis - Hexo</title>
+  <title>Jedis - Marlowe</title>
   
     <meta name="keywords" content="Redis,Jedis">
   
@@ -176,6 +177,14 @@
             
           
           
+            
+            
+              <li class='header'>
+                <i class='fas fa-moon fa-fw'></i>暗黑模式
+              </li>
+            
+          
+          
 				</ul>
 			</div>
 
@@ -270,6 +279,14 @@
                   <i class='fas fa-info-circle fa-fw'></i>关于
                 </a>
                 
+              </li>
+            
+          
+            
+              
+            
+              <li class='header'>
+                <i class='fas fa-moon fa-fw'></i>暗黑模式
               </li>
             
           
@@ -451,7 +468,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2020/12/23/NoSQL/Jedis/>http://example.com/2020/12/23/NoSQL/Jedis/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2020/12/23/NoSQL/Jedis/>https://xmmarlowe.github.io/2020/12/23/NoSQL/Jedis/</a></p>
               
             
           </blockquote>
@@ -493,7 +510,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2020/12/23/NoSQL/Jedis/&title=Jedis - Hexo&summary=…"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2020/12/23/NoSQL/Jedis/&title=Jedis - Marlowe&summary=…"
           
           >
           
@@ -505,7 +522,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2020/12/23/NoSQL/Jedis/&title=Jedis - Hexo&summary=…"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2020/12/23/NoSQL/Jedis/&title=Jedis - Marlowe&summary=…"
           
           >
           
@@ -517,7 +534,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2020/12/23/NoSQL/Jedis/&title=Jedis - Hexo&summary=…"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2020/12/23/NoSQL/Jedis/&title=Jedis - Marlowe&summary=…"
           
           >
           
@@ -689,58 +706,7 @@ Redis 事务本质：一组命令的集合！一个事务中的所有命令都�
     
   </footer>
 
- <!-- <script language=javascript>
-  function siteTime() {
-      window.setTimeout("siteTime()", 1000);
-      var seconds = 1000;
-      var minutes = seconds * 60;
-      var hours = minutes * 60;
-      var days = hours * 24;
-      var years = days * 365;
-      var today = new Date();
-      var todayYear = today.getFullYear();
-      var todayMonth = today.getMonth() + 1;
-      var todayDate = today.getDate();
-      var todayHour = today.getHours();
-      var todayMinute = today.getMinutes();
-      var todaySecond = today.getSeconds();
-      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
-      year - 作为date对象的年份，为4位年份值
-      month - 0-11之间的整数，做为date对象的月份
-      day - 1-31之间的整数，做为date对象的天数
-      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
-      minutes - 0-59之间的整数，做为date对象的分钟数
-      seconds - 0-59之间的整数，做为date对象的秒数
-      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-      var t1 = Date.UTC(2017, 09, 11, 00, 00, 00); // 北京时间2018-2-13 00:00:00
-      var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
-      var diff = t2 - t1;
-      var diffYears = Math.floor(diff / years);
-      var diffDays = Math.floor((diff / days) - diffYears * 365);
-      var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
-      var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
-      var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-      document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
-  }
-  siteTime();
-</script> -->
-<!-- <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-<script>
-    var now = new Date(); 
-    function createtime() { 
-        var grt= new Date("08/10/2018 17:38:00");//在此处修改你的建站时间
-        now.setTime(now.getTime()+250); 
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
-        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
-        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
-    } 
-setInterval("createtime()",250); 
-</script> -->
+
 
       <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
     </div>
@@ -1141,7 +1107,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
       // 请求 PV 并自增
       var pvCtn = document.querySelector('#lc-sv');
       if (pvCtn || enableIncr) {
-        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+        var pvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-sv', 'Visits').then((record) => {
           incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-sv #number');
           if (eles.length > 0) {
@@ -1159,7 +1125,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
       // 请求 UV 并自增
       var uvCtn = document.querySelector('#lc-uv');
       if (uvCtn || enableIncr) {
-        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+        var uvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-uv', 'Visitors').then((record) => {
           var vuv = this.validUV();
           vuv && incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-uv #number');
@@ -1181,7 +1147,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         for (i = 0; i < allPV.length; i++) {
           let pv = allPV[i];
           let title = pv.getAttribute('data-title');
-          var url = 'http://example.com' + pv.getAttribute('data-path');
+          var url = 'https://xmmarlowe.github.io' + pv.getAttribute('data-path');
           if (url) {
             var viewGetter = this.getRecord(Counter, url, title).then((record) => {
               // 是当前页面就自增
@@ -1259,7 +1225,8 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 
 
-  <script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Colsrch/CDN@master/judge_time/js.js"></script>
+<script>
 const rootElement = document.documentElement;
 const darkModeStorageKey = "user-color-scheme";
 const rootElementDarkModeAttributeName = "data-user-color-scheme";
@@ -1361,6 +1328,120 @@ if (hour < 7 && hour >= 19) {
 	  applyCustomDarkModeSettings(mode);
 	}
 }
+// 自动夜间模式
+if (navigator.geolocation) { //获取地理位置 用于判断日出日落时间
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        var res = computeSunRiseSunSet(position.coords.latitude, position.coords.longitude, 8);
+        console.log(res.str)
+        adjust_time(res.strSunRise, res.strSunSet, "08:00", "12:00", "14:00", "23:00")
+      },
+      function (e) {
+        adjust_time("7:00", "17:30", "08:00", "12:00", "14:00", "23:00") //未允许获取地理位置时，使用默认时间
+        console.log("未允许获取地理位置，使用默认配置时间")
+        throw (e.message);
+      }
+    )
+  }
+
+  function adjust_time(beginTime, endTime, morningTime, noonTime, afternoonTime, nightTime) {
+    const rootElement = document.documentElement;
+    var strb = beginTime.split(":");
+    if (strb.length != 2) {
+      return false;
+    }
+
+    var stre = endTime.split(":");
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var strmorning = morningTime.split(":"); //12点
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var strnoon = noonTime.split(":"); //12点
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var strafternoon = afternoonTime.split(":"); //13点
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var strnight = nightTime.split(":"); //23点
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var b = new Date();
+    var e = new Date();
+    var n = new Date();
+    var morning = new Date();
+    var noon = new Date();
+    var afternoon = new Date();
+    var night = new Date();
+
+    b.setHours(strb[0]);
+    b.setMinutes(strb[1]);
+    e.setHours(stre[0]);
+    e.setMinutes(stre[1]);
+    morning.setHours(strmorning[0]);
+    morning.setMinutes(strmorning[1]);
+    noon.setHours(strnoon[0]);
+    noon.setMinutes(strnoon[1]);
+    afternoon.setHours(strafternoon[0]);
+    afternoon.setMinutes(strafternoon[1]);
+    night.setHours(strnight[0]);
+    night.setMinutes(strnight[1]);
+
+
+    //在这里面处理获得的数据
+    if (n.getTime() - b.getTime() > 0 && n.getTime() - e.getTime() < 0) {
+      var daytimetitle = "";
+      var daytimemessage = "";
+      if (n.getTime() - morning.getTime() < 0) {
+        // 早上
+        daytimetitle = "早安";
+      } else if (n.getTime() - noon.getTime() < 0) {
+        // 上午
+        daytimetitle = "上午好";
+      } else if (n.getTime() - afternoon.getTime() < 0) {
+        // 中午
+        daytimetitle = "中午好";
+        daytimemessage = "要注意休息哦~";
+      } else {
+        // 下午
+        daytimetitle = "下午好";
+      } // 判断是否已经开启夜间模式
+      if (rootElement.getAttribute('data-user-color-scheme', 'dark')) { // 已开启夜间模式，修改按钮状态
+        swal(daytimetitle, daytimemessage, "info");
+      } else { // 未开启夜间模式，不执行操作
+        swal("操作通知", daytimetitle + "，已自动为您切换为日间模式。" + daytimemessage, "success");
+        const mode = toggleCustomDarkMode();
+        applyCustomDarkModeSettings(mode);
+      }
+    } else { // 晚上
+      var nighttitle = "";
+      var nightmessage = "";
+      if (night.getTime() - n.getTime() < 0 || n.getTime() - b.getTime() < 0) {
+        nighttitle = "夜深了";
+        nightmessage = "该睡觉啦~";
+      } else {
+        nighttitle = "晚上好";
+        nightmessage = "吃晚饭了吗？要注意眼睛哦。";
+      } // 判断是否已经开启夜间模式
+      if (rootElement.getAttribute('data-user-color-scheme', 'dark')) { // 已开启夜间模式，不执行操作 
+        swal("操作通知", nighttitle + "，已自动为您切换为夜间模式。" + nightmessage, "success");
+        const mode = toggleCustomDarkMode();
+        applyCustomDarkModeSettings(mode);
+      } else { // 未开启夜间模式，修改按钮状态
+        swal(nighttitle, nightmessage, "info");
+      }
+    }
+  }
 </script>
 
 
@@ -1577,3 +1658,4 @@ document.addEventListener("pjax:success", listennSidebarTOC);
   </div>
 </body>
 </html>
+
