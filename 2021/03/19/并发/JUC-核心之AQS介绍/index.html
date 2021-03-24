@@ -411,6 +411,38 @@
           
         
           
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="JUC 核心之AQS介绍" data-path="/2021/03/19/%E5%B9%B6%E5%8F%91/JUC-%E6%A0%B8%E5%BF%83%E4%B9%8BAQS%E4%BB%8B%E7%BB%8D/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>1.7k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>6 min</p>
+    </a>
+  </div>
+
+
+          
         
       </div>
     
@@ -426,7 +458,8 @@
 <blockquote>
 <p>CLH(Craig,Landin,and Hagersten)队列是一个虚拟的双向队列（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系）。AQS 是将每条请求共享资源的线程封装成一个 CLH 锁队列的一个结点（Node）来实现锁的分配。</p>
 </blockquote>
-<p>看个 AQS(AbstractQueuedSynchronizer)原理图：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210319222256.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210319222256.png" srcset="data:image/png;base64,666" alt="20210319222256"></p>
+<p>看个 AQS(AbstractQueuedSynchronizer)原理图：</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210319222256.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210319222256.png" srcset="data:image/png;base64,666" alt="20210319222256"></p>
 <p>AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO 队列来完成获取资源线程的排队工作。AQS 使用 CAS 对该同步状态进行原子操作实现对其值的修改。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> state;<span class="comment">//共享变量，使用volatile修饰保证线程可见性</span></span><br></pre></td></tr></table></figure>
 <p>状态信息通过 protected 类型的 getState，setState，compareAndSetState 进行操作</p>
@@ -486,20 +519,23 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-19T22:29:41+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 19, 2021</p>
+          
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
+    <p>Marlowe</p>
   </a>
 </div>
 
         
       
         
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AQS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>AQS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JUC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JUC</p></a></div>
-
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-21T11:31:42+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Mar 21, 2021</p>
+  </a>
+</div>
 
         
       
@@ -564,6 +600,11 @@
 
   
     <div class="prev-next">
+      
+        <a class='prev' href='/2021/03/20/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95Java%E5%AE%9E%E7%8E%B0/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>常用排序算法Java实现</p>
+          <p class='content'>排序算法可以分为内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的内部排序算法有：插入排序、希尔排...</p>
+        </a>
       
       
         <a class='next' href='/2021/03/19/%E5%B9%B6%E5%8F%91/Atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB/'>
