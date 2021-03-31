@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>0 words</p>
+      <p>568 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>2 min</p>
     </a>
   </div>
 
@@ -449,8 +449,26 @@
 
   
   <a id="more"></a>
-
-
+<h3 id="什么是CAS？"><a href="#什么是CAS？" class="headerlink" title="什么是CAS？"></a>什么是CAS？</h3><p>CAS是英文单词CompareAndSwap的缩写，中文意思是：比较并替换。CAS需要有3个操作数：内存地址V，旧的预期值A，即将要更新的目标值B。 CAS指令执行时，当且仅当内存地址V的值与预期值A相等时，将内存地址V的值修改为B，否则就什么都不做。整个比较并替换的操作是一个原子操作。它体现的一种乐观锁的思想，比如多个线程要对一个共享的整型变量执行 +1 操作</p>
+<p>获取共享变量时，为了保证该变量的可见性，需要使用 volatile 修饰。结合 CAS 和 volatile 可以实现无锁并发，适用于竞争不激烈、多核 CPU 的场景下。</p>
+<ul>
+<li>因为没有使用 synchronized，所以线程不会陷入阻塞，这是效率提升的因素之一</li>
+<li>但如果竞争激烈，可以想到重试必然频繁发生，反而效率会受影响</li>
+</ul>
+<p>CAS 底层依赖于一个 Unsafe 类来直接调用操作系统底层的 CAS 指令</p>
+<p>伪代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 需要不断尝试</span></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>) &#123; </span><br><span class="line">  <span class="keyword">int</span> 旧值 = 共享变量;<span class="comment">//比如拿到了当前值 0 </span></span><br><span class="line">  <span class="keyword">int</span> 结果 = 旧值 + <span class="number">1</span>;<span class="comment">//在旧值 0 的基础上增加 1 ，正确结果是 1 </span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//这时候如果别的线程把共享变量改成了 5，本线程的正确结果 1 就作</span></span><br><span class="line">  <span class="comment">//废了，这时候 compareAndSwap 返回 false，重新尝试，直到： compareAndSwap 返回 </span></span><br><span class="line">  <span class="comment">//true，表示我本线程做修改的同时，别的线程没有干扰 */</span></span><br><span class="line">  <span class="keyword">if</span>( compareAndSwap ( 旧值, 结果 )) &#123; </span><br><span class="line">    <span class="comment">// 成功，退出循环 </span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CASDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        AtomicInteger atomicInteger = <span class="keyword">new</span> AtomicInteger(<span class="number">2020</span>);</span><br><span class="line">        <span class="comment">// public final boolean compareAndSet(int expect, int update)</span></span><br><span class="line">        <span class="comment">// 如果我的期望值达到了，就更新，否则不更新  CAS是CPU的并发原语！</span></span><br><span class="line">        System.out.println(atomicInteger.compareAndSet(<span class="number">2020</span>, <span class="number">2021</span>));</span><br><span class="line">        System.out.println(atomicInteger.get());</span><br><span class="line"></span><br><span class="line">        System.out.println(atomicInteger.compareAndSet(<span class="number">2020</span>, <span class="number">2021</span>));</span><br><span class="line">        System.out.println(atomicInteger.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="number">2021</span></span><br><span class="line"><span class="keyword">false</span></span><br><span class="line"><span class="number">2021</span></span><br></pre></td></tr></table></figure>
+<h3 id="CAS-缺点"><a href="#CAS-缺点" class="headerlink" title="CAS 缺点"></a>CAS 缺点</h3><p>CAS虽然很高效的解决了原子操作问题，但是CAS仍然存在三大问题。</p>
+<ol>
+<li>循环会耗时</li>
+<li>一次性只能保证一个共享变量的原子性</li>
+<li>ABA问题</li>
+</ol>
+<h3 id="CAS-ABA问题-狸猫换太子"><a href="#CAS-ABA问题-狸猫换太子" class="headerlink" title="CAS:ABA问题(狸猫换太子)"></a>CAS:ABA问题(狸猫换太子)</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.unclezs.com/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E8%AE%A4%E8%AF%86CAS%E4%B8%8EABA%E9%97%AE%E9%A2%98.html">认识CAS与ABA问题</a></p>
 
   
   
@@ -496,10 +514,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-25T23:06:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-26T22:44:46+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 25, 2021</p>
+    <p>更新于：Mar 26, 2021</p>
   </a>
 </div>
 
@@ -567,6 +585,13 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/2021/03/27/%E9%A2%98%E8%A7%A3/%E5%AF%8C%E9%80%94%E7%AC%94%E8%AF%95-%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E8%8A%82%E7%82%B9/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>富途笔试-找到搜索二叉树中两个错误的节点</p>
+          <p class='content'>
+
+题目描述一棵二叉树原本是搜索二叉树，但是其中有两个节点调换了位置，使得这棵二叉树不再是搜索二叉树，请按升序输出这两个错误节点的值。(每个节点的值各不相同)示例1输入{1,2,3}返回值[1,...</p>
+        </a>
+      
       
         <a class='next' href='/2021/03/25/JUC/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/'>
           <p class='title'>异步回调<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
@@ -608,6 +633,20 @@ To be continue…
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCAS%EF%BC%9F"><span class="toc-text">什么是CAS？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-%E7%BC%BA%E7%82%B9"><span class="toc-text">CAS 缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-ABA%E9%97%AE%E9%A2%98-%E7%8B%B8%E7%8C%AB%E6%8D%A2%E5%A4%AA%E5%AD%90"><span class="toc-text">CAS:ABA问题(狸猫换太子)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </section>
 
 
   
