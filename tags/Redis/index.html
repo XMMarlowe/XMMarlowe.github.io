@@ -22,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: redis - Marlowe</title>
+  <title>Tag: Redis - Marlowe</title>
   
 
   
@@ -371,6 +371,20 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
@@ -384,14 +398,72 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/">
-        Redis 持久化
+      <a href="/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/">
+        Redis 发布与订阅
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失，所以Redis提供了持久化功能！</p>
+      
+        
+Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！Redis客户端可以订阅任意数量的频道。订阅/发布消息图：第一个：消息发送者，第二个：频道，第三个：消息订阅者使用场景
+
+实时消息系统
+实时聊天(频道当做聊天室，将信息回显给所有人即可)
+订阅，关注系统
+
+稍微复杂的场景就会使用消息中间件MQ
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-25</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/">
+        Redis 缓存穿透与雪崩(面试高频)
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+      
     
   </div>
   
@@ -406,7 +478,276 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/'>
+          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/">
+        SpringBoot整合Redis
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+说明：SpringBoot2.x之后，原来使用jedis被替换为了lettucejedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全，使用jedis pool连接池！ 更像BIO模式lettuce：采用netty，示例可以在多个线程中共享，不存在线程不安全的情况！可以减少线程数据了，更像NIO模式原码分析：
+12345678910111213141516171819@...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/23/NoSQL/Jedis/">
+        Jedis
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/23/NoSQL/Jedis/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/">
+        Redis 事务
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Redis 事务简介</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-20</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/20/NoSQL/Redis-%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+        Redis 三种特殊数据类型
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Radis 三种特殊数据类型…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-20</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/20/NoSQL/Redis-%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/19/NoSQL/Redis-%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+        Redis 五大数据类型
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Redis 五大数据类型详述…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/19/NoSQL/Redis-%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/19/NoSQL/Redis-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+        Redis 基础知识
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Redis 基础知识</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/19/NoSQL/Redis-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/'>
             Read More
           </a>
         </div>
@@ -532,7 +873,7 @@
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -567,7 +908,7 @@
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"
@@ -587,7 +928,7 @@
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
             id="categoriesE698A5E68B9BE99DA2E8AF95"
-            ><div class='name'>春招面试</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>春招面试</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
@@ -607,12 +948,7 @@
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E8%B7%AF/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E8%B7%AF/"
-            id="categoriesE8AEA1E7AE97E69CBAE7BD91E8B7AF"
-            ><div class='name'>计算机网路</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -673,7 +1009,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>96 篇</div>
+          <div>97 篇</div>
         </div>
       
 
@@ -695,7 +1031,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>79.3k 字</div>
+          <div>79.5k 字</div>
         </div>
       
 
@@ -721,8 +1057,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Apr 07 2021 22:31:49 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-07 日</div>
+            <div id="last-update" style="display: none;">Fri Apr 09 2021 12:17:14 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-09 日</div>
           
         </div>
         
@@ -772,226 +1108,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-07 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
-
-  
-
-
-</aside>
-
-
-        
-        
-          <!--此文件用来存放一些不方便取值的变量-->
-<!--思路大概是将值藏到重加载的区域内-->
-
-<script>
-  window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
-  pdata.commentPath="";
-  pdata.commentPlaceholder="";
-
-  var l_header=document.getElementById("l_header");
-  
-  l_header.classList.add("show");
-  
-</script>
-
-        
-      </div>
-      
-  
-  <footer class="footer clearfix">
-    <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
-</div>
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1" target="_blank" class="codename">Volantis</a>
-        as theme
-      
-    
-      
-        <div class='copyright'>
-        <p><a href="/">Copyright © 2019-2021 Marlowe</a></p>
-
-        </div>
-      
-    
-  </footer>
-
-
-
-      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
-    </div>
-  </div>
-  <div>
-    <script>
-window.volantis={};
-/********************脚本懒加载函数********************************/
-function loadScript(src, cb) {
-var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
-var script = document.createElement('script');
-script.setAttribute('type','text/javascript');
-if (cb) script.onload = cb;
-script.setAttribute('src', src);
-HEAD.appendChild(script);
-}
-//https://github.com/filamentgroup/loadCSS
-var loadCSS = function( href, before, media, attributes ){
-	var doc = window.document;
-	var ss = doc.createElement( "link" );
-	var ref;
-	if( before ){
-		ref = before;
-	}
-	else {
-		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
-		ref = refs[ refs.length - 1];
-	}
-	var sheets = doc.styleSheets;
-	if( attributes ){
-		for( var attributeName in attributes ){
-			if( attributes.hasOwnProperty( attributeName ) ){
-				ss.setAttribute( attributeName, attributes[attributeName] );
-			}
-		}
-	}
-	ss.rel = "stylesheet";
-	ss.href = href;
-	ss.m/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2020/10/12'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>79.3k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Wed Apr 07 2021 22:31:48 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-07 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-07 日';
+            document.getElementById('last-update-show').innerHTML = '2021-04-09 日';
           }
         </script>
         

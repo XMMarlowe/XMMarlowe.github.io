@@ -393,7 +393,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+      <a class="category-link" href="/categories/Java/">Java</a>
     </a>
   </div>
 
@@ -454,7 +454,7 @@
 <a id="more"></a>
 <h3 id="一、类加载过程"><a href="#一、类加载过程" class="headerlink" title="一、类加载过程"></a>一、类加载过程</h3><h4 id="1-加载"><a href="#1-加载" class="headerlink" title="1. 加载"></a>1. 加载</h4><p>加载指的是将类的Class文件腐乳到内存，并为之创建一个java.lang.Class对象，也就是说，当程序中使用任何类时，系统都会为之建立一个java.lang.Class对象。</p>
 <h4 id="2-链接"><a href="#2-链接" class="headerlink" title="2. 链接"></a>2. 链接</h4><p>当类被加载之后，系统为之生成一个对应的Class对象，接着将会进入连接阶段，连接阶段负责把类的二进制数据合并到JRE中。</p>
-<h3 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3. 初始化"></a>3. 初始化</h3><p>初始化是为类的静态变量赋予正确的初始值，准备阶段和初始化阶段看似有点矛盾，其实是不矛盾的，如果类中有语句：private static int a = 10，它的执行过程是这样的，首先字节码文件被加载到内存后，先进行链接的验证这一步骤，验证通过后准备阶段，给a分配内存，因为变量a是static的，所以此时a等于int类型的默认初始值0，即a=0,然后到解析（后面在说），到初始化这一步骤时，才把a的真正的值10赋给a,此时a=10。</p>
+<h4 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3. 初始化"></a>3. 初始化</h4><p>初始化是为类的静态变量赋予正确的初始值，准备阶段和初始化阶段看似有点矛盾，其实是不矛盾的，如果类中有语句：private static int a = 10，它的执行过程是这样的，首先字节码文件被加载到内存后，先进行链接的验证这一步骤，验证通过后准备阶段，给a分配内存，因为变量a是static的，所以此时a等于int类型的默认初始值0，即a=0,然后到解析（后面在说），到初始化这一步骤时，才把a的真正的值10赋给a,此时a=10。</p>
 <h3 id="二、类加载时机"><a href="#二、类加载时机" class="headerlink" title="二、类加载时机"></a>二、类加载时机</h3><ol>
 <li>创建类的实例，也即new一个对象</li>
 <li>访问某个类或接口的静态变量，或者对该静态变量赋值</li>
@@ -535,10 +535,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-31T22:35:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-08T10:49:12+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 31, 2021</p>
+    <p>更新于：Apr 8, 2021</p>
   </a>
 </div>
 
@@ -664,7 +664,7 @@ Java中的编译器和解释器Java 中引入了虚拟机的...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-text">一、类加载过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8A%A0%E8%BD%BD"><span class="toc-text">1. 加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%93%BE%E6%8E%A5"><span class="toc-text">2. 链接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">3. 初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%97%B6%E6%9C%BA"><span class="toc-text">二、类加载时机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-text">三、类加载器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-text">四、类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-text">双亲委派机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E6%83%B3%E7%94%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-text">不想用双亲委派模型怎么办？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-text">五、参考文档</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-text">一、类加载过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8A%A0%E8%BD%BD"><span class="toc-text">1. 加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%93%BE%E6%8E%A5"><span class="toc-text">2. 链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">3. 初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%97%B6%E6%9C%BA"><span class="toc-text">二、类加载时机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-text">三、类加载器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-text">四、类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-text">双亲委派机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E6%83%B3%E7%94%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-text">不想用双亲委派模型怎么办？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-text">五、参考文档</span></a></li></ol>
     </div>
   </section>
 
