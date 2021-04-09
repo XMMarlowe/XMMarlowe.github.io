@@ -377,6 +377,432 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/">
+        线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+线程池中阻塞队列的作用?一般的队列只能保证作为一个有限长度的缓冲区,如果超出了缓冲长度,就无法保留当前的任务了,阻塞队列通过阻塞可以保留住当前想要继续入队的任务。阻塞队列可以保证任务队列中没有任务时阻塞获取任务的线程,使得线程进入wait状态,释放cpu资源。阻塞队列自带阻塞和唤醒的功能,不需要额外处理,无任务执行时,线程池利用阻塞队列的take方法挂起,从而维持核心线程的存活、不至于一直...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/">
+        为什么用线程池？线程池参数解释
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+为什么使用线程池?
+1、降低资源消耗;提高线程利用率,降低创建和销毁线程的消耗。
+2、提高响应速度;任务来了,直接有线程可用可执行,而不是先创建线程,再执行。
+3、提高线程的可管理性;线程是稀缺资源,使用线程池可以统一分配调优监控。
+corePoolsize代表核心线程数,也就是正常情况下创建工作的线程数,这些线程创建后并不会消除,而是一种常驻线程
+maxinumPoolsize代表的是最...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/">
+        并发的三大特性
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+原子性定义：原子性是指在一个操作中cpu不可以在中途暂停然后再调度,即不被中断操作，要不全部执行完成，要不都不执行。就好比转账，从账户A向账户B转1000元，那么必然包括2个操作:从账户A减去1000元,往账户B加上1000元。2个操作必须全部完成。
+关键字：synchronized
+1234private long count = 0;public void calc()&#123; ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/10/%E5%B9%B6%E5%8F%91/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
+        ThreadLocal原理和使用场景
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/10/%E5%B9%B6%E5%8F%91/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/10/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/">
+        浅谈对守护线程的理解
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/10/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/10/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/">
+        浅谈对线程安全的理解
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>当多个线程访问一个对象时，如果不进行额外的同步控制或其他的协调操作，调用这个对象的行为都可以获得正确的结果，我们就说这个对象是线程安全的。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/10/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E7%90%86%E8%A7%A3/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        sleep(),wait(),join(),yield()的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就绪队列进行等待cpu资源分配。
+等待池当我们调用wait()方法后，线程会放到等待池当中，等待池的线程是不会去竞争同步锁。只有调用了notify()或notifyAll()后等待的线程才会开始去竞争锁...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/09/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/">
+        线程的生命周期包括哪几个阶段
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/09/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/">
+        GC如何判断对象可以被回收
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+引用计数法方式：每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。优点：实现简单，效率高。缺点：无法解决循环引用。
+可达性分析法方式：从一系列被称为GC ROOT的对象开始，向下搜索，搜索走过的路径称为引用链，当一个对象到GC ROOT之间没有引用链，说明这个对象不可用。
+GC ROOT对象：
+虚拟机栈中引用的对象
+方法区内类的静态属性引用的对象...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/">
         Java中的异常体系
       </a>
@@ -421,432 +847,6 @@ Exception不会导致程序停止，分为RuntimeException运行时异常和Chec
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/">
-        Java类加载机制和类加载器概述
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来兑该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
-        什么是字节码？采用字节码的好处是什么？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>字节码：在Java中，供虚拟机理解的代码叫做字节码(也就是Java代码编译后的.class文件),他不面向任何特定的处理器，只面向虚拟机。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/02/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JWTUtils/">
-        JWTUtils
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Jwt 学习</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/">自定义工具类</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/02/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JWTUtils/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/27/JUC/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BE%85%E5%8A%A9%E7%B1%BB/">
-        常用的辅助类
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        countDownLatch12345678910111213141516public class CountDownLatchDemo &#123;    public static void main(String[] args) throws InterruptedException &#123;        CountDownLatch countDownLatch = new C...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-27</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/JUC/">JUC</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/27/JUC/%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BE%85%E5%8A%A9%E7%B1%BB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/26/JUC/Callable/">
-        Callable
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-Callable简介：
-
-可以有返回值
-可以抛出异常
-方法不同，Runnable 是 run()， Callable 是call()
-
-1234567891011121314151617181920212223242526public class CallableTest &#123;    public static void main(String[] args) throws Exe...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/JUC/">JUC</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/26/JUC/Callable/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/">
-        Redis 发布与订阅
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！Redis客户端可以订阅任意数量的频道。订阅/发布消息图：第一个：消息发送者，第二个：频道，第三个：消息订阅者使用场景
-
-实时消息系统
-实时聊天(频道当做聊天室，将信息回显给所有人即可)
-订阅，关注系统
-
-稍微复杂的场景就会使用消息中间件MQ
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/">
-        Redis 缓存穿透与雪崩(面试高频)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-24</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/">
-        Redis 持久化
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失，所以Redis提供了持久化功能！</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-24</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/">
-        SpringBoot整合Redis
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-说明：SpringBoot2.x之后，原来使用jedis被替换为了lettucejedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全，使用jedis pool连接池！ 更像BIO模式lettuce：采用netty，示例可以在多个线程中共享，不存在线程不安全的情况！可以减少线程数据了，更像NIO模式原码分析：
-12345678910111213141516171819@...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-23</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -861,7 +861,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           </a>
         
         <p class="current">
-          6 / 10
+          6 / 11
         </p>
         
           <a class="next" rel="next" href="/page/7/">
@@ -979,7 +979,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1024,7 +1024,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1054,7 +1054,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -1088,7 +1088,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
 
 
     <div class='content'>
-      <a href="/tags/ABA/" style="font-size: 14px; color: #999">ABA</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/AQS/" style="font-size: 14px; color: #999">AQS</a> <a href="/tags/Arrays/" style="font-size: 14px; color: #999">Arrays</a> <a href="/tags/B-Tree/" style="font-size: 14px; color: #999">B+Tree</a> <a href="/tags/BTree/" style="font-size: 14px; color: #999">BTree</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/DNS/" style="font-size: 14px; color: #999">DNS</a> <a href="/tags/Docker/" style="font-size: 17.75px; color: #808080">Docker</a> <a href="/tags/ES/" style="font-size: 16.5px; color: #888">ES</a> <a href="/tags/ForkJoin/" style="font-size: 14px; color: #999">ForkJoin</a> <a href="/tags/GC/" style="font-size: 15.25px; color: #919191">GC</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 14px; color: #999">HTTPS</a> <a href="/tags/HashMap/" style="font-size: 20.25px; color: #6f6f6f">HashMap</a> <a href="/tags/I-O%E6%A8%A1%E5%9E%8B/" style="font-size: 14px; color: #999">I/O模型</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/JDK/" style="font-size: 14px; color: #999">JDK</a> <a href="/tags/JUC/" style="font-size: 14px; color: #999">JUC</a> <a href="/tags/JVM/" style="font-size: 17.75px; color: #808080">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 16.5px; color: #888">Leetcode</a> <a href="/tags/List/" style="font-size: 15.25px; color: #919191">List</a> <a href="/tags/OSI/" style="font-size: 14px; color: #999">OSI</a> <a href="/tags/Redis/" style="font-size: 21.5px; color: #666">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Spring/" style="font-size: 19px; color: #777">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 16.5px; color: #888">SpringBoot</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/TCP/" style="font-size: 14px; color: #999">TCP</a> <a href="/tags/TopK/" style="font-size: 14px; color: #999">TopK</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/dp/" style="font-size: 14px; color: #999">dp</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/test/" style="font-size: 15.25px; color: #919191">test</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 14px; color: #999">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 16.5px; color: #888">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%85%B3%E9%94%AE%E5%AD%97/" style="font-size: 14px; color: #999">关键字</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">函数式接口</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.25px; color: #919191">创建型模式</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">动态代理</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E7%B1%BB/" style="font-size: 14px; color: #999">原子类</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16.5px; color: #888">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 14px; color: #999">异常</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 14px; color: #999">异步</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">排序</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 15.25px; color: #919191">数据类型</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 14px; color: #999">数组</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 22.75px; color: #5e5e5e">线程</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15.25px; color: #919191">线程安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" style="font-size: 15.25px; color: #919191">线程池</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.25px; color: #919191">结构型模式</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.25px; color: #919191">行为型模式</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BE%85%E5%8A%A9%E7%B1%BB/" style="font-size: 14px; color: #999">辅助类</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">进程</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15.25px; color: #919191">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 15.25px; color: #919191">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a>
+      <a href="/tags/ABA/" style="font-size: 14px; color: #999">ABA</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/AQS/" style="font-size: 14px; color: #999">AQS</a> <a href="/tags/Arrays/" style="font-size: 14px; color: #999">Arrays</a> <a href="/tags/B-Tree/" style="font-size: 14px; color: #999">B+Tree</a> <a href="/tags/BTree/" style="font-size: 14px; color: #999">BTree</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/Cookie/" style="font-size: 14px; color: #999">Cookie</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/DNS/" style="font-size: 14px; color: #999">DNS</a> <a href="/tags/Docker/" style="font-size: 17.75px; color: #808080">Docker</a> <a href="/tags/ES/" style="font-size: 16.5px; color: #888">ES</a> <a href="/tags/ForkJoin/" style="font-size: 14px; color: #999">ForkJoin</a> <a href="/tags/GC/" style="font-size: 15.25px; color: #919191">GC</a> <a href="/tags/HTTP/" style="font-size: 17.75px; color: #808080">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 14px; color: #999">HTTPS</a> <a href="/tags/HashMap/" style="font-size: 20.25px; color: #6f6f6f">HashMap</a> <a href="/tags/I-O%E6%A8%A1%E5%9E%8B/" style="font-size: 14px; color: #999">I/O模型</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/JDK/" style="font-size: 14px; color: #999">JDK</a> <a href="/tags/JUC/" style="font-size: 14px; color: #999">JUC</a> <a href="/tags/JVM/" style="font-size: 19px; color: #777">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 16.5px; color: #888">Leetcode</a> <a href="/tags/List/" style="font-size: 15.25px; color: #919191">List</a> <a href="/tags/OSI/" style="font-size: 14px; color: #999">OSI</a> <a href="/tags/Redis/" style="font-size: 21.5px; color: #666">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Session/" style="font-size: 14px; color: #999">Session</a> <a href="/tags/Spring/" style="font-size: 19px; color: #777">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 16.5px; color: #888">SpringBoot</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/TCP/" style="font-size: 15.25px; color: #919191">TCP</a> <a href="/tags/TopK/" style="font-size: 14px; color: #999">TopK</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/dp/" style="font-size: 14px; color: #999">dp</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/test/" style="font-size: 15.25px; color: #919191">test</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 14px; color: #999">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 16.5px; color: #888">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%85%B3%E9%94%AE%E5%AD%97/" style="font-size: 14px; color: #999">关键字</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">函数式接口</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.25px; color: #919191">创建型模式</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">动态代理</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E7%B1%BB/" style="font-size: 14px; color: #999">原子类</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 14px; color: #999">垃圾回收</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16.5px; color: #888">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 14px; color: #999">异常</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 14px; color: #999">异步</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">排序</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 15.25px; color: #919191">数据类型</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 14px; color: #999">数组</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 22.75px; color: #5e5e5e">线程</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15.25px; color: #919191">线程安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" style="font-size: 15.25px; color: #919191">线程池</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.25px; color: #919191">结构型模式</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.25px; color: #919191">行为型模式</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BE%85%E5%8A%A9%E7%B1%BB/" style="font-size: 14px; color: #999">辅助类</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 15.25px; color: #919191">进程</a> <a href="/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/" style="font-size: 14px; color: #999">进程通信</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15.25px; color: #919191">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 15.25px; color: #919191">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a>
     </div>
   </section>
 
@@ -1115,7 +1115,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>97 篇</div>
+          <div>106 篇</div>
         </div>
       
 
@@ -1137,7 +1137,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>79.5k 字</div>
+          <div>84.4k 字</div>
         </div>
       
 
@@ -1163,7 +1163,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Apr 09 2021 12:17:12 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Fri Apr 09 2021 22:59:38 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-04-09 日</div>
           
         </div>

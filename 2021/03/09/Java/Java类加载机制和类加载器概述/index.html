@@ -26,7 +26,7 @@
   
 
   
-    <meta name="description" content="当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来兑该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。">
+    <meta name="description" content="当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来对该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。">
   
 
   <!-- feed -->
@@ -450,9 +450,9 @@
 
 
   
-  <p>当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来兑该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。</p>
+  <p>当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来对该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。</p>
 <a id="more"></a>
-<h3 id="一、类加载过程"><a href="#一、类加载过程" class="headerlink" title="一、类加载过程"></a>一、类加载过程</h3><h4 id="1-加载"><a href="#1-加载" class="headerlink" title="1. 加载"></a>1. 加载</h4><p>加载指的是将类的Class文件腐乳到内存，并为之创建一个java.lang.Class对象，也就是说，当程序中使用任何类时，系统都会为之建立一个java.lang.Class对象。</p>
+<h3 id="一、类加载过程"><a href="#一、类加载过程" class="headerlink" title="一、类加载过程"></a>一、类加载过程</h3><h4 id="1-加载"><a href="#1-加载" class="headerlink" title="1. 加载"></a>1. 加载</h4><p>加载指的是将类的Class文件读入到内存，并为之创建一个java.lang.Class对象，也就是说，当程序中使用任何类时，系统都会为之建立一个java.lang.Class对象。</p>
 <h4 id="2-链接"><a href="#2-链接" class="headerlink" title="2. 链接"></a>2. 链接</h4><p>当类被加载之后，系统为之生成一个对应的Class对象，接着将会进入连接阶段，连接阶段负责把类的二进制数据合并到JRE中。</p>
 <h4 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3. 初始化"></a>3. 初始化</h4><p>初始化是为类的静态变量赋予正确的初始值，准备阶段和初始化阶段看似有点矛盾，其实是不矛盾的，如果类中有语句：private static int a = 10，它的执行过程是这样的，首先字节码文件被加载到内存后，先进行链接的验证这一步骤，验证通过后准备阶段，给a分配内存，因为变量a是static的，所以此时a等于int类型的默认初始值0，即a=0,然后到解析（后面在说），到初始化这一步骤时，才把a的真正的值10赋给a,此时a=10。</p>
 <h3 id="二、类加载时机"><a href="#二、类加载时机" class="headerlink" title="二、类加载时机"></a>二、类加载时机</h3><ol>
@@ -535,10 +535,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-08T10:49:12+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-09T14:53:21+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 8, 2021</p>
+    <p>更新于：Apr 9, 2021</p>
   </a>
 </div>
 
@@ -552,7 +552,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/&title=Java类加载机制和类加载器概述 - Marlowe&summary=当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来兑该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/&title=Java类加载机制和类加载器概述 - Marlowe&summary=当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来对该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。"
           
           >
           
@@ -564,7 +564,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/&title=Java类加载机制和类加载器概述 - Marlowe&summary=当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来兑该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/&title=Java类加载机制和类加载器概述 - Marlowe&summary=当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来对该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。"
           
           >
           
@@ -576,7 +576,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/&title=Java类加载机制和类加载器概述 - Marlowe&summary=当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来兑该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/&title=Java类加载机制和类加载器概述 - Marlowe&summary=当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来对该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。"
           
           >
           

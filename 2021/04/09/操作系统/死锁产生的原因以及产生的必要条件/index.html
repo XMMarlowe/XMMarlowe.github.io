@@ -20,7 +20,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>TCP和UDP的区别，以及使用场景 - Marlowe</title>
+  <title>死锁产生的原因以及产生的必要条件 - Marlowe</title>
   
 
   
@@ -369,7 +369,7 @@
     
     
       <h1 class="title">
-        TCP和UDP的区别，以及使用场景
+        死锁产生的原因以及产生的必要条件
       </h1>
       <div class='new-meta-box'>
         
@@ -393,7 +393,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 7, 2021</p>
+    <p>发布于：Apr 9, 2021</p>
   </a>
 </div>
 
@@ -404,7 +404,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="TCP和UDP的区别，以及使用场景" data-path="/2021/04/07/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
+      <div id="lc-pv" data-title="死锁产生的原因以及产生的必要条件" data-path="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -420,7 +420,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>0 words</p>
+      <p>148 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -441,6 +441,18 @@
   
   <a id="more"></a>
 
+<h3 id="死锁产生的原因"><a href="#死锁产生的原因" class="headerlink" title="死锁产生的原因"></a>死锁产生的原因</h3><ol>
+<li>系统资源不足。</li>
+<li>进程运行推进的顺序不合适。</li>
+<li>资源分配不当。</li>
+</ol>
+<h3 id="死锁产生的四个必要条件"><a href="#死锁产生的四个必要条件" class="headerlink" title="死锁产生的四个必要条件"></a>死锁产生的四个必要条件</h3><ol>
+<li>互斥条件：一个资源每次只能被一个进程使用。</li>
+<li>请求与保持条件：一个进程因请求资源而阻塞时，对已经获得的资源保持不放。</li>
+<li>不剥夺条件：进程已获得的资源，在未使用完之前，不能强行剥夺。</li>
+<li>循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。</li>
+</ol>
+
   
   
     
@@ -457,7 +469,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/04/07/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/>https://xmmarlowe.github.io/2021/04/07/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/>https://xmmarlowe.github.io/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/</a></p>
               
             
           </blockquote>
@@ -485,10 +497,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-07T22:51:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-09T13:45:48+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 7, 2021</p>
+    <p>更新于：Apr 9, 2021</p>
   </a>
 </div>
 
@@ -502,7 +514,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/07/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/&title=TCP和UDP的区别，以及使用场景 - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/&title=死锁产生的原因以及产生的必要条件 - Marlowe&summary="
           
           >
           
@@ -514,7 +526,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/07/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/&title=TCP和UDP的区别，以及使用场景 - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/&title=死锁产生的原因以及产生的必要条件 - Marlowe&summary="
           
           >
           
@@ -526,7 +538,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/07/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/&title=TCP和UDP的区别，以及使用场景 - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/&title=死锁产生的原因以及产生的必要条件 - Marlowe&summary="
           
           >
           
@@ -556,15 +568,20 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/2021/04/09/Java/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>JVM垃圾回收算法</p>
+          <p class='content'>
+
+两个概念：新生代： 存放生命周期较短的对象的区域。老年代： 存放生命周期较长的对象的区域。
+相同点： 都在Java堆上。
+标记-清除算法标记-整理算法复制算法分代收集算法MinorGC和Fu...</p>
+        </a>
       
-        <a class='next' href='/2021/04/01/%E7%A0%94%E5%8F%91%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/'>
-          <p class='title'>研发高频算法题<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>牛客研发最爱考
-
-
-字符串进制转换题目链接
-代码如下：
-1234567891011121314151617181920212223242526272829303132333435import j...</p>
+      
+        <a class='next' href='/2021/04/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+          <p class='title'>TCP和UDP的区别，以及使用场景<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+</p>
         </a>
       
     </div>
@@ -597,6 +614,20 @@
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">死锁产生的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">死锁产生的四个必要条件</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -613,7 +644,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="TCP和UDP的区别，以及使用场景";
+  pdata.postTitle="死锁产生的原因以及产生的必要条件";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
