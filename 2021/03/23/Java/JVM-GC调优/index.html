@@ -26,6 +26,8 @@
   
 
   
+    <meta name="description" content="JVM调优入门…">
+  
 
   <!-- feed -->
   
@@ -429,13 +431,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>8 words</p>
+      <p>790 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>2 min</p>
     </a>
   </div>
 
@@ -448,8 +450,37 @@
 
 
   
-  <a id="more"></a>
+  <p>JVM调优入门…</p>
+<a id="more"></a>
 
+<h3 id="JVM调优是必须的吗？"><a href="#JVM调优是必须的吗？" class="headerlink" title="JVM调优是必须的吗？"></a>JVM调优是必须的吗？</h3><p>GC调优对于java服务是必须的吗？实际上，我感觉80%的java的程序员在实际工作中都没有碰到过GC调优吧，这是因为多数的Java应用不需要在服务器上进行GC优化，多数导致GC问题的Java应用，都不是因为我们参数设置错误，而是代码问题，需要记住一点：<strong>GC调优是最后要做的工作。</strong></p>
+<p>GC调优的目的可以总结为下面两点：</p>
+<ul>
+<li>减少对象晋升到老年代的数量</li>
+<li>减少FullGC的执行时间</li>
+</ul>
+<h3 id="减少对象晋升到老年代的数量"><a href="#减少对象晋升到老年代的数量" class="headerlink" title="减少对象晋升到老年代的数量"></a>减少对象晋升到老年代的数量</h3><p>分代垃圾回收是Oracle JVM中回收思想。 我们知道在Eden区创建的对象，在from Survivor 复制到to Survivor区之后，达到一定年龄就进入了老年代。有些对象因为比较大就直接进入了老年代。在老年代的GC时间相比于年轻代时间更长。因此，减少对象进入老年代可以降低Full GC的频率。</p>
+<h3 id="减少FullGC的执行时间"><a href="#减少FullGC的执行时间" class="headerlink" title="减少FullGC的执行时间"></a>减少FullGC的执行时间</h3><p>Full GC的时间比Minor GC要长。所以如果执行太长时间的Full GC（超过1秒），就会发生超时错误</p>
+<ul>
+<li>如果你试着减少老年代的大小来降低Full GC的执行时间，可能会引发OutOfMemoryError或者导致Full GC的频率升高。</li>
+<li>如果是通过增加老年代的大小来降低Full GC的频率，执行时间将会增加。</li>
+</ul>
+<h3 id="影响GC的参数"><a href="#影响GC的参数" class="headerlink" title="影响GC的参数"></a>影响GC的参数</h3><p>JVM调优主要用到参数罗列在下面的两张表中。主要分为内存参数和垃圾类型参数。GC优化的过程就是在调试这些参数的过程。</p>
+<p>下表是与JVM内存相关的参数：</p>
+<center>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/5611237-dd221ae5ca3e13d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/890/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/5611237-dd221ae5ca3e13d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/890/format/webp" srcset="data:image/png;base64,666" alt="JVM参数"></p>
+</center>
+
+<p>1.针对JVM堆的设置，一般可以通过-Xms -Xmx限定其最小、最大值，<strong>为了防止垃圾收集器在最小、最大之间收缩堆而产生额外的时间，通常把最大、最小设置为相同的值;</strong></p>
+<p>2.<strong>年轻代和年老代将根据默认的比例（1：2）分配堆内存，</strong> 可以通过调整二者之间的比率NewRadio来调整二者之间的大小，也可以针对回收代。</p>
+<p>比如年轻代，通过 -XX:newSize -XX:MaxNewSize来设置其绝对大小。同样，为了防止年轻代的堆收缩，我们通常会把-XX:newSize -XX:MaxNewSize设置为同样大小。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>JVM调优在实际工作中用到的比较少，但是这也是作为java程序员必须掌握的基本技能。<strong>真正熟练的使用GC调优，是建立在多次进行GC监控和调优的实战经验上的。</strong></p>
+<p>下面罗列了几个数据作为参考，如果GC执行时间满足下列所有条件，就没有必要进行GC优化了：</p>
+<p>Minor GC执行非常迅速（50ms以内）</p>
+<p>Minor GC没有频繁执行（大约10s执行一次）</p>
+<p>Full GC执行非常迅速（1s以内）</p>
+<p>Full GC没有频繁执行（大约10min执行一次）</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e7895f46f087">JVM GC调优入门</a></p>
 
   
@@ -496,10 +527,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-24T22:41:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-10T19:47:23+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 24, 2021</p>
+    <p>更新于：Apr 10, 2021</p>
   </a>
 </div>
 
@@ -513,7 +544,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/23/Java/JVM-GC%E8%B0%83%E4%BC%98/&title=JVM GC调优 - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/03/23/Java/JVM-GC%E8%B0%83%E4%BC%98/&title=JVM GC调优 - Marlowe&summary=JVM调优入门…"
           
           >
           
@@ -525,7 +556,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/23/Java/JVM-GC%E8%B0%83%E4%BC%98/&title=JVM GC调优 - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/03/23/Java/JVM-GC%E8%B0%83%E4%BC%98/&title=JVM GC调优 - Marlowe&summary=JVM调优入门…"
           
           >
           
@@ -537,7 +568,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/23/Java/JVM-GC%E8%B0%83%E4%BC%98/&title=JVM GC调优 - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/03/23/Java/JVM-GC%E8%B0%83%E4%BC%98/&title=JVM GC调优 - Marlowe&summary=JVM调优入门…"
           
           >
           
@@ -621,7 +652,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E6%98%AF%E5%BF%85%E9%A1%BB%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-text">JVM调优是必须的吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E5%AF%B9%E8%B1%A1%E6%99%8B%E5%8D%87%E5%88%B0%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-text">减少对象晋升到老年代的数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%91FullGC%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="toc-text">减少FullGC的执行时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%B1%E5%93%8DGC%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">影响GC的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
