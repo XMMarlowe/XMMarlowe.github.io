@@ -429,7 +429,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.9k words</p>
+      <p>3k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -514,22 +514,23 @@
 <li><strong>公平锁</strong></li>
 </ul>
 <ol>
-<li>当锁被释放，按照阻塞的先后顺序获取锁，即同步队列头节点中的线程将获取锁。</li>
-<li>公平锁可以保证锁的获取按照FIFO原则，但需要进行大量的线程切换，导致吞吐率较低。</li>
+<li>当锁被释放，按照阻塞的先后顺序获取锁，即同步队列<strong>头节点</strong>中的线程将获取锁。</li>
+<li>公平锁可以保证锁的获取按照<strong>FIFO原则</strong>，但需要进行大量的线程切换，导致<strong>吞吐率较低。</strong></li>
 </ol>
 <ul>
 <li><strong>非公平锁：</strong></li>
 </ul>
 <ol>
 <li>当锁被释放，所有阻塞的线程都可以争抢获取锁的资格，可能导致先阻塞的线程最后获取锁。</li>
-<li>非公平锁虽然可能造成线程饥饿，但极少进行线程的切换，保证了更大的吞吐量。</li>
+<li>非公平锁虽然可能造成<strong>线程饥饿</strong>，但极少进行线程的切换，保证了<strong>更大的吞吐量</strong>。</li>
 </ol>
 <ul>
 <li>Java中ReentrantLock和ReentrantReadWriteLock支持公平和非公平访问，而synchronized关键字只支持非公平访问。</li>
-<li>公平与非公平可以通过构造函数的fair参数进行指定，默认是false，即默认为非公平的获取锁。</li>
-<li>公平和非公平都是依靠AQS实现的，公平使用FairSync同步器，非公平使用NoFairSync同步器。</li>
+<li>公平与非公平可以通过<strong>构造函数的fair</strong>参数进行指定，默认是false，即<strong>默认为非公平的获取锁。</strong></li>
+<li>公平和非公平都是<strong>依靠AQS实现</strong>的，公平使用FairSync同步器，非公平使用NoFairSync同步器。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</span><br><span class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-可重入锁和非可重入锁"><a href="#4-可重入锁和非可重入锁" class="headerlink" title="4. 可重入锁和非可重入锁"></a>4. 可重入锁和非可重入锁</h4></li>
 </ul>
-<h4 id="4-可重入锁和非可重入锁"><a href="#4-可重入锁和非可重入锁" class="headerlink" title="4. 可重入锁和非可重入锁"></a>4. 可重入锁和非可重入锁</h4><p>可重入锁又名递归锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会自动获取锁（前提锁对象得是同一个对象或者class），不会因为之前已经获取过还没释放而阻塞。Java中ReentrantLock和synchronized都是可重入锁，可重入锁的一个优点是可一定程度避免死锁。下面用示例代码来进行分析：</p>
+<p>可重入锁又名递归锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会自动获取锁（前提锁对象得是同一个对象或者class），不会因为之前已经获取过还没释放而阻塞。Java中ReentrantLock和synchronized都是可重入锁，可重入锁的一个优点是可一定程度避免死锁。下面用示例代码来进行分析：</p>
 <ul>
 <li><strong>可重入锁：</strong></li>
 </ul>
@@ -708,7 +709,7 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-11T22:32:05+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-11T22:40:27+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Apr 11, 2021</p>
