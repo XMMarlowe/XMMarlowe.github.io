@@ -6,8 +6,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -22,9 +20,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: 类图 - Marlowe</title>
+  <title>操作系统IO模型 - Marlowe</title>
+  
+    <meta name="keywords" content="IO">
   
 
+  
+    <meta name="description" content="IO模型的分类：主要有同步IO、异步IO、阻塞IO、非阻塞IO…">
   
 
   <!-- feed -->
@@ -285,7 +287,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -360,87 +362,276 @@
       <div class='body-wrapper' id="pjax-container">
         
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      
-  <section class="post-list">
     
-      
+    
+      <h1 class="title">
+        操作系统IO模型
+      </h1>
+      <div class='new-meta-box'>
         
           
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+          
         
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/11/Java/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%8F%8A%E5%85%B3%E7%B3%BB%E5%9B%BE/">
-        Java中的集合类及关系图
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-
-
-
-
-
-List 和 Set 继承自 Collection 接口。
-Set 无序不允许元素重复。HashSet 和 TreeSet 是两个主要的实现类。
-List 有序且允许元素重复。ArrayList、LinkedList 和 Vector 是三个主要的实现 类。
-Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 value 的映 射集合，其中...
-      
-    
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+          
         
-        <time>2021-04-11</time>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Apr 12, 2021</p>
+  </a>
+</div>
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="操作系统IO模型" data-path="/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>1.7k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>5 min</p>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  <p>IO模型的分类：主要有同步IO、异步IO、阻塞IO、非阻塞IO…</p>
+<a id="more"></a>
+
+<h3 id="操作系统的IO交互模型"><a href="#操作系统的IO交互模型" class="headerlink" title="操作系统的IO交互模型"></a>操作系统的IO交互模型</h3><p>现代的操作系统对于存储空间都有一套访问限制控制，所以将存储空间分成了用户空间和内核空间。用户空间负责给应用程序使用，应用程序可以访问用户空间内的数据，但是不可以访问内核空间中的数据；而内核程序可以访问计算机的所有存储空间，包括用户空间、内核空间以及硬件设备上的数据。所以当应用程序需要访问硬件设备上的数据或者是内核空间的数据时，就必须要通过内核空间的程序来实现。所以内核空间对外也提供了很多的函数，提供给了应用程序使用，让应用程序可以通过内核程序来访问想要的数据。</p>
+<p>整体的IO交互模型如下图示：</p>
+<center>
+
+<p><img src="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822113802875-438037925.jpg" class="lazyload" data-srcset="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822113802875-438037925.jpg" srcset="data:image/png;base64,666" alt="IO模型"></p>
+</center>
+
+<p>下面就以应用程序需要从网卡中读取数据为例，整体IO交互流程主要分成如下几个步骤：</p>
+<p>1、应用程序调用内核提供的函数发起请求数据（请求内核函数）</p>
+<p>2、内核访问网卡存储空间获取数据（内核获取数据）</p>
+<p>3、内核将获取的到数据复制到用户空间（内核复制数据）</p>
+<p>4、应用程序从用户空间中获取需要的数据（应用程序获取数据）</p>
+<h3 id="操作系统的IO模型"><a href="#操作系统的IO模型" class="headerlink" title="操作系统的IO模型"></a>操作系统的IO模型</h3><h4 id="IO的类型"><a href="#IO的类型" class="headerlink" title="IO的类型"></a>IO的类型</h4><h5 id="同步IO"><a href="#同步IO" class="headerlink" title="同步IO"></a>同步IO</h5><p>应用程序调用内核函数到最终应用程序从用户空间中获取数据的整个流程是需要用户线程一次性完成的那么就是同步IO</p>
+<h5 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h5><p>应用程序调用内核函数请求获取数据和最终从用户空间中拿到数据不是一次性完成的，而是先请求数据，等数据全部准备好了之后再获取的就是异步IO</p>
+<h5 id="阻塞IO"><a href="#阻塞IO" class="headerlink" title="阻塞IO"></a>阻塞IO</h5><p>应用程序调用内核函数请求数据，如果此时还没有数据，那么应用程序就一直等待着，直到成功拿到数据为止，此时应用程序线程是一直处于等待状态的，那么就是阻塞IO</p>
+<h5 id="非阻塞IO"><a href="#非阻塞IO" class="headerlink" title="非阻塞IO"></a>非阻塞IO</h5><p>应用程序调用内核函数请求数据，如果此时还没有数据，那么应用程序就不等待先去处理其他事情，过一会再重新尝试请求，直到成功拿到数据为止，此时应用程序不会一直处于等待状态，那么就是非阻塞IO</p>
+<h4 id="操作系统IO模型"><a href="#操作系统IO模型" class="headerlink" title="操作系统IO模型"></a>操作系统IO模型</h4><p>操作系统的IO模型也主要分成同步IO和异步IO两大类，而同步IO又分成了阻塞和非阻塞等类，异步IO不会出现阻塞IO情况，所以异步IO肯定是非阻塞的IO，操作系统IO模型主要分成如下几种类型</p>
+<p>tips：操作系统给应用程序提供了recv函数，该函数用于从socket套接字中接收数据，默认情况下会等到网络数据接收完成并复制到用户空间之后才返回结果或者失败之后返回结果，可以通过flags参数设置如果没有数据的话立即返回结果</p>
+<h5 id="同步阻塞IO"><a href="#同步阻塞IO" class="headerlink" title="同步阻塞IO"></a>同步阻塞IO</h5><p>应用程序调用操作系统的recv函数，recv函数默认会等待数据接收完成并复制到用户空间之后返回结果，而如果数据没有准备好的话，那么应用程序就一直处于等待状态，直到有数据返回，此时应用程序的线程处于阻塞状态，无法执行其他操作。</p>
+<p><img src="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822113951905-729226562.png" class="lazyload" data-srcset="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822113951905-729226562.png" srcset="data:image/png;base64,666" alt="阻塞式IO模型"></p>
+<h5 id="同步非阻塞IO"><a href="#同步非阻塞IO" class="headerlink" title="同步非阻塞IO"></a>同步非阻塞IO</h5><p>应用程序调用操作系统的recv函数，recv函数设置flags值为立即返回，那么如果内核发现没有数据时就立即返回，应用程序得到结果之后不再等待，而是先处理其他业务，然后轮训不断尝试获取数据，直到数据成功返回，此时应用程序不处于阻塞状态，可以先处理其他操作。</p>
+<p><img src="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114002754-1449355088.png" class="lazyload" data-srcset="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114002754-1449355088.png" srcset="data:image/png;base64,666" alt="非阻塞式IO模型"></p>
+<h5 id="同步多路复用IO"><a href="#同步多路复用IO" class="headerlink" title="同步多路复用IO"></a>同步多路复用IO</h5><p>应用程序先调用操作系统的select函数或者poll函数或者epoll函数，这几个函数的作用是监听网络套接字上的数据状态，如果有数据可读，那么就通知应用程序，此时应用程序再调用recv函数来读取数据，此时肯定是可以读取到数据的。可以发现多路复用IO的特点是不需要尝试获取数据，而是先开启另外一个线程来监控数据的状态，等到有数据的时候再同步获取数据，而在没数据的时候也是不需要等待的。多路复用IO调用select函数之后也会阻塞进程，但是不会真正的IO操作线程没有被阻塞，所以实质上是同步非阻塞IO。</p>
+<p><img src="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114012305-1459703301.png" class="lazyload" data-srcset="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114012305-1459703301.png" srcset="data:image/png;base64,666" alt="IO复用模型"></p>
+<h5 id="同步信号驱动IO"><a href="#同步信号驱动IO" class="headerlink" title="同步信号驱动IO"></a>同步信号驱动IO</h5><p>通过调用sigaction函数注册信号函数，等内核数据准备好了之后会执行信号函数通知应用程序，应用程序此时再调用recv函数同步的获取数据。信号驱动IO和异步IO有点类似，都是异步通知，不同的是信号驱动IO的真正读取数据的操作还是同步操作的。</p>
+<p><img src="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114022469-901782026.png" class="lazyload" data-srcset="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114022469-901782026.png" srcset="data:image/png;base64,666" alt="信号驱动式IO模型"></p>
+<h5 id="异步非阻塞IO"><a href="#异步非阻塞IO" class="headerlink" title="异步非阻塞IO"></a>异步非阻塞IO</h5><p>通过调用aio_read函数，那么内核会先将数据读取好，并且复制到用户空间之后，再执行回调函数通知应用程序，此时应用程序就可以直接从用户空间中读取数据，而不需要再从内核中读取数据了。</p>
+<p><img src="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114030526-1381972581.png" class="lazyload" data-srcset="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114030526-1381972581.png" srcset="data:image/png;base64,666" alt="异步IO模型"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>IO操作主要可以分成两个阶段：<br>1、数据准备阶段；<br>2、数据从内核空间复制到用户空间阶段</p>
+<p>而阻塞IO、非阻塞IO、多路复用IO和信号驱动IO只是在第一个阶段不同，而第二个阶段是相同的，都是需要阻塞当前线程等待数据复制完成，虽然阻塞的时间足够短，所以只要需要执行第二阶段的都是属于同步IO；</p>
+<p>而异步IO模型的第一阶段和第二阶段都是内核主动完成，再两个阶段都不会阻塞当前线程去处理其他事情。</p>
+<p><img src="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114039435-799023548.png" class="lazyload" data-srcset="https://img2020.cnblogs.com/blog/822135/202008/822135-20200822114039435-799023548.png" srcset="data:image/png;base64,666" alt="五个IO模型的比较"></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jackion5/p/13544927.html">整理操作系统IO模型</a></p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/04/11/Java/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%8F%8A%E5%85%B3%E7%B3%BB%E5%9B%BE/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/>https://xmmarlowe.github.io/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
+    <p>Marlowe</p>
+  </a>
 </div>
 
-          </div>
         
       
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-12T23:03:51+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Apr 12, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
-  </section>
-  
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/&title=操作系统IO模型 - Marlowe&summary=IO模型的分类：主要有同步IO、异步IO、阻塞IO、非阻塞IO…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
     
-  
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/&title=操作系统IO模型 - Marlowe&summary=IO模型的分类：主要有同步IO、异步IO、阻塞IO、非阻塞IO…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/&title=操作系统IO模型 - Marlowe&summary=IO模型的分类：主要有同步IO、异步IO、阻塞IO、非阻塞IO…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
 
 
-    
+
+        
+      
+    </div>
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/04/12/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/'>
+          <p class='title'>InnoDB引擎的特点以及调优<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>谈谈InnoDB的特点，以及InnoDB解决的问题…
+
+
+简介InnoDB引擎是MySQL数据库的另一个重要的存储引擎,正成为目前MySQL AB所发行的新版的标准,被包含在所有二进制安装包里,...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -448,356 +639,28 @@ Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box circle' href='/about/'>
-          <img no-lazy src='http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>Marlowe</h2>
-        
-        
-          <p>有梦不觉人生寒~</p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/XMMarlowe/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
-            id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/JUC/" href="/categories/JUC/"
-            id="categoriesJUC"
-            ><div class='name'>JUC</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java/" href="/categories/Java/"
-            id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(21)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
-            id="categoriesJavaE59FBAE7A180"
-            ><div class='name'>Java基础</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
-            id="categoriesLeetCodeE9A298E8A7A3"
-            ><div class='name'>LeetCode题解</div><div class='badge'>(6)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/NoSQL/" href="/categories/NoSQL/"
-            id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Spring/" href="/categories/Spring/"
-            id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
-            id="categoriesE5ADA6E4B9A0E696B9E6B395"
-            ><div class='name'>学习方法</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-            id="categoriesE5ADA6E4B9A0E7AC94E8AEB0"
-            ><div class='name'>学习笔记</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
-            id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(14)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"
-            id="categoriesE690ADE5BBBAE58D9AE5AEA2"
-            ><div class='name'>搭建博客</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
-            id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
-            id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(6)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>数据结构</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
-            id="categoriesE698A5E68B9BE99DA2E8AF95"
-            ><div class='name'>春招面试</div><div class='badge'>(7)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
-            id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
-            ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"
-            id="categoriesE7AE97E6B395"
-            ><div class='name'>算法</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/"
-            id="categoriesE887AAE5AE9AE4B989E5B7A5E585B7E7B1BB"
-            ><div class='name'>自定义工具类</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
-            id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(12)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
-            id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(6)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E9%A2%98%E8%A7%A3/" href="/categories/%E9%A2%98%E8%A7%A3/"
-            id="categoriesE9A298E8A7A3"
-            ><div class='name'>题解</div><div class='badge'>(3)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84IO%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%9E%8B"><span class="toc-text">操作系统的IO交互模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84IO%E6%A8%A1%E5%9E%8B"><span class="toc-text">操作系统的IO模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IO%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">IO的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5IO"><span class="toc-text">同步IO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5IO"><span class="toc-text">异步IO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%BB%E5%A1%9EIO"><span class="toc-text">阻塞IO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9EIO"><span class="toc-text">非阻塞IO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B"><span class="toc-text">操作系统IO模型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E9%98%BB%E5%A1%9EIO"><span class="toc-text">同步阻塞IO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E9%9D%9E%E9%98%BB%E5%A1%9EIO"><span class="toc-text">同步非阻塞IO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO"><span class="toc-text">同步多路复用IO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO"><span class="toc-text">同步信号驱动IO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E9%9D%9E%E9%98%BB%E5%A1%9EIO"><span class="toc-text">异步非阻塞IO</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/ABA/" style="font-size: 14px; color: #999">ABA</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/AQS/" style="font-size: 14px; color: #999">AQS</a> <a href="/tags/Arrays/" style="font-size: 14px; color: #999">Arrays</a> <a href="/tags/B-Tree/" style="font-size: 14px; color: #999">B+Tree</a> <a href="/tags/BTree/" style="font-size: 14px; color: #999">BTree</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/Cookie/" style="font-size: 14px; color: #999">Cookie</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/DNS/" style="font-size: 14px; color: #999">DNS</a> <a href="/tags/Docker/" style="font-size: 17.33px; color: #828282">Docker</a> <a href="/tags/ES/" style="font-size: 16.22px; color: #8a8a8a">ES</a> <a href="/tags/ForkJoin/" style="font-size: 14px; color: #999">ForkJoin</a> <a href="/tags/GC/" style="font-size: 16.22px; color: #8a8a8a">GC</a> <a href="/tags/HTTP/" style="font-size: 17.33px; color: #828282">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 14px; color: #999">HTTPS</a> <a href="/tags/HashMap/" style="font-size: 20.67px; color: #6c6c6c">HashMap</a> <a href="/tags/I-O%E6%A8%A1%E5%9E%8B/" style="font-size: 14px; color: #999">I/O模型</a> <a href="/tags/IO/" style="font-size: 15.11px; color: #919191">IO</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/InnoDB/" style="font-size: 16.22px; color: #8a8a8a">InnoDB</a> <a href="/tags/JDK/" style="font-size: 14px; color: #999">JDK</a> <a href="/tags/JUC/" style="font-size: 14px; color: #999">JUC</a> <a href="/tags/JVM/" style="font-size: 19.56px; color: #737373">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 16.22px; color: #8a8a8a">Leetcode</a> <a href="/tags/List/" style="font-size: 15.11px; color: #919191">List</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/MySQL/" style="font-size: 15.11px; color: #919191">MySQL</a> <a href="/tags/OSI/" style="font-size: 14px; color: #999">OSI</a> <a href="/tags/RESTful/" style="font-size: 14px; color: #999">RESTful</a> <a href="/tags/Redis/" style="font-size: 21.78px; color: #646464">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Session/" style="font-size: 14px; color: #999">Session</a> <a href="/tags/Spring/" style="font-size: 18.44px; color: #7b7b7b">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 16.22px; color: #8a8a8a">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/TCP/" style="font-size: 17.33px; color: #828282">TCP</a> <a href="/tags/TopK/" style="font-size: 14px; color: #999">TopK</a> <a href="/tags/UDP/" style="font-size: 14px; color: #999">UDP</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/dp/" style="font-size: 14px; color: #999">dp</a> <a href="/tags/finally/" style="font-size: 14px; color: #999">finally</a> <a href="/tags/get/" style="font-size: 14px; color: #999">get</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/mvcc/" style="font-size: 14px; color: #999">mvcc</a> <a href="/tags/post/" style="font-size: 14px; color: #999">post</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/test/" style="font-size: 15.11px; color: #919191">test</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 15.11px; color: #919191">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 16.22px; color: #8a8a8a">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%85%B3%E9%94%AE%E5%AD%97/" style="font-size: 14px; color: #999">关键字</a> <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" style="font-size: 14px; color: #999">内存管理</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">函数式接口</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">创建型模式</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">动态代理</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E7%B1%BB/" style="font-size: 14px; color: #999">原子类</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 14px; color: #999">垃圾回收</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16.22px; color: #8a8a8a">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 14px; color: #999">异常</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 14px; color: #999">异步</a> <a href="/tags/%E6%8A%BD%E8%B1%A1%E7%B1%BB/" style="font-size: 14px; color: #999">抽象类</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">排序</a> <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">接口</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 15.11px; color: #919191">数据类型</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 14px; color: #999">数组</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%B1%BB%E5%9B%BE/" style="font-size: 14px; color: #999">类图</a> <a href="/tags/%E7%B4%A2%E5%BC%95/" style="font-size: 14px; color: #999">索引</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 22.89px; color: #5d5d5d">线程</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15.11px; color: #919191">线程安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" style="font-size: 15.11px; color: #919191">线程池</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">结构型模式</a> <a href="/tags/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD/" style="font-size: 14px; color: #999">缺页中断</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" style="font-size: 14px; color: #999">虚拟内存</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">行为型模式</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BE%85%E5%8A%A9%E7%B1%BB/" style="font-size: 14px; color: #999">辅助类</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 15.11px; color: #919191">进程</a> <a href="/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/" style="font-size: 14px; color: #999">进程通信</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15.11px; color: #919191">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 17.33px; color: #828282">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" style="font-size: 14px; color: #999">隔离级别</a> <a href="/tags/%E9%9B%86%E5%90%88%E7%B1%BB/" style="font-size: 14px; color: #999">集合类</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a> <a href="/tags/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/" style="font-size: 14px; color: #999">页面置换算法</a>
-    </div>
-  </section>
-
-
-  
-
-  
-
-  
-    
-    
-
-<section class="widget shadow desktop">
-  
-  <header>
-    
-      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>125 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2020/10/12'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>109.7k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Mon Apr 12 2021 23:08:00 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-12 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-12 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
 
   
 
 
 </aside>
+
 
 
         
@@ -807,8 +670,8 @@ Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="操作系统IO模型";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
