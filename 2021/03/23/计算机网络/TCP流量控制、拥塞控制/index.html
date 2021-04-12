@@ -459,8 +459,8 @@
 <p><strong>慢开始算法的思路就是，不要一开始就发送大量的数据，先探测一下网络的拥塞程度，也就是说由小到大逐渐增加拥塞窗口的大小。cwnd初始值为1，每经过一个传播轮次，cwnd加倍。</strong></p>
 <p>这里用报文段的个数作为拥塞窗口的大小举例说明慢开始算法，实际的拥塞窗口大小是以字节为单位的。如下图：<br><img src="https://pic2.zhimg.com/80/v2-54715533f093170d50f1ff1be39006e9_720w.jpg" class="lazyload" data-srcset="https://pic2.zhimg.com/80/v2-54715533f093170d50f1ff1be39006e9_720w.jpg" srcset="data:image/png;base64,666" alt="慢开始算法"></p>
 <p>从上图可以看到，一个传输轮次所经历的时间其实就是往返时间RTT，而且每经过一个传输轮次（transmission round），拥塞窗口cwnd就加倍。</p>
-<p>为了防止cwnd增长过大引起网络拥塞，还需设置一个慢开始门限ssthresh状态变量。ssthresh的用法如下：当cwnd&lt;ssthresh时，使用慢开始算法。<br>当cwnd&gt;ssthresh时，改用拥塞避免算法。<br>当cwnd=ssthresh时，慢开始与拥塞避免算法任意</p>
-<p>注意，这里的“慢”并不是指cwnd的增长速率慢，而是指在TCP开始发送报文段时先设置cwnd=1，然后逐渐增大，这当然比按照大的cwnd一下子把许多报文段突然注入到网络中要“慢得多”。</p>
+<p>为了防止cwnd增长过大引起网络拥塞，还需设置一个慢开始门限ssthresh状态变量。ssthresh的用法如下：<br>当cwnd &lt; ssthresh时，使用慢开始算法。<br>当cwnd&gt;ssthresh时，改用拥塞避免算法。<br>当cwnd=ssthresh时，慢开始与拥塞避免算法任意</p>
+<p>注意，这里的“慢”并不是指cwnd的增长速率慢，而是指在<strong>TCP开始发送报文段时先设置cwnd=1</strong>，然后逐渐增大，这当然比按照大的cwnd一下子把许多报文段突然注入到网络中要<strong>“慢得多”</strong>。</p>
 <h4 id="（二）拥塞避免算法："><a href="#（二）拥塞避免算法：" class="headerlink" title="（二）拥塞避免算法："></a>（二）拥塞避免算法：</h4><p><strong>拥塞避免算法让拥塞窗口缓慢增长，即每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1，而不是加倍。这样拥塞窗口按线性规律缓慢增长。</strong></p>
 <p>无论是在慢开始阶段还是在拥塞避免阶段，只要发送方判断网络出现拥塞（其根据就是没有按时收到确认，虽然没有收到确认可能是其他原因的分组丢失，但是因为无法判定，所以都当做拥塞来处理），就把慢开始门限ssthresh设置为出现拥塞时的发送窗口大小的一半（但不能小于2）。然后把拥塞窗口cwnd重新设置为1，执行慢开始算法。这样做的目的就是要迅速减少主机发送到网络中的分组数，使得发生拥塞的路由器有足够时间把队列中积压的分组处理完毕。</p>
 <p>整个拥塞控制的流程如下图：<br><img src="https://pic3.zhimg.com/80/v2-f7db63b1f00cbd8170e1435616e06216_720w.jpg" class="lazyload" data-srcset="https://pic3.zhimg.com/80/v2-f7db63b1f00cbd8170e1435616e06216_720w.jpg" srcset="data:image/png;base64,666" alt="拥塞避免算法"></p>
@@ -519,10 +519,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-09T13:37:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-12T22:33:03+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 9, 2021</p>
+    <p>更新于：Apr 12, 2021</p>
   </a>
 </div>
 

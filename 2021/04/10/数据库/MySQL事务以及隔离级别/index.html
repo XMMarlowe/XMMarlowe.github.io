@@ -472,7 +472,7 @@
 <li><strong>隔离性（Isolation）</strong>： 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</li>
 <li><strong>持久性（Durabilily）</strong>： 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
 </ol>
-<p><strong>数据事务的实现原理呢？</strong></p>
+<p><strong>数据事务的实现原理呢？(InnoDB)</strong></p>
 <p>我们这里以 MySQL 的 InnoDB 引擎为例来简单说一下。</p>
 <p>MySQL InnoDB 引擎使用 redo log(<strong>重做日志</strong>) 保证事务的持久性，使用 undo log(<strong>回滚日志</strong>) 来保证事务的原子性。</p>
 <p>MySQL InnoDB 引擎通过 <strong>锁机制、MVCC</strong> 等手段来保证事务的隔离性（ 默认支持的隔离级别是 REPEATABLE-READ ）。</p>
@@ -578,10 +578,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-10T19:52:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-12T22:04:09+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 10, 2021</p>
+    <p>更新于：Apr 12, 2021</p>
   </a>
 </div>
 
