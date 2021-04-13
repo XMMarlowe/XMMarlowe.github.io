@@ -482,7 +482,7 @@
 <li>threadFactory :executor 创建新线程的时候会用到。</li>
 <li>handler :饱和策略。关于饱和策略下面单独介绍一下。</li>
 </ul>
-<h4 id="4-2-ThreadPoolExecutor-饱和策略-4z种拒绝策略"><a href="#4-2-ThreadPoolExecutor-饱和策略-4z种拒绝策略" class="headerlink" title="4.2 ThreadPoolExecutor 饱和策略(4z种拒绝策略)"></a>4.2 ThreadPoolExecutor 饱和策略(4z种拒绝策略)</h4><p><strong>ThreadPoolExecutor 饱和策略定义:</strong></p>
+<h4 id="4-2-ThreadPoolExecutor-饱和策略-4种拒绝策略"><a href="#4-2-ThreadPoolExecutor-饱和策略-4种拒绝策略" class="headerlink" title="4.2 ThreadPoolExecutor 饱和策略(4种拒绝策略)"></a>4.2 ThreadPoolExecutor 饱和策略(4种拒绝策略)</h4><p><strong>ThreadPoolExecutor 饱和策略定义:</strong></p>
 <p>如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，ThreadPoolTaskExecutor 定义一些策略:</p>
 <ul>
 <li><strong>ThreadPoolExecutor.AbortPolicy</strong>：抛出 RejectedExecutionException来拒绝新任务的处理。</li>
@@ -557,10 +557,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-25T12:56:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-13T10:14:03+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 25, 2021</p>
+    <p>更新于：Apr 13, 2021</p>
   </a>
 </div>
 
@@ -685,7 +685,7 @@ execute方法源码：
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="toc-text">1、为什么要用线程池？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AE%9E%E7%8E%B0-Runnable-%E6%8E%A5%E5%8F%A3%E5%92%8C-Callable-%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">2、实现 Runnable 接口和 Callable 接口的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%89%A7%E8%A1%8C-execute-%E6%96%B9%E6%B3%95%E5%92%8C-submit-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-text">3、执行 execute()方法和 submit()方法的区别是什么呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81ThreadPoolExecutor-%E7%B1%BB%E5%88%86%E6%9E%90"><span class="toc-text">4、ThreadPoolExecutor 类分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-ThreadPoolExecutor%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90"><span class="toc-text">4.1 ThreadPoolExecutor构造函数重要参数分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-ThreadPoolExecutor-%E9%A5%B1%E5%92%8C%E7%AD%96%E7%95%A5-4z%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="toc-text">4.2 ThreadPoolExecutor 饱和策略(4z种拒绝策略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-text">5、线程池原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="toc-text">1、为什么要用线程池？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AE%9E%E7%8E%B0-Runnable-%E6%8E%A5%E5%8F%A3%E5%92%8C-Callable-%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">2、实现 Runnable 接口和 Callable 接口的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%89%A7%E8%A1%8C-execute-%E6%96%B9%E6%B3%95%E5%92%8C-submit-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-text">3、执行 execute()方法和 submit()方法的区别是什么呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81ThreadPoolExecutor-%E7%B1%BB%E5%88%86%E6%9E%90"><span class="toc-text">4、ThreadPoolExecutor 类分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-ThreadPoolExecutor%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90"><span class="toc-text">4.1 ThreadPoolExecutor构造函数重要参数分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-ThreadPoolExecutor-%E9%A5%B1%E5%92%8C%E7%AD%96%E7%95%A5-4%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="toc-text">4.2 ThreadPoolExecutor 饱和策略(4种拒绝策略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-text">5、线程池原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
