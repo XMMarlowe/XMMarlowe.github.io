@@ -431,13 +431,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.8k words</p>
+      <p>3k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>10 min</p>
+      <p>11 min</p>
     </a>
   </div>
 
@@ -534,12 +534,14 @@
 <p>什么是指令重排：你写的程序，计算机并不是按照你写的那样去执行的。<br>源代码–&gt; 编译器优化的重排–&gt; 指令并行也可能重排–&gt; 内存系统也会重排–&gt; 执行.</p>
 <p><strong>前提：处理器在进行指令重排的时候，会考虑数据之间的依赖性！</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">1</span>; <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">int</span> y = <span class="number">2</span>; <span class="comment">// 2</span></span><br><span class="line">x = x + <span class="number">5</span>; <span class="comment">// 3</span></span><br><span class="line">y = x * x; <span class="comment">// 4</span></span><br><span class="line"></span><br><span class="line">我们所期望的：<span class="number">1234</span> 但是可能执行的时候会变成 <span class="number">2134</span> <span class="number">1324</span></span><br></pre></td></tr></table></figure>
-<p><strong>volatile可以避免指令重排：</strong><br>内存屏障，CPU指令。 作用：</p>
+<h4 id="volatile如何避免指令重排："><a href="#volatile如何避免指令重排：" class="headerlink" title="volatile如何避免指令重排：**"></a>volatile如何避免指令重排：**</h4><p><strong>内存屏障</strong>，是一个CPU指令。 作用：</p>
 <ol>
 <li>保证特定操作的执行顺序。</li>
 <li>可以保证某些变量的内存可见性（利用这些特性，volatile实现了可见性）。</li>
 </ol>
 <p>volatile 可以保证可见性，不能保证原子性，由于内存屏障，可以保证避免指令重排的现象产生！</p>
+<p>由于编译器和处理器都能执行指令重排优化，如果在指令之间插入一条内存屏障则会告诉编译器和cup不管在任何情况下，无论任何指令都不能和这条内存屏障进行指令重排，也就是说通过插入内存屏障禁止在内存屏障前后的指令执行重排序优化。内存屏障的另外一个作用就是强制刷出各种CPU的缓存数据，因此在任何CPU上的线程都能读取到这些数据的最新值。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200704151144615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzODUyNjc=,size_16,color_FFFFFF,t_70#pic_center" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20200704151144615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzODUyNjc=,size_16,color_FFFFFF,t_70#pic_center" srcset="data:image/png;base64,666" alt="volatile禁止指令重排"></p>
 <h3 id="4、并发编程的三个重要特性"><a href="#4、并发编程的三个重要特性" class="headerlink" title="4、并发编程的三个重要特性"></a>4、并发编程的三个重要特性</h3><ol>
 <li><strong>原子性 :</strong> 一个的操作或者多次操作，要么所有的操作全部都得到执行并且不会收到任何因素的干扰而中断，要么所有的操作都执行，要么都不执行。synchronized 可以保证代码片段的原子性。</li>
 <li><strong>可见性 ：</strong> 当一个变量对共享变量进行了修改，那么另外的线程都是立即可以看到修改后的最新值。volatile 关键字可以保证共享变量的可见性。</li>
@@ -597,10 +599,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-08T15:16:01+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-14T15:42:21+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 8, 2021</p>
+    <p>更新于：Apr 14, 2021</p>
   </a>
 </div>
 
@@ -725,7 +727,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81CPU%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">1、CPU缓存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%B2%E4%B8%80%E4%B8%8B-JMM-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">2、讲一下 JMM(Java 内存模型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81volatile"><span class="toc-text">3、volatile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7"><span class="toc-text">4、并发编程的三个重要特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%AF%B4%E8%AF%B4-synchronized-%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C-volatile-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">5、说说 synchronized 关键字和 volatile 关键字的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%8F%82%E8%80%83"><span class="toc-text">5、参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81CPU%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">1、CPU缓存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%B2%E4%B8%80%E4%B8%8B-JMM-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">2、讲一下 JMM(Java 内存模型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81volatile"><span class="toc-text">3、volatile</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%EF%BC%9A"><span class="toc-text">volatile如何避免指令重排：**</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7"><span class="toc-text">4、并发编程的三个重要特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%AF%B4%E8%AF%B4-synchronized-%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C-volatile-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">5、说说 synchronized 关键字和 volatile 关键字的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%8F%82%E8%80%83"><span class="toc-text">5、参考</span></a></li></ol>
     </div>
   </section>
 

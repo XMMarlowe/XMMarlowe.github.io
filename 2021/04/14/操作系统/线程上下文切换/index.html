@@ -20,9 +20,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>初识MySQL索引实现原理 - Marlowe</title>
+  <title>线程上下文切换 - Marlowe</title>
   
-    <meta name="keywords" content="MySQL,InnoDB,MyISAM">
+    <meta name="keywords" content="上下文">
   
 
   
@@ -371,7 +371,7 @@
     
     
       <h1 class="title">
-        初识MySQL索引实现原理
+        线程上下文切换
       </h1>
       <div class='new-meta-box'>
         
@@ -391,7 +391,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+      <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
     </a>
   </div>
 
@@ -402,7 +402,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 13, 2021</p>
+    <p>发布于：Apr 14, 2021</p>
   </a>
 </div>
 
@@ -413,7 +413,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="初识MySQL索引实现原理" data-path="/2021/04/13/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+      <div id="lc-pv" data-title="线程上下文切换" data-path="/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>11 words</p>
+      <p>755 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>2 min</p>
     </a>
   </div>
 
@@ -450,7 +450,20 @@
   
   <a id="more"></a>
 
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013308490/article/details/83001060">MySQL索引实现原理分析</a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。</p>
+<p><strong>概括来说就是：</strong> 当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换回这个任务时，可以再加载这个任务的状态。<strong>任务从保存到再加载的过程就是一次上下文切换。</strong></p>
+<p>上下文切换通常是计算密集型的。也就是说，它需要相当可观的处理器时间，在每秒几十上百次的切换中，每次切换都需要纳秒量级的时间。所以，上下文切换对系统来说意味着消耗大量的 CPU 时间，事实上，可能是操作系统中时间消耗最大的操作。</p>
+<p>Linux 相比与其他操作系统（包括其他类 Unix 系统）有很多的优点，其中有一项就是，其上下文切换和模式切换的时间消耗非常少。</p>
+<h3 id="上下文切换的原因"><a href="#上下文切换的原因" class="headerlink" title="上下文切换的原因"></a>上下文切换的原因</h3><p>多线程编程中，我们知道线程间的上下文切换会导致性能问题，那么是什么原因造成的线程间的上下文切换。我们先看一下线程的生命周期，从中看一下找找答案。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL3N6X21tYml6X2pwZy9UVmJ0SUtpYXhlOGdJeEtLTGI3bDJEVlQyT0d4aWJ0SjFjRkhjeFdtWTJIMVBkclVqNzZNWHhpYkJ0a3dmQXBUbHB1WmdnUWZDY1NOaWNmVjM2ZmljS1NGSDNRLzY0MA?x-oss-process=image/format,png" class="lazyload" data-srcset="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL3N6X21tYml6X2pwZy9UVmJ0SUtpYXhlOGdJeEtLTGI3bDJEVlQyT0d4aWJ0SjFjRkhjeFdtWTJIMVBkclVqNzZNWHhpYkJ0a3dmQXBUbHB1WmdnUWZDY1NOaWNmVjM2ZmljS1NGSDNRLzY0MA?x-oss-process=image/format,png" srcset="data:image/png;base64,666" alt="上下文切换"></p>
+<p>线程的五种状态我们都非常清楚：NEW、RUNNABLE、RUNNING、BLOCKED、DEAD，对应的Java中的六种状态分别为：NEW、RUNABLE、BLOCKED、WAINTING、TIMED_WAITING、TERMINADTED。</p>
+<p>图中，<strong>一个线程从RUNNABLE到RUNNING的过程就是线程的上下文切换，RUNNING状态到BLOCKED、再到RUNNABLE、再从RUNNABLE到RUNNING的过程就是一个上下文切换的过程。</strong> 一个线程从RUNNING转为BLOCKED状态时，我们叫做线程的暂停，线程暂停了，这个处理器就会有别的线程来占用，操作系统就会保存相应的上下文，为了这个线程以后再进入RUNNABLE状态时可以接着之前的执行进度继续执行。当线程从BLOCKED状态进入到RUNNABLE时，也就是线程的唤醒，此时线程将获取上次保存的上下文信息。</p>
+<p>我们看到，<strong>多线程的上下文切换实际上就是多线程两个运行状态的相互切换导致的。</strong></p>
+<p>我们知道<strong>两种情况</strong>可以导致<strong>上下文切换：</strong> </p>
+<ol>
+<li>一种是程序本身触发的切换，这种我们一般称为<strong>自发性上下文切换。</strong></li>
+<li>另一种是系统或者虚拟机导致的上下文切换，我们称之为<strong>非自发性上下文切换。</strong></li>
+</ol>
 
   
   
@@ -468,7 +481,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/04/13/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/>https://xmmarlowe.github.io/2021/04/13/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/>https://xmmarlowe.github.io/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/</a></p>
               
             
           </blockquote>
@@ -496,10 +509,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-13T09:22:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-14T22:34:42+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 13, 2021</p>
+    <p>更新于：Apr 14, 2021</p>
   </a>
 </div>
 
@@ -513,7 +526,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/13/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/&title=初识MySQL索引实现原理 - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/&title=线程上下文切换 - Marlowe&summary="
           
           >
           
@@ -525,7 +538,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/13/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/&title=初识MySQL索引实现原理 - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/&title=线程上下文切换 - Marlowe&summary="
           
           >
           
@@ -537,7 +550,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/13/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/&title=初识MySQL索引实现原理 - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/&title=线程上下文切换 - Marlowe&summary="
           
           >
           
@@ -568,12 +581,12 @@
     <div class="prev-next">
       
       
-        <a class='next' href='/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/'>
-          <p class='title'>操作系统IO模型<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>IO模型的分类：主要有同步IO、异步IO、阻塞IO、非阻塞IO…
+        <a class='next' href='/2021/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/'>
+          <p class='title'>初识MySQL索引实现原理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>MySQL索引的实现原理，以及什么时候会走索引…
 
 
-操作系统的IO交互模型现代的操作系统对于存储空间都有一套访问限制控制，所以将存储空间分成了用户空间和内核空间。用户空间负责给...</p>
+目前大部分数据库系统及文件系统都采用B-Tree(B树)或其变种B+Tree(B+树)作为索引结构。B+Tree是数据库系统实现索引的首选数...</p>
         </a>
       
     </div>
@@ -616,7 +629,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">上下文切换的原因</span></a></li></ol>
     </div>
   </section>
 
@@ -636,7 +649,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="初识MySQL索引实现原理";
+  pdata.postTitle="线程上下文切换";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

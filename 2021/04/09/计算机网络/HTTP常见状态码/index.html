@@ -26,7 +26,7 @@
   
 
   
-    <meta name="description" content="常见的http状态码：100,200,202,204,301,404,500,503…">
+    <meta name="description" content="常见的http状态码：100,200,202,204,301,302,404,500,502,503,504…">
   
 
   <!-- feed -->
@@ -431,7 +431,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>751 words</p>
+      <p>854 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -450,10 +450,10 @@
 
 
   
-  <p>常见的http状态码：100,200,202,204,301,404,500,503…</p>
+  <p>常见的http状态码：100,200,202,204,301,302,404,500,502,503,504…</p>
 <a id="more"></a>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1xx:指示信息-表示请求已接收，继续处理。</span><br><span class="line">2xx:成功-表示请求已被成功接收、理解、接受。</span><br><span class="line">3xx:重定向-要完成请求必须进行更进一步 的操作。</span><br><span class="line">4xx:客户端错误- -请求有语法错误或请求无法实现。</span><br><span class="line">5xx:服务器端错误-服务器未能实现合法的请求。</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1xx:指示信息-表示请求已接收，继续处理。</span><br><span class="line">2xx:成功-表示请求已被成功接收、理解、接受。</span><br><span class="line">3xx:重定向-要完成请求必须进行更进一步 的操作。</span><br><span class="line">4xx:客户端错误-请求有语法错误或请求无法实现。</span><br><span class="line">5xx:服务器端错误-服务器未能实现合法的请求。</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><strong>100：</strong> 这个状态码是告诉客户端应该继续发送请求，这个临时响应是用来通知客户端的，部分的请求服务器已经接受，但是客户端应继续发送求请求的剩余部分，如果请求已经完成，就忽略这个响应，而且服务器会在请求完成后向客户发送一个最终的结果</p>
 </li>
@@ -474,7 +474,11 @@
 </li>
 <li><p><strong>500：</strong> 服务器遇到未知的错误，导致无法完成客户端当前的请求。</p>
 </li>
-<li><p><strong>503：</strong> 服务器由于临时的服务器过载或者是维护，无法解决当前的请求，以上http状态码是服务器经常返回的状态代码，用户只能通过浏览器的状态了解服务器是否正常运行，一般除了错误的状态码，都不会看到服务器的状态码的，</p>
+<li><p><strong>502：(Bad Gateway)</strong> 作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。 </p>
+</li>
+<li><p><strong>503：</strong> 服务器由于临时的服务器过载或者是维护，无法解决当前的请求，以上http状态码是服务器经常返回的状态代码，用户只能通过浏览器的状态了解服务器是否正常运行，一般除了错误的状态码，都不会看到服务器的状态码的.</p>
+</li>
+<li><p><strong>504：(Gateway Time-out)</strong> 作为网关或者代理工作的服务器尝试执行请求时，未能及时从上游服务器（URI标识出的服务器，例如HTTP、FTP、LDAP）或者辅助服务器（例如DNS）收到响应。</p>
 </li>
 </ul>
 
@@ -522,7 +526,7 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-14T14:10:02+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-14T21:21:11+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Apr 14, 2021</p>
@@ -539,7 +543,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常见状态码 - Marlowe&summary=常见的http状态码：100,200,202,204,301,404,500,503…"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常见状态码 - Marlowe&summary=常见的http状态码：100,200,202,204,301,302,404,500,502,503,504…"
           
           >
           
@@ -551,7 +555,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常见状态码 - Marlowe&summary=常见的http状态码：100,200,202,204,301,404,500,503…"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常见状态码 - Marlowe&summary=常见的http状态码：100,200,202,204,301,302,404,500,502,503,504…"
           
           >
           
@@ -563,7 +567,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常见状态码 - Marlowe&summary=常见的http状态码：100,200,202,204,301,404,500,503…"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/&title=HTTP常见状态码 - Marlowe&summary=常见的http状态码：100,200,202,204,301,302,404,500,502,503,504…"
           
           >
           

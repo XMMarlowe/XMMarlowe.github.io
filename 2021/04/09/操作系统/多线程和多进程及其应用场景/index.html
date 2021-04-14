@@ -474,8 +474,7 @@
 <li>提供非均质的服务（有优先级任务处理）事件响应有优先级。</li>
 <li>单任务并行计算，在非CPU Bound的场景下提高响应速度，降低时延。 </li>
 <li>与人有IO交互的应用，良好的用户体验（键盘鼠标的输入，立刻响应）</li>
-<li>案例：</li>
-<li>*桌面软件，响应用户输入的是一个线程，后台程序处理是另外的线程；**<br>memcached</li>
+<li>案例：<strong>桌面软件，响应用户输入的是一个线程，后台程序处理是另外的线程</strong><br>memcached</li>
 </ul>
 <h4 id="3-如何选择？"><a href="#3-如何选择？" class="headerlink" title="3. 如何选择？"></a>3. 如何选择？</h4><p><strong>①需要频繁创建销毁的优先用线程（进程的创建和销毁开销过大）</strong><br>这种原则最常见的应用就是Web服务器了，来一个连接建立一个线程，断了就销毁线程，要是用进程，创建和销毁的代价是很难承受的。</p>
 <p><strong>②需要进行大量计算的优先使用线程（CPU频繁切换）</strong><br>所谓大量计算，当然就是要耗费很多CPU，切换频繁了，这种情况下线程是最合适的。<br>这种原则最常见的是图像处理、算法处理。</p>
@@ -529,10 +528,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-13T14:46:21+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-14T21:27:51+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 13, 2021</p>
+    <p>更新于：Apr 14, 2021</p>
   </a>
 </div>
 
@@ -602,10 +601,10 @@
       
         <a class='prev' href='/2021/04/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>HTTP常见状态码</p>
-          <p class='content'>常见的http状态码：100,200,202,204,301,404,500,503…
+          <p class='content'>常见的http状态码：100,200,202,204,301,302,404,500,502,503,504…
 
 
-123451xx:指示信息-表示请求已接收，继续处理。2xx:成功-表示请求已被成功接收、理解、接受。...</p>
+123451xx:指示信息-表示请求已接收，继续处理。2xx:成功-表示请求已...</p>
         </a>
       
       
