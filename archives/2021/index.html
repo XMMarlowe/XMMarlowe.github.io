@@ -870,9 +870,14 @@ Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 
 
 
 抽象类抽象类是用来捕捉子类的通用特性的 。它不能被实例化，只能被用作子类的超类。抽象类是被用来创建继承层级里子类的模板。
-接口接口是抽象方法的集合。如果一个类实现了某个接口，那么它就继承了这个接口的抽象方法。这就像契约模式，如果实现了这个接口，那么就必须确保使用这些方法。接口只是一种形式，接口自身不能做任何事情。
-什么时候使用抽象类和接口
-如果你拥有一些方法并且想让它们中的...
+
+抽象类不能被实例化只能被继承；
+
+包含抽象方法的一定是抽象类，但是抽象类不一定含有抽象方法；
+
+抽象类中的抽象方法的修饰符只能为public或者protected，默认为public；
+
+一个子类继承一个抽象类，则子类必须实现父类抽象方法，否则子类也必...
       
     
   </div>
@@ -1043,7 +1048,7 @@ Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(10)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1191,7 +1196,7 @@ Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>115.1k 字</div>
+          <div>115.8k 字</div>
         </div>
       
 
@@ -1217,8 +1222,8 @@ Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Apr 14 2021 22:43:11 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-14 日</div>
+            <div id="last-update" style="display: none;">Thu Apr 15 2021 11:50:30 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-15 日</div>
           
         </div>
         
@@ -1268,7 +1273,7 @@ Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-14 日';
+            document.getElementById('last-update-show').innerHTML = '2021-04-15 日';
           }
         </script>
         
