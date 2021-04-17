@@ -431,7 +431,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>828 words</p>
+      <p>920 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -453,14 +453,15 @@
   <p>每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。</p>
 <a id="more"></a>
 <p>简介：ThreadLocal保存当前线程的变量，当前线程内，可以任意获取，但每个线程往ThreadLocal中读写数据是线程隔离，互不影响。</p>
+<p><strong>如果你创建了一个ThreadLocal变量，那么访问这个变量的每个线程都会有这个变量的本地副本，这也是ThreadLocal变量名的由来。他们可以使用 get（） 和 set（） 方法来获取默认值或将其值更改为当前线程所存的副本的值，从而避免了线程安全问题。</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocalMap源码：</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">            <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">            Object value;</span><br><span class="line"></span><br><span class="line">            Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">                <span class="keyword">super</span>(k);</span><br><span class="line">                value = v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <p><code>ThreadLocalMap</code>由一个个<code>Entry</code>对象构成<br><code>Entry</code>继承自<code>WeakReference&lt;ThreadLoca1&lt;?&gt;&gt;</code>,一个<code>Entry</code>由<code>ThreadLocal</code>对象和<code>Object</code>构成。由此可见，<code>Entry</code> 的key是ThreadLocal对象,并且是一个弱引用。 当没指向key的强引用后, 该key就会被垃圾收集器回收。</p>
 <p><strong>注意</strong></p>
 <blockquote>
 <p>ThreadLocal存在内存泄露：</p>
 </blockquote>
-<p>强引用(StrongReference)： 使用最普遍的引用(new),一个对象具有强引用，不会被GC回收。当JVM的内存空间不足时，宁愿抛出OutOfMemoryError使得程序异常终止也不愿意回收具有强引用的存活着的对象。<br>如果想取消强引用和某个对象之间的关联，可以显式的将引用赋值为null，这样可以是JVM在合适的时候回收该对象。</p>
-<p>弱引⽤(WeakReference)：在GC的时候，不管内存空间足不足都会回收这个对象。可以在缓存中使用弱引用。</p>
+<p><strong>强引用(StrongReference)：</strong> 使用最普遍的引用(new),一个对象具有强引用，不会被GC回收。当JVM的内存空间不足时，宁愿抛出OutOfMemoryError使得程序异常终止也不愿意回收具有强引用的存活着的对象。<br>如果想取消强引用和某个对象之间的关联，可以显式的将引用赋值为null，这样可以是JVM在合适的时候回收该对象。</p>
+<p><strong>弱引⽤(WeakReference)：</strong> 在GC的时候，不管内存空间足不足都会回收这个对象。可以在缓存中使用弱引用。</p>
 <p>当我们了解完，ThreadLocalMap 中使⽤的 key是以弱引用指向ThreadLocal，这时候垃圾回收器线程运行，发现弱引用就回收，key被回收。ThreadLocalMap里对应的Entry的key会变成null。这时候尴尬出现了，ThreadLocalMap里对应的Entry的value则无法被访问到，value作为一个强引用垃圾回收不到也不能被访问，即造成了内存溢出。</p>
 <p><strong>ThreadLocal正确的使用方法</strong></p>
 <ol>
@@ -518,10 +519,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-19T20:59:41+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-16T15:33:52+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 19, 2021</p>
+    <p>更新于：Apr 16, 2021</p>
   </a>
 </div>
 

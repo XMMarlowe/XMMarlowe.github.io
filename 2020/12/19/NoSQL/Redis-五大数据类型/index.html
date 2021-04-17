@@ -431,13 +431,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>3k words</p>
+      <p>4k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>15 min</p>
+      <p>19 min</p>
     </a>
   </div>
 
@@ -481,6 +481,38 @@
 <p>hash变更的数据 user name age，尤其是用户信息之类的，经常变动的数据！hash更适合于对象的存储，String更加适合字符串存储！</p>
 <h3 id="Zset-有序集合"><a href="#Zset-有序集合" class="headerlink" title="Zset(有序集合)"></a>Zset(有序集合)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">zadd</span><br><span class="line">zrange</span><br><span class="line">zrangebyscore xxx -inf +inf withscores <span class="comment"># 显示全部的用户并且附带成绩</span></span><br><span class="line">zrevrange <span class="comment"># 从大到小排序</span></span><br><span class="line">zrem <span class="comment"># 移除元素</span></span><br><span class="line">zcount <span class="comment"># 获取指定区间的成员数量</span></span><br></pre></td></tr></table></figure>
 <p>其余API，查官方文档<br>案例思路：set 排序  存储班级成绩表，工资排序表！<br>普通消息：1    重要消息：2  带权重进行判断！<br>排行榜应用实现，取TOP 10</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##################################################</span><br></pre></td></tr></table></figure>
+<h3 id="Redis-有哪些好处"><a href="#Redis-有哪些好处" class="headerlink" title="Redis 有哪些好处"></a>Redis 有哪些好处</h3><ol>
+<li><p>速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
+</li>
+<li><p>支持丰富数据类型，支持string，list，set，sorted set，hash</p>
+</li>
+<li><p>支持事务，操作都是原子性，所谓的原子性就是对数据的更改要么全部执行，要么全部不执行</p>
+</li>
+<li><p>丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
+</li>
+</ol>
+<p><strong>1）String</strong></p>
+<p><strong>常用命令：</strong> set/get/decr/incr/mget等；</p>
+<p><strong>应用场景：</strong> String是最常用的一种数据类型，普通的key/value存储都可以归为此类；</p>
+<p><strong>实现方式：</strong> String在redis内部存储默认就是一个字符串，被redisObject所引用，当遇到incr、decr等操作时会转成数值型进行计算，此时redisObject的encoding字段为int。</p>
+<p><strong>2）Hash</strong></p>
+<p><strong>常用命令：</strong> hget/hset/hgetall等</p>
+<p><strong>应用场景：</strong> 我们要存储一个用户信息对象数据，其中包括用户ID、用户姓名、年龄和生日，通过用户ID我们希望获取该用户的姓名或者年龄或者生日；</p>
+<p><strong>实现方式：</strong> Redis的Hash实际是内部存储的Value为一个HashMap，并提供了直接存取这个Map成员的接口。Key是用户ID, value是一个Map。这个Map的key是成员的属性名，value是属性值。这样对数据的修改和存取都可以直接通过其内部Map的Key(Redis里称内部Map的key为field), 也就是通过 key(用户ID) + field(属性标签) 就可以操作对应属性数据。</p>
+<p>当前HashMap的实现有两种方式：当HashMap的成员比较少时Redis为了节省内存会采用类似一维数组的方式来紧凑存储，而不会采用真正的HashMap结构，这时对应的value的redisObject的encoding为zipmap，当成员数量增大时会自动转成真正的HashMap,此时encoding为ht。</p>
+<p><strong>3）List</strong></p>
+<p><strong>常用命令：</strong> lpush/rpush/lpop/rpop/lrange等；</p>
+<p><strong>应用场景：</strong> Redis list的应用场景非常多，也是Redis最重要的数据结构之一，比如twitter的关注列表，粉丝列表等都可以用Redis的list结构来实现；</p>
+<p><strong>实现方式：</strong> Redis list的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销，Redis内部的很多实现，包括发送缓冲队列等也都是用的这个数据结构。</p>
+<p><strong>4）Set</strong></p>
+<p><strong>常用命令：</strong> sadd/spop/smembers/sunion等；</p>
+<p><strong>应用场景：</strong> Redis set对外提供的功能与list类似是一个列表的功能，特殊之处在于set是可以自动排重的，当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供的；</p>
+<p><strong>实现方式：</strong> set 的内部实现是一个 value永远为null的HashMap，实际就是通过计算hash的方式来快速排重的，这也是set能提供判断一个成员是否在集合内的原因。</p>
+<p><strong>5）Sorted Set</strong></p>
+<p><strong>常用命令：</strong> zadd/zrange/zrem/zcard等；</p>
+<p><strong>应用场景：</strong> Redis sorted set的使用场景与set类似，区别是set不是自动有序的，而sorted set可以通过用户额外提供一个优先级(score)的参数来为成员排序，并且是插入有序的，即自动排序。当你需要一个有序的并且不重复的集合列表，那么可以选择sorted set数据结构，比如twitter 的public timeline可以以发表时间作为score来存储，这样获取时就是自动按时间排好序的。</p>
+<p><strong>实现方式：</strong> Redis sorted set的内部使用HashMap和跳跃表(SkipList)来保证数据的存储和有序，HashMap里放的是成员到score的映射，而跳跃表里存放的是所有的成员，排序依据是HashMap里存的score,使用跳跃表的结构可以获得比较高的查找效率，并且在实现上比较简单。</p>
 
   
   
@@ -526,10 +558,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-20T23:40:18+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-16T20:16:33+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 20, 2020</p>
+    <p>更新于：Apr 16, 2021</p>
   </a>
 </div>
 
@@ -655,7 +687,7 @@ Redis 是很快的，官方表示，Redis 是基于内存操作，CPU 不是Redi
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-key"><span class="toc-text">Redis-key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89"><span class="toc-text">String（字符串）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E9%9B%86%E5%90%88"><span class="toc-text">Set(集合)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash-%E5%93%88%E5%B8%8C"><span class="toc-text">Hash(哈希)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zset-%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88"><span class="toc-text">Zset(有序集合)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-key"><span class="toc-text">Redis-key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89"><span class="toc-text">String（字符串）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E9%9B%86%E5%90%88"><span class="toc-text">Set(集合)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash-%E5%93%88%E5%B8%8C"><span class="toc-text">Hash(哈希)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zset-%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88"><span class="toc-text">Zset(有序集合)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%A5%BD%E5%A4%84"><span class="toc-text">Redis 有哪些好处</span></a></li></ol>
     </div>
   </section>
 

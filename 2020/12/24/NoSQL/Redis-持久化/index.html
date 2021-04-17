@@ -476,7 +476,7 @@
 <h3 id="AOF-Append-Only-File"><a href="#AOF-Append-Only-File" class="headerlink" title="AOF(Append Only File)"></a>AOF(Append Only File)</h3><p><strong>简介</strong><br>将我们的所有命令都记录下来，history，恢复的时候就把这个文件全部再执行一遍！<br>以日志的形式来记录每个读写操作，将Redis执行过的所有指令记录下来(读操作不记录),只许追加文件但不可以改写文件，redis启动之初会读取该文件重新构建数据,换言之，redis重启的话就根据日志文件的内容将写指令从前往后执行一次以完成数据的恢复工作<br>Aof保存的是appendonly.aof文件</p>
 <p>默认是不开启的，需要手动进行配置，只需要将appendonly改为yes就可以开启aof！</p>
 <p>重启redis就可以生效<br>如果这个aof文件有错，redis将无法启动，需要修复这个aof文件<br>redis提供了一个工具 <code>redis-check-aof --fix</code><br>如果文件正常，重启就可以直接恢复了！</p>
-<p>重写规则说明：<br>aof默认就是文件的无限追加，文件会越来越大!<br>如果aof文件大于64m，太大了，会fork一个新的进程来将文件重写！</p>
+<p><strong>重写规则说明：</strong><br>aof默认就是文件的无限追加，文件会越来越大!<br>如果aof文件大于64m，太大了，会fork一个新的进程来将文件重写！</p>
 <p>优点：</p>
 <ol>
 <li>每一次修改都同步，文件的完整性会更加好！</li>
@@ -533,10 +533,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-24T15:42:41+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-16T20:23:34+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 24, 2020</p>
+    <p>更新于：Apr 16, 2021</p>
   </a>
 </div>
 

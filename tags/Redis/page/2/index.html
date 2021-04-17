@@ -6,6 +6,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -20,9 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Java高并发之锁总结 - Marlowe</title>
-  
-    <meta name="keywords" content="锁,Java">
+  <title>Tag: Redis - Marlowe</title>
   
 
   
@@ -285,7 +285,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -360,468 +360,308 @@
       <div class='body-wrapper' id="pjax-container">
         
 
+
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-
-
-  
-  <div class="article-meta" id="top">
     
-    
-    
-      <h1 class="title">
-        Java高并发之锁总结
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
-    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
-    <p>Marlowe</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 11, 2021</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="Java高并发之锁总结" data-path="/2021/04/11/%E5%B9%B6%E5%8F%91/Java%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%94%81%E6%80%BB%E7%BB%93/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
-          
+  <section class="post-list">
+    
+    
+      
         
-          
-            
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>3k words</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>10 min</p>
-    </a>
-  </div>
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/">
+        SpringBoot整合Redis
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
 
-
-          
+说明：SpringBoot2.x之后，原来使用jedis被替换为了lettucejedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全，使用jedis pool连接池！ 更像BIO模式lettuce：采用netty，示例可以在多个线程中共享，不存在线程不安全的情况！可以减少线程数据了，更像NIO模式原码分析：
+12345678910111213141516171819@...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
-    
-  </div>
-
-
-  
-  <a id="more"></a>
-
-<h3 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h3><h4 id="1-乐观锁与悲观锁"><a href="#1-乐观锁与悲观锁" class="headerlink" title="1. 乐观锁与悲观锁"></a>1. 乐观锁与悲观锁</h4><ul>
-<li><strong>乐观锁</strong></li>
-</ul>
-<ol>
-<li>对共享数据进行访问时，乐观锁<strong>总是认为不会有其他线程修改数据修改数据。</strong></li>
-<li>于是直接执行操作，只是在<strong>更新时检查数据是否已经被其他线程修改。</strong></li>
-<li>如果没有被修改，则操作执行成功；否则，添加其他补偿措施。</li>
-<li>常见的补偿措施是不断尝试，直到成功。</li>
-</ol>
-<ul>
-<li>Java中的<strong>非阻塞同步</strong>都是采用这种<strong>乐观的并发策略</strong>，乐观锁在Java中是通过使用<strong>无锁编程</strong>来实现，最常使用的<strong>CAS操作</strong>。</li>
-<li>比如，<strong>线程安全</strong>的原子类的自增操作，就是通过循环的CAS操作实现的。</li>
-</ul>
-<center>
-
-<p><img src="https://img-blog.csdnimg.cn/20190811110013859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NTQ1Mzg=,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190811110013859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NTQ1Mzg=,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,666" alt="乐观锁与悲观锁"></p>
-</center>
-
-<ul>
-<li><strong>悲观锁</strong></li>
-</ul>
-<ol>
-<li>对共享数据进行访问时，悲观锁<strong>总是认为一定会有其他线程修改数据</strong>。如果不加锁，肯定会出问题。</li>
-<li>因此，悲观锁<strong>无论是否出现共享数据的争用</strong>，在访问数据时都会先加锁。</li>
-</ol>
-<ul>
-<li>Java中<strong>同步互斥</strong>都是采用这种<strong>悲观的并发策略</strong>，<strong>synchronized关键字和Lock接口的实现类都是悲观锁。</strong></li>
-</ul>
-<h4 id="2-独占锁和共享锁"><a href="#2-独占锁和共享锁" class="headerlink" title="2. 独占锁和共享锁"></a>2. 独占锁和共享锁</h4><ul>
-<li><strong>独占锁</strong></li>
-</ul>
-<ol>
-<li>又叫排它锁，同一个锁对象，<strong>同一时刻只允许一个线程获取到锁。</strong></li>
-<li>如果线程T对数据A加上独占锁后，其他线程不能对该数据再加任何类型的锁（包括独占锁和共享锁），自己可以对数据进行读操作或者写操作。</li>
-<li>独占锁允许线程对数据进行读写操作。</li>
-</ol>
-<ul>
-<li><p>Java中的 <strong>synchronized关键字、Mutex、ReentrantLock、ReentrantReadWriteLock</strong> 中写锁，都是独占锁。  </p>
-</li>
-<li><p><strong>共享锁</strong></p>
-</li>
-</ul>
-<ol>
-<li>同一个所对象，<strong>同一时刻允许多个线程获取到锁。</strong></li>
-<li>线程T对数据A加上共享锁，则其他线程只能对数据A加共享锁，不能加独占锁。</li>
-<li>共享锁只允许对数据进行<strong>读操作。</strong></li>
-</ol>
-<ul>
-<li>java中ReentrantReadWriteLock中<strong>读锁</strong>是共享锁。</li>
-<li>ReentrantReadWriteLock<strong>读写锁的获取</strong>：</li>
-</ul>
-<ol>
-<li><strong>同步状态不为0</strong>，如果有其他线程获取到读锁或者当前线程不是持有写锁的线程，<strong>则获取写锁失败</strong>进入阻塞状态；否则，<strong>当前线程是持有写锁的线程</strong>，直接通过setState()方法增加写状态。</li>
-<li><strong>同步状态为0</strong>，直接通过compareAndSetState()方法实现写状态的CAS增加，并将当前线程设置为持有写锁的线程。</li>
-<li>如果有<strong>其他线程获取到了写锁</strong>，则<strong>获取读锁失败</strong>进入阻塞状态。</li>
-<li>如果写锁未被获取或者该线程为持有写锁的线程，则获取读锁成功，通过compareAndSetState()方法实现读状态的CAS增加</li>
-</ol>
-<ul>
-<li>独占锁和共享锁都是<strong>通过AQS实现</strong>的，tryAcquire()或者tryAcquireShared()方法支持独占式或者共享式的获取同步状态。</li>
-</ul>
-<h4 id="3-公平锁和非公平锁"><a href="#3-公平锁和非公平锁" class="headerlink" title="3. 公平锁和非公平锁"></a>3. 公平锁和非公平锁</h4><ul>
-<li><strong>公平锁</strong></li>
-</ul>
-<ol>
-<li>当锁被释放，按照阻塞的先后顺序获取锁，即同步队列<strong>头节点</strong>中的线程将获取锁。</li>
-<li>公平锁可以保证锁的获取按照<strong>FIFO原则</strong>，但需要进行大量的线程切换，导致<strong>吞吐率较低。</strong></li>
-</ol>
-<ul>
-<li><strong>非公平锁：</strong></li>
-</ul>
-<ol>
-<li>当锁被释放，所有阻塞的线程都可以争抢获取锁的资格，可能导致先阻塞的线程最后获取锁。</li>
-<li>非公平锁虽然可能造成<strong>线程饥饿</strong>，但极少进行线程的切换，保证了<strong>更大的吞吐量</strong>。</li>
-</ol>
-<ul>
-<li>Java中ReentrantLock和ReentrantReadWriteLock支持公平和非公平访问，而synchronized关键字只支持非公平访问。</li>
-<li>公平与非公平可以通过<strong>构造函数的fair</strong>参数进行指定，默认是false，即<strong>默认为非公平的获取锁。</strong></li>
-<li>公平和非公平都是<strong>依靠AQS实现</strong>的，公平使用FairSync同步器，非公平使用NoFairSync同步器。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</span><br><span class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4-可重入锁和非可重入锁"><a href="#4-可重入锁和非可重入锁" class="headerlink" title="4. 可重入锁和非可重入锁"></a>4. 可重入锁和非可重入锁</h4></li>
-</ul>
-<p>可重入锁又名递归锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会自动获取锁（前提锁对象得是同一个对象或者class），不会因为之前已经获取过还没释放而阻塞。Java中ReentrantLock和synchronized都是可重入锁，可重入锁的一个优点是可一定程度避免死锁。下面用示例代码来进行分析：</p>
-<ul>
-<li><strong>可重入锁：</strong></li>
-</ul>
-<ol>
-<li>已经获取锁的线程再次获取该锁而不被锁所阻塞，需要解决<strong>线程再次获取锁和锁的最终释放</strong>两个问题。</li>
-<li>可重入锁可以<strong>一定程度的避免死锁</strong>。</li>
-</ol>
-<center>
-
-<p><img src="https://img-blog.csdnimg.cn/20190811153929537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NTQ1Mzg=,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190811153929537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NTQ1Mzg=,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,666" alt="可重入锁"></p>
-</center>
-
-<ul>
-<li><strong>非可重入锁：</strong></li>
-</ul>
-<ol>
-<li>已经获取锁的线程再次获取该锁，会因为需要等待自身释放锁而被阻塞。</li>
-<li>非可重入锁容易造成当前线程死锁，从而使整个队列中线程永久阻塞。</li>
-</ol>
-<center>
-
-<p><img src="https://img-blog.csdnimg.cn/20190811153940903.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NTQ1Mzg=,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190811153940903.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NTQ1Mzg=,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,666" alt="非可重入锁"></p>
-</center>
-
-<ul>
-<li>Java中的synchronized关键字、ReentrantLock锁和ReentrantReadWriteLock锁都<strong>支持重进入</strong>，其中ReentrantReadWriteLock的<strong>读锁</strong>是支持重进入的<strong>共享锁</strong>，写锁是支持重进入的<strong>独占锁</strong>。</li>
-</ul>
-<h4 id="5-无锁VS偏向锁VS轻量级锁VS重量级锁"><a href="#5-无锁VS偏向锁VS轻量级锁VS重量级锁" class="headerlink" title="5.无锁VS偏向锁VS轻量级锁VS重量级锁"></a>5.无锁VS偏向锁VS轻量级锁VS重量级锁</h4><ul>
-<li>synchronized关键字实现同步的基础是<strong>每个对象都是一个锁</strong>，它依靠<strong>对象头</strong>存储锁。</li>
-<li><strong>无锁、偏向锁、轻量级锁、重量级锁</strong>都是专门针对synchronized关键字设计的、<strong>级别从低到高</strong>的4种状态。</li>
-<li>注意： <strong>锁状态只能升级，不能降级。</strong></li>
-<li>对象头中的第一个字宽叫做Mark Word，用于存储对象的<strong>hashCode、分代年龄、锁</strong>等信息。</li>
-<li>其中最后<strong>2 bit</strong>的标志位，用于标记锁的状态。根据标志位的不同，可以有如下几种状态：</li>
-</ul>
-<center>
-
-<p><img src="https://img-blog.csdnimg.cn/20190811162250506.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NTQ1Mzg=,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190811162250506.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NTQ1Mzg=,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,666" alt="锁状态图"></p>
-</center>
-
-<p><strong>无锁</strong></p>
-<ul>
-<li><strong>不对资源进行锁定</strong>，所有的线程都可以访问并修改同一资源，但同一时刻只有一个线程能修改成功。</li>
-<li><strong>无锁的修改操作依靠循环实现：</strong> 如果没有争用，修改成功并退出循环；否则，循环尝试修改操作，直到成功。</li>
-<li><strong>无锁无法全面代替有锁</strong>，但在某些场景下具有非常高的性能。</li>
-<li><strong>无锁的经典实现：</strong> CAS操作。</li>
-</ul>
-<p><strong>偏向锁</strong></p>
-<ul>
-<li><strong>出现的原因：</strong></li>
-</ul>
-<ol>
-<li><strong>在无竞争的情况下</strong>，同一线程可能多次进入同一个同步块，即多次获取同一个锁。</li>
-<li>如果进入和退出同步块都使用<strong>CAS操作</strong>来加锁和解锁，则会消耗一定的资源。</li>
-<li>于是通过CAS操作将线程ID存储到Mark Word中，线程再次进入或退出同步块时，<strong>直接检查Mark Word中是否存储指向当前线程的偏向锁。</strong>如果存储了，则直接进入或退出同步块。</li>
-</ol>
-<ul>
-<li>偏向锁可以在无竞争的情况下，<strong>尽量减少不必要的轻量级锁执行路径</strong>。轻量级锁的加锁和解锁都需要CAS操作，而偏向锁只有将线程ID存储到Mark Word中时才执行一次CAS操作。</li>
-<li><strong>偏向锁的释放：</strong></li>
-</ul>
-<ol>
-<li>当有其他线程竞争偏向锁时，持有偏向锁的线程会释放锁偏向锁。</li>
-<li>释放时，会根据<strong>锁对象是否处于锁定状态</strong>而恢复到不同的状态。</li>
-<li>如果锁对象处于<strong>未锁定状态</strong>，撤销偏向后恢复到<strong>无锁的状态</strong>（0 + 01 ）；如果锁对象处于<strong>锁定状态</strong>，撤销偏向后恢复到<strong>轻量级锁的状态</strong>（00）。</li>
-</ol>
-<ul>
-<li>偏向锁在JDK1.6及以后，默认是启用的，即-XX:+UseBiasedLocking。可以通过-XX:-UseBiasedLocking关闭偏向锁。</li>
-</ul>
-<p><strong>轻量级锁</strong></p>
-<ul>
-<li><p>多个线程竞争同步资源时，没有获取到资源的线程<strong>自旋等待锁的释放</strong>。</p>
-</li>
-<li><p><strong>加锁过程：</strong></p>
-</li>
-</ul>
-<ol>
-<li>线程进入同步块时，如果同步对象处于<strong>无锁状态</strong>（0 + 01），JVM 首先在当前线程的栈帧中开辟一块叫做锁记录（Lock Record）的空间，用于存储同步对象的Mark Word的拷贝。这个拷贝加了一个前缀，叫Displaced Mark Word。</li>
-<li>然后通过<strong>CAS操作</strong>将同步对象的Mark Word更新为指向Lock Record的指针，并将Lock Record里的<strong>owner指针</strong>指向同步对象的Mark Word。</li>
-<li>如果这个更新动作成功，则当前线程拥有了该对象的锁，Mark Word中的标志位更新为00，表示对象处于轻量级锁定状态。</li>
-<li>如果更新动作失败，JVM首先会检查同步对象的Mark Word<strong>是否指向当前线程的栈帧</strong>。如果是，说明当前线程已经持有了该对象的锁，可以直接进入同步块继续执行；否则，说明存在多线程竞争锁。</li>
-</ol>
-<ul>
-<li><strong>轻量级锁升级为重量级锁：</strong></li>
-</ul>
-<ol>
-<li>若当前只有一个线程在等待，则通过自旋进行等待。自旋超过一定的次数，轻量级锁升级为重量级锁。</li>
-<li>若一个线程持有锁，一个线程自旋等待锁，又有第三个线程想要获取锁，轻量级锁升级为重量级锁。</li>
-</ol>
-<ul>
-<li><strong>锁的释放：</strong></li>
-</ul>
-<ol>
-<li>通过<strong>CAS操作</strong>，将Lock Record中的Displaced Mark Word与对象中的Mark Word进行替换。</li>
-<li>替换成功，<strong>同步状态完成</strong>；替换失败，说明有其他线程尝试获取过该锁，<strong>释放锁的同时需要唤醒被挂起的线程</strong>。</li>
-</ol>
-<p><strong>重量级锁</strong></p>
-<ul>
-<li>多线程竞争同步资源时，没有获取到资源的线程<strong>阻塞等待锁的释放。</strong></li>
-</ul>
-<ol>
-<li>轻量级锁升级为重量级锁，锁的标志位变成10，Mark Word中存储的是指向重量级锁的指针。</li>
-<li>所有等待锁的线程都会进入阻塞状态。</li>
-</ol>
-<h4 id="6-自旋锁与自适应自旋锁"><a href="#6-自旋锁与自适应自旋锁" class="headerlink" title="6. 自旋锁与自适应自旋锁"></a>6. 自旋锁与自适应自旋锁</h4><ul>
-<li><strong>自旋锁：</strong></li>
-</ul>
-<ol>
-<li>阻塞或唤醒一个线程都需要从用户态切换到内核态去完成，会对性能造成很大影响。</li>
-<li>有时一个线程持有锁的时间很短，如果在很短的时间内让后续获取锁的线程都进入阻塞态，这是很不值得。</li>
-<li>可以让后续线程持有CPU时间等待一会，这个等待需要执行忙循环（自旋） 来实现。</li>
-<li>自旋等待的时间由自旋次数来衡量，默认为10，可以使用-XX:PreBlockSpin来进行设置。</li>
-<li>如果在自旋等待中，持有锁的线程释放该锁，当前线程可以不必阻塞直接获取同步资源。</li>
-<li>如果超过自旋次数仍未获取成功，则使用传统的方法将其阻塞。</li>
-</ol>
-<ul>
-<li><strong>自旋锁的实现原理：</strong> 循环的CAS操作</li>
-<li><strong>自旋锁的缺点：</strong></li>
-</ul>
-<ol>
-<li>自旋锁虽然避免了线程的切换开销，但是会占用CPU时间。</li>
-<li>如果每个等待获取锁的线程总是自旋规定的次数，却又没有等到锁的释放，这样就白白浪费了CPU时间。</li>
-</ol>
-<ul>
-<li>自旋锁在JDK1.4.2中引入，默认是关闭的；在JDK1.6中变成默认开启，并为了解决自旋锁中浪费CPU资源的问题，而引入了自适应自旋锁。  </li>
-</ul>
-<ul>
-<li><strong>自适应自旋锁：</strong></li>
-</ul>
-<ol>
-<li>自适应意味着<strong>自旋的次数不再固定</strong>，而是根据<strong>上一次在同一个锁自旋的次数</strong>和<strong>锁的拥有者的状态来决定</strong>。</li>
-<li>如果在同一个锁对象上自旋刚刚成功获取过锁，并持有锁的线程处于运行状态，则可以认为<strong>这一次自旋也很可能成功</strong>，允许它自旋更长的时间。</li>
-<li>如果在一个锁上，<strong>自旋很少成功</strong>，则下一次可以<strong>省略自旋过程</strong>，直接阻塞线程，避免浪费处理器资源。</li>
-</ol>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014454538/article/details/99172899">Java高并发之锁总结、常见的面试问题</a></p>
-
-  
-  
-    
-    <div class='footer'>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/04/11/%E5%B9%B6%E5%8F%91/Java%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%94%81%E6%80%BB%E7%BB%93/>https://xmmarlowe.github.io/2021/04/11/%E5%B9%B6%E5%8F%91/Java%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%94%81%E6%80%BB%E7%BB%93/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/'>
+            Read More
+          </a>
         </div>
       
-      
     </div>
   
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
   
     
-
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          
-<div class='new-meta-item author'>
-  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
-    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
-    <p>Marlowe</p>
-  </a>
-</div>
-
-        
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-11T22:40:27+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 11, 2021</p>
-  </a>
-</div>
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
+    <h2 class="article-title" >
+      <a href="/2020/12/23/NoSQL/Jedis/">
+        Jedis
+      </a>
+    </h2>
+  
+  <div class='md'>
     
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/11/%E5%B9%B6%E5%8F%91/Java%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%94%81%E6%80%BB%E7%BB%93/&title=Java高并发之锁总结 - Marlowe&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/11/%E5%B9%B6%E5%8F%91/Java%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%94%81%E6%80%BB%E7%BB%93/&title=Java高并发之锁总结 - Marlowe&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/11/%E5%B9%B6%E5%8F%91/Java%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%94%81%E6%80%BB%E7%BB%93/&title=Java高并发之锁总结 - Marlowe&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-    
-      
+      <p>…</p>
     
   </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/23/NoSQL/Jedis/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
 </div>
 
-
-
+          </div>
         
       
-    </div>
-  </div>
-
-
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
   
   
-
   
-    <div class="prev-next">
-      
-        <a class='prev' href='/2021/04/12/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95%E4%B8%8E%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>聚集索引与非聚集索引</p>
-          <p class='content'>聚集索引和非聚集索引是mysql数据库中两种主要的索引方式，不同的存储引擎支持索引类型是不一样，那这两种索引有什么不同呢？
-
-
-聚集索引只有同时满足以下两个条件，才会创建聚集索引:
-
-数据存储有...</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/04/11/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%8E-InnoDB-%E9%94%81%E7%AE%97%E6%B3%95/'>
-          <p class='title'>锁机制与 InnoDB 锁算法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
-
-MyISAM 和 InnoDB 存储引擎使用的锁：
-
-MyISAM 采用表级锁(table-level locking)。
-InnoDB 支持行级锁(row-level locking)和表...</p>
-        </a>
-      
-    </div>
   
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
     
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+    <h2 class="article-title" >
+      <a href="/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/">
+        Redis 事务
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Redis 事务简介</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-20</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
 </div>
 
-  </article>
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/20/NoSQL/Redis-%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+        Redis 三种特殊数据类型
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Radis 三种特殊数据类型…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-20</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/20/NoSQL/Redis-%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/19/NoSQL/Redis-%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+        Redis 五大数据类型
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Redis 五大数据类型详述…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/19/NoSQL/Redis-%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/19/NoSQL/Redis-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+        Redis 基础知识
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Redis 基础知识</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/19/NoSQL/Redis-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+    
+  </section>
+  
+    
+      <br>
+      <div class="prev-next">
+        
+          <a class="prev" rel="prev" href="/tags/Redis/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
+            </section>
+          </a>
+        
+        <p class="current">
+          2 / 2
+        </p>
+        
+      </div>
+    
+  
 
 
-
-
-
-
+    
+  
 </div>
 <aside class='l_side'>
   
@@ -829,28 +669,366 @@ InnoDB 支持行级锁(row-level locking)和表...</p>
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box circle' href='/about/'>
+          <img no-lazy src='http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Marlowe</h2>
+        
+        
+          <p>有梦不觉人生寒~</p>
 
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/XMMarlowe/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
     
   <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">锁的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">1. 乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%8B%AC%E5%8D%A0%E9%94%81%E5%92%8C%E5%85%B1%E4%BA%AB%E9%94%81"><span class="toc-text">2. 独占锁和共享锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="toc-text">3. 公平锁和非公平锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%92%8C%E9%9D%9E%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="toc-text">4. 可重入锁和非可重入锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%97%A0%E9%94%81VS%E5%81%8F%E5%90%91%E9%94%81VS%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81VS%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">5.无锁VS偏向锁VS轻量级锁VS重量级锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%87%AA%E6%97%8B%E9%94%81%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94%E8%87%AA%E6%97%8B%E9%94%81"><span class="toc-text">6. 自旋锁与自适应自旋锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
+            id="categoriesElasticSearch"
+            ><div class='name'>ElasticSearch</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/JUC/" href="/categories/JUC/"
+            id="categoriesJUC"
+            ><div class='name'>JUC</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Java/" href="/categories/Java/"
+            id="categoriesJava"
+            ><div class='name'>Java</div><div class='badge'>(28)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
+            id="categoriesJavaE59FBAE7A180"
+            ><div class='name'>Java基础</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
+            id="categoriesLeetCodeE9A298E8A7A3"
+            ><div class='name'>LeetCode题解</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/NoSQL/" href="/categories/NoSQL/"
+            id="categoriesNoSQL"
+            ><div class='name'>NoSQL</div><div class='badge'>(17)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Redis/" href="/categories/Redis/"
+            id="categoriesRedis"
+            ><div class='name'>Redis</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Spring/" href="/categories/Spring/"
+            id="categoriesSpring"
+            ><div class='name'>Spring</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
+            id="categoriesE5ADA6E4B9A0E696B9E6B395"
+            ><div class='name'>学习方法</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+            id="categoriesE5ADA6E4B9A0E7AC94E8AEB0"
+            ><div class='name'>学习笔记</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
+            id="categoriesE5B9B6E58F91"
+            ><div class='name'>并发</div><div class='badge'>(13)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"
+            id="categoriesE690ADE5BBBAE58D9AE5AEA2"
+            ><div class='name'>搭建博客</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+            id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
+            ><div class='name'>操作系统</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
+            id="categoriesE695B0E68DAEE5BA93"
+            ><div class='name'>数据库</div><div class='badge'>(12)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
+            id="categoriesE695B0E68DAEE7BB93E69E84"
+            ><div class='name'>数据结构</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
+            id="categoriesE698A5E68B9BE99DA2E8AF95"
+            ><div class='name'>春招面试</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
+            id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
+            ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"
+            id="categoriesE7AE97E6B395"
+            ><div class='name'>算法</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
+            id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
+            ><div class='name'>算法与数据结构</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/"
+            id="categoriesE887AAE5AE9AE4B989E5B7A5E585B7E7B1BB"
+            ><div class='name'>自定义工具类</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
+            id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
+            ><div class='name'>计算机网络</div><div class='badge'>(14)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+            id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
+            ><div class='name'>设计模式</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E9%A2%98%E8%A7%A3/" href="/categories/%E9%A2%98%E8%A7%A3/"
+            id="categoriesE9A298E8A7A3"
+            ><div class='name'>题解</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
     </div>
   </section>
 
 
   
 
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/ABA/" style="font-size: 14px; color: #999">ABA</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/AQS/" style="font-size: 14px; color: #999">AQS</a> <a href="/tags/AVL/" style="font-size: 14px; color: #999">AVL</a> <a href="/tags/Arrays/" style="font-size: 14px; color: #999">Arrays</a> <a href="/tags/B-Tree/" style="font-size: 14px; color: #999">B+Tree</a> <a href="/tags/BST/" style="font-size: 14px; color: #999">BST</a> <a href="/tags/BTree/" style="font-size: 14px; color: #999">BTree</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/Cookie/" style="font-size: 14px; color: #999">Cookie</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/DNS/" style="font-size: 14px; color: #999">DNS</a> <a href="/tags/Docker/" style="font-size: 17.33px; color: #828282">Docker</a> <a href="/tags/ES/" style="font-size: 16.22px; color: #8a8a8a">ES</a> <a href="/tags/ForkJoin/" style="font-size: 14px; color: #999">ForkJoin</a> <a href="/tags/GC/" style="font-size: 16.22px; color: #8a8a8a">GC</a> <a href="/tags/HTTP/" style="font-size: 17.33px; color: #828282">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 14px; color: #999">HTTPS</a> <a href="/tags/HashMap/" style="font-size: 20.67px; color: #6c6c6c">HashMap</a> <a href="/tags/I-O%E6%A8%A1%E5%9E%8B/" style="font-size: 14px; color: #999">I/O模型</a> <a href="/tags/IO/" style="font-size: 15.11px; color: #919191">IO</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/InnoDB/" style="font-size: 17.33px; color: #828282">InnoDB</a> <a href="/tags/JDK/" style="font-size: 15.11px; color: #919191">JDK</a> <a href="/tags/JMM/" style="font-size: 14px; color: #999">JMM</a> <a href="/tags/JUC/" style="font-size: 14px; color: #999">JUC</a> <a href="/tags/JVM/" style="font-size: 19.56px; color: #737373">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 16.22px; color: #8a8a8a">Leetcode</a> <a href="/tags/List/" style="font-size: 15.11px; color: #919191">List</a> <a href="/tags/MyISAM/" style="font-size: 15.11px; color: #919191">MyISAM</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/OSI/" style="font-size: 14px; color: #999">OSI</a> <a href="/tags/Ping/" style="font-size: 14px; color: #999">Ping</a> <a href="/tags/RESTful/" style="font-size: 14px; color: #999">RESTful</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Session/" style="font-size: 14px; color: #999">Session</a> <a href="/tags/Spring/" style="font-size: 18.44px; color: #7b7b7b">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 16.22px; color: #8a8a8a">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/TCP/" style="font-size: 17.33px; color: #828282">TCP</a> <a href="/tags/TopK/" style="font-size: 14px; color: #999">TopK</a> <a href="/tags/UDP/" style="font-size: 14px; color: #999">UDP</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/dp/" style="font-size: 14px; color: #999">dp</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/finalize/" style="font-size: 14px; color: #999">finalize</a> <a href="/tags/finally/" style="font-size: 15.11px; color: #919191">finally</a> <a href="/tags/get/" style="font-size: 14px; color: #999">get</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/join/" style="font-size: 14px; color: #999">join</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/mvcc/" style="font-size: 14px; color: #999">mvcc</a> <a href="/tags/post/" style="font-size: 14px; color: #999">post</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/test/" style="font-size: 15.11px; color: #919191">test</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%B8%8A%E4%B8%8B%E6%96%87/" style="font-size: 14px; color: #999">上下文</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 15.11px; color: #919191">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 16.22px; color: #8a8a8a">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%85%B3%E9%94%AE%E5%AD%97/" style="font-size: 14px; color: #999">关键字</a> <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" style="font-size: 14px; color: #999">内存管理</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">函数式接口</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">创建型模式</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">动态代理</a> <a href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/" style="font-size: 14px; color: #999">包装类</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E7%B1%BB/" style="font-size: 14px; color: #999">原子类</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 14px; color: #999">反射</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 14px; color: #999">垃圾回收</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16.22px; color: #8a8a8a">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/" style="font-size: 15.11px; color: #919191">常量池</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 14px; color: #999">异常</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 14px; color: #999">异步</a> <a href="/tags/%E6%8A%BD%E8%B1%A1%E7%B1%BB/" style="font-size: 14px; color: #999">抽象类</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">排序</a> <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">接口</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 15.11px; color: #919191">数据类型</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 14px; color: #999">数组</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%B1%BB%E5%9B%BE/" style="font-size: 14px; color: #999">类图</a> <a href="/tags/%E7%B4%A2%E5%BC%95/" style="font-size: 15.11px; color: #919191">索引</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 14px; color: #999">红黑树</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 21.78px; color: #646464">线程</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15.11px; color: #919191">线程安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" style="font-size: 15.11px; color: #919191">线程池</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 16.22px; color: #8a8a8a">结构型模式</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD/" style="font-size: 14px; color: #999">缺页中断</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82/" style="font-size: 14px; color: #999">网络分层</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" style="font-size: 14px; color: #999">虚拟内存</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">行为型模式</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BE%85%E5%8A%A9%E7%B1%BB/" style="font-size: 14px; color: #999">辅助类</a> <a href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8/" style="font-size: 14px; color: #999">过滤器</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 15.11px; color: #919191">进程</a> <a href="/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/" style="font-size: 14px; color: #999">进程通信</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15.11px; color: #919191">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 17.33px; color: #828282">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" style="font-size: 14px; color: #999">隔离级别</a> <a href="/tags/%E9%9B%86%E5%90%88%E7%B1%BB/" style="font-size: 14px; color: #999">集合类</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a> <a href="/tags/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/" style="font-size: 14px; color: #999">页面置换算法</a>
+    </div>
+  </section>
+
+
+  
+
+  
+
+  
+    
+    
+
+<section class="widget shadow desktop">
+  
+  <header>
+    
+      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>153 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2020/10/12'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>137k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Sat Apr 17 2021 22:58:46 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-17 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2021-04-17 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
+
+  
+
 
 </aside>
-
 
 
         
@@ -860,8 +1038,8 @@ InnoDB 支持行级锁(row-level locking)和表...</p>
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="Java高并发之锁总结";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
