@@ -420,7 +420,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>148 words</p>
+      <p>329 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -452,6 +452,9 @@
 <li>不剥夺条件：进程已获得的资源，在未使用完之前，不能强行剥夺。</li>
 <li>循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。</li>
 </ol>
+<h3 id="如何避免死锁？"><a href="#如何避免死锁？" class="headerlink" title="如何避免死锁？"></a>如何避免死锁？</h3><p><strong>1. 避免嵌套锁</strong><br>如果您已经持有一个资源，请避免锁定另一个资源。如果只使用一个对象锁，则几乎不可能出现死锁情况。</p>
+<p><strong>2. 只锁需要的部分</strong><br>只获对需要的资源加锁，例如在程序中，我们锁定了完整的对象资源，但是如果我们只需要其中一个字段，那么我们应该只锁定那个特定的字段而不是完整的对象。</p>
+<p><strong>3. 避免无限期等待</strong><br>如果两个线程使用 thread join 无限期互相等待也会造成死锁，我们可以设定等待的最大时间来避免这种情况。</p>
 
   
   
@@ -497,10 +500,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-09T22:59:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-20T16:48:21+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 9, 2021</p>
+    <p>更新于：Apr 20, 2021</p>
   </a>
 </div>
 
@@ -628,7 +631,7 @@ UDP 在传送数据之前不需要先建立连接，远地主机在收到 UDP �
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">死锁产生的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">死锁产生的四个必要条件</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">死锁产生的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">死锁产生的四个必要条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="toc-text">如何避免死锁？</span></a></li></ol>
     </div>
   </section>
 

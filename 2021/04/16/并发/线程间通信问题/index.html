@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>0 words</p>
+      <p>670 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>2 min</p>
     </a>
   </div>
 
@@ -450,7 +450,30 @@
   
   <a id="more"></a>
 
-
+<h3 id="wait-notifynotifyAll"><a href="#wait-notifynotifyAll" class="headerlink" title="wait/notifynotifyAll"></a>wait/notifynotifyAll</h3><ol>
+<li><p>wait()、notify/notifyAll() 方法是Object的本地final方法，无法被重写。</p>
+</li>
+<li><p>wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchronized 关键字使用，即，一般在synchronized 同步代码块里使用 wait()、notify/notifyAll() 方法。</p>
+</li>
+<li><p>由于 wait()、notify/notifyAll() 在synchronized 代码块执行，说明当前线程一定是获取了锁的。</p>
+<ul>
+<li>当线程执行wait()方法时候，会释放当前的锁，然后让出CPU，进入等待状态。</li>
+<li>只有当 notify/notifyAll() 被执行时候，才会唤醒一个或多个正处于等待状态的线程，然后继续往下执行，直到执行完synchronized 代码块的代码或是中途遇到wait() ，再次释放锁。</li>
+<li>也就是说，notify/notifyAll() 的执行只是唤醒沉睡的线程，而不会立即释放锁，锁的释放要看代码块的具体执行情况。所以在编程中，尽量在使用了notify/notifyAll() 后立即退出临界区，以唤醒其他线程让其获得锁</li>
+</ul>
+</li>
+<li><p>wait() 需要被try catch包围，以便发生异常中断也可以使wait等待的线程唤醒。</p>
+</li>
+<li><p><strong>notify 和wait 的顺序不能错</strong>，如果A线程先执行notify方法，B线程在执行wait方法，那么B线程是无法被唤醒的。</p>
+</li>
+<li><p><strong>notify 和 notifyAll的区别</strong><br>notify方法<strong>只唤醒一个等待（对象的）线程</strong>并使该线程开始执行。所以如果有多个线程等待一个对象，这个方法只会唤醒其中一个线程，<strong>选择哪个线程取决于操作系统对多线程管理的实现</strong>。notifyAll 会<strong>唤醒所有等待(对象的)线程</strong>，尽管<strong>哪一个线程将会第一个处理取决于操作系统的实现</strong>。如果当前情况下有多个线程需要被唤醒，推荐使用notifyAll 方法。比如在生产者-消费者里面的使用，每次都需要唤醒所有的消费者或是生产者，以判断程序是否可以继续往下执行。</p>
+</li>
+<li><p>在多线程中要测试某个条件的变化，使用if 还是while？<br>要注意，notify唤醒沉睡的线程后，线程会接着上次的执行继续往下执行。所以在进行条件判断时候，可以先把 wait 语句忽略不计来进行考虑；显然，要确保程序一定要执行，并且要保证程序直到满足一定的条件再执行，要使用while进行等待，直到满足条件才继续往下执行。</p>
+</li>
+</ol>
+<h3 id="Volatile"><a href="#Volatile" class="headerlink" title="Volatile"></a>Volatile</h3><p>见站内文章<a href="volatile-%E5%85%B3%E9%94%AE%E5%AD%97.md">volatile关键字</a></p>
+<h3 id="countDownLatch、CyclicBarrier、Semaphore"><a href="#countDownLatch、CyclicBarrier、Semaphore" class="headerlink" title="countDownLatch、CyclicBarrier、Semaphore"></a>countDownLatch、CyclicBarrier、Semaphore</h3><p>见站内文章<a href="countDownLatch%E3%80%81CyclicBarrier%E3%80%81Semaphore.md">countDownLatch、CyclicBarrier、Semaphore</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/moongeek/p/7631447.html">Java多线程学习之wait、notify/notifyAll 详解</a></p>
 
   
   
@@ -496,10 +519,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-19T20:10:57+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-20T21:53:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 19, 2021</p>
+    <p>更新于：Apr 20, 2021</p>
   </a>
 </div>
 
@@ -613,6 +636,20 @@
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#wait-notifynotifyAll"><span class="toc-text">wait&#x2F;notifynotifyAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Volatile"><span class="toc-text">Volatile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#countDownLatch%E3%80%81CyclicBarrier%E3%80%81Semaphore"><span class="toc-text">countDownLatch、CyclicBarrier、Semaphore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </section>
 
 
   

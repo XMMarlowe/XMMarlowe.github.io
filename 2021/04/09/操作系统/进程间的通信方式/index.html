@@ -431,13 +431,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>897 words</p>
+      <p>3.2k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>3 min</p>
+      <p>10 min</p>
     </a>
   </div>
 
@@ -459,29 +459,83 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/1281379-76c95f147203c797.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/222/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/1281379-76c95f147203c797.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/222/format/webp" srcset="data:image/png;base64,666" alt="进程间通信模型"><br>进程间通信模型</p>
 </center>
 
-<h3 id="进程间通信的七种方式"><a href="#进程间通信的七种方式" class="headerlink" title="进程间通信的七种方式"></a>进程间通信的七种方式</h3><ol>
-<li>管道/匿名管道(Pipes) ：用于具有亲缘关系的父子进程间或者兄弟进程之间的通信。<br>有名管道(Names Pipes) : 匿名管道由于没有名字，只能用于亲缘关系的进程间通信。为了克服这个缺点，提出了有名管道。有名管道严格遵循**先进先出(first in first out)**。<center>
+<h3 id="进程间通信的七种方式"><a href="#进程间通信的七种方式" class="headerlink" title="进程间通信的七种方式"></a>进程间通信的七种方式</h3><h4 id="管道-匿名管道-Pipes"><a href="#管道-匿名管道-Pipes" class="headerlink" title="管道/匿名管道(Pipes)"></a>管道/匿名管道(Pipes)</h4><h5 id="一句话介绍"><a href="#一句话介绍" class="headerlink" title="一句话介绍"></a>一句话介绍</h5><p>大白话来说，就是只能在父子间单向传递数据的方式，数据放在内核缓冲区，像FIFO的方式循环队列来存取。管道单独构成一种文件系统，并且只存在与内存中。</p>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ul>
+<li>管道是半双工的，数据只能向一个方向流动；需要双方通信时，需要建立起两个管道。</li>
+<li>只能用于父子进程或者兄弟进程之间(具有亲缘关系的进程);</li>
+<li>单独构成一种独立的文件系统：管道对于管道两端的进程而言，就是一个文件，但它不是普通的文件，它不属于某种文件系统，而是自立门户，单独构成一种文件系统，并且只存在与内存中。</li>
+<li>数据的读出和写入：一个进程向管道中写的内容被管道另一端的进程读出。写入的内容每次都添加在管道缓冲区的末尾，并且每次都是从缓冲区的头部读出数据。<center>
 
 </li>
-</ol>
+</ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/1281379-05378521a7b41af4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/228/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/1281379-05378521a7b41af4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/228/format/webp" srcset="data:image/png;base64,666" alt="进程间管道通信模型"></p>
 <p>进程间管道通信模型</p>
 </center>
 
-
-
-<ol start="2">
-<li>有名管道以磁盘文件的方式存在，可以实现本机任意两个进程通信。</li>
-<li>信号(Signal) ：信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生；<center>
-
-</li>
+<h5 id="实质"><a href="#实质" class="headerlink" title="实质"></a>实质</h5><p>管道的实质是一个内核缓冲区，进程以先进先出的方式从缓冲区存取数据，管道一端的进程顺序的将数据写入缓冲区，另一端的进程则顺序的读出数据。<br>该缓冲区可以看做是一个循环队列，读和写的位置都是自动增长的，不能随意改变，一个数据只能被读一次，读出来以后在缓冲区就不复存在了。<br>当缓冲区读空或者写满时，有一定的规则控制相应的读进程或者写进程进入等待队列，当空的缓冲区有新数据写入或者满的缓冲区有数据读出来时，就唤醒等待队列中的进程继续读写。</p>
+<h5 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h5><ul>
+<li>只支持单向数据流；</li>
+<li>只能用于具有亲缘关系的进程之间；</li>
+<li>没有名字；</li>
+<li>管道的缓冲区是有限的（管道制存在于内存中，在管道创建时，为缓冲区分配一个页面大小）；</li>
+<li>管道所传送的是无格式字节流，这就要求管道的读出方和写入方必须事先约定好数据的格式，比如多少字节算作一个消息（或命令、或记录）等等；</li>
+</ul>
+<hr>
+<h4 id="有名管道-Names-Pipes"><a href="#有名管道-Names-Pipes" class="headerlink" title="有名管道(Names Pipes)"></a>有名管道(Names Pipes)</h4><h5 id="一句话介绍-1"><a href="#一句话介绍-1" class="headerlink" title="一句话介绍"></a>一句话介绍</h5><p>与匿名管道一样，但是存在有一个名字，这个名字就是文件路径，存在于文件系统中，但是内容还是在内存，这样就可以非父子进程通信了。</p>
+<h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>匿名管道，由于没有名字，只能用于亲缘关系的进程间通信。为了克服这个缺点，提出了有名管道。<br>有名管道不同于匿名管道之处在于它提供了一个路径名与之关联，以有名管道的文件形式存在于文件系统中，这样，即使与有名管道的创建进程不存在亲缘关系的进程，只要可以访问该路径，就能够彼此通过有名管道相互通信，因此，通过有名管道不相关的进程也能交换数据。值的注意的是，有名管道严格遵循先进先出(first in first out),对匿名管道及有名管道的读总是从开始处返回数据，对它们的写则把数据添加到末尾。它们不支持诸如lseek()等文件定位操作。有名管道的名字存在于文件系统中，内容存放在内存中。</p>
+<h5 id="匿名管道和有名管道总结"><a href="#匿名管道和有名管道总结" class="headerlink" title="匿名管道和有名管道总结"></a>匿名管道和有名管道总结</h5><ol>
+<li>管道是特殊类型的文件，在满足先入先出的原则条件下可以进行读写，但不能进行定位读写。</li>
+<li>匿名管道是单向的，只能在有亲缘关系的进程间通信；有名管道以磁盘文件的方式存在，可以实现本机任意两个进程通信。</li>
+<li>无名管道阻塞问题：无名管道无需显示打开，创建时直接返回文件描述符，在读写时需要确定对方的存在，否则将退出。如果当前进程向无名管道的一端写数据，必须确定另一端有某一进程。如果写入无名管道的数据超过其最大值，写操作将阻塞，如果管道中没有数据，读操作将阻塞，如果管道发现另一端断开，将自动退出。</li>
+<li>有名管道阻塞问题：有名管道在打开时需要确实对方的存在，否则将阻塞。即以读方式打开某管道，在此之前必须一个进程以写方式打开管道，否则阻塞。此外，可以以读写（O_RDWR）模式打开有名管道，即当前进程读，当前进程写，不会阻塞。</li>
 </ol>
+<hr>
+<h4 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h4><p>信号是Linux系统中用于进程间互相通信或者操作的一种机制，信号可以在任何时候发给某一进程，而无需知道该进程的状态。<br>如果该进程当前并未处于执行状态，则该信号就有内核保存起来，知道该进程回复执行并传递给它为止。<br>如果一个信号被进程设置为阻塞，则该信号的传递被延迟，直到其阻塞被取消是才被传递给进程。</p>
+<p>SIGINT：程序终止信号。程序运行过程中，按Ctrl+C键将产生该信号。</p>
+<center>
+
 <p><img src="https://upload-images.jianshu.io/upload_images/1281379-3eed8cca67aa9f55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/889/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/1281379-3eed8cca67aa9f55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/889/format/webp" srcset="data:image/png;base64,666" alt="信号的生命周期"><br>信号的生命周期</p>
 </center>
 
-<ol start="4">
-<li>消息队列(Message Queuing) ：消息队列是消息的链表,具有特定的格式,存放在内存中并由消息队列标识符标识。管道和消息队列的通信数据都是先进先出的原则。与管道（无名管道：只存在于内存中的文件；命名管道：存在于实际的磁盘介质或者文件系统）不同的是消息队列存放在内核中，只有在内核重启(即，操作系统重启)或者显示地删除一个消息队列时，该消息队列才会被真正的删除。消息队列可以实现消息的随机查询,消息不一定要以先进先出的次序读取,也可以按消息的类型读取.比 FIFO 更有优势。消息队列克服了信号承载信息量少，管道只能承载无格式字 节流以及缓冲区大小受限等缺。</li>
-<li>信号量(Semaphores) ：信号量是一个计数器，用于多进程对共享数据的访问，信号量的意图在于进程间同步。这种通信方式主要用于解决与同步相关的问题并避免竞争条件。</li>
+<hr>
+<h4 id="消息队列-Message-Queuing"><a href="#消息队列-Message-Queuing" class="headerlink" title="消息队列(Message Queuing)"></a>消息队列(Message Queuing)</h4><ul>
+<li>消息队列是存放在内核中的消息链表，每个消息队列由消息队列标识符表示。</li>
+<li>与管道（无名管道：只存在于内存中的文件；命名管道：存在于实际的磁盘介质或者文件系统）不同的是消息队列存放在内核中，只有在内核重启(即，操作系统重启)或者显示地删除一个消息队列时，该消息队列才会被真正的删除。</li>
+<li>另外与管道不同的是，消息队列在某个进程往一个队列写入消息之前，并不需要另外某个进程在该队列上等待消息的到达。</li>
+</ul>
+<h5 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h5><ol>
+<li>消息队列是消息的链表,具有特定的格式,存放在内存中并由消息队列标识符标识.</li>
+<li>消息队列允许一个或多个进程向它写入与读取消息.</li>
+<li>管道和消息队列的通信数据都是先进先出的原则。</li>
+<li>消息队列可以实现消息的随机查询,消息不一定要以先进先出的次序读取,也可以按消息的类型读取.比FIFO更有优势。</li>
+<li>消息队列克服了信号承载信息量少，管道只能承载无格式字 节流以及缓冲区大小受限等缺。</li>
+<li>目前主要有两种类型的消息队列：POSIX消息队列以及System V消息队列，系统V消息队列目前被大量使用。系统V消息队列是随内核持续的，只有在内核重起或者人工删除时，该消息队列才会被删除。</li>
+</ol>
+<hr>
+<h4 id="信号量-Semaphores"><a href="#信号量-Semaphores" class="headerlink" title="信号量(Semaphores)"></a>信号量(Semaphores)</h4><h5 id="一句话介绍-2"><a href="#一句话介绍-2" class="headerlink" title="一句话介绍"></a>一句话介绍</h5><p>信号量是⼀个计数器，⽤于多进程对共享数据的访问，信号量的意图在于进程间同步。这种通信⽅式主要⽤于解决与同步相关的问题并避免竞争条件。</p>
+<h5 id="实际过程"><a href="#实际过程" class="headerlink" title="实际过程"></a>实际过程</h5><p>信号量是一个计数器，用于多进程对共享数据的访问，信号量的意图在于进程间同步。</p>
+<p>为了获得共享资源，进程需要执行下列操作：</p>
+<ol>
+<li>创建一个信号量：这要求调用者指定初始值，对于二值信号量来说，它通常是1，也可是0。</li>
+<li>等待一个信号量：该操作会测试这个信号量的值，如果小于0，就阻塞。也称为P操作。</li>
+<li>挂出一个信号量：该操作将信号量的值加1，也称为V操作。</li>
+</ol>
+<p>为了正确地实现信号量，信号量值的测试及减1操作应当是原子操作。为此，信号量通常是在内核中实现的。</p>
+<h5 id="信号量与普通整型变量的区别"><a href="#信号量与普通整型变量的区别" class="headerlink" title="信号量与普通整型变量的区别"></a>信号量与普通整型变量的区别</h5><ol>
+<li>信号量是非负整型变量，除了初始化之外，它只能通过两个标准原子操作：wait(semap) , signal(semap) ; 来进行访问；</li>
+<li>操作也被成为PV原语（P来源于荷兰语proberen”测试”，V来源于荷兰语verhogen”增加”，P表示通过的意思，V表示释放的意思），而普通整型变量则可以在任何语句块中被访问；</li>
+</ol>
+<h5 id="信号量与互斥量之间的区别："><a href="#信号量与互斥量之间的区别：" class="headerlink" title="信号量与互斥量之间的区别："></a>信号量与互斥量之间的区别：</h5><ol>
+<li><p>互斥量用于线程的互斥，信号量用于线程的同步。这是互斥量和信号量的根本区别，也就是互斥和同步之间的区别。</p>
+<ul>
+<li><strong>互斥：</strong> 是指某一资源同时只允许一个访问者对其进行访问，具有唯一性和排它性。但互斥无法限制访问者对资源的访问顺序，即访问是无序的。</li>
+<li><strong>同步：</strong> 是指在互斥的基础上（大多数情况），通过其它机制实现访问者对资源的有序访问。<br>在大多数情况下，同步已经实现了互斥，特别是所有写入资源的情况必定是互斥的。少数情况是指可以允许多个访问者同时访问资源</li>
+</ul>
+</li>
+<li><p>互斥量值只能为0/1，信号量值可以为非负整数。<br>也就是说，一个互斥量只能用于一个资源的互斥访问，它不能实现多个资源的多线程互斥问题。信号量可以实现多个同类资源的多线程互斥和同步。当信号量为单值信号量是，也可以完成一个资源的互斥访问。</p>
+</li>
+<li><p>互斥量的加锁和解锁必须由同一线程分别对应使用，信号量可以由一个线程释放，另一个线程得到。</p>
+</li>
 </ol>
 <center>
 
@@ -499,16 +553,23 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/1281379-a1b276fae9db985d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/284/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/1281379-a1b276fae9db985d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/284/format/webp" srcset="data:image/png;base64,666" alt="一个进程两个线程共享基于内存的信号量"><br>一个进程两个线程共享基于内存的信号量</p>
 </center>
 
-<ol start="6">
-<li>共享内存(Shared memory) ：使得多个进程可以访问同一块内存空间，不同进程可以及时看到对方进程中对共享内存中数据的更新。这种方式需要依靠某种同步操作，如互斥锁和信号量等。可以说这是最有用的进程间通信方式。</li>
-<li>套接字(Sockets) : 此方法主要用于在客户端和服务器之间通过网络进行通信。套接字是支持 TCP/IP 的网络通信的基本操作单元，可以看做是不同主机之间的进程进行双向通信的端点，简单的说就是通信的两方的一种约定，用套接字中的相关函数来完成通信过程。<center>
+<hr>
+<h4 id="共享内存-Shared-memory"><a href="#共享内存-Shared-memory" class="headerlink" title="共享内存(Shared memory)"></a>共享内存(Shared memory)</h4><ul>
+<li>使得多个进程可以可以直接读写同一块内存空间，是最快的可用IPC形式。是针对其他通信机制运行效率较低而设计的。</li>
+<li>为了在多个进程间交换信息，内核专门留出了一块内存区，可以由需要访问的进程将其映射到自己的私有地址空间。进程就可以直接读写这一块内存而不需要进行数据的拷贝，从而大大提高效率。</li>
+<li>由于多个进程共享一段内存，因此需要依靠某种同步机制（如信号量）来达到进程间的同步及互斥。</li>
+</ul>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210420221158.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210420221158.png" srcset="data:image/png;base64,666" alt="20210420221158"></p>
+<hr>
+<h4 id="套接字-Sockets"><a href="#套接字-Sockets" class="headerlink" title="套接字(Sockets)"></a>套接字(Sockets)</h4><p>套接字是一种通信机制，凭借这种机制，客户/服务器（即要进行通信的进程）系统的开发工作既可以在本地单机上进行，也可以跨网络进行。也就是说它可以让不在同一台计算机但通过网络连接计算机上的进程进行通信。</p>
+<center>
 
-</li>
-</ol>
 <p><img src="https://upload-images.jianshu.io/upload_images/1281379-2db1deb0115ec4f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/319/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/1281379-2db1deb0115ec4f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/319/format/webp" srcset="data:image/png;base64,666" alt="Socket是应用层和传输层之间的桥梁"><br>Socket是应用层和传输层之间的桥梁</p>
 </center>
 
-<h3 id="好文推荐"><a href="#好文推荐" class="headerlink" title="好文推荐"></a>好文推荐</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1015f5ffa74">进程间通信IPC (InterProcess Communication)</a></p>
+<p>套接字是支持TCP/IP的网络通信的基本操作单元，可以看做是不同主机之间的进程进行双向通信的端点，简单的说就是通信的两方的一种约定，用套接字中的相关函数来完成通信过程。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1015f5ffa74">进程间通信IPC (InterProcess Communication)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.unclezs.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B%E9%80%9A%E8%AE%AFIPC.html">操作系统之进程通讯IPC</a></p>
 
   
   
@@ -554,10 +615,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-09T22:59:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-20T22:14:10+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 9, 2021</p>
+    <p>更新于：Apr 20, 2021</p>
   </a>
 </div>
 
@@ -687,7 +748,7 @@ Step1:类加载检查虚拟机遇到一条 new 指令时，首先将去检查这
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">进程间通信的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text">进程间通信的七种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E6%96%87%E6%8E%A8%E8%8D%90"><span class="toc-text">好文推荐</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">进程间通信的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text">进程间通信的七种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E9%81%93-%E5%8C%BF%E5%90%8D%E7%AE%A1%E9%81%93-Pipes"><span class="toc-text">管道&#x2F;匿名管道(Pipes)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E4%BB%8B%E7%BB%8D"><span class="toc-text">一句话介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E8%B4%A8"><span class="toc-text">实质</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">局限性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%90%8D%E7%AE%A1%E9%81%93-Names-Pipes"><span class="toc-text">有名管道(Names Pipes)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E4%BB%8B%E7%BB%8D-1"><span class="toc-text">一句话介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E7%AE%A1%E9%81%93%E5%92%8C%E6%9C%89%E5%90%8D%E7%AE%A1%E9%81%93%E6%80%BB%E7%BB%93"><span class="toc-text">匿名管道和有名管道总结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7"><span class="toc-text">信号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-Message-Queuing"><span class="toc-text">消息队列(Message Queuing)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-1"><span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F-Semaphores"><span class="toc-text">信号量(Semaphores)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E4%BB%8B%E7%BB%8D-2"><span class="toc-text">一句话介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E8%BF%87%E7%A8%8B"><span class="toc-text">实际过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E4%B8%8E%E6%99%AE%E9%80%9A%E6%95%B4%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">信号量与普通整型变量的区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E4%B8%8E%E4%BA%92%E6%96%A5%E9%87%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">信号量与互斥量之间的区别：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98-Shared-memory"><span class="toc-text">共享内存(Shared memory)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A5%97%E6%8E%A5%E5%AD%97-Sockets"><span class="toc-text">套接字(Sockets)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
