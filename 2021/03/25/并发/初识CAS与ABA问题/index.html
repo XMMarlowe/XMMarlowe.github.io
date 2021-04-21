@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>900 words</p>
+      <p>1.9k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>3 min</p>
+      <p>7 min</p>
     </a>
   </div>
 
@@ -463,21 +463,30 @@
 <p>结果：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="number">2021</span></span><br><span class="line"><span class="keyword">false</span></span><br><span class="line"><span class="number">2021</span></span><br></pre></td></tr></table></figure>
 <h3 id="CAS-缺点"><a href="#CAS-缺点" class="headerlink" title="CAS 缺点"></a>CAS 缺点</h3><p>CAS虽然很高效的解决了原子操作问题，但是CAS仍然存在三大问题。</p>
+<h4 id="ABA问题"><a href="#ABA问题" class="headerlink" title="ABA问题"></a>ABA问题</h4><p>在多线程场景下CAS会出现ABA问题，关于ABA问题这里简单科普下，例如有2个线程同时对同一个值(初始值为A)进行CAS操作，这三个线程如下</p>
 <ol>
-<li>循环会耗时</li>
-<li>一次性只能保证一个共享变量的原子性</li>
-<li>ABA问题</li>
+<li>线程1，期望值为A，欲更新的值为B</li>
+<li>线程2，期望值为A，欲更新的值为B</li>
 </ol>
+<p>线程1抢先获得CPU时间片，而线程2因为其他原因阻塞了，线程1取值与期望的A值比较，发现相等然后将值更新为B，然后这个时候<strong>出现了线程3，期望值为B，欲更新的值为A</strong>，线程3取值与期望的值B比较，发现相等则将值更新为A，此时线程2从阻塞中恢复，并且获得了CPU时间片，这时候线程2取值与期望的值A比较，发现相等则将值更新为B，虽然线程2也完成了操作，但是线程2并不知道值已经经过了A-&gt;B-&gt;A的变化过程。</p>
+<p><strong>ABA问题带来的危害：</strong><br>小明在提款机，提取了50元，因为提款机问题，有两个线程，同时把余额从100变为50<br>线程1（提款机）：获取当前值100，期望更新为50，<br>线程2（提款机）：获取当前值100，期望更新为50，<br>线程1成功执行，线程2某种原因block了，这时，某人给小明汇款50<br>线程3（默认）：获取当前值50，期望更新为100，<br>这时候线程3成功执行，余额变为100，<br>线程2从Block中恢复，获取到的也是100，compare之后，继续更新余额为50！！！<br>此时可以看到，实际余额应该为100（100-50+50），但是实际上变为了50（100-50+50-50）这就是ABA问题带来的成功提交。</p>
+<p><strong>解决方法：</strong> 在变量前面加上版本号，每次变量更新的时候变量的版本号都+1，即A-&gt;B-&gt;A就变成了1A-&gt;2B-&gt;3A。</p>
+<h4 id="循环会耗时"><a href="#循环会耗时" class="headerlink" title="循环会耗时"></a>循环会耗时</h4><p>如果CAS操作失败，就需要循环进行CAS操作(循环同时将期望值更新为最新的)，如果长时间都不成功的话，那么会造成CPU极大的开销。<br><strong>解决办法：</strong> 限制自旋次数，防止进入死循环。</p>
+<h4 id="只能保证一个共享变量的原子操作"><a href="#只能保证一个共享变量的原子操作" class="headerlink" title="只能保证一个共享变量的原子操作"></a>只能保证一个共享变量的原子操作</h4><p>CAS的原子操作只能针对一个共享变量。</p>
+<p><strong>解决方法：</strong> 如果需要对多个共享变量进行操作，可以使用加锁方式(悲观锁)保证原子性，或者可以把多个共享变量合并成一个共享变量进行CAS操作。</p>
 <h3 id="CAS-ABA问题"><a href="#CAS-ABA问题" class="headerlink" title="CAS:ABA问题"></a>CAS:ABA问题</h3><h4 id="什么是ABA问题？"><a href="#什么是ABA问题？" class="headerlink" title="什么是ABA问题？"></a>什么是ABA问题？</h4><p>ABA问题通俗一点的说，就是一个从内存里面读取到了值A，正在改的时候也检查到了还是A，但是真实的值是被改成了B再改回了A的。</p>
 <h4 id="怎么解决ABA问题"><a href="#怎么解决ABA问题" class="headerlink" title="怎么解决ABA问题"></a>怎么解决ABA问题</h4><p>解决ABA问题就是给操作数加上一个“版本号”，就像Mysql的乐观锁一样。而Java中提供了AtomicStampedReference类来实现这个功能。</p>
 <p>AtomicStampedReference类可以给一个引用标记上一个标记位，来保证原子性。AtomicStampedReference可以给一个引用标记上一个整型的版本戳，来保证原子性。</p>
 <p>代码测试：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CASTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String A = <span class="string">&quot;A&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String B = <span class="string">&quot;B&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String C = <span class="string">&quot;C&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> AtomicStampedReference&lt;String&gt; atomic = <span class="keyword">new</span> AtomicStampedReference&lt;&gt;(A, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//线程1来了，先检查是否和当前值一样,我准备把A改成C了,并且拿到线程1比较时候的stamp</span></span><br><span class="line">        <span class="keyword">boolean</span> same = atomic.attemptStamp(A, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> stamp = atomic.getStamp();</span><br><span class="line">        <span class="comment">//线程2来了，我准备把A换成B了</span></span><br><span class="line">        atomic.compareAndSet(A, B, atomic.getStamp(), atomic.getStamp() + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//线程3来了，我准备把B换回A了</span></span><br><span class="line">        atomic.compareAndSet(A, B, atomic.getStamp(), atomic.getStamp() + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//到线程1来修改了A成C了</span></span><br><span class="line">        <span class="keyword">if</span> (same) &#123;</span><br><span class="line">            <span class="keyword">boolean</span> b = atomic.compareAndSet(A, C, stamp, stamp + <span class="number">1</span>);</span><br><span class="line">            System.out.println(b?<span class="string">&quot;修改成功&quot;</span>:<span class="string">&quot;修改失败ABA了&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h3 id="CAS的应用"><a href="#CAS的应用" class="headerlink" title="CAS的应用"></a>CAS的应用</h3><p>我们知道CAS操作并不会锁住共享变量，也就是一种非阻塞的同步机制，CAS就是乐观锁的实现。</p>
+<ol>
+<li>乐观锁</li>
+</ol>
+<p><strong>乐观锁</strong>总是假设最好的情况，每次去操作数据都认为不会被别的线程修改数据，<strong>所以在每次操作数据的时候都不会给数据加锁，</strong> 即在线程对数据进行操作的时候，<strong>别的线程不会阻塞</strong>仍然可以对数据进行操作，只有在需要更新数据的时候才会去判断数据是否被别的线程修改过，如果数据被修改过则会拒绝操作并且返回错误信息给用户。<br>2. 悲观锁<br><strong>悲观锁</strong>总是假设最坏的情况，每次去操作数据时候都认为会被的线程修改数据，<strong>所以在每次操作数据的时候都会给数据加锁，</strong> 让别的线程无法操作这个数据，别的线程会一直阻塞直到获取到这个数据的锁。这样的话就会影响效率，比如当有个线程发生一个很耗时的操作的时候，别的线程只是想获取这个数据的值而已都要等待很久。</p>
+<p>Java利用CAS的乐观锁、原子性的特性高效解决了多线程的安全性问题，例如JDK1.8中的集合类ConcurrentHashMap、关键字volatile、ReentrantLock等。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.unclezs.com/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E8%AE%A4%E8%AF%86CAS%E4%B8%8EABA%E9%97%AE%E9%A2%98.html">认识CAS与ABA问题</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903796129136647#heading-1">CAS原理分析及ABA问题详解</a></p>
 
   
   
@@ -523,10 +532,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-19T20:10:56+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-21T22:15:41+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 19, 2021</p>
+    <p>更新于：Apr 21, 2021</p>
   </a>
 </div>
 
@@ -653,7 +662,7 @@ To be continue…
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCAS%EF%BC%9F"><span class="toc-text">什么是CAS？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-%E7%BC%BA%E7%82%B9"><span class="toc-text">CAS 缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-ABA%E9%97%AE%E9%A2%98"><span class="toc-text">CAS:ABA问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFABA%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">什么是ABA问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3ABA%E9%97%AE%E9%A2%98"><span class="toc-text">怎么解决ABA问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCAS%EF%BC%9F"><span class="toc-text">什么是CAS？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-%E7%BC%BA%E7%82%B9"><span class="toc-text">CAS 缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ABA%E9%97%AE%E9%A2%98"><span class="toc-text">ABA问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%BC%9A%E8%80%97%E6%97%B6"><span class="toc-text">循环会耗时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E8%83%BD%E4%BF%9D%E8%AF%81%E4%B8%80%E4%B8%AA%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C"><span class="toc-text">只能保证一个共享变量的原子操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-ABA%E9%97%AE%E9%A2%98"><span class="toc-text">CAS:ABA问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFABA%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">什么是ABA问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3ABA%E9%97%AE%E9%A2%98"><span class="toc-text">怎么解决ABA问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">CAS的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

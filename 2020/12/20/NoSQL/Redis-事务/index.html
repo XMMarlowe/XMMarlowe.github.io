@@ -26,7 +26,7 @@
   
 
   
-    <meta name="description" content="Redis 事务简介">
+    <meta name="description" content="Redis 事务简介…">
   
 
   <!-- feed -->
@@ -431,13 +431,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>784 words</p>
+      <p>923 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>3 min</p>
+      <p>4 min</p>
     </a>
   </div>
 
@@ -450,7 +450,7 @@
 
 
   
-  <p>Redis 事务简介</p>
+  <p>Redis 事务简介…</p>
 <a id="more"></a>
 
 <p>Redis 事务本质：一组命令的集合！一个事务中的所有命令都会被序列化，在事务执行过程中，会按照顺序执行！<br>一次性，顺序性，排他性 执行一系列的命令！</p>
@@ -461,27 +461,21 @@
 <li>命令入队()</li>
 <li>执行事务()</li>
 </ul>
-<p>正常执行事务</p>
+<p><strong>正常执行事务</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi <span class="comment"># 开启事务</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span> <span class="comment"># 执行事务</span></span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) <span class="string">&quot;v2&quot;</span></span><br><span class="line">4) OK</span><br></pre></td></tr></table></figure>
-<p>放弃事务</p>
+<p><strong>放弃事务</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi <span class="comment"># 开启事务</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; discard <span class="comment"># 取消事务</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get k4 <span class="comment"># 事务队列中的命令都不会被执行</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>编译型异常，事务中的所有命令都不会被执行！</p>
-</blockquote>
+<p><strong>编译型异常，事务中的所有命令都不会被执行！</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; getset k3 <span class="comment"># 错误的命令</span></span><br><span class="line">(error) ERR wrong number of arguments <span class="keyword">for</span> <span class="string">&#x27;getset&#x27;</span> <span class="built_in">command</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k5 v5</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span> <span class="comment"># 执行命令的时候报错</span></span><br><span class="line">(error) EXECABORT Transaction discarded because of previous errors.</span><br><span class="line">127.0.0.1:6379&gt; get k5 <span class="comment"># 所有的命令都不会执行</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>运行时异常如果事务队列中存在与发行，那么执行命令的时候，其他命令是可以正常执行，错误命令抛出异常！</p>
-</blockquote>
+<p><strong>运行时异常如果事务队列中存在与发行，那么执行命令的时候，其他命令是可以正常执行，错误命令抛出异常！</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 <span class="string">&quot;v1&quot;</span></span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incr k1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; get k3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) OK</span><br><span class="line">2) (error) ERR value is not an <span class="built_in">integer</span> or out of range <span class="comment"># 第一条命令报错，但是依旧正常执行成功了！</span></span><br><span class="line">3) OK</span><br><span class="line">4) OK</span><br><span class="line">5) <span class="string">&quot;v3&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line"><span class="string">&quot;v2&quot;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>监控 Watch</p>
 </blockquote>
-<p><strong>悲观锁</strong></p>
-<ul>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><ul>
 <li>很悲观，认为什么时候都会出问题，无论做什么都会加锁！</li>
 </ul>
-<p><strong>乐观锁</strong></p>
-<ul>
+<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><ul>
 <li>很乐观，认为什么时候都不会出问题，所以不会上锁！更新数据的时候去判断一下，在此期间是否有人修改过这个数据</li>
 <li>获取version</li>
 <li>更新的时候比较version</li>
@@ -491,6 +485,9 @@
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> money 100</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> out 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; watch money <span class="comment"># 监视money对象</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi <span class="comment"># 事务正常结束，数据期间没有发生变动，这个时候就正常执行成功</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby out 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) (<span class="built_in">integer</span>) 80</span><br><span class="line">2) (<span class="built_in">integer</span>) 20</span><br></pre></td></tr></table></figure>
 <p>测试多线程修改值，使用watch可以当做redis的乐观锁操作</p>
+<h3 id="三特性"><a href="#三特性" class="headerlink" title="三特性"></a>三特性</h3><h4 id="单独的隔离操作"><a href="#单独的隔离操作" class="headerlink" title="单独的隔离操作"></a>单独的隔离操作</h4><p>事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中,不会被其他客户端发送来的命令请求所打断。</p>
+<h4 id="没有隔离级别的概念"><a href="#没有隔离级别的概念" class="headerlink" title="没有隔离级别的概念"></a>没有隔离级别的概念</h4><p>队列中的命令没有提交之前都不会实际被执行,因为事务提交前任何指令都不会被实际执行。</p>
+<h4 id="不保证原子性"><a href="#不保证原子性" class="headerlink" title="不保证原子性"></a>不保证原子性</h4><p>事务中如果有一条命令执行失败 ,后的命令仍然会被执行,没有回滚。</p>
 
   
   
@@ -536,10 +533,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-23T20:19:32+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-21T14:02:08+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 23, 2020</p>
+    <p>更新于：Apr 21, 2021</p>
   </a>
 </div>
 
@@ -553,7 +550,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/&title=Redis 事务 - Marlowe&summary=Redis 事务简介"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/&title=Redis 事务 - Marlowe&summary=Redis 事务简介…"
           
           >
           
@@ -565,7 +562,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/&title=Redis 事务 - Marlowe&summary=Redis 事务简介"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/&title=Redis 事务 - Marlowe&summary=Redis 事务简介…"
           
           >
           
@@ -577,7 +574,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/&title=Redis 事务 - Marlowe&summary=Redis 事务简介"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/&title=Redis 事务 - Marlowe&summary=Redis 事务简介…"
           
           >
           
@@ -654,6 +651,20 @@
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-text">乐观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%89%B9%E6%80%A7"><span class="toc-text">三特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E7%8B%AC%E7%9A%84%E9%9A%94%E7%A6%BB%E6%93%8D%E4%BD%9C"><span class="toc-text">单独的隔离操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">没有隔离级别的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-text">不保证原子性</span></a></li></ol></li></ol>
+    </div>
+  </section>
 
 
   
