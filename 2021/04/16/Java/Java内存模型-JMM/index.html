@@ -463,9 +463,56 @@
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210416212236.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210416212236.png" srcset="data:image/png;base64,666" alt="20210416212236"></p>
 </center>
 
-<h3 id="主存与工作内存的一些交互指令"><a href="#主存与工作内存的一些交互指令" class="headerlink" title="主存与工作内存的一些交互指令"></a>主存与工作内存的一些交互指令</h3><p>操作|    作用对象|    解释<br>|:—:|:—:|:—:|<br>lock|    主内存|    把一个变量标识为一条线程独占的状态<br>unlock|    主内存|    把一个处于锁定状态的变量释放出来，释放后才可被其他线程锁定<br>read|    主内存|    把一个变量的值从主内存传输到线程工作内存中，以便 load 操作使用<br>load|    工作内存|    把 read 操作从主内存中得到的变量值放入工作内存中<br>use|    工作内存|    把工作内存中一个变量的值传递给执行引擎，每当虚拟机遇到一个需要使用到变量值的字节码指令时将会执行这个操作<br>assign|    工作内存|    把一个从执行引擎接收到的值赋接收到的值赋给工作内存的变量，每当虚拟机遇到一个给变量赋值的字节码指令时执行这个操作<br>store|    工作内存|    把工作内存中的一个变量的值传送到主内存中，以便 write 操作<br>write|    工作内存|    把 store 操作从工作内存中得到的变量的值放入主内存的变量中</p>
+<h3 id="主存与工作内存的一些交互指令"><a href="#主存与工作内存的一些交互指令" class="headerlink" title="主存与工作内存的一些交互指令"></a>主存与工作内存的一些交互指令</h3><table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">作用对象</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">lock</td>
+<td align="center">主内存</td>
+<td align="center">把一个变量标识为一条线程独占的状态</td>
+</tr>
+<tr>
+<td align="center">unlock</td>
+<td align="center">主内存</td>
+<td align="center">把一个处于锁定状态的变量释放出来，释放后才可被其他线程锁定</td>
+</tr>
+<tr>
+<td align="center">read</td>
+<td align="center">主内存</td>
+<td align="center">把一个变量的值从主内存传输到线程工作内存中，以便 load 操作使用</td>
+</tr>
+<tr>
+<td align="center">load</td>
+<td align="center">工作内存</td>
+<td align="center">把 read 操作从主内存中得到的变量值放入工作内存中</td>
+</tr>
+<tr>
+<td align="center">use</td>
+<td align="center">工作内存</td>
+<td align="center">把工作内存中一个变量的值传递给执行引擎，每当虚拟机遇到一个需要使用到变量值的字节码指令时将会执行这个操作</td>
+</tr>
+<tr>
+<td align="center">assign</td>
+<td align="center">工作内存</td>
+<td align="center">把一个从执行引擎接收到的值赋接收到的值赋给工作内存的变量，每当虚拟机遇到一个给变量赋值的字节码指令时执行这个操作</td>
+</tr>
+<tr>
+<td align="center">store</td>
+<td align="center">工作内存</td>
+<td align="center">把工作内存中的一个变量的值传送到主内存中，以便 write 操作</td>
+</tr>
+<tr>
+<td align="center">write</td>
+<td align="center">工作内存</td>
+<td align="center">把 store 操作从工作内存中得到的变量的值放入主内存的变量中</td>
+</tr>
+</tbody></table>
 <p>例子：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210416212426.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210416212426.png" srcset="data:image/png;base64,666" alt="20210416212426"></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.unclezs.com/Java/Jvm/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8BJMM.html">Java内存模型JMM</a></p>
 <h3 id="对于volatile型变量的特殊规则"><a href="#对于volatile型变量的特殊规则" class="headerlink" title="对于volatile型变量的特殊规则"></a>对于volatile型变量的特殊规则</h3><p>关键字 volatile 是 Java 虚拟机提供的最轻量级的同步机制。保存了线程可见性与防止指令重排。</p>
 <h4 id="一个变量被定义为volatile的特性"><a href="#一个变量被定义为volatile的特性" class="headerlink" title="一个变量被定义为volatile的特性"></a>一个变量被定义为volatile的特性</h4><p>1.保证此变量对所有线程的可见性。但是对变量的操作如果不是原子操作，那么并发情况下不安全。如果<strong>不满足</strong>以下条件就，需要加锁保证并发安全。</p>
 <ul>
@@ -477,9 +524,10 @@
 <h4 id="对于long和double型变量的特殊规则"><a href="#对于long和double型变量的特殊规则" class="headerlink" title="对于long和double型变量的特殊规则"></a>对于long和double型变量的特殊规则</h4><p>Java 要求对于主内存和工作内存之间的八个操作都是原子性的，但是对于 64 位的数据类型，有一条宽松的规定：允许虚拟机将没有被 volatile 修饰的 64 位数据的读写操作划分为两次 32 位的操作来进行，即允许虚拟机实现选择可以不保证 64 位数据类型的 load、store、read 和 write 这 4 个操作的原子性。这就是 long 和 double 的非原子性协定。</p>
 <h4 id="原子性、可见性与有序性"><a href="#原子性、可见性与有序性" class="headerlink" title="原子性、可见性与有序性"></a>原子性、可见性与有序性</h4><p><strong>原子性(Atomicity)</strong><br>由 Java 内存模型来直接保证的原子性变量操作包括 read、load、assign、use、store 和 write。大致可以认为基本数据类型的操作是原子性的。同时 lock 和 unlock 可以保证更大范围操作的原子性。而 synchronize 同步块操作的原子性是用更高层次的字节码指令 monitorenter 和 monitorexit 来隐式操作的。</p>
 <p><strong>可见性(Visibility)</strong><br>是指当一个线程修改了共享变量的值，其他线程也能够立即得知这个通知。主要操作细节就是修改值后将值同步至主内存(volatile 值使用前都会从主内存刷新)，除了 volatile 还有 synchronize 和 final 可以保证可见性。同步块的可见性是由“对一个变量执行unlock 操作之前，必须先把此变量同步会主内存中( store、write 操作)”这条规则获得。而 final 可见性是指：被 final 修饰的字段在构造器中一旦完成，并且构造器没有把 “this” 的引用传递出去( this 引用逃逸是一件很危险的事情，其他线程有可能通过这个引用访问到“初始化了一半”的对象)，那在其他线程中就能看见 final 字段的值。</p>
-<p><strong>有序性(Ordering)</strong><br>如果在被线程内观察，所有操作都是有序的；如果在一个线程中观察另一个线程，所有操作都是无序的。前半句指“线程内表现为串行的语义”，后半句是指“指令重排”现象和“工作内存与主内存同步延迟”现象。Java 语言通过 volatile 和 synchronize 两个关键字来保证线程之间操作的有序性。volatile 自身就禁止指令重排，而 synchronize 则是由“一个变量在同一时刻指允许一条线程对其进行 lock 操作”这条规则获得，这条规则决定了持有同一个锁的两个同步块只能串行的进入。</p>
+<p><strong>有序性(Ordering)</strong><br>如果在被线程内观察，所有操作都是有序的；如果在一个线程中观察另一个线程，所有操作都是无序的。前半句指“线程内表现为串行的语义”，后半句是指“指令重排”现象和“工作内存与主内存同步延迟”现象。Java 语言通过 volatile 和 synchronize 两个关键字来保证线程之间操作的有序性。volatile 自身就禁止指令重排，而 synchronize 则是由“一个变量在同一时刻只允许一条线程对其进行 lock 操作”这条规则获得，这条规则决定了持有同一个锁的两个同步块只能串行的进入。</p>
 <h4 id="先行发生原则"><a href="#先行发生原则" class="headerlink" title="先行发生原则"></a>先行发生原则</h4><p>也就是 happens-before 原则。这个原则是判断数据是否存在竞争、线程是否安全的主要依据。先行发生是 Java 内存模型中定义的两项操作之间的偏序关系。</p>
-<p>天然的先行发生关系<br>规则|    解释<br>|:—:|:—:|:—:|<br>程序次序规则|    在一个线程内，代码按照书写的控制流顺序执行<br>管程锁定规则|    一个 unlock 操作先行发生于后面对同一个锁的 lock 操作<br>volatile 变量规则|    volatile 变量的写操作先行发生于后面对这个变量的读操作<br>线程启动规则|    Thread 对象的 start() 方法先行发生于此线程的每一个动作<br>线程终止规则|    线程中所有的操作都先行发生于对此线程的终止检测(通过 Thread.join() 方法结束、 Thread.isAlive() 的返回值检测)<br>线程中断规则|    对线程 interrupt() 方法调用优先发生于被中断线程的代码检测到中断事件的发生 (通过 Thread.interrupted() 方法检测)<br>对象终结规则|    一个对象的初始化完成(构造函数执行结束)先行发生于它的 finalize() 方法的开始<br>传递性|    如果操作 A 先于 操作 B 发生，操作 B 先于 操作 C 发生，那么操作 A 先于 操作 C</p>
+<p>天然的先行发生关系<br>|规则|    解释|<br>|:—-:|:—-:|:—-:|<br>|程序次序规则|    在一个线程内，代码按照书写的控制流顺序执行|<br>|管程锁定规则|    一个 unlock 操作先行发生于后面对同一个锁的 lock 操作|<br>|volatile 变量规则|    volatile 变量的写操作先行发生于后面对这个变量的读操作|<br>|线程启动规则|    Thread 对象的 start() 方法先行发生于此线程的每一个动作|<br>|线程终止规则|    线程中所有的操作都先行发生于对此线程的终止检测(通过 Thread.join() 方法结束、 Thread.isAlive() 的返回值检测)|<br>|线程中断规则|    对线程 interrupt() 方法调用优先发生于被中断线程的代码检测到中断事件的发生 (通过 Thread.interrupted() 方法检测)|<br>|对象终结规则|    一个对象的初始化完成(构造函数执行结束)先行发生于它的 finalize() 方法的开始|<br>|传递性|    如果操作 A 先于 操作 B 发生，操作 B 先于 操作 C 发生，那么操作 A 先于 操作 C|</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.unclezs.com/Java/Jvm/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8BJMM.html">Java内存模型JMM</a></p>
 
   
   
@@ -525,10 +573,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-17T22:58:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-22T15:23:46+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 17, 2021</p>
+    <p>更新于：Apr 22, 2021</p>
   </a>
 </div>
 
@@ -607,10 +655,10 @@
           <p class='title'>线程间通信问题<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
-wait/notifynotifyAll
+wait/notify/notifyAll
 wait()、notify/notifyAll() 方法是Object的本地final方法，无法被重写。
 
-wait()使当前线程阻塞，前提是 必须...</p>
+wait()使当前线程阻塞，前提是 必...</p>
         </a>
       
     </div>
@@ -653,7 +701,7 @@ wait()使当前线程阻塞，前提是 必须...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%9B%BE"><span class="toc-text">Java内存模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AD%98%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%A4%E4%BA%92%E6%8C%87%E4%BB%A4"><span class="toc-text">主存与工作内存的一些交互指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Evolatile%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E7%89%B9%E6%AE%8A%E8%A7%84%E5%88%99"><span class="toc-text">对于volatile型变量的特殊规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%8F%98%E9%87%8F%E8%A2%AB%E5%AE%9A%E4%B9%89%E4%B8%BAvolatile%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-text">一个变量被定义为volatile的特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Elong%E5%92%8Cdouble%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E7%89%B9%E6%AE%8A%E8%A7%84%E5%88%99"><span class="toc-text">对于long和double型变量的特殊规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E4%B8%8E%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="toc-text">原子性、可见性与有序性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E8%A1%8C%E5%8F%91%E7%94%9F%E5%8E%9F%E5%88%99"><span class="toc-text">先行发生原则</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%9B%BE"><span class="toc-text">Java内存模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AD%98%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%A4%E4%BA%92%E6%8C%87%E4%BB%A4"><span class="toc-text">主存与工作内存的一些交互指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Evolatile%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E7%89%B9%E6%AE%8A%E8%A7%84%E5%88%99"><span class="toc-text">对于volatile型变量的特殊规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%8F%98%E9%87%8F%E8%A2%AB%E5%AE%9A%E4%B9%89%E4%B8%BAvolatile%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-text">一个变量被定义为volatile的特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Elong%E5%92%8Cdouble%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E7%89%B9%E6%AE%8A%E8%A7%84%E5%88%99"><span class="toc-text">对于long和double型变量的特殊规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E4%B8%8E%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="toc-text">原子性、可见性与有序性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E8%A1%8C%E5%8F%91%E7%94%9F%E5%8E%9F%E5%88%99"><span class="toc-text">先行发生原则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

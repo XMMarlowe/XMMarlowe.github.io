@@ -455,7 +455,30 @@
 
 <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><strong>主从复制：</strong> 指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点（Master/Leader），后者称为从节点（Slave/Follower）， 数据的复制是单向的！只能由主节点复制到从节点（<strong>主节点以写为主、从节点以读为主</strong>）。</p>
 <h3 id="主从复制的作用"><a href="#主从复制的作用" class="headerlink" title="主从复制的作用"></a>主从复制的作用</h3><p>默认情况下，每台Redis服务器都是主节点，一个主节点可以有0个或者多个从节点，但每个从节点只能由一个主节点。</p>
-<p>作用|    解释<br>|:—:|:—:|<br>数据冗余|    主从复制实现了数据的热备份<br>故障恢复|    当主节点故障时，从节点可以暂时替代主节点提供服务式<br>负载均衡|    由主节点进行写操作，从节点进行读操作，分担服务器的负载；尤其是在多读少写的场景下，通过多个从节点分担负载，提高并发量<br>高可用基石|    主从复制还是哨兵和集群能够实施的基础</p>
+<table>
+<thead>
+<tr>
+<th align="center">作用</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数据冗余</td>
+<td align="center">主从复制实现了数据的热备份</td>
+</tr>
+<tr>
+<td align="center">故障恢复</td>
+<td align="center">当主节点故障时，从节点可以暂时替代主节点提供服务式</td>
+</tr>
+<tr>
+<td align="center">负载均衡</td>
+<td align="center">由主节点进行写操作，从节点进行读操作，分担服务器的负载；尤其是在多读少写的场景下，通过多个从节点分担负载，提高并发量</td>
+</tr>
+<tr>
+<td align="center">高可用基石</td>
+<td align="center">主从复制还是哨兵和集群能够实施的基础</td>
+</tr>
+</tbody></table>
 <h3 id="全量复制与增量复制"><a href="#全量复制与增量复制" class="headerlink" title="全量复制与增量复制"></a>全量复制与增量复制</h3><h4 id="全量复制"><a href="#全量复制" class="headerlink" title="全量复制"></a>全量复制</h4><ul>
 <li><strong>Redis 全量复制一般发生在Slave初始化阶段，这时 Slave 需要将 Master 上的所有数据都复制一份。</strong><br>具体步骤如下：</li>
 </ul>
@@ -483,7 +506,7 @@
 <h3 id="过程原理"><a href="#过程原理" class="headerlink" title="过程原理"></a>过程原理</h3><ol>
 <li><p>当从库和主库建立MS关系后，<strong>会向主数据库发送SYNC命令</strong></p>
 </li>
-<li><p>主库接收到SYNC命令后会开始在<strong>后台保存快照(RDB持久化过程)**，并将期间接收到的</strong>写命令缓存起来**</p>
+<li><p>主库接收到SYNC命令后会开始在<strong>后台保存快照(RDB持久化过程)，</strong> 并将期间接收到的 <strong>写命令缓存起来</strong></p>
 </li>
 <li><p>当快照完成后，<strong>主Redis会将快照文件和所有缓存的写命令发送给从Redis</strong></p>
 </li>
@@ -558,10 +581,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-19T16:38:19+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-22T14:31:27+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 19, 2021</p>
+    <p>更新于：Apr 22, 2021</p>
   </a>
 </div>
 

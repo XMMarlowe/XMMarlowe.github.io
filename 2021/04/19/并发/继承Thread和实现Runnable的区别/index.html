@@ -452,7 +452,7 @@
 
 
 <ol>
-<li>当使用继承的时候，主要是为了不必重新开发，并且在不必了解实现细节的情况下拥有 了父类我所需要的特征。它也有一个很大的缺点，那就是如果我们的类已经从一个类继承（如小程序必须继承自 Applet 类），则无法再继承 Thread 类，</li>
+<li>当使用继承的时候，主要是为了不必重新开发，并且在不必了解实现细节的情况下拥有了父类我所需要的特征。它也有一个很大的缺点，那就是如果我们的类已经从一个类继承（如小程序必须继承自 Applet 类），则无法再继承 Thread 类，</li>
 <li>Java只能单继承，因此如果是采用继承Thread的方法，那么在以后进行代码重构的时候可能会遇到问题，因为你无法继承别的类了，在其他的方面，两者之间并没什么太大的区别。</li>
 <li>implement Runnable是面向接口，扩展性等方面比extends Thread好。</li>
 <li>使用 Runnable 接口来实现多线程使得我们能够在一个类中包容所有的代码，有利于封装，它的缺点在于，我们只能使用一套代码，若想创建多个线程并使各个线程执行不同的代码，则仍必须额外创建类，如果这样的话，在大多数情况下也许还不如直接用多个类分别继承 Thread 来得紧凑。</li>
@@ -502,10 +502,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-20T22:02:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-22T09:27:11+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 20, 2021</p>
+    <p>更新于：Apr 22, 2021</p>
   </a>
 </div>
 
@@ -573,22 +573,21 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/04/20/Java/public%E3%80%81private%E3%80%81protected%E3%80%81default%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>public、private、protected、default的区别</p>
+        <a class='prev' href='/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Java并发之Unsafe类</p>
           <p class='content'>
 
-publicJava语言中访问限制最宽的修饰符，一般称之为“公共的”。被其修饰的类、属性以及方法不仅可以跨类访问，而且允许跨包（package）访问。
-privateJava语言中对访问权限...</p>
+Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级别、不安全操作的方法，如直接访问系统内存资源、自主管理内存资源等，这些方法在提升Java运行效率、增强Java语言底层...</p>
         </a>
       
       
-        <a class='next' href='/2021/04/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%9D%E8%AF%86BufferPoll/'>
-          <p class='title'>初识BufferPoll<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='next' href='/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/'>
+          <p class='title'>多线程Future的用法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
-Buffer Pool是什么?
-是一块内存区域，当数据库操作数据的时候，把硬盘上的数据加载到buffer pool，不直接和硬盘打交道，操作的是buffer pool里面的数据
-数据库的增删...</p>
+在并发编程时，一般使用runnable，然后扔给线程池完事，这种情况下不需要线程的结果。
+所以run的返回值是void类型。
+如果是一个多线程协作程序，比如斐波那契数列，1，1，2，3，5，...</p>
         </a>
       
     </div>

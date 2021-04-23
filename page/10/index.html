@@ -377,20 +377,20 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        HashMap 和 Hashtable 的区别
+      <a href="/2020/12/27/%E5%B9%B6%E5%8F%91/countDownLatch%E3%80%81CyclicBarrier%E3%80%81Semaphore/">
+        countDownLatch、CyclicBarrier、Semaphore
       </a>
     </h2>
   
   <div class='md'>
     
       
-        
+        countDownLatch简介
+countDownLatch这个类使一个线程等待其他线程各自执行完毕后再执行。
+是通过一个计数器来实现的，计数器的初始值是线程的数量。每当一个线程执行完毕后，计数器的值就-1，当计数器的值为0时，表示所有线程都执行完毕，然后在闭锁上等待的线程就可以恢复工作了。
+减法计数器
 
-
-线程是否安全： HashMap 是非线程安全的，HashTable 是线程安全的,因为 HashTable 内部的方法基本都经过synchronized 修饰。（如果你要保证线程安全的话就使用 ConcurrentHashMap 吧！）；
-效率： 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它；
-对 N...
+原理countDownLatch.countDown(); // 数量-1count...
       
     
   </div>
@@ -398,15 +398,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
+        <time>2020-12-27</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/12/27/%E5%B9%B6%E5%8F%91/countDownLatch%E3%80%81CyclicBarrier%E3%80%81Semaphore/'>
             Read More
           </a>
         </div>
@@ -428,8 +428,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        ArrayList和LinkedList的区别
+      <a href="/2020/12/26/%E5%B9%B6%E5%8F%91/Callable/">
+        Callable
       </a>
     </h2>
   
@@ -437,10 +437,13 @@
     
       
         
-Arraylist 与 LinkedList 区别?
-是否保证线程安全： ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
-底层数据结构： Arraylist 底层使用的是 Object 数组；LinkedList 底层使用的是 双向链表 数据结构（JDK1.6 之前为循环链表，JDK1.7 取消了循环。）
-插入和删除是否受元素位置的影响： ① Array...
+Callable简介：
+
+可以有返回值
+可以抛出异常
+方法不同，Runnable 是 run()， Callable 是call()
+
+1234567891011121314151617181920212223242526public class CallableTest &#123;    public static void main(String[] args) throws Exe...
       
     
   </div>
@@ -448,15 +451,15 @@ Arraylist 与 LinkedList 区别?
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
+        <time>2020-12-26</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/12/26/%E5%B9%B6%E5%8F%91/Callable/'>
             Read More
           </a>
         </div>
@@ -478,8 +481,8 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">
-        ArrayList扩容机制
+      <a href="/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/">
+        Redis 发布与订阅
       </a>
     </h2>
   
@@ -487,8 +490,13 @@ Arraylist 与 LinkedList 区别?
     
       
         
+Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！Redis客户端可以订阅任意数量的频道。订阅/发布消息图：第一个：消息发送者，第二个：频道，第三个：消息订阅者使用场景
 
-1234567891、添加元素时，首先进行判断是否大于默认容量102、如果，小于默认容量，直接在原来基础上+1，元素添加完毕3、如果，大于默认容量，则需要进行扩容，扩容核心是grow()方法   3.1 扩容之前，首先创建一个新的数组，且旧数组被复制到新的数组中       这样就得到了一个全新的副本，我们在操作时就不会影响原来数组了   3.2 然后通过位运算符将新的容量更新为旧容量的...
+实时消息系统
+实时聊天(频道当做聊天室，将信息回显给所有人即可)
+订阅，关注系统
+
+缺点：稍微复杂的场景就会使用消息中间件MQ。在消费者下...
       
     
   </div>
@@ -496,15 +504,15 @@ Arraylist 与 LinkedList 区别?
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
+        <time>2020-12-25</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/'>
+          <a class='readmore' href='/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/'>
             Read More
           </a>
         </div>
@@ -526,29 +534,40 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/">
-        HashMap是线程安全的吗？
+      <a href="/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/">
+        Redis 缓存穿透与雪崩(面试高频)
       </a>
     </h2>
   
   <div class='md'>
     
-      <p><code>HashMap</code>的线程不安全体现在会造成死循环、数据丢失、数据覆盖这些问题。其中死循环和数据丢失是在JDK1.7中出现的问题，在JDK1.8中已经得到解决，然而1.8中仍会有数据覆盖这样的问题。</p>
+      
+        
+
+缓存穿透什么是缓存穿透？缓存穿透说简单点就是大量请求的 key 根本不存在于缓存中，导致请求直接到了数据库上，根本没有经过缓存这一层。举个例子：某个黑客故意制造我们缓存中不存在的 key 发起大量请求，导致大量请求落到数据库。
+缓存穿透情况的处理流程是怎样的？如下图所示，用户的请求最终都要跑到数据库中查询一遍。
+
+
+
+
+
+有哪些解决办法？最基本的就是首先做好参数校验，一些不合法的参数请求...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
+        <time>2020-12-24</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/'>
+          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/'>
             Read More
           </a>
         </div>
@@ -570,36 +589,29 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
-        HashMap底层原理
+      <a href="/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/">
+        Redis 持久化
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-JDK1.7数据结构则是采用的位桶和链表相结合的形式完成了，即拉链法。具体如下图所示：
-HashMap里面存储的是静态内部类Entry的对象，这个对象其实也是一个key-value的结构。
-hash源码：
-12345678static int hash(int h) &#123;    // This function ensures that hashCodes that differ...
-      
+      <p>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失，所以Redis提供了持久化功能！</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
+        <time>2020-12-24</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/'>
+          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/'>
             Read More
           </a>
         </div>
@@ -621,29 +633,34 @@ hash源码：
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/Java/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        常见的IO模型有哪些？Java中的BIO，NIO，AIO的区别
+      <a href="/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/">
+        SpringBoot整合Redis
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>从应用程序的视角来看的话，我们的应用程序对操作系统的内核发起 IO 调用（系统调用），操作系统负责的内核执行具体的 IO 操作。也就是说，我们的应用程序实际上只是发起了 IO 操作的调用而已，具体 IO 的执行是由操作系统的内核来完成的。</p>
+      
+        
+
+说明：SpringBoot2.x之后，原来使用jedis被替换为了lettucejedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全，使用jedis pool连接池！ 更像BIO模式lettuce：采用netty，示例可以在多个线程中共享，不存在线程不安全的情况！可以减少线程数据了，更像NIO模式原码分析：
+12345678910111213141516171819@...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
+        <time>2020-12-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/15/Java/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/12/23/NoSQL/SpringBoot%E6%95%B4%E5%90%88Redis/'>
             Read More
           </a>
         </div>
@@ -665,35 +682,29 @@ hash源码：
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
-        JDK动态代理和CGLIB动态代理
+      <a href="/2020/12/23/NoSQL/Jedis/">
+        Jedis
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-1、代理模式简介我们使用代理对象来代替对真实对象(real object)的访问，这样就可以在不修改原目标对象的前提下，提供额外的功能操作，扩展目标对象的功能。
-作用代理模式的主要作用是扩展目标对象的功能，比如说在目标对象的某个方法执行前后你可以增加一些自定义的操作。
-2、静态代理静态代理中，我们对目标对象的每个方法的增强都是手动完成的（后面会具体演示代码_），非常不灵活（_比如接口一旦...
-      
+      <p>…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
+        <time>2020-12-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/'>
+          <a class='readmore' href='/2020/12/23/NoSQL/Jedis/'>
             Read More
           </a>
         </div>
@@ -715,24 +726,29 @@ hash源码：
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
-        代理模式之静态代理和动态代理
+      <a href="/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/">
+        Redis 事务
       </a>
     </h2>
   
   <div class='md'>
+    
+      <p>Redis 事务简介…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
+        <time>2020-12-20</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/'>
+          <a class='readmore' href='/2020/12/20/NoSQL/Redis-%E4%BA%8B%E5%8A%A1/'>
             Read More
           </a>
         </div>
@@ -754,39 +770,29 @@ hash源码：
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/13/Java/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/">
-        final,static,this,super关键字总结
+      <a href="/2020/12/20/NoSQL/Redis-%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+        Redis 三种特殊数据类型
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-final 关键字final关键字，意思是最终的、不可修改的，最见不得变化 ，用来修饰类、方法和变量，具有以下特点：
-
-final修饰的类不能被继承，final类中的所有成员方法都会被隐式的指定为final方法；
-
-final修饰的方法不能被重写；
-
-final修饰的变量是常量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能让...
-      
+      <p>Radis 三种特殊数据类型…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-13</time>
+        <time>2020-12-20</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/13/Java/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/'>
+          <a class='readmore' href='/2020/12/20/NoSQL/Redis-%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/'>
             Read More
           </a>
         </div>
@@ -808,29 +814,29 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/13/Java/Arrays-asList-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-        Arrays.asList()使用指南
+      <a href="/2020/12/19/NoSQL/Redis-%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+        Redis 五大数据类型
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Arrays.asList()将数组转换为集合后,底层其实还是数组</p>
+      <p>Redis 五大数据类型详述…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-13</time>
+        <time>2020-12-19</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/13/Java/Arrays-asList-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+          <a class='readmore' href='/2020/12/19/NoSQL/Redis-%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/'>
             Read More
           </a>
         </div>
@@ -857,7 +863,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           </a>
         
         <p class="current">
-          10 / 16
+          10 / 17
         </p>
         
           <a class="next" rel="next" href="/page/11/">
@@ -970,7 +976,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(31)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(32)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1015,12 +1021,12 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(14)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1089,7 +1095,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
 
 
     <div class='content'>
-      <a href="/tags/ABA/" style="font-size: 14px; color: #999">ABA</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/AQS/" style="font-size: 14px; color: #999">AQS</a> <a href="/tags/AVL/" style="font-size: 14px; color: #999">AVL</a> <a href="/tags/Arrays/" style="font-size: 14px; color: #999">Arrays</a> <a href="/tags/B-Tree/" style="font-size: 14px; color: #999">B+Tree</a> <a href="/tags/BST/" style="font-size: 14px; color: #999">BST</a> <a href="/tags/BTree/" style="font-size: 14px; color: #999">BTree</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/BufferPoll/" style="font-size: 14px; color: #999">BufferPoll</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/Cookie/" style="font-size: 14px; color: #999">Cookie</a> <a href="/tags/CyclicBarrier/" style="font-size: 14px; color: #999">CyclicBarrier</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/DNS/" style="font-size: 14px; color: #999">DNS</a> <a href="/tags/Docker/" style="font-size: 17.33px; color: #828282">Docker</a> <a href="/tags/ES/" style="font-size: 16.22px; color: #8a8a8a">ES</a> <a href="/tags/ForkJoin/" style="font-size: 14px; color: #999">ForkJoin</a> <a href="/tags/Future/" style="font-size: 14px; color: #999">Future</a> <a href="/tags/GC/" style="font-size: 16.22px; color: #8a8a8a">GC</a> <a href="/tags/HTTP/" style="font-size: 17.33px; color: #828282">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 14px; color: #999">HTTPS</a> <a href="/tags/HashMap/" style="font-size: 20.67px; color: #6c6c6c">HashMap</a> <a href="/tags/I-O%E6%A8%A1%E5%9E%8B/" style="font-size: 14px; color: #999">I/O模型</a> <a href="/tags/IO/" style="font-size: 15.11px; color: #919191">IO</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/InnoDB/" style="font-size: 17.33px; color: #828282">InnoDB</a> <a href="/tags/JDK/" style="font-size: 15.11px; color: #919191">JDK</a> <a href="/tags/JMM/" style="font-size: 14px; color: #999">JMM</a> <a href="/tags/JUC/" style="font-size: 14px; color: #999">JUC</a> <a href="/tags/JVM/" style="font-size: 19.56px; color: #737373">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 16.22px; color: #8a8a8a">Leetcode</a> <a href="/tags/List/" style="font-size: 15.11px; color: #919191">List</a> <a href="/tags/MyISAM/" style="font-size: 15.11px; color: #919191">MyISAM</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/OSI/" style="font-size: 14px; color: #999">OSI</a> <a href="/tags/Ping/" style="font-size: 14px; color: #999">Ping</a> <a href="/tags/RESTful/" style="font-size: 14px; color: #999">RESTful</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Runnable/" style="font-size: 14px; color: #999">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 14px; color: #999">Semaphore</a> <a href="/tags/Session/" style="font-size: 14px; color: #999">Session</a> <a href="/tags/Spring/" style="font-size: 18.44px; color: #7b7b7b">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 16.22px; color: #8a8a8a">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/TCP/" style="font-size: 17.33px; color: #828282">TCP</a> <a href="/tags/Thread/" style="font-size: 14px; color: #999">Thread</a> <a href="/tags/TopK/" style="font-size: 14px; color: #999">TopK</a> <a href="/tags/UDP/" style="font-size: 14px; color: #999">UDP</a> <a href="/tags/Unsafe/" style="font-size: 14px; color: #999">Unsafe</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/countDownLatch/" style="font-size: 14px; color: #999">countDownLatch</a> <a href="/tags/default/" style="font-size: 14px; color: #999">default</a> <a href="/tags/dp/" style="font-size: 14px; color: #999">dp</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/finalize/" style="font-size: 14px; color: #999">finalize</a> <a href="/tags/finally/" style="font-size: 15.11px; color: #919191">finally</a> <a href="/tags/get/" style="font-size: 14px; color: #999">get</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/join/" style="font-size: 14px; color: #999">join</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/mvcc/" style="font-size: 14px; color: #999">mvcc</a> <a href="/tags/post/" style="font-size: 14px; color: #999">post</a> <a href="/tags/private/" style="font-size: 14px; color: #999">private</a> <a href="/tags/protected/" style="font-size: 14px; color: #999">protected</a> <a href="/tags/public/" style="font-size: 14px; color: #999">public</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/test/" style="font-size: 15.11px; color: #919191">test</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%B8%8A%E4%B8%8B%E6%96%87/" style="font-size: 14px; color: #999">上下文</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 15.11px; color: #919191">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 16.22px; color: #8a8a8a">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%85%B3%E9%94%AE%E5%AD%97/" style="font-size: 14px; color: #999">关键字</a> <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" style="font-size: 14px; color: #999">内存管理</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">函数式接口</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">创建型模式</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">动态代理</a> <a href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/" style="font-size: 14px; color: #999">包装类</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E7%B1%BB/" style="font-size: 14px; color: #999">原子类</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 14px; color: #999">反射</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 14px; color: #999">垃圾回收</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16.22px; color: #8a8a8a">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/" style="font-size: 15.11px; color: #919191">常量池</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 14px; color: #999">异常</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 14px; color: #999">异步</a> <a href="/tags/%E6%8A%BD%E8%B1%A1%E7%B1%BB/" style="font-size: 14px; color: #999">抽象类</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">排序</a> <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">接口</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 15.11px; color: #919191">数据类型</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 14px; color: #999">数组</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%B1%BB%E5%9B%BE/" style="font-size: 14px; color: #999">类图</a> <a href="/tags/%E7%B4%A2%E5%BC%95/" style="font-size: 15.11px; color: #919191">索引</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 14px; color: #999">红黑树</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 21.78px; color: #646464">线程</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15.11px; color: #919191">线程安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" style="font-size: 15.11px; color: #919191">线程池</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 16.22px; color: #8a8a8a">结构型模式</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD/" style="font-size: 14px; color: #999">缺页中断</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82/" style="font-size: 14px; color: #999">网络分层</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" style="font-size: 14px; color: #999">虚拟内存</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">行为型模式</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8/" style="font-size: 14px; color: #999">过滤器</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 15.11px; color: #919191">进程</a> <a href="/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/" style="font-size: 14px; color: #999">进程通信</a> <a href="/tags/%E9%80%9A%E4%BF%A1/" style="font-size: 14px; color: #999">通信</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15.11px; color: #919191">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 17.33px; color: #828282">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" style="font-size: 14px; color: #999">隔离级别</a> <a href="/tags/%E9%9B%86%E5%90%88%E7%B1%BB/" style="font-size: 14px; color: #999">集合类</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a> <a href="/tags/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/" style="font-size: 14px; color: #999">页面置换算法</a>
+      <a href="/tags/ABA/" style="font-size: 14px; color: #999">ABA</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/AQS/" style="font-size: 14px; color: #999">AQS</a> <a href="/tags/AVL/" style="font-size: 14px; color: #999">AVL</a> <a href="/tags/Arrays/" style="font-size: 14px; color: #999">Arrays</a> <a href="/tags/B-Tree/" style="font-size: 15.11px; color: #919191">B+Tree</a> <a href="/tags/BST/" style="font-size: 14px; color: #999">BST</a> <a href="/tags/BTree/" style="font-size: 14px; color: #999">BTree</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/BufferPoll/" style="font-size: 14px; color: #999">BufferPoll</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Callable/" style="font-size: 14px; color: #999">Callable</a> <a href="/tags/Cookie/" style="font-size: 14px; color: #999">Cookie</a> <a href="/tags/CyclicBarrier/" style="font-size: 14px; color: #999">CyclicBarrier</a> <a href="/tags/DI/" style="font-size: 14px; color: #999">DI</a> <a href="/tags/DNS/" style="font-size: 14px; color: #999">DNS</a> <a href="/tags/Docker/" style="font-size: 17.33px; color: #828282">Docker</a> <a href="/tags/ES/" style="font-size: 16.22px; color: #8a8a8a">ES</a> <a href="/tags/ForkJoin/" style="font-size: 14px; color: #999">ForkJoin</a> <a href="/tags/Future/" style="font-size: 14px; color: #999">Future</a> <a href="/tags/GC/" style="font-size: 16.22px; color: #8a8a8a">GC</a> <a href="/tags/HTTP/" style="font-size: 17.33px; color: #828282">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 14px; color: #999">HTTPS</a> <a href="/tags/HashMap/" style="font-size: 20.67px; color: #6c6c6c">HashMap</a> <a href="/tags/I-O%E6%A8%A1%E5%9E%8B/" style="font-size: 14px; color: #999">I/O模型</a> <a href="/tags/IO/" style="font-size: 15.11px; color: #919191">IO</a> <a href="/tags/IOC/" style="font-size: 14px; color: #999">IOC</a> <a href="/tags/InnoDB/" style="font-size: 17.33px; color: #828282">InnoDB</a> <a href="/tags/JDK/" style="font-size: 15.11px; color: #919191">JDK</a> <a href="/tags/JMM/" style="font-size: 14px; color: #999">JMM</a> <a href="/tags/JUC/" style="font-size: 14px; color: #999">JUC</a> <a href="/tags/JVM/" style="font-size: 19.56px; color: #737373">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 22.89px; color: #5d5d5d">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/Jedis/" style="font-size: 14px; color: #999">Jedis</a> <a href="/tags/Json/" style="font-size: 14px; color: #999">Json</a> <a href="/tags/Leetcode/" style="font-size: 16.22px; color: #8a8a8a">Leetcode</a> <a href="/tags/List/" style="font-size: 15.11px; color: #919191">List</a> <a href="/tags/MyISAM/" style="font-size: 15.11px; color: #919191">MyISAM</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/OSI/" style="font-size: 14px; color: #999">OSI</a> <a href="/tags/Object/" style="font-size: 14px; color: #999">Object</a> <a href="/tags/Ping/" style="font-size: 14px; color: #999">Ping</a> <a href="/tags/RESTful/" style="font-size: 14px; color: #999">RESTful</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Resuful/" style="font-size: 14px; color: #999">Resuful</a> <a href="/tags/Runnable/" style="font-size: 14px; color: #999">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 14px; color: #999">Semaphore</a> <a href="/tags/Session/" style="font-size: 14px; color: #999">Session</a> <a href="/tags/Spring/" style="font-size: 18.44px; color: #7b7b7b">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 16.22px; color: #8a8a8a">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 14px; color: #999">SpringMVC</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swagger/" style="font-size: 14px; color: #999">Swagger</a> <a href="/tags/TCP/" style="font-size: 17.33px; color: #828282">TCP</a> <a href="/tags/Thread/" style="font-size: 14px; color: #999">Thread</a> <a href="/tags/TopK/" style="font-size: 14px; color: #999">TopK</a> <a href="/tags/UDP/" style="font-size: 14px; color: #999">UDP</a> <a href="/tags/Unsafe/" style="font-size: 14px; color: #999">Unsafe</a> <a href="/tags/Utils/" style="font-size: 14px; color: #999">Utils</a> <a href="/tags/countDownLatch/" style="font-size: 14px; color: #999">countDownLatch</a> <a href="/tags/default/" style="font-size: 14px; color: #999">default</a> <a href="/tags/dp/" style="font-size: 14px; color: #999">dp</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/finalize/" style="font-size: 14px; color: #999">finalize</a> <a href="/tags/finally/" style="font-size: 15.11px; color: #919191">finally</a> <a href="/tags/get/" style="font-size: 14px; color: #999">get</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/join/" style="font-size: 15.11px; color: #919191">join</a> <a href="/tags/list/" style="font-size: 14px; color: #999">list</a> <a href="/tags/mvcc/" style="font-size: 14px; color: #999">mvcc</a> <a href="/tags/post/" style="font-size: 14px; color: #999">post</a> <a href="/tags/private/" style="font-size: 14px; color: #999">private</a> <a href="/tags/protected/" style="font-size: 14px; color: #999">protected</a> <a href="/tags/public/" style="font-size: 14px; color: #999">public</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/test/" style="font-size: 15.11px; color: #919191">test</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%B8%8A%E4%B8%8B%E6%96%87/" style="font-size: 14px; color: #999">上下文</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 15.11px; color: #919191">事务</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 16.22px; color: #8a8a8a">二叉树</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">代理</a> <a href="/tags/%E5%85%B3%E9%94%AE%E5%AD%97/" style="font-size: 14px; color: #999">关键字</a> <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" style="font-size: 14px; color: #999">内存管理</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">函数式接口</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">创建型模式</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">动态代理</a> <a href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/" style="font-size: 14px; color: #999">包装类</a> <a href="/tags/%E5%8D%95%E4%BE%8B/" style="font-size: 14px; color: #999">单例</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E7%B1%BB/" style="font-size: 14px; color: #999">原子类</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 14px; color: #999">反射</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 14px; color: #999">垃圾回收</a> <a href="/tags/%E5%A4%96%E8%A7%82/" style="font-size: 14px; color: #999">外观</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16.22px; color: #8a8a8a">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">学习</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">工作方法</a> <a href="/tags/%E5%B7%A5%E5%8E%82/" style="font-size: 14px; color: #999">工厂</a> <a href="/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/" style="font-size: 15.11px; color: #919191">常量池</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 14px; color: #999">异常</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 14px; color: #999">异步</a> <a href="/tags/%E6%8A%BD%E8%B1%A1%E7%B1%BB/" style="font-size: 14px; color: #999">抽象类</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">排序</a> <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 14px; color: #999">接口</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 14px; color: #999">插入排序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 14px; color: #999">效率</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 15.11px; color: #919191">数据类型</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 14px; color: #999">数组</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 14px; color: #999">模板</a> <a href="/tags/%E6%AD%BB%E9%94%81/" style="font-size: 14px; color: #999">死锁</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 14px; color: #999">注解</a> <a href="/tags/%E7%AD%96%E7%95%A5/" style="font-size: 14px; color: #999">策略</a> <a href="/tags/%E7%B1%BB%E5%9B%BE/" style="font-size: 14px; color: #999">类图</a> <a href="/tags/%E7%B4%A2%E5%BC%95/" style="font-size: 15.11px; color: #919191">索引</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 14px; color: #999">红黑树</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 21.78px; color: #646464">线程</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">线程不安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15.11px; color: #919191">线程安全</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" style="font-size: 15.11px; color: #919191">线程池</a> <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 16.22px; color: #8a8a8a">结构型模式</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD/" style="font-size: 14px; color: #999">缺页中断</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82/" style="font-size: 14px; color: #999">网络分层</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" style="font-size: 14px; color: #999">虚拟内存</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 15.11px; color: #919191">行为型模式</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8/" style="font-size: 14px; color: #999">过滤器</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 17.33px; color: #828282">进程</a> <a href="/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/" style="font-size: 14px; color: #999">进程通信</a> <a href="/tags/%E9%80%9A%E4%BF%A1/" style="font-size: 14px; color: #999">通信</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">配置</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15.11px; color: #919191">链表</a> <a href="/tags/%E9%94%81/" style="font-size: 17.33px; color: #828282">锁</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a> <a href="/tags/%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" style="font-size: 14px; color: #999">隔离级别</a> <a href="/tags/%E9%9B%86%E5%90%88%E7%B1%BB/" style="font-size: 14px; color: #999">集合类</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 14px; color: #999">面经</a> <a href="/tags/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/" style="font-size: 14px; color: #999">页面置换算法</a>
     </div>
   </section>
 
@@ -1116,7 +1122,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>157 篇</div>
+          <div>162 篇</div>
         </div>
       
 
@@ -1138,7 +1144,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>152.3k 字</div>
+          <div>159.9k 字</div>
         </div>
       
 
@@ -1164,8 +1170,8 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Apr 21 2021 23:04:26 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-21 日</div>
+            <div id="last-update" style="display: none;">Fri Apr 23 2021 22:39:48 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-23 日</div>
           
         </div>
         
@@ -1215,7 +1221,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-04-23 日';
           }
         </script>
         
