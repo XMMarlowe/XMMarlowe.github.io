@@ -377,6 +377,64 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD%E5%8F%8A%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/">
+        缺页中断及页面置换算法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+缺页中断在请求分页系统中，可以通过查询页表中的状态位来确定所要访问的页面是否存在于内存中。每当所要访问的页面不在内存时，会产生一次缺页中断，此时操作系统会根据页表中的外存地址在外存中找到所缺的一页，将其调入内存。
+
+缺页本身是一种中断，与一般的中断一样，需要经过4个处理步骤：    
+
+保护CPU现场  
+分析中断原因
+转入缺页中断处理程序进行处理
+恢复CPU现场，继续执行
+
+但是缺页...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD%E5%8F%8A%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">
         多线程和多进程及其应用场景
       </a>
@@ -819,50 +877,6 @@ To be continue…
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/23/NoSQL/Redis-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
-        Redis 相关知识点总结
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>总结一些Redis常见知识点…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-23</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/23/NoSQL/Redis-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1040,7 +1054,7 @@ To be continue…
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1136,7 +1150,7 @@ To be continue…
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>162 篇</div>
+          <div>163 篇</div>
         </div>
       
 
@@ -1158,7 +1172,7 @@ To be continue…
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>159.9k 字</div>
+          <div>161.3k 字</div>
         </div>
       
 
@@ -1184,8 +1198,8 @@ To be continue…
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Apr 24 2021 23:06:38 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-24 日</div>
+            <div id="last-update" style="display: none;">Sun Apr 25 2021 22:18:40 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-25 日</div>
           
         </div>
         
@@ -1235,7 +1249,7 @@ To be continue…
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-04-25 日';
           }
         </script>
         

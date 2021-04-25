@@ -376,6 +376,50 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/17/NoSQL/Redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">
+        Redis主从复制
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>为了分担读压力，Redis支持主从复制，Redis的主从结构可以采用一主多从或者级联结构，Redis主从复制可以根据是否是全量分为全量同步和增量同步…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/17/NoSQL/Redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/">
         如何保证缓存和数据库数据的一致性？
       </a>
@@ -806,58 +850,6 @@ Redis为了达到最快的读写速度将数据都读到内存中，并通过异
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/">
-        Redis内存淘汰机制
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Redis 提供 6 种数据淘汰策略：
-
-volatile-lru（least recently used）： 从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
-volatile-ttl： 从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰
-volatile-random： 从已设置过期时间的数据集...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1036,7 +1028,7 @@ volatile-random： 从已设置过期时间的数据集...
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1132,7 +1124,7 @@ volatile-random： 从已设置过期时间的数据集...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>162 篇</div>
+          <div>163 篇</div>
         </div>
       
 
@@ -1154,7 +1146,7 @@ volatile-random： 从已设置过期时间的数据集...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>159.9k 字</div>
+          <div>161.3k 字</div>
         </div>
       
 
@@ -1180,8 +1172,8 @@ volatile-random： 从已设置过期时间的数据集...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Apr 24 2021 23:06:34 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-24 日</div>
+            <div id="last-update" style="display: none;">Sun Apr 25 2021 22:18:36 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-25 日</div>
           
         </div>
         
@@ -1231,7 +1223,7 @@ volatile-random： 从已设置过期时间的数据集...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-04-25 日';
           }
         </script>
         

@@ -377,6 +377,56 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/03/09/%E5%B9%B6%E5%8F%91/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        sleep(),wait(),join(),yield()的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+sleepwaitjoinyield
+锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就绪队列进行等待cpu资源分配。
+等待池当我们调用wait()方法后，线程会放到等待池当中，等待池的线程是不会去竞争同步锁。只有调用了notify()或notify...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/09/%E5%B9%B6%E5%8F%91/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/03/09/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/">
         线程的生命周期包括哪几个阶段
       </a>
@@ -804,50 +854,6 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E7%9A%84%E7%9B%AE%E7%9A%84/">
-        计算机网络分层的目的
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>简单讲讲计算机网络分层的原因…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E7%9A%84%E7%9B%AE%E7%9A%84/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1025,7 +1031,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1121,7 +1127,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>162 篇</div>
+          <div>163 篇</div>
         </div>
       
 
@@ -1143,7 +1149,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>159.9k 字</div>
+          <div>161.3k 字</div>
         </div>
       
 
@@ -1169,8 +1175,8 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Apr 24 2021 23:06:38 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-24 日</div>
+            <div id="last-update" style="display: none;">Sun Apr 25 2021 22:18:40 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-25 日</div>
           
         </div>
         
@@ -1220,7 +1226,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-04-25 日';
           }
         </script>
         

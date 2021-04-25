@@ -377,6 +377,63 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/04/11/Java/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%8F%8A%E5%85%B3%E7%B3%BB%E5%9B%BE/">
+        Java中的集合类及关系图
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+
+
+
+
+
+List 和 Set 继承自 Collection 接口。
+Set 无序不允许元素重复。HashSet 和 TreeSet 是两个主要的实现类。
+List 有序且允许元素重复。ArrayList、LinkedList 和 Vector 是三个主要的实现 类。
+Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 value 的映 射集合，其中...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/11/Java/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%8F%8A%E5%85%B3%E7%B3%BB%E5%9B%BE/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/04/11/Java/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/">
         抽象类和接口的区别
       </a>
@@ -841,57 +898,6 @@ Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/03/16/Java/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/">
-        ConcurrentHashMap 线程安全的具体实现方式/底层具体实现
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-JDK1.7
-首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。
-ConcurrentHashMap 是由 Segment 数组结构和 HashEntry 数组结构组成。
-Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数据...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-03-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/03/16/Java/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1069,7 +1075,7 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1165,7 +1171,7 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>162 篇</div>
+          <div>163 篇</div>
         </div>
       
 
@@ -1187,7 +1193,7 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>159.9k 字</div>
+          <div>161.3k 字</div>
         </div>
       
 
@@ -1213,8 +1219,8 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Apr 24 2021 23:06:39 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-24 日</div>
+            <div id="last-update" style="display: none;">Sun Apr 25 2021 22:18:42 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-25 日</div>
           
         </div>
         
@@ -1264,7 +1270,7 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-04-25 日';
           }
         </script>
         

@@ -480,9 +480,9 @@
 <p><strong>sentinel 领导者节点选举出来后,会通过如下几步进行故障转移:</strong></p>
 <p>一、从 slave 节点中选出一个合适的 节点作为新的master节点.这里的合适包括如下几点:</p>
 <ol>
-<li>选择 slave-priority(slave节点优先级)最高的slave节点,如果存在则返回,不存在则继续下一步判断。</li>
-<li>选择复制偏移量最大的 slave 节点(复制的最完整),如果存在则返回,不存在则继续。</li>
-<li>选择runId最小的slave节点(启动最早的节点)</li>
+<li>选择 slave-priority(<strong>slave节点优先级,也即priority最小的</strong>)最高的slave节点,如果存在则返回,不存在则继续下一步判断。</li>
+<li>选择复制偏移量最大的 slave 节点(<strong>复制的最完整</strong>),如果存在则返回,不存在则继续。</li>
+<li>选择runId最小的slave节点(<strong>启动最早的节点</strong>)</li>
 </ol>
 <p>二、对上面选出来的 slave 节点执行 slaveof no one 命令让其成为新的 master 节点。</p>
 <p>三、向剩余的 slave 节点发送命令,让他们成为新master 节点的 slave 节点,复制规则和前面设置的 parallel-syncs 参数有关。</p>
@@ -539,10 +539,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-19T16:38:19+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-25T21:52:51+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 19, 2021</p>
+    <p>更新于：Apr 25, 2021</p>
   </a>
 </div>
 
