@@ -429,7 +429,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>292 words</p>
+      <p>293 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -453,9 +453,9 @@
 
 <ol>
 <li>当使用继承的时候，主要是为了不必重新开发，并且在不必了解实现细节的情况下拥有了父类我所需要的特征。它也有一个很大的缺点，那就是如果我们的类已经从一个类继承（如小程序必须继承自 Applet 类），则无法再继承 Thread 类，</li>
-<li>Java只能单继承，因此如果是采用继承Thread的方法，那么在以后进行代码重构的时候可能会遇到问题，因为你无法继承别的类了，在其他的方面，两者之间并没什么太大的区别。</li>
-<li>implement Runnable是面向接口，扩展性等方面比extends Thread好。</li>
-<li>使用 Runnable 接口来实现多线程使得我们能够在一个类中包容所有的代码，有利于封装，它的缺点在于，我们只能使用一套代码，若想创建多个线程并使各个线程执行不同的代码，则仍必须额外创建类，如果这样的话，在大多数情况下也许还不如直接用多个类分别继承 Thread 来得紧凑。</li>
+<li>Java只能<strong>单继承</strong>，因此如果是采用继承Thread的方法，那么在以后进行代码重构的时候可能会遇到问题，因为你无法继承别的类了，在其他的方面，两者之间并没什么太大的区别。</li>
+<li>implement Runnable是面向接口，<strong>扩展性</strong>等方面比继承Thread好。</li>
+<li>使用 Runnable 接口来实现多线程使得我们能够在一个类中包容所有的代码，<strong>有利于封装</strong>，它的缺点在于，我们只能使用一套代码，若想创建多个线程并使各个线程执行不同的代码，则仍必须额外创建类，如果这样的话，在大多数情况下也许还不如直接用多个类分别继承 Thread 来得紧凑。</li>
 </ol>
 
   
@@ -502,10 +502,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-22T09:27:11+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-26T21:54:30+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 22, 2021</p>
+    <p>更新于：Apr 26, 2021</p>
   </a>
 </div>
 

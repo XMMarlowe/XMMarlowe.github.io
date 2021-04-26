@@ -598,12 +598,13 @@
 <li><strong>写阶段：</strong> 事务已通过有效性检查，则将临时变量中的结果更新到数据库中。<br>有效性检查通常也是通过对事务的时间戳进行比较完成的，不过和基于时间戳排序的规则不一样。</li>
 </ol>
 <p>该方法允许可能冲突的操作并发执行,因为每个事务操作的都是自己工作空间的局部变量,直到有效性检查阶段发现了冲突才回滚。因而这是一种乐观的并发策略。</p>
-<h4 id="基于多版本并发控制（MVCC）与快照隔离"><a href="#基于多版本并发控制（MVCC）与快照隔离" class="headerlink" title="基于多版本并发控制（MVCC）与快照隔离"></a>基于多版本并发控制（MVCC）与快照隔离</h4><p><strong>什么是MVCC</strong><br>多版本并发控制（Multi-Version Concurrency Control, MVCC）是 MySQL 的 InnoDB 存储引擎实现隔离级别的一种具体方式，用于实现提交读和可重复读这两种隔离级别。而未提交读隔离级别总是读取最新的数据行，无需使用 MVCC。可串行化隔离级别需要对所有读取的行都加锁，单纯使用 MVCC 无法实现。</p>
-<p>可以认为MVCC是行级锁的一个变种，但是在很多情况下又避免了加锁，所以效率比较高。</p>
+<h4 id="基于多版本并发控制（MVCC）与快照隔离"><a href="#基于多版本并发控制（MVCC）与快照隔离" class="headerlink" title="基于多版本并发控制（MVCC）与快照隔离"></a>基于多版本并发控制（MVCC）与快照隔离</h4><p><strong>什么是MVCC</strong></p>
+<p>多版本并发控制（Multi-Version Concurrency Control, MVCC）是 MySQL 的 InnoDB 存储引擎实现隔离级别的一种具体方式，用于实现<strong>提交读</strong>和<strong>可重复读</strong>这两种隔离级别。而<strong>未提交读隔离级别总是读取最新的数据行，无需使用 MVCC</strong>。<strong>可串行化隔离级别需要对所有读取的行都加锁，单纯使用 MVCC 无法实现。</strong></p>
+<p><strong>可以认为MVCC是行级锁的一个变种，但是在很多情况下又避免了加锁，所以效率比较高。</strong></p>
 <p>MySQL的InnoDB的MVCC是通过在每行记录后面保存两个隐藏的列实现：</p>
 <ul>
-<li>创建版本号：指示创建一个数据行的快照时的系统版本号；</li>
-<li>删除版本号：如果该快照的删除版本号大于当前事务版本号表示该快照有效，否则表示该快照已经被删除了。</li>
+<li><strong>创建版本号</strong>：指示创建一个数据行的快照时的系统版本号；</li>
+<li><strong>删除版本号</strong>：如果该快照的删除版本号大于当前事务版本号表示该快照有效，否则表示该快照已经被删除了。</li>
 </ul>
 <p>其中系统版本号：是一个递增的数字，每开始一个新的事务，系统版本号就会自动递增。事务版本号：事务开始时的系统版本号。</p>
 <p>MVCC 使用到的快照存储在 Undo 日志中，该日志通过回滚指针把一个数据行（Record）的所有快照连接起来。<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210421225359.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210421225359.png" srcset="data:image/png;base64,666" alt="20210421225359"></p>
@@ -674,10 +675,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:25:01+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-26T21:12:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：Apr 26, 2021</p>
   </a>
 </div>
 
