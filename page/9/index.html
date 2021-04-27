@@ -766,14 +766,12 @@ Buffer Pool是什么?
       
         
 
-MyISAM 和 InnoDB 存储引擎使用的锁：
-
+MyISAM 和 InnoDB 存储引擎使用的锁
 MyISAM 采用表级锁(table-level locking)。
 InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁
 
-表级锁和行级锁对比：
-
-表级锁： MySQL 中锁定 粒度最大 的一种锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概...
+表级锁和行级锁对比
+表级锁： MySQL 中锁定 粒度最大 的一种锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，...
       
     
   </div>
@@ -1149,7 +1147,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>161.7k 字</div>
+          <div>161.8k 字</div>
         </div>
       
 
@@ -1175,8 +1173,8 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon Apr 26 2021 23:02:06 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-04-26 日</div>
+            <div id="last-update" style="display: none;">Tue Apr 27 2021 22:48:50 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-04-27 日</div>
           
         </div>
         
@@ -1226,7 +1224,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-04-26 日';
+            document.getElementById('last-update-show').innerHTML = '2021-04-27 日';
           }
         </script>
         

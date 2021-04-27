@@ -429,7 +429,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>298 words</p>
+      <p>410 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -451,8 +451,9 @@
   <a id="more"></a>
 
 <p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/tcp-vs-udp.jpg" class="lazyload" data-srcset="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/tcp-vs-udp.jpg" srcset="data:image/png;base64,666" alt="TCP，UDP"></p>
-<p>UDP 在传送数据之前不需要先建立连接，远地主机在收到 UDP 报文后，不需要给出任何确认。虽然 UDP 不提供可靠交付，但在某些情况下 UDP 确是一种最有效的工作方式（一般用于即时通信），比如： QQ 语音、 QQ 视频 、直播等等</p>
-<p>TCP 提供面向连接的服务。在传送数据之前必须先建立连接，数据传送结束后要释放连接。 TCP 不提供广播或多播服务。由于 TCP 要提供可靠的，面向连接的传输服务（TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源），这一难以避免增加了许多开销，如确认，流量控制，计时器以及连接管理等。这不仅使协议数据单元的首部增大很多，还要占用许多处理机资源。TCP 一般用于文件传输、发送和接收邮件、远程登录等场景。</p>
+<p>UDP 在传送数据之前不需要先建立连接，远地主机在收到 UDP 报文后，不需要给出任何确认。虽然 UDP <strong>不提供可靠交付</strong>，但在某些情况下 UDP 确是一种最有效的工作方式（<strong>一般用于即时通信</strong>），比如： QQ 语音、 QQ 视频 、直播等等</p>
+<p>TCP 提供面向连接的服务。在传送数据之前必须先建立连接，数据传送结束后要释放连接。 <strong>TCP 不提供广播或多播服务</strong>。<strong>由于 TCP 要提供可靠的，面向连接的传输服务（TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源）</strong>，这一难以避免增加了许多开销，如确认，流量控制，计时器以及连接管理等。这不仅使协议数据单元的首部增大很多，还要占用许多处理机资源。<strong>TCP 一般用于文件传输、发送和接收邮件、远程登录等场景。</strong></p>
+<h3 id="视频通话为什么采用UDP"><a href="#视频通话为什么采用UDP" class="headerlink" title="视频通话为什么采用UDP"></a>视频通话为什么采用UDP</h3><p>UDP 没有拥塞控制，一直会以恒定的速度发送数据。即使网络条件不好，也不会对发送速率进行调整。这样实现的弊端就是在网络条件不好的情况下可能会导致丢包，但是优点也很明显，在某些<strong>实时性</strong>要求高的场景（比如电话会议）就需要使用 UDP 而不是 TCP。</p>
 
   
   
@@ -498,10 +499,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:25:55+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-27T22:47:58+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：Apr 27, 2021</p>
   </a>
 </div>
 
@@ -616,6 +617,20 @@ Cookie 一般用来保存用户信...</p>
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E9%80%9A%E8%AF%9D%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%87%E7%94%A8UDP"><span class="toc-text">视频通话为什么采用UDP</span></a></li></ol>
+    </div>
+  </section>
 
 
   

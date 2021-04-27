@@ -431,7 +431,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>617 words</p>
+      <p>674 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -459,9 +459,10 @@
 <li>key值应该是唯一的</li>
 </ul>
 <p>每当您在表中应用聚集索引时，它将仅在该表中执行排序。您只能在像主键这样的表中创建一个聚集索引。聚簇索引与字典相同，字典按字母顺序排列数据。</p>
-<p>在聚集索引中，索引包含指向数据存储的块而不是数据存储地址的指针。</p>
+<p>在聚集索引中，<strong>索引包含指向数据存储的块而不是数据存储地址的指针。</strong></p>
 <p><img src="https://www.11meigui.com/wp-content/uploads/2020/08/Clustered_Index-1024x569.jpg" class="lazyload" data-srcset="https://www.11meigui.com/wp-content/uploads/2020/08/Clustered_Index-1024x569.jpg" srcset="data:image/png;base64,666" alt="聚集索引"></p>
-<h3 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h3><p>数据存储在一个位置，索引存储在另一位置。由于数据和非聚集索引是分开存储的，因此在一个表中可以有多个非聚集索引。</p>
+<h3 id="为什么只能建一个聚集索引？"><a href="#为什么只能建一个聚集索引？" class="headerlink" title="为什么只能建一个聚集索引？"></a>为什么只能建一个聚集索引？</h3><p>因为聚焦索引决定了表的物理排列顺序，一个表只能有一个物理排列顺序，所以一个表只能建一个聚集索引。</p>
+<h3 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h3><p><strong>数据存储在一个位置，索引存储在另一位置。</strong> 由于数据和非聚集索引是分开存储的，因此在一个表中可以有多个非聚集索引。</p>
 <p>在非聚集索引中，索引包含指向数据的指针。</p>
 <p><img src="https://www.11meigui.com/wp-content/uploads/2020/08/Non-clustered_Index-1024x745.jpg" class="lazyload" data-srcset="https://www.11meigui.com/wp-content/uploads/2020/08/Non-clustered_Index-1024x745.jpg" srcset="data:image/png;base64,666" alt="非聚集索引"></p>
 <h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>聚集索引 | 非聚集索引<br>|:—:|:—:|<br>聚集索引更快|    非聚集索引较慢<br>聚集索引需要较少的内存来进行操作。|    非聚集索引需要更多的内存用于操作。<br>在聚簇索引中，索引是主要数据。|    在非聚集索引中，索引是数据的副本。<br>一个表只能有一个聚集索引。|    一个表可以有多个非聚集索引。<br>聚集索引具有将数据存储在磁盘上的固有能力。|    非聚集索引不具有将数据存储在磁盘上的固有能力。<br>聚集索引存储块指针不是数据指针|    非聚集索引存储值和指向保存数据的实际行的指针。<br>在聚簇索引中，叶节点是实际数据本身。|    在非聚集索引中，叶节点不是实际数据本身，而是仅包含包含的列。<br>在聚簇索引中，聚簇键定义表中数据的顺序。|    在非聚集索引中，索引键定义索引内数据的顺序。<br>聚集索引是一种索引类型，其中表记录在物理上被重新排序以匹配该索引。|    非聚集索引是一种特殊类型的索引，其中索引的逻辑顺序与磁盘上行的物理存储顺序不匹配。</p>
@@ -511,10 +512,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:24:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-27T14:14:35+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：Apr 27, 2021</p>
   </a>
 </div>
 
@@ -595,10 +596,9 @@
           <p class='title'>锁机制与 InnoDB 锁算法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
-MyISAM 和 InnoDB 存储引擎使用的锁：
-
+MyISAM 和 InnoDB 存储引擎使用的锁
 MyISAM 采用表级锁(table-level locking)。
-InnoDB 支持行级锁(row-level locking)和表...</p>
+InnoDB 支持行级锁(row-level locking)和表级锁...</p>
         </a>
       
     </div>
@@ -641,7 +641,7 @@ InnoDB 支持行级锁(row-level locking)和表...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="toc-text">聚集索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="toc-text">非聚集索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="toc-text">聚集索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E8%83%BD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95%EF%BC%9F"><span class="toc-text">为什么只能建一个聚集索引？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="toc-text">非聚集索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
