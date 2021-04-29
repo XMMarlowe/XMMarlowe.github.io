@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.1k words</p>
+      <p>1.3k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>3 min</p>
+      <p>4 min</p>
     </a>
   </div>
 
@@ -450,7 +450,7 @@
   
   <a id="more"></a>
 
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都比一般的算法要好的多，缺点是有一定的误识别率和删除困难。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的<strong>优点是空间效率和查询时间都比一般的算法要好的多，缺点是有一定的误识别率和删除困难。</strong></p>
 <p>在讲述布隆过滤器的原理之前，我们先思考一个问题，如果想要判断一个元素是否存在，你通常会怎么做？一般的做法都是将其保存起来然后通过比较确认，一共会有如下几种情况：</p>
 <ul>
 <li>如果使用线性表或者数组存储，则查找的时间复杂度为 O(n)。</li>
@@ -484,14 +484,25 @@
 <h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p><strong>优点</strong></p>
 <ul>
 <li>不需要存储数据，只用比特表示，因此在空间占用率上有巨大的优势</li>
-<li>检索效率搞，插入和查询的时间复杂度都为 O(K)（K 表示哈希函数的个数）</li>
+<li>检索效率高，插入和查询的时间复杂度都为 O(K)（K 表示哈希函数的个数）</li>
 <li>哈希函数之间相互独立，可以在硬件指令层次并行计算，因此效率较高。</li>
 </ul>
 <p><strong>缺点</strong></p>
 <ul>
-<li>存在不确定的因素，无法判断一个元素是否一定存在，所以不适合要求 100% 准确率的场景</li>
-<li>只能插入和查询元素，不能删除元素。<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3></li>
+<li>存在不确定的因素，<strong>无法判断一个元素是否一定存在</strong>，所以不适合要求 100% 准确率的场景</li>
+<li><strong>只能插入和查询元素，不能删除元素。</strong></li>
 </ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>关于布隆过滤器，我们不需要自己实现，Guava 已经帮助我们实现了，使用起来非常简单。</p>
+<ul>
+<li>引入 pom</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.guava&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;guava&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;25.1-jre&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span></span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 创建一个插入对象为一亿，误报率为0.01%的布隆过滤器</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        BloomFilter&lt;CharSequence&gt; bloomFilter = BloomFilter.create(Funnels.stringFunnel(Charset.forName(<span class="string">&quot;utf-8&quot;</span>)), <span class="number">100000000</span>, <span class="number">0.0001</span>);</span><br><span class="line">        bloomFilter.put(<span class="string">&quot;死&quot;</span>);</span><br><span class="line">        bloomFilter.put(<span class="string">&quot;磕&quot;</span>);</span><br><span class="line">        bloomFilter.put(<span class="string">&quot;Redis&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(bloomFilter.mightContain(<span class="string">&quot;Redis&quot;</span>));</span><br><span class="line">        System.out.println(bloomFilter.mightContain(<span class="string">&quot;Java&quot;</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="http://cmsblogs.com/?p=18346">【死磕 Redis】—– 布隆过滤器</a></p>
 
   
   
@@ -537,10 +548,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-21T13:31:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-29T22:01:39+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 21, 2021</p>
+    <p>更新于：Apr 29, 2021</p>
   </a>
 </div>
 
@@ -662,7 +673,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3"><span class="toc-text">设计思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-text">实例</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3"><span class="toc-text">设计思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

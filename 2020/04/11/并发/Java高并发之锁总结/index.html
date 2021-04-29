@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>4.1k words</p>
+      <p>4.7k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>14 min</p>
+      <p>16 min</p>
     </a>
   </div>
 
@@ -633,12 +633,21 @@
 <li>轻量级锁升级为重量级锁，锁的标志位变成10，Mark Word中存储的是指向重量级锁的指针。</li>
 <li>所有等待锁的线程都会进入阻塞状态。</li>
 </ol>
+<h5 id="锁升级过程"><a href="#锁升级过程" class="headerlink" title="锁升级过程"></a>锁升级过程</h5><p>锁升级的顺序为：</p>
+<p>无锁 -&gt; 偏向锁 -&gt; 轻量级锁 -&gt; 重量级锁，且锁升级的顺序是不可逆的。</p>
+<p>线程第一次获取锁获时锁的状态为偏向锁，如果下次还是这个线程获取锁，则锁的状态不变，否则会升级为CAS轻量级锁；如果还有线程竞争获取锁，如果线程获取到了轻量级锁没啥事了，如果没获取到会自旋，自旋期间获取到了锁没啥事，超过了10次还没获取到锁，锁就升级为重量级的锁，此时如果其他线程没获取到重量级锁，就会被阻塞等待唤起，此时效率就低了。</p>
+<center>
+
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429133357.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429133357.png" srcset="data:image/png;base64,666" alt="20210429133357"></p>
+</center>
+
 <h5 id="升级图解"><a href="#升级图解" class="headerlink" title="升级图解"></a>升级图解</h5><center>
 
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210426225812.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210426225812.png" srcset="data:image/png;base64,666" alt="20210426225812"></p>
 </center>
 
-
+<h5 id="什么是锁降级？"><a href="#什么是锁降级？" class="headerlink" title="什么是锁降级？"></a>什么是锁降级？</h5><p>一个线程执行写操作，先获取写锁，再获取读锁，完成写操作后先释放写锁，接下来的程序里可能要依赖写操作后的变量值，待程序全部执行完后再释放读锁。先释放了写锁，只剩下了读锁，称之为“锁降级”。</p>
+<h5 id="为什么需要锁降级？"><a href="#为什么需要锁降级？" class="headerlink" title="为什么需要锁降级？"></a>为什么需要锁降级？</h5><p>一句话：为了保证数据可见性。假设线程A修改了数据，释放了写锁，这个时候线程T获得了写锁，修改了数据，然后也释放了写锁，线程A读取数据的时候，读到的是线程T修改的，并不是线程A自己修改的，那么在使用修改后的数据时，就会忽略线程A之前的修改结果。因此通过锁降级来保证数据每次修改后的可见性。</p>
 <h4 id="6-自旋锁与自适应自旋锁"><a href="#6-自旋锁与自适应自旋锁" class="headerlink" title="6. 自旋锁与自适应自旋锁"></a>6. 自旋锁与自适应自旋锁</h4><ul>
 <li><strong>自旋锁：</strong></li>
 </ul>
@@ -693,7 +702,9 @@
 <p>然后虚拟机再使用 CAS (Compare and Swap, 比较并交换) 将本线程的 Mark Word 更新为指向对象 Lock Record 区域的指针，如果更新成功，则表示这个线程拥有了该对象，轻量级锁添加成功，如果更新失败，虚拟机会先检查对象 Mark Word 是否指向了当前线程的线帧，如果是则表明此线程已经拥有了此锁，如果不是，则表明该锁已经被其他线程占用了。如果有两条以上的线程在争抢死锁，那么锁就会膨胀为重量锁，Mark Word 中存储的就是指向重量级锁的互斥量指针，后面等待锁的线程也会进入阻塞状态。</p>
 <p>从以上的过程，我们可以看出轻量级锁可以理解为是通过 CAS 实现的，理想的情况下是整个同步周期内不存在锁竞争，那么轻量锁可以有效的提高程序的同步性能，然而，如果情况相反，轻量级锁不但要承担 CAS 的开销还要承担互斥量的开销，这种情况下轻量级锁就会比重量级锁更慢，这就是我们本文的答案。</p>
 <h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p><strong>轻量级锁不是在任何情况下都比重量级锁快的，要看同步块执行期间有没有多个线程抢占资源的情况，如果有，那么轻量级线程要承担 CAS + 互斥量锁的性能消耗，就会比重量锁执行的更慢。</strong></p>
-<h4 id="打开偏向锁是否效率一定会提升-为什么"><a href="#打开偏向锁是否效率一定会提升-为什么" class="headerlink" title="打开偏向锁是否效率一定会提升?为什么?"></a>打开偏向锁是否效率一定会提升?为什么?</h4><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014454538/article/details/99172899">Java高并发之锁总结、常见的面试问题</a></p>
+<h4 id="打开偏向锁是否效率一定会提升-为什么"><a href="#打开偏向锁是否效率一定会提升-为什么" class="headerlink" title="打开偏向锁是否效率一定会提升?为什么?"></a>打开偏向锁是否效率一定会提升?为什么?</h4><p>偏向锁（不太需要竞争的，一般一个线程）<br>未必会提高，尤其是当你知道一定会有大量线程去竞争的时候。<br>打开偏向锁偏向锁还有一个锁撤销的过程（把ID撕下来）。</p>
+<h4 id="为什么要延迟4s？"><a href="#为什么要延迟4s？" class="headerlink" title="为什么要延迟4s？"></a>为什么要延迟4s？</h4><p>偏向锁默认是在JVM启动4s后再初始化偏向锁，可用<strong>如下参数</strong>修改启动时间，设为0则表示立即启用。之所以这么设计是因为JVM启动的时候，如果立即启动偏向，有可能会因为线程竞争太激烈导致产生太多安全点挂起。<br><code>-XX:BiasedLockingStartupDelay=0</code></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014454538/article/details/99172899">Java高并发之锁总结、常见的面试问题</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/111807293">Java并发编程五 同步之ReentrantLock与Condition</a></p>
 
   
   
@@ -739,10 +750,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-28T21:53:08+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-29T22:29:46+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 28, 2021</p>
+    <p>更新于：Apr 29, 2021</p>
   </a>
 </div>
 
@@ -875,7 +886,7 @@ List 有序且允许元素重复。A...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E7%BA%BF%E7%A8%8B%E9%94%81%E6%9C%BA%E5%88%B6%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-text">Java线程锁机制是怎样的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">锁的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">1. 乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%8B%AC%E5%8D%A0%E9%94%81%E5%92%8C%E5%85%B1%E4%BA%AB%E9%94%81"><span class="toc-text">2. 独占锁和共享锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="toc-text">3. 公平锁和非公平锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%92%8C%E9%9D%9E%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="toc-text">4. 可重入锁和非可重入锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%97%A0%E9%94%81VS%E5%81%8F%E5%90%91%E9%94%81VS%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81VS%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">5.无锁VS偏向锁VS轻量级锁VS重量级锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E9%94%81"><span class="toc-text">无锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%81%8F%E5%90%91%E9%94%81"><span class="toc-text">偏向锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">轻量级锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E5%8D%87%E7%BA%A7%E4%B8%BA%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">轻量级锁升级为重量级锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">重量级锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7%E5%9B%BE%E8%A7%A3"><span class="toc-text">升级图解</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%87%AA%E6%97%8B%E9%94%81%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94%E8%87%AA%E6%97%8B%E9%94%81"><span class="toc-text">6. 自旋锁与自适应自旋锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E4%B8%80%E5%AE%9A%E6%AF%94%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81%E5%BF%AB%E5%90%97%EF%BC%9F"><span class="toc-text">轻量级锁一定比重量级锁快吗？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%81%E6%A6%82%E5%BF%B5"><span class="toc-text">锁概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text">轻量级锁执行过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%81%8F%E5%90%91%E9%94%81%E6%98%AF%E5%90%A6%E6%95%88%E7%8E%87%E4%B8%80%E5%AE%9A%E4%BC%9A%E6%8F%90%E5%8D%87-%E4%B8%BA%E4%BB%80%E4%B9%88"><span class="toc-text">打开偏向锁是否效率一定会提升?为什么?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E7%BA%BF%E7%A8%8B%E9%94%81%E6%9C%BA%E5%88%B6%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-text">Java线程锁机制是怎样的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">锁的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">1. 乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%8B%AC%E5%8D%A0%E9%94%81%E5%92%8C%E5%85%B1%E4%BA%AB%E9%94%81"><span class="toc-text">2. 独占锁和共享锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="toc-text">3. 公平锁和非公平锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%92%8C%E9%9D%9E%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="toc-text">4. 可重入锁和非可重入锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%97%A0%E9%94%81VS%E5%81%8F%E5%90%91%E9%94%81VS%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81VS%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">5.无锁VS偏向锁VS轻量级锁VS重量级锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E9%94%81"><span class="toc-text">无锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%81%8F%E5%90%91%E9%94%81"><span class="toc-text">偏向锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">轻量级锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E5%8D%87%E7%BA%A7%E4%B8%BA%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">轻量级锁升级为重量级锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">重量级锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%81%E5%8D%87%E7%BA%A7%E8%BF%87%E7%A8%8B"><span class="toc-text">锁升级过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7%E5%9B%BE%E8%A7%A3"><span class="toc-text">升级图解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%94%81%E9%99%8D%E7%BA%A7%EF%BC%9F"><span class="toc-text">什么是锁降级？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E9%94%81%E9%99%8D%E7%BA%A7%EF%BC%9F"><span class="toc-text">为什么需要锁降级？</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%87%AA%E6%97%8B%E9%94%81%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94%E8%87%AA%E6%97%8B%E9%94%81"><span class="toc-text">6. 自旋锁与自适应自旋锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E4%B8%80%E5%AE%9A%E6%AF%94%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81%E5%BF%AB%E5%90%97%EF%BC%9F"><span class="toc-text">轻量级锁一定比重量级锁快吗？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%81%E6%A6%82%E5%BF%B5"><span class="toc-text">锁概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text">轻量级锁执行过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%81%8F%E5%90%91%E9%94%81%E6%98%AF%E5%90%A6%E6%95%88%E7%8E%87%E4%B8%80%E5%AE%9A%E4%BC%9A%E6%8F%90%E5%8D%87-%E4%B8%BA%E4%BB%80%E4%B9%88"><span class="toc-text">打开偏向锁是否效率一定会提升?为什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BB%B6%E8%BF%9F4s%EF%BC%9F"><span class="toc-text">为什么要延迟4s？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
