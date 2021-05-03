@@ -20,7 +20,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>类加载过程 - Marlowe</title>
+  <title>Java类加载过程 - Marlowe</title>
   
     <meta name="keywords" content="JVM">
   
@@ -371,7 +371,7 @@
     
     
       <h1 class="title">
-        类加载过程
+        Java类加载过程
       </h1>
       <div class='new-meta-box'>
         
@@ -413,7 +413,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="类加载过程" data-path="/2020/03/31/Java/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+      <div id="lc-pv" data-title="Java类加载过程" data-path="/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.6k words</p>
+      <p>1.8k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>5 min</p>
+      <p>6 min</p>
     </a>
   </div>
 
@@ -495,6 +495,13 @@
 </ol>
 <p>所以，在JVM生命周期类，由jvm自带的类加载器加载的类是不会被卸载的。但是由我们自定义的类加载器加载的类是可能被卸载的。</p>
 <p>只要想通一点就好了，jdk自带的BootstrapClassLoader,ExtClassLoader,AppClassLoader负责加载jdk提供的类，所以它们(类加载器的实例)肯定不会被回收。而我们自定义的类加载器的实例是可以被回收的，所以使用我们自定义加载器加载的类是可以被卸载掉的。</p>
+<h3 id="一个对象从加载到JVM-再到被GC清除，都经历了什么过程"><a href="#一个对象从加载到JVM-再到被GC清除，都经历了什么过程" class="headerlink" title="一个对象从加载到JVM,再到被GC清除，都经历了什么过程?"></a>一个对象从加载到JVM,再到被GC清除，都经历了什么过程?</h3><ol>
+<li>用户创建一一个对象，JVM首先需要到方法区去找对象的类型信息。然后再创建对象。</li>
+<li>JVM要实例化一个对象， 首先要在堆当中先创建一个对象。 -&gt; 半初始化状态</li>
+<li>对象首先会分配在堆内存中新生代的Eden。然后经过一次Minor GC,对象如果存活，就会进入S区。在后续的每次GC中，如果对象一直存活，就会在S区来回拷贝，每移动一次， 年龄加1。-&gt;多大年龄才会移入老年代?年龄最大15(markword中大小为4bit)， 超过一定年龄后，对象转入老年代。</li>
+<li>当方法执行结束后，栈中的指针会先移除掉。</li>
+<li>堆中的对象，经过Full GC,就会被标记为垃圾，然后被GC线程清理掉。</li>
+</ol>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/java/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B?id=%e7%b1%bb%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f">类的生命周期</a></p>
 
   
@@ -513,7 +520,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2020/03/31/Java/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/>https://xmmarlowe.github.io/2020/03/31/Java/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/>https://xmmarlowe.github.io/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</a></p>
               
             
           </blockquote>
@@ -541,10 +548,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:21:05+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T21:35:14+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：May 3, 2021</p>
   </a>
 </div>
 
@@ -558,7 +565,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2020/03/31/Java/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/&title=类加载过程 - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/&title=Java类加载过程 - Marlowe&summary="
           
           >
           
@@ -570,7 +577,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2020/03/31/Java/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/&title=类加载过程 - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/&title=Java类加载过程 - Marlowe&summary="
           
           >
           
@@ -582,7 +589,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2020/03/31/Java/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/&title=类加载过程 - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/&title=Java类加载过程 - Marlowe&summary="
           
           >
           
@@ -672,7 +679,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">类的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-text">类加载过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD"><span class="toc-text">加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-text">验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90"><span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD"><span class="toc-text">卸载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">类的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-text">类加载过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD"><span class="toc-text">加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-text">验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90"><span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD"><span class="toc-text">卸载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%BB%8E%E5%8A%A0%E8%BD%BD%E5%88%B0JVM-%E5%86%8D%E5%88%B0%E8%A2%ABGC%E6%B8%85%E9%99%A4%EF%BC%8C%E9%83%BD%E7%BB%8F%E5%8E%86%E4%BA%86%E4%BB%80%E4%B9%88%E8%BF%87%E7%A8%8B"><span class="toc-text">一个对象从加载到JVM,再到被GC清除，都经历了什么过程?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
@@ -692,7 +699,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="类加载过程";
+  pdata.postTitle="Java类加载过程";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

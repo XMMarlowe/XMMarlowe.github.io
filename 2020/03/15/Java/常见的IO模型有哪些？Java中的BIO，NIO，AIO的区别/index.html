@@ -431,13 +431,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>975 words</p>
+      <p>2.2k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>3 min</p>
+      <p>8 min</p>
     </a>
   </div>
 
@@ -478,6 +478,60 @@
 <p>IO 多路复用模型中，线程首先发起 select 调用，询问内核数据是否准备就绪，等内核把数据准备好了，用户线程再发起 read 调用。read 调用的过程（数据从内核空间-&gt;用户空间）还是阻塞的。</p>
 <p>IO 多路复用模型，通过减少无效的系统调用，减少了对 CPU 资源的消耗。</p>
 <p>Java 中的 NIO ，有一个非常重要的选择器 ( Selector ) 的概念，也可以被称为 多路复用器。通过它，只需要一个线程便可以管理多个客户端连接。当客户端数据到了之后，才会为其服务。</p>
+<h5 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h5><p>Java NIO中的所有I/O操作都基于Channel对象，就像流操作都要基于Stream对象一样，因此很有必要先了解Channel是什么。以下内容摘自JDK 1.8的文档</p>
+<blockquote>
+<p>A channel represents an open connection to an entity such as a hardware device, a file, a network socket, or a program component that is capable of performing one or more distinct I/O operations, for example reading or writing.</p>
+</blockquote>
+<p>从上述内容可知，一个Channel（通道）代表和某一实体的连接，这个实体可以是文件、网络套接字等。也就是说，通道是Java NIO提供的一座桥梁，用于我们的程序和操作系统底层I/O服务进行交互。</p>
+<p>通道是一种很基本很抽象的描述，和不同的I/O服务交互，执行不同的I/O操作，实现不一样，因此具体的有FileChannel、SocketChannel等。</p>
+<p>通道使用起来跟Stream比较像，可以读取数据到Buffer中，也可以把Buffer中的数据写入通道。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210503161918.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210503161918.png" srcset="data:image/png;base64,666" alt="20210503161918"></p>
+<p>当然，也有区别，主要体现在如下两点：</p>
+<ul>
+<li>一个通道，既可以读又可以写，而一个Stream是单向的（所以分 InputStream 和 OutputStream）</li>
+<li>通道有非阻塞I/O模式</li>
+</ul>
+<p><strong>实现</strong><br>Java NIO中最常用的通道实现是如下几个，可以看出跟传统的 I/O 操作类是一一对应的。</p>
+<ul>
+<li>FileChannel：读写文件</li>
+<li>DatagramChannel: UDP协议网络通信</li>
+<li>SocketChannel：TCP协议网络通信</li>
+<li>ServerSocketChannel：监听TCP连接</li>
+</ul>
+<h5 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h5><p>NIO中所使用的缓冲区不是一个简单的byte数组，而是封装过的Buffer类，通过它提供的API，我们可以灵活的操纵数据，下面细细道来。</p>
+<p>与Java基本类型相对应，NIO提供了多种 Buffer 类型，如ByteBuffer、CharBuffer、IntBuffer等，区别就是读写缓冲区时的单位长度不一样（以对应类型的变量为单位进行读写）。</p>
+<p>Buffer中有3个很重要的变量，它们是理解Buffer工作机制的关键，分别是:</p>
+<ul>
+<li>capacity （总容量）</li>
+<li>position （指针当前位置）</li>
+<li>limit （读/写边界位置）</li>
+</ul>
+<p>Buffer的工作方式跟C语言里的字符数组非常的像，类比一下，capacity就是数组的总长度，position就是我们读/写字符的下标变量，limit就是结束符的位置。Buffer初始时3个变量的情况如下图:</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210503162055.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210503162055.png" srcset="data:image/png;base64,666" alt="20210503162055"></p>
+<p>在对Buffer进行读/写的过程中，position会往后移动，而 limit 就是 position 移动的边界。由此不难想象，在对Buffer进行写入操作时，limit应当设置为capacity的大小，而对Buffer进行读取操作时，limit应当设置为数据的实际结束位置。（注意：将Buffer数据 <strong>写入</strong> 通道是Buffer <strong>读取</strong> 操作，从通道 <strong>读取</strong> 数据到Buffer是Buffer <strong>写入</strong> 操作）</p>
+<p>在对Buffer进行读/写操作前，我们可以调用Buffer类提供的一些辅助方法来正确设置 position 和 limit 的值，主要有如下几个:</p>
+<ul>
+<li>flip(): 设置 limit 为 position 的值，然后 position 置为0。对Buffer进行读取操作前调用。</li>
+<li>rewind(): 仅仅将 position 置0。一般是在重新读取Buffer数据前调用，比如要读取同一个Buffer的数据写入多个通道时会用到。</li>
+<li>clear(): 回到初始状态，即 limit 等于 capacity，position 置0。重新对Buffer进行写入操作前调用。</li>
+<li>compact(): 将未读取完的数据（position 与 limit 之间的数据）移动到缓冲区开头，并将 position 设置为这段数据末尾的下一个位置。其实就等价于重新向缓冲区中写入了这么一段数据。</li>
+</ul>
+<h5 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h5><p><strong>简介</strong></p>
+<p>Selector（选择器）是一个特殊的组件，用于采集各个通道的状态（或者说事件）。我们先将通道注册到选择器，并设置好关心的事件，然后就可以通过调用select()方法，静静地等待事件发生。</p>
+<p>通道有如下4个事件可供我们监听：</p>
+<ul>
+<li>Accept：有可以接受的连接</li>
+<li>Connect：连接成功</li>
+<li>Read：有数据可读</li>
+<li>Write：可以写入数据了</li>
+</ul>
+<p><strong>为什么要用Selector</strong></p>
+<p>前文说了，如果用阻塞I/O，需要多线程（浪费内存），如果用非阻塞I/O，需要不断重试（耗费CPU）。Selector的出现解决了这尴尬的问题，非阻塞模式下，通过Selector，我们的线程只为已就绪的通道工作，不用盲目的重试了。比如，当所有通道都没有数据到达时，也就没有Read事件发生，我们的线程会在select()方法处被挂起，从而让出了CPU资源。</p>
+<h5 id="三大组件总结"><a href="#三大组件总结" class="headerlink" title="三大组件总结"></a>三大组件总结</h5><ul>
+<li>channel类似于一流。 每个channel对应一 个buffer缓冲区。 channel会注册到selector。</li>
+<li>select会根据channel上发生的读写事件，将请求交由某个空闲的线程处理。selector对应一 个或者多个线程。</li>
+<li>Buffer和Channel都是可读可写的。</li>
+</ul>
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210315210543.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210315210543.png" srcset="data:image/png;base64,666" alt="20210315210543"></p>
 <h4 id="AIO-Asynchronous-I-O"><a href="#AIO-Asynchronous-I-O" class="headerlink" title="AIO (Asynchronous I/O)"></a>AIO (Asynchronous I/O)</h4><p>AIO 也就是 NIO 2。Java 7 中引入了 NIO 的改进版 NIO 2,它是异步 IO 模型。</p>
 <p>异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210315210610.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210315210610.png" srcset="data:image/png;base64,666" alt="20210315210610"></p>
@@ -529,10 +583,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:20:56+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T16:25:03+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：May 3, 2021</p>
   </a>
 </div>
 
@@ -659,7 +713,7 @@ final修饰的类不能被继承，final类中的所有成员方法都会被隐�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E4%B8%AD%E4%B8%89%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84I-O%E6%A8%A1%E5%9E%8B"><span class="toc-text">Java中三种常见的I&#x2F;O模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BIO-Blocking-I-O"><span class="toc-text">BIO (Blocking I&#x2F;O)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NIO-Non-blocking-New-I-O"><span class="toc-text">NIO (Non-blocking&#x2F;New I&#x2F;O)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AIO-Asynchronous-I-O"><span class="toc-text">AIO (Asynchronous I&#x2F;O)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E4%B8%AD%E4%B8%89%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84I-O%E6%A8%A1%E5%9E%8B"><span class="toc-text">Java中三种常见的I&#x2F;O模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BIO-Blocking-I-O"><span class="toc-text">BIO (Blocking I&#x2F;O)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NIO-Non-blocking-New-I-O"><span class="toc-text">NIO (Non-blocking&#x2F;New I&#x2F;O)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Channel"><span class="toc-text">Channel</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Buffer"><span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Selector"><span class="toc-text">Selector</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93"><span class="toc-text">三大组件总结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AIO-Asynchronous-I-O"><span class="toc-text">AIO (Asynchronous I&#x2F;O)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

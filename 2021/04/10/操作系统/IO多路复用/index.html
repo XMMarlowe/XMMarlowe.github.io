@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.6k words</p>
+      <p>2k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>5 min</p>
+      <p>6 min</p>
     </a>
   </div>
 
@@ -488,6 +488,47 @@
 <p>需要同时监控小于 1000 个描述符，就没有必要使用 epoll，因为这个应用场景下并不能体现 epoll 的优势。</p>
 <p>需要监控的描述符状态变化多，而且都是非常短暂的，也没有必要使用 epoll。因为 epoll 中的所有描述符都存储在内核中，造成每次需要对描述符的状态改变都需要通过 epoll_ctl() 进行系统调用，频繁系统调用降低效率。并且epoll 的描述符存储在内核，不容易调试。</p>
 <h4 id="epoll-应用场景"><a href="#epoll-应用场景" class="headerlink" title="epoll 应用场景"></a>epoll 应用场景</h4><p>只需要运行在 Linux 平台上，并且有非常大量的描述符需要同时轮询，而且这些连接最好是长连接。</p>
+<h4 id="select、poll、epoll有什么区别？"><a href="#select、poll、epoll有什么区别？" class="headerlink" title="select、poll、epoll有什么区别？"></a>select、poll、epoll有什么区别？</h4><p>他们是NIO中多路复用的三种实现机制，是由Linux操作系统提供的。</p>
+<p>用户空间和内核空间:操作系统为了保护系统安全，将内核划分为两个部分，一个是用户空间，一个是内核空间。用户空间不能直接访问底层的硬件设备，必须通过内核空间。</p>
+<p>文件描述符File Descriptor(FD):是一个抽象的概念，形式上是一个整数，实际上是一个索引值。指向内核中为每个进程维护进程所打开的文件的记录表。当程序打开一个文件或者创建一个文件时，内核就会向进程返回一个FD。Unix,Linux</p>
+<p><strong>select机制:</strong> 会维护一个FD的结合 fd_set。将fd_set从用户空间复制到内核空间，激活socket。x64 2048(数组大小) fd_set是一个数组结构。</p>
+<p><strong>Poll机制:</strong> 和selecter机制是差不多的， 把fd_ set结构进行了优化，FD集合的大小就突破了操作系统的限制。pollfd结构来代替fd_set, 通过链表实现的。</p>
+<p><strong>EPoll:</strong> Event Poll.Epoll不再扫描所有的FD，只将用户关心的FD的事件存放到内核的一一个事件表当中。</p>
+<p><strong>简单总结</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">操作方式</th>
+<th align="center">底层实现</th>
+<th align="center">最大连接数</th>
+<th align="center">IO效率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">select</td>
+<td align="center">遍历</td>
+<td align="center">数组</td>
+<td align="center">受限于内核</td>
+<td align="center">一般</td>
+</tr>
+<tr>
+<td align="center">poll</td>
+<td align="center">遍历</td>
+<td align="center">链表</td>
+<td align="center">无上限</td>
+<td align="center">一般</td>
+</tr>
+<tr>
+<td align="center">epoll</td>
+<td align="center">事件回调</td>
+<td align="center">红黑树</td>
+<td align="center">无上限</td>
+<td align="center">高</td>
+</tr>
+</tbody></table>
+<p>Java的NIO当中使用的是那种机制？</p>
+<p>可以查看 DefaultSelectorProvider源码。<br>在windows 下，WindowsSelectorProvider。<br>而Linux下，根据Linux的内核版本，2.6版本以上，就是EPollSelectorProvider, 否则就是 默认的PollSelectorProvider。</p>
 
   
   
@@ -533,10 +574,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-10T19:52:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T20:36:34+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 10, 2021</p>
+    <p>更新于：May 3, 2021</p>
   </a>
 </div>
 
@@ -663,7 +704,7 @@ REST...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%E7%8E%B0%E5%AE%9E%E5%9C%BA%E6%99%AF%E6%9D%A5%E7%90%86%E8%A7%A3"><span class="toc-text">举例现实场景来理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E5%AE%9E%E7%8E%B0"><span class="toc-text">多路复用IO实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-text">IO多路复用工作模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LT-%E6%A8%A1%E5%BC%8F"><span class="toc-text">LT 模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ET-%E6%A8%A1%E5%BC%8F"><span class="toc-text">ET 模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#select-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">select 应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#poll-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">poll 应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#epoll-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">epoll 应用场景</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%E7%8E%B0%E5%AE%9E%E5%9C%BA%E6%99%AF%E6%9D%A5%E7%90%86%E8%A7%A3"><span class="toc-text">举例现实场景来理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E5%AE%9E%E7%8E%B0"><span class="toc-text">多路复用IO实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-text">IO多路复用工作模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LT-%E6%A8%A1%E5%BC%8F"><span class="toc-text">LT 模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ET-%E6%A8%A1%E5%BC%8F"><span class="toc-text">ET 模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#select-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">select 应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#poll-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">poll 应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#epoll-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">epoll 应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#select%E3%80%81poll%E3%80%81epoll%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">select、poll、epoll有什么区别？</span></a></li></ol></li></ol>
     </div>
   </section>
 
