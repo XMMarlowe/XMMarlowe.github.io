@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>865 words</p>
+      <p>1.4k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>2 min</p>
+      <p>4 min</p>
     </a>
   </div>
 
@@ -450,6 +450,32 @@
   
   <a id="more"></a>
 
+<h3 id="如何保证缓存和数据库数据的一致性？"><a href="#如何保证缓存和数据库数据的一致性？" class="headerlink" title="如何保证缓存和数据库数据的一致性？"></a>如何保证缓存和数据库数据的一致性？</h3><h4 id="当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库"><a href="#当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库" class="headerlink" title="当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库?"></a>当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库?</h4><p>1、<strong>如果先删缓存，再写数据库:</strong> 在高并发场景下，当第一个线程删除了缓存，还没有来得及写数据库，第二个线程来读取数据，会发现缓存中的数据为空，那就会去读数据库中的数据(旧值，脏数据)，读完之后，把读到的结果写入缓存(此时，第一个线程已经将新的值写到缓存里面了)，这样缓存中的值就会被覆盖为修改前的脏数据。</p>
+<p><strong>总结:</strong> 在这种方式下，通常要求写操作不会太频繁。</p>
+<p><strong>解决方案:</strong> </p>
+<ul>
+<li><p>先操作缓存，但是不删除缓存。将缓存修改为一个特殊值(-999)。客户端读缓存时，发现是默认值，就休眠一小会，再去查-次Redis。</p>
+<ul>
+<li><strong>问题：</strong> 1. 特殊值对业务有侵入。2. 休眠时间， 可能会多次重复，对性能有影响。</li>
+</ul>
+</li>
+<li><p>延时双删：先删除缓存，然后再写数据库，休眠一小会，再次删除缓存。</p>
+<ul>
+<li><strong>问题：</strong> 1. 如果数据写操作很频繁， 同样还是会有脏数据的问题。</li>
+</ul>
+</li>
+</ul>
+<p>2、<strong>先写数据库，再删缓存:</strong> 如果数据库写完了之后， 缓存删除失败，数据就会不一致。</p>
+<p><strong>总结:</strong> 始终只能保证一定时间内的最终一致性。</p>
+<p><strong>解决方案:</strong> </p>
+<ul>
+<li>给缓存设置一个过期时间。<ul>
+<li> <strong>问题:</strong> 过期时间内，缓存数据不会更新。</li>
+</ul>
+</li>
+<li>引入MQ，保证原子操作。</li>
+</ul>
+<p><strong>解决方案:</strong> 将热点数据缓存设置为永不过期，但是在value当中写入一个逻辑上的过期时间，另外起一个后台线程，扫描这些key,对于已逻辑上过期的缓存，进行删除。</p>
 <h3 id="不是严格要求缓存-数据库必须一致性"><a href="#不是严格要求缓存-数据库必须一致性" class="headerlink" title="不是严格要求缓存+数据库必须一致性"></a>不是严格要求缓存+数据库必须一致性</h3><p>一般来说，就是如果你的系统不是严格要求缓存+数据库必须一致性的话，缓存可以稍微的跟数据库偶尔有不一致的情况，最好不要做这个方案，读请求和写请求串行化，串到一个内存队列里去，这样就可以保证一定不会出现不一致的情况</p>
 <p>串行化之后，就会导致系统的吞吐量会大幅度的降低，用比正常情况下多几倍的机器去支撑线上的一个请求。</p>
 <h3 id="严格要求缓存-数据库必须一致性"><a href="#严格要求缓存-数据库必须一致性" class="headerlink" title="严格要求缓存+数据库必须一致性"></a>严格要求缓存+数据库必须一致性</h3><p>将不一致分为三种情况：</p>
@@ -533,10 +559,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-17T16:22:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-04T20:46:10+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 17, 2021</p>
+    <p>更新于：May 4, 2021</p>
   </a>
 </div>
 
@@ -660,7 +686,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E6%98%AF%E4%B8%A5%E6%A0%BC%E8%A6%81%E6%B1%82%E7%BC%93%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BF%85%E9%A1%BB%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">不是严格要求缓存+数据库必须一致性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E8%A6%81%E6%B1%82%E7%BC%93%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BF%85%E9%A1%BB%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">严格要求缓存+数据库必须一致性</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F"><span class="toc-text">如何保证缓存和数据库数据的一致性？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%93%E6%88%91%E4%BB%AC%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%88%B0%E5%BA%95%E6%98%AF%E5%85%88%E5%88%A0%E7%BC%93%E5%AD%98%EF%BC%8C%E8%BF%98%E6%98%AF%E5%85%88%E5%86%99%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E6%98%AF%E4%B8%A5%E6%A0%BC%E8%A6%81%E6%B1%82%E7%BC%93%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BF%85%E9%A1%BB%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">不是严格要求缓存+数据库必须一致性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E8%A6%81%E6%B1%82%E7%BC%93%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BF%85%E9%A1%BB%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">严格要求缓存+数据库必须一致性</span></a></li></ol>
     </div>
   </section>
 

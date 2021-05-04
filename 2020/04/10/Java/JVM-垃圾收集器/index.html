@@ -523,6 +523,7 @@
 <h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><h4 id="什么是STW？"><a href="#什么是STW？" class="headerlink" title="什么是STW？"></a>什么是STW？</h4><p>STW: Stop-The-World。是在垃圾回收算法执行过程当中，需要将JVM内存冻结的一种状态。在STW状态下，JAVA的所有线程都是停止执行的-GC线程除外，native方法可以执行， 但是，不能与JVM交互。GC各种算法优化的重点，就是减少STW,同时这也是JVM调优的重点。</p>
 <h4 id="什么是三色标记？"><a href="#什么是三色标记？" class="headerlink" title="什么是三色标记？"></a>什么是三色标记？</h4><p>CMS的核心算法就是三色标记。</p>
 <p>三色标记:是一种逻辑上的抽象。将每个内存对象分成三种颜色。<br><strong>黑色:</strong> 表示自己和成员变量都已经标记完毕。<br><strong>灰色:</strong> 自己标记完了，但是成员变量还没有完全标记完。<br><strong>白色:</strong> 自己未标记完。</p>
+<p>CMS通过增量标记increment update的方式来解决漏标的问题。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/blythe/p/7488061.html">JVM几种垃圾回收器介绍</a><br><a target="_blank" rel="noopener" href="http://cmsblogs.com/?p=17120">读《深入理解java虚拟机》（三）垃圾回收器</a></p>
 
   
@@ -569,10 +570,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T22:29:16+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-04T10:49:55+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 3, 2021</p>
+    <p>更新于：May 4, 2021</p>
   </a>
 </div>
 

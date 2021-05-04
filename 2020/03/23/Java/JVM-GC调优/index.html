@@ -431,13 +431,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>792 words</p>
+      <p>1k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>2 min</p>
+      <p>3 min</p>
     </a>
   </div>
 
@@ -459,8 +459,8 @@
 <li>减少对象晋升到老年代的数量</li>
 <li>减少FullGC的执行时间</li>
 </ul>
-<h3 id="减少对象晋升到老年代的数量"><a href="#减少对象晋升到老年代的数量" class="headerlink" title="减少对象晋升到老年代的数量"></a>减少对象晋升到老年代的数量</h3><p>分代垃圾回收是Oracle JVM中回收思想。 我们知道在Eden区创建的对象，在from Survivor 复制到to Survivor区之后，达到一定年龄就进入了老年代(15次)。有些对象因为比较大就直接进入了老年代。在老年代的GC时间相比于年轻代时间更长。因此，减少对象进入老年代可以降低Full GC的频率。</p>
-<h3 id="减少FullGC的执行时间"><a href="#减少FullGC的执行时间" class="headerlink" title="减少FullGC的执行时间"></a>减少FullGC的执行时间</h3><p>Full GC的时间比Minor GC要长。所以如果执行太长时间的Full GC（超过1秒），就会发生超时错误</p>
+<h4 id="减少对象晋升到老年代的数量"><a href="#减少对象晋升到老年代的数量" class="headerlink" title="减少对象晋升到老年代的数量"></a>减少对象晋升到老年代的数量</h4><p>分代垃圾回收是Oracle JVM中回收思想。 我们知道在Eden区创建的对象，在from Survivor 复制到to Survivor区之后，达到一定年龄就进入了老年代(15次)。有些对象因为比较大就直接进入了老年代。在老年代的GC时间相比于年轻代时间更长。因此，减少对象进入老年代可以降低Full GC的频率。</p>
+<h4 id="减少FullGC的执行时间"><a href="#减少FullGC的执行时间" class="headerlink" title="减少FullGC的执行时间"></a>减少FullGC的执行时间</h4><p>Full GC的时间比Minor GC要长。所以如果执行太长时间的Full GC（超过1秒），就会发生超时错误</p>
 <ul>
 <li>如果你试着减少老年代的大小来降低Full GC的执行时间，可能会引发OutOfMemoryError或者导致Full GC的频率升高。</li>
 <li>如果是通过增加老年代的大小来降低Full GC的频率，执行时间将会增加。</li>
@@ -475,6 +475,18 @@
 <p>1.针对JVM堆的设置，一般可以通过-Xms -Xmx限定其最小、最大值，<strong>为了防止垃圾收集器在最小、最大之间收缩堆而产生额外的时间，通常把最大、最小设置为相同的值;</strong></p>
 <p>2.<strong>年轻代和年老代将根据默认的比例（1：2）分配堆内存，</strong> 可以通过调整二者之间的比率NewRadio来调整二者之间的大小，也可以针对回收代。</p>
 <p>比如年轻代，通过 -XX:newSize -XX:MaxNewSize来设置其绝对大小。同样，为了防止年轻代的堆收缩，我们通常会把-XX:newSize -XX:MaxNewSize设置为同样大小。</p>
+<h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><h4 id="如何进行JVM调优？"><a href="#如何进行JVM调优？" class="headerlink" title="如何进行JVM调优？"></a>如何进行JVM调优？</h4><p>JVM调优主要就是通过定制VM运行参数来提高JAVA应用程度的运行数据</p>
+<h4 id="JVM参数有哪些？"><a href="#JVM参数有哪些？" class="headerlink" title="JVM参数有哪些？"></a>JVM参数有哪些？</h4><p>JVM参数大致可以分为三类:</p>
+<ol>
+<li>标注指令: -开头，这些是所有的HotSpot都支持的参数。可以用java -help打印出来。</li>
+<li>非标准指令: -X开头， 这些指令通常是跟特定的HotSpot版本对应的。可以用java -X打印出来。</li>
+<li>不稳定参数: -XX开头，这一 -类参数是跟特定HotSpot版本对应的，并且变化非常大。详细的文档资料非常少。在JDK1.8版本下，有几个常用的不稳定指令:</li>
+</ol>
+<ul>
+<li>java -XX:+ PrintCommandLineFlags :查看当前命令的不稳定指令。</li>
+<li>java -XX:+ PrintFlagsInitial :查看所有不稳定指令的默认值。</li>
+<li>java -XX: + PrintFlagsFinal:查看所有不稳定指令 最终生效的实际值。</li>
+</ul>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>JVM调优在实际工作中用到的比较少，但是这也是作为java程序员必须掌握的基本技能。<strong>真正熟练的使用GC调优，是建立在多次进行GC监控和调优的实战经验上的。</strong></p>
 <p>下面罗列了几个数据作为参考，如果GC执行时间满足下列所有条件，就没有必要进行GC优化了：</p>
 <p>Minor GC执行非常迅速（50ms以内）</p>
@@ -527,10 +539,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:22:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-04T19:30:49+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：May 4, 2021</p>
   </a>
 </div>
 
@@ -657,7 +669,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E6%98%AF%E5%BF%85%E9%A1%BB%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-text">JVM调优是必须的吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E5%AF%B9%E8%B1%A1%E6%99%8B%E5%8D%87%E5%88%B0%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-text">减少对象晋升到老年代的数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%91FullGC%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="toc-text">减少FullGC的执行时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%B1%E5%93%8DGC%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">影响GC的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E6%98%AF%E5%BF%85%E9%A1%BB%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-text">JVM调优是必须的吗？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E5%AF%B9%E8%B1%A1%E6%99%8B%E5%8D%87%E5%88%B0%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-text">减少对象晋升到老年代的数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91FullGC%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="toc-text">减少FullGC的执行时间</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%B1%E5%93%8DGC%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">影响GC的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8CJVM%E8%B0%83%E4%BC%98%EF%BC%9F"><span class="toc-text">如何进行JVM调优？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM%E5%8F%82%E6%95%B0%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">JVM参数有哪些？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
