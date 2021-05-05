@@ -20,9 +20,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>海量数据下，如何快速查找一条记录？ - Marlowe</title>
+  <title>test - Marlowe</title>
   
-    <meta name="keywords" content="Redis">
+    <meta name="keywords" content="test">
   
 
   
@@ -371,7 +371,7 @@
     
     
       <h1 class="title">
-        海量数据下，如何快速查找一条记录？
+        test
       </h1>
       <div class='new-meta-box'>
         
@@ -388,13 +388,6 @@
         
           
             
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-    </a>
-  </div>
-
 
           
         
@@ -402,7 +395,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 4, 2021</p>
+    <p>发布于：Oct 12, 2020</p>
   </a>
 </div>
 
@@ -413,7 +406,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="海量数据下，如何快速查找一条记录？" data-path="/2021/05/04/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/">
+      <div id="lc-pv" data-title="test" data-path="/2020/10/12/%E9%9A%8F%E7%AC%94/test/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -429,7 +422,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>251 words</p>
+      <p>2 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -448,17 +441,7 @@
 
 
   
-  <a id="more"></a>
-
-<p>1、使用布隆过滤器，快速过滤不存在的记录。</p>
-<p>使用Redis的<strong>bitmap</strong>结构来实现<strong>布隆过滤器。</strong></p>
-<p>2、在Redis中建立数据缓存。将我们对Redis使用场景的理解尽量表达出来。</p>
-<p>以普通字符串的形式来存储，(userld -&gt; user.json)。 以一个hash来存储一条记录(userld key-&gt; username field-&gt; ，userAge-&gt;)。以一个整的hash来存储所有的数据，Userlnfo-&gt; field就用userld ，value就用user.jison。一个hash最多能支持2^32-1(40多个亿)个键值对。</p>
-<p><strong>缓存击穿:</strong> 对不存在的数据也建立key。这些key都是经过布隆过滤器过滤的，所以一般不会太多。</p>
-<p><strong>缓存过期:</strong> 将热点数据设置成永不过期，定期重建缓存。使用分布式锁重建缓存。</p>
-<p>3、查询优化。</p>
-<p>按槽位分配数据。</p>
-<p>自己实现槽位计算，找到记录应该分配在哪台机器上，然后直接去目标机器上找。</p>
+  <h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><p>hexo<br>hello,world!</p>
 
   
   
@@ -476,7 +459,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/04/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/>https://xmmarlowe.github.io/2021/05/04/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2020/10/12/%E9%9A%8F%E7%AC%94/test/>https://xmmarlowe.github.io/2020/10/12/%E9%9A%8F%E7%AC%94/test/</a></p>
               
             
           </blockquote>
@@ -504,10 +487,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-04T22:36:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-02T23:04:50+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 4, 2021</p>
+    <p>更新于：Dec 2, 2020</p>
   </a>
 </div>
 
@@ -521,7 +504,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/04/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/&title=海量数据下，如何快速查找一条记录？ - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2020/10/12/%E9%9A%8F%E7%AC%94/test/&title=test - Marlowe&summary="
           
           >
           
@@ -533,7 +516,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/04/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/&title=海量数据下，如何快速查找一条记录？ - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2020/10/12/%E9%9A%8F%E7%AC%94/test/&title=test - Marlowe&summary="
           
           >
           
@@ -545,7 +528,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/04/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/&title=海量数据下，如何快速查找一条记录？ - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2020/10/12/%E9%9A%8F%E7%AC%94/test/&title=test - Marlowe&summary="
           
           >
           
@@ -575,17 +558,17 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/2020/10/12/%E9%A2%98%E8%A7%A3/Leetcode%E4%B8%A4%E6%95%B0-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C%E9%A2%98%E8%A7%A3/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Leetcode两数-四数之和题解</p>
+          <p class='content'>Leecode两数-四数之和题解最近两天做了两数之和，四数之和，并且之前也做过三数之和，感觉这几道题解法都差不多，并且用同样的方法能求解n数之和。
+1. 两数之和给定一个整数数组 nums 和一...</p>
+        </a>
       
-        <a class='next' href='/2021/05/04/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
-          <p class='title'>Redis 如何配置Key的过期时间？他的实现原理是什么？<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
-
-Redis设置key的过期时间
-EXPIRE
-SETEX
-
-实现原理定期删除每隔一段时间， 执行一次删除过期key的操作。
-懒汉式删除当使用get、getset等指令 去获取数据时，判断ke...</p>
+      
+        <a class='next' href='/2020/10/12/%E9%9A%8F%E7%AC%94/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/'>
+          <p class='title'>我的第一篇博客<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>我的第一篇博客记录一下最近使用hexo搭建的博客  
+&ensp;&ensp;周六晚上开始搭建，安装node、npm等等，碰到了一系列问题，换了一个主题后，总算把博客整体框架搭建好了，接着周日本...</p>
         </a>
       
     </div>
@@ -618,6 +601,20 @@ SETEX
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-text">test</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -634,7 +631,7 @@ SETEX
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="海量数据下，如何快速查找一条记录？";
+  pdata.postTitle="test";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
