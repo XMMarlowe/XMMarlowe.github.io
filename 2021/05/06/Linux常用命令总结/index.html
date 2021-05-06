@@ -20,9 +20,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Redis 如何配置Key的过期时间？他的实现原理是什么？ - Marlowe</title>
+  <title>Linux常用命令总结 - Marlowe</title>
   
-    <meta name="keywords" content="Redis">
+    <meta name="keywords" content="Linux,命令">
   
 
   
@@ -371,7 +371,7 @@
     
     
       <h1 class="title">
-        Redis 如何配置Key的过期时间？他的实现原理是什么？
+        Linux常用命令总结
       </h1>
       <div class='new-meta-box'>
         
@@ -391,7 +391,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+      <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
     </a>
   </div>
 
@@ -402,7 +402,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 4, 2021</p>
+    <p>发布于：May 6, 2021</p>
   </a>
 </div>
 
@@ -413,7 +413,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Redis 如何配置Key的过期时间？他的实现原理是什么？" data-path="/2021/05/04/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+      <div id="lc-pv" data-title="Linux常用命令总结" data-path="/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>176 words</p>
+      <p>3.1k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>11 min</p>
     </a>
   </div>
 
@@ -450,16 +450,167 @@
   
   <a id="more"></a>
 
-<h3 id="Redis设置key的过期时间"><a href="#Redis设置key的过期时间" class="headerlink" title="Redis设置key的过期时间"></a>Redis设置key的过期时间</h3><ul>
-<li>EXPIRE</li>
-<li>SETEX</li>
+<h3 id="目录切换命令"><a href="#目录切换命令" class="headerlink" title="目录切换命令"></a>目录切换命令</h3><ul>
+<li><strong>cd usr：</strong> 切换到该目录下 usr 目录</li>
+<li><strong>cd ..（或cd../）：</strong> 切换到上一层目录</li>
+<li><strong>cd /：</strong> 切换到系统根目录</li>
+<li><strong>cd ~：</strong> 切换到用户主目录</li>
+<li><strong>cd -：</strong> 切换到上一个操作所在目录</li>
 </ul>
-<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><h4 id="定期删除"><a href="#定期删除" class="headerlink" title="定期删除"></a>定期删除</h4><p>每隔一段时间， 执行一次删除过期key的操作。</p>
-<h4 id="懒汉式删除"><a href="#懒汉式删除" class="headerlink" title="懒汉式删除"></a>懒汉式删除</h4><p>当使用get、getset等指令 去获取数据时，判断key是否过期。 过期后，就先把key删除，再执行后面的操作。</p>
-<p><strong>Redis是将两种方式结合来使用。</strong></p>
-<p>定期删除：平衡<strong>执行频率</strong>和<strong>执行时长</strong>。</p>
-<p>定期删除时会遍历每个datapase(默认16个),检查当前库中指定个数的key(默认是20个)。随机抽查这些key,如果有过期的，就删除。</p>
-<p>程序中有一个全局变量记录到扫描到了哪个数据库。|</p>
+<h3 id="目录的操作命令-增删改查"><a href="#目录的操作命令-增删改查" class="headerlink" title="目录的操作命令(增删改查)"></a>目录的操作命令(增删改查)</h3><ul>
+<li><strong>mkdir 目录名称：</strong> 增加目录。</li>
+<li> <strong>ls/ll</strong>（ll 是 ls -l 的别名，ll 命令可以看到该目录下的所有目录和文件的详细信息）：查看目录信息。</li>
+<li><strong>find 目录 参数：</strong> 寻找目录（查）。示例：① 列出当前目录及子目录下所有文件和文件夹: find .；② 在/home目录下查找以.txt 结尾的文件名:find /home -name “<em>.txt” ,忽略大小写: find /home -iname “</em>.txt” ；③ 当前目录及子目录下查找所有以.txt 和.pdf 结尾的文件:find . ( -name “<em>.txt” -o -name “</em>.pdf” )或find . -name “<em>.txt” -o -name “</em>.pdf”。</li>
+<li><strong>mv 目录名称 新目录名称：</strong> 修改目录的名称（改）。注意：mv 的语法不仅可以对目录进行重命名而且也可以对各种文件，压缩包等进行 重命名的操作。mv 命令用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中。后面会介绍到 mv 命令的另一个用法。</li>
+<li><strong>mv 目录名称 目录的新位置：</strong> 移动目录的位置—剪切（改）。注意：mv 语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作。另外 mv 与 cp 的结果不同，mv 好像文件“搬家”，文件个数并未增加。而 cp 对文件进行复制，文件个数增加了。</li>
+<li><strong>cp -r 目录名称 目录拷贝的目标位置：</strong> 拷贝目录（改），-r 代表递归拷贝 。注意：cp 命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不 用写-r 递归。</li>
+<li><strong>rm [-rf] 目录:</strong> 删除目录（删）。注意：rm 不仅可以删除目录，也可以删除其他文件或压缩包，为了增强大家的记忆， 无论删除任何目录或文件，都直接使用rm -rf 目录/文件/压缩包。</li>
+</ul>
+<h3 id="文件的操作命令-增删改查"><a href="#文件的操作命令-增删改查" class="headerlink" title="文件的操作命令(增删改查)"></a>文件的操作命令(增删改查)</h3><ul>
+<li><strong>touch 文件名称:</strong> 文件的创建（增）。</li>
+<li><strong>cat/more/less/tail 文件名称：</strong> 文件的查看（查） 。命令 tail -f 文件 可以对某个文件进行动态监控，例如 tomcat 的日志文件， 会随着程序的运行，日志会变化，可以使用 tail -f catalina-2016-11-11.log 监控 文 件的变化 。</li>
+<li><strong>vim 文件：</strong> 修改文件的内容（改）。vim 编辑器是 Linux 中的强大组件，是 vi 编辑器的加强版，vim 编辑器的命令和快捷方式有很多，但此处不一一阐述，大家也无需研究的很透彻，使用 vim 编辑修改文件的方式基本会使用就可以了。在实际开发中，使用 vim 编辑器主要作用就是修改配置文件，下面是一般步骤： vim 文件——&gt;进入文件—–&gt;命令模式——&gt;按i进入编辑模式—–&gt;编辑文件 ——-&gt;按Esc进入底行模式—–&gt;输入：wq/q! （输入 wq 代表写入内容并退出，即保存；输入 q!代表强制退出不保存）。</li>
+<li><strong>rm -rf 文件：</strong> 删除文件（删）。</li>
+</ul>
+<h3 id="压缩文件的操作命令"><a href="#压缩文件的操作命令" class="headerlink" title="压缩文件的操作命令"></a>压缩文件的操作命令</h3><h4 id="打包并压缩文件"><a href="#打包并压缩文件" class="headerlink" title="打包并压缩文件"></a>打包并压缩文件</h4><p>Linux 中的打包文件一般是以.tar 结尾的，压缩的命令一般是以.gz 结尾的。而一般情况下打包和压缩是一起进行的，打包并压缩后的文件的后缀名一般.tar.gz。 命令：tar -zcvf 打包压缩后的文件名 要打包压缩的文件 ，其中：</p>
+<ul>
+<li>z：调用 gzip 压缩命令进行压缩</li>
+<li>c：打包文件</li>
+<li>v：显示运行过程</li>
+<li>f：指定文件名</li>
+</ul>
+<p>比如：假如 test 目录下有三个文件分别是：aaa.txt bbb.txt ccc.txt，如果我们要打包 test 目录并指定压缩后的压缩包名称为 test.tar.gz 可以使用命令：<strong>tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt 或 tar -zcvf test.tar.gz /test/</strong></p>
+<h4 id="解压压缩包"><a href="#解压压缩包" class="headerlink" title="解压压缩包"></a>解压压缩包</h4><p>命令：<code>tar [-xvf] 压缩文件</code></p>
+<p>其中：x：代表解压</p>
+<p>示例：</p>
+<ul>
+<li>将 /test 下的 test.tar.gz 解压到当前目录下可以使用命令：<strong>tar -xvf test.tar.gz</strong></li>
+<li>将 /test 下的 test.tar.gz 解压到根目录/usr 下:<strong>tar -xvf test.tar.gz -C /usr</strong>（- C 代表指定解压的位置）</li>
+</ul>
+<h3 id="Linux-的权限命令"><a href="#Linux-的权限命令" class="headerlink" title="Linux 的权限命令"></a>Linux 的权限命令</h3><p>操作系统中每个文件都拥有特定的权限、所属用户和所属组。权限是操作系统用来限制资源访问的机制，在 Linux 中权限一般分为读(readable)、写(writable)和执行(excutable)，分为三组。分别对应文件的属主(owner)，属组(group)和其他用户(other)，通过这样的机制来限制哪些用户、哪些组可以对特定的文件进行什么样的操作。</p>
+<p>通过 ls -l 命令我们可以 查看某个目录下的文件或目录的权限</p>
+<p>示例：在随意某个目录下ls -l</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223041.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223041.png" srcset="data:image/png;base64,666" alt="20210506223041"></p>
+<p>第一列的内容的信息解释如下：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223056.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223056.png" srcset="data:image/png;base64,666" alt="20210506223056"></p>
+<p>下面将详细讲解文件的类型、Linux 中权限以及文件有所有者、所在组、其它组具体是什么？</p>
+<p><strong>文件的类型：</strong></p>
+<ul>
+<li>d： 代表目录</li>
+<li>-： 代表文件</li>
+<li>l： 代表软链接（可以认为是 window 中的快捷方式）</li>
+</ul>
+<p><strong>Linux 中权限分为以下几种：</strong></p>
+<ul>
+<li>r：代表权限是可读，r 也可以用数字 4 表示</li>
+<li>w：代表权限是可写，w 也可以用数字 2 表示</li>
+<li>x：代表权限是可执行，x 也可以用数字 1 表示</li>
+</ul>
+<p><strong>文件和目录权限的区别：</strong></p>
+<p>对文件和目录而言，读写执行表示不同的意义。</p>
+<p><strong>对于文件：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">权限名称</th>
+<th align="center">可执行操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">r</td>
+<td align="center">可以使用 cat 查看文件的内容</td>
+</tr>
+<tr>
+<td align="center">w</td>
+<td align="center">可以修改文件的内容</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">可以将其运行为二进制文件</td>
+</tr>
+</tbody></table>
+<p><strong>对于目录：</strong><br>|权限名称|可执行操作|<br>|:–:|:–:|<br>|r|可以查看目录下列表|<br>|w|可以创建和删除目录下文件|<br>|x|可以使用 cd 进入目录|</p>
+<p>需要注意的是： <strong>超级用户可以无视普通用户的权限，即使文件目录权限是 000，依旧可以访问。</strong></p>
+<p><strong>在 linux 中的每个用户必须属于一个组，不能独立于组外。在 linux 中每个文件有所有者、所在组、其它组的概念。</strong></p>
+<ul>
+<li><strong>所有者(u)：</strong> 一般为文件的创建者，谁创建了该文件，就天然的成为该文件的所有者，用 ls ‐ahl 命令可以看到文件的所有者 也可以使用 chown 用户名 文件名来修改文件的所有者 。</li>
+<li><strong>文件所在组(g)：</strong> 当某个用户创建了一个文件后，这个文件的所在组就是该用户所在的组用 ls ‐ahl命令可以看到文件的所有组也可以使用 chgrp 组名 文件名来修改文件所在的组。</li>
+<li><strong>其它组(o)：</strong> 除开文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组。</li>
+</ul>
+<p><strong>修改文件/目录的权限的命令：chmod</strong></p>
+<p>示例：修改/test 下的 aaa.txt 的权限为文件所有者有全部权限，文件所有者所在的组有读写权限，其他用户只有读的权限。</p>
+<p>chmod u=rwx,g=rw,o=r aaa.txt 或者 chmod 764 aaa.txt</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223516.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223516.png" srcset="data:image/png;base64,666" alt="20210506223516"></p>
+<p><strong>补充一个比较常用的东西:</strong></p>
+<p>假如我们装了一个 zookeeper，我们每次开机到要求其自动启动该怎么办？</p>
+<p>新建一个脚本 zookeeper<br>为新建的脚本 zookeeper 添加可执行权限，命令是:chmod +x zookeeper<br>把 zookeeper 这个脚本添加到开机启动项里面，命令是：chkconfig –add zookeeper<br>如果想看看是否添加成功，命令是：chkconfig –list</p>
+<h3 id="Linux-用户管理"><a href="#Linux-用户管理" class="headerlink" title="Linux 用户管理"></a>Linux 用户管理</h3><p>Linux 系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。</p>
+<p>用户的账号一方面可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护。</p>
+<p><strong>Linux 用户管理相关命令:</strong></p>
+<ul>
+<li>useradd 选项 用户名:添加用户账号</li>
+<li>userdel 选项 用户名:删除用户帐号</li>
+<li>usermod 选项 用户名:修改帐号</li>
+<li>passwd 用户名:更改或创建用户的密码</li>
+<li>passwd -S 用户名 :显示用户账号密码信息</li>
+<li>passwd -d 用户名: 清除用户密码</li>
+</ul>
+<p>useradd 命令用于 Linux 中创建的新的系统用户。useradd可用来建立用户帐号。帐号建好之后，再用passwd设定帐号的密码．而可用userdel删除帐号。使用useradd指令所建立的帐号，实际上是保存在 /etc/passwd文本文件中。</p>
+<p>passwd命令用于设置用户的认证信息，包括用户密码、密码过期时间等。系统管理者则能用它管理系统用户的密码。只有管理者可以指定用户名称，一般用户只能变更自己的密码。</p>
+<h3 id="Linux-系统用户组的管理"><a href="#Linux-系统用户组的管理" class="headerlink" title="Linux 系统用户组的管理"></a>Linux 系统用户组的管理</h3><p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。不同 Linux 系统对用户组的规定有所不同，如 Linux 下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。</p>
+<p>用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。</p>
+<p><strong>Linux 系统用户组的管理相关命令:</strong></p>
+<ul>
+<li>groupadd 选项 用户组 :增加一个新的用户组</li>
+<li>groupdel 用户组:要删除一个已有的用户组</li>
+<li>groupmod 选项 用户组 : 修改用户组的属性</li>
+</ul>
+<h3 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h3><ul>
+<li><p>pwd： 显示当前所在位置</p>
+</li>
+<li><p>sudo + 其他命令：以系统管理者的身份执行指令，也就是说，经由 sudo 所执行的指令就好像是 root 亲自执行。</p>
+</li>
+<li><p>grep 要搜索的字符串 要搜索的文件 –color： 搜索命令，–color 代表高亮显示</p>
+</li>
+<li><p>ps -ef/ps -aux： 这两个命令都是查看当前系统正在运行进程，两者的区别是展示格式不同。如果想要查看特定的进程可以使用这样的格式：<strong>ps aux|grep redis</strong> （查看包括 redis 字符串的进程），也可使用 pgrep redis -a。</p>
+</li>
+</ul>
+<p>注意：如果直接用 ps（（Process Status））命令，会显示所有进程的状态，通常结合 grep 命令查看某进程的状态。</p>
+<ul>
+<li>kill -9 进程的pid： 杀死进程（-9 表示强制终止。）<br>先用 ps 查找进程，然后用 kill 杀掉</li>
+</ul>
+<ul>
+<li><p><strong>网络通信命令：</strong></p>
+<ul>
+<li>查看当前系统的网卡信息：ifconfig</li>
+<li>查看与某台机器的连接情况：ping</li>
+<li>查看当前系统的端口使用：netstat -an</li>
+</ul>
+</li>
+<li><p><strong>查看磁盘信息命令：</strong></p>
+<ul>
+<li><p>df -hl：查看磁盘剩余空间</p>
+</li>
+<li><p>df -h：查看每个根路径的分区大小</p>
+</li>
+<li><p>du -sh [目录名]：返回该目录的大小</p>
+</li>
+<li><p>du -sm [文件夹]：返回该文件夹总M数</p>
+</li>
+<li><p>du -h [目录名]：查看指定文件夹下的所有文件大小（包含子文件夹）</p>
+<p><strong>du(disk usage)</strong><br><strong>df 以磁盘分区为单位查看文件系统，可以获取硬盘被占用了多少空间，目前还剩下多少空间等信息。</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>net-tools 和 iproute2 ： net-tools起源于 BSD 的 TCP/IP 工具箱，后来成为老版本 LinuxLinux 中配置网络功能的工具。但自 2001 年起，Linux 社区已经对其停止维护。同时，一些 Linux 发行版比如 Arch Linux 和 CentOS/RHEL 7 则已经完全抛弃了 net-tools，只支持iproute2。linux ip 命令类似于 ifconfig，但功能更强大，旨在替代它。更多详情请阅读如何在 Linux 中使用 IP 命令和示例</p>
+</li>
+<li><p>shutdown： shutdown -h now： 指定现在立即关机；shutdown +5 “System will shutdown after 5 minutes”：指定 5 分钟后关机，同时送出警告信息给登入用户。</p>
+</li>
+<li><p>reboot： reboot： 重开机。<strong>reboot -w：</strong> 做个重开机的模拟（只有纪录并不会真的重开机）。</p>
+</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/operating-system/linux?id=_4-linux-%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4">Linux 基本命令</a></p>
 
   
   
@@ -477,7 +628,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/04/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/>https://xmmarlowe.github.io/2021/05/04/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/>https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</a></p>
               
             
           </blockquote>
@@ -505,10 +656,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-04T22:38:59+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T22:41:42+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 4, 2021</p>
+    <p>更新于：May 6, 2021</p>
   </a>
 </div>
 
@@ -522,7 +673,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/04/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/&title=Redis 如何配置Key的过期时间？他的实现原理是什么？ - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/&title=Linux常用命令总结 - Marlowe&summary="
           
           >
           
@@ -534,7 +685,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/04/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/&title=Redis 如何配置Key的过期时间？他的实现原理是什么？ - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/&title=Linux常用命令总结 - Marlowe&summary="
           
           >
           
@@ -546,7 +697,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/04/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/&title=Redis 如何配置Key的过期时间？他的实现原理是什么？ - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/&title=Linux常用命令总结 - Marlowe&summary="
           
           >
           
@@ -576,23 +727,23 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/05/04/NoSQL/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>海量数据下，如何快速查找一条记录？</p>
+        <a class='prev' href='/2021/05/06/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis 单线程模型</p>
           <p class='content'>
 
-1、使用布隆过滤器，快速过滤不存在的记录。
-使用Redis的bitmap结构来实现布隆过滤器。
-2、在Redis中建立数据缓存。将我们对Redis使用场景的理解尽量表达出来。
-以普通字符串的...</p>
+
+</p>
         </a>
       
       
-        <a class='next' href='/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/'>
-          <p class='title'>如何设计一个分布式锁？如何对锁的性能进行优化？<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='next' href='/2021/05/06/%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E4%B8%8E%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E3%80%81%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/'>
+          <p class='title'>进程状态与僵尸进程、孤儿进程<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
-分布式锁的本质就是在所有进程都能访问到的一个地方，设置一一个锁资源， 让这些进程都来竞争锁资源。数据库、zookeeper, Redis。
-通常对于分布式锁，会要求响应快、性能高、与业务无关...</p>
+进程状态一个进程的生命周期可以划分为一组状态，这些状态刻画了整个进程。进程状态即体现一个进程的生命状态
+一般来说，进程有五种状态：
+
+创建状态： 进程在创建时需要申请一个空白PCB，向其中填...</p>
         </a>
       
     </div>
@@ -635,7 +786,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E8%AE%BE%E7%BD%AEkey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="toc-text">Redis设置key的过期时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%9C%9F%E5%88%A0%E9%99%A4"><span class="toc-text">定期删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%E5%88%A0%E9%99%A4"><span class="toc-text">懒汉式删除</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E5%88%87%E6%8D%A2%E5%91%BD%E4%BB%A4"><span class="toc-text">目录切换命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">目录的操作命令(增删改查)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">文件的操作命令(增删改查)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">压缩文件的操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="toc-text">打包并压缩文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="toc-text">解压压缩包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%9A%84%E6%9D%83%E9%99%90%E5%91%BD%E4%BB%A4"><span class="toc-text">Linux 的权限命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 系统用户组的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">其他常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
@@ -655,7 +806,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Redis 如何配置Key的过期时间？他的实现原理是什么？";
+  pdata.postTitle="Linux常用命令总结";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

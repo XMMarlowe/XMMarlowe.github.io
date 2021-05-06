@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>7 words</p>
+      <p>1.4k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>4 min</p>
     </a>
   </div>
 
@@ -450,7 +450,40 @@
   
   <a id="more"></a>
 
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>DNS（Domain Name System，域名系统），万维网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去记住IP。通过域名，最终得到该域名对应的IP地址的过程叫做域名解析（或主机名解析）。</p>
+<p>DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53。大多数情况下 DNS 使用 UDP 进行传输，这就要求域名解析器和域名服务器都必须自己处理超时和重传从而保证可靠性。在两种情况下会使用 TCP 进行传输：</p>
+<ul>
+<li>如果返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据）。</li>
+<li>区域传送（区域传送是主域名服务器向辅助域名服务器传送变化的那部分数据）。</li>
+</ul>
+<h3 id="DNS查找过程"><a href="#DNS查找过程" class="headerlink" title="DNS查找过程"></a>DNS查找过程</h3><p>DNS解析是一个递归查询的过程。</p>
+<ol>
+<li>浏览器查找域名的IP地址(DNS查找过程：浏览器缓存、路由器缓存、DNS缓存)</li>
+<li>浏览器向web服务器发送一个HTTP请求(cookies会随着请求发送给服务器)</li>
+<li>服务器处理请求(请求 处理请求 &amp; 它的参数、cookie、生成一个HTML相应)</li>
+<li>服务器发回一个HTML响应</li>
+<li>浏览器开始显示HTML</li>
+</ol>
+<p><strong>查找<a target="_blank" rel="noopener" href="http://www.google.com的ip地址过程/">www.google.com的IP地址过程</a></strong></p>
+<p>首先在本地域名服务器中查询IP地址，如果没有找到的情况下，本地域名服务器会向根域名服务器发送一个请求，如果根域名服务器也不存在该域名时，本地域名会向com顶级域名服务器发送一个请求，依次类推下去。直到最后本地域名服务器得到google的IP地址并把它缓存到本地，供下次查询使用。从上述过程中，可以看出网址的解析是一个从右向左的过程: com -&gt; google.com -&gt; <a href="http://www.google.com。但是你是否发现少了点什么，根域名服务器的解析过程呢？事实上，真正的网址是">www.google.com。但是你是否发现少了点什么，根域名服务器的解析过程呢？事实上，真正的网址是</a> <a target="_blank" rel="noopener" href="http://www.google.com.,并不是我多打了一个.,这个.对应的就是根域名服务器,默认情况下所有的网址的最后一位都是.,既然是默认情况下,为了方便用户,通常都会省略,浏览器在请求dns的时候会自动加上,所有网址真正的解析过程为/">www.google.com.，并不是我多打了一个.，这个.对应的就是根域名服务器，默认情况下所有的网址的最后一位都是.，既然是默认情况下，为了方便用户，通常都会省略，浏览器在请求DNS的时候会自动加上，所有网址真正的解析过程为</a>: . -&gt; .com -&gt; google.com. -&gt; <a target="_blank" rel="noopener" href="http://www.google.com../">www.google.com.。</a></p>
+<p><strong>使用的协议</strong></p>
+<ul>
+<li>TCP：与服务器建立TCP连接</li>
+<li>IP：建立TCP协议时，需要发送数据，发送数据在网络层使用IP协议</li>
+<li>OSPF：开放最短路径优先协议,是由Internet工程任务组开发的路由选择协议</li>
+<li>ARP：路由器在与服务器通信时，需要将ip地址转换为MAC地址，需要使用ARP协议</li>
+<li>HTTP：在TCP建立完成后，使用HTTP协议访问网页</li>
+</ul>
+<h3 id="DNS的记录类型"><a href="#DNS的记录类型" class="headerlink" title="DNS的记录类型"></a>DNS的记录类型</h3><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506162628.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506162628.png" srcset="data:image/png;base64,666" alt="20210506162628"></p>
+<p>其中CNAME解析就是将域名解析到另一个域名。</p>
+<h3 id="DNS负载均衡"><a href="#DNS负载均衡" class="headerlink" title="DNS负载均衡"></a>DNS负载均衡</h3><p>不知道大家有没有思考过一个问题: DNS返回的IP地址是否每次都一样？如果每次都一样是否说明你请求的资源都位于同一台机器上面，那么这台机器需要多高的性能和储存才能满足亿万请求呢？其实真实的互联网世界背后存在成千上百台服务器，大型的网站甚至更多。但是在用户的眼中，<strong>它需要的只是处理他的请求，哪台机器处理请求并不重要。</strong> DNS可以返回一个合适的机器的IP给用户，例如可以根据每台机器的负载量，该机器离用户地理位置的距离等等，这种过程就是DNS负载均衡，又叫做DNS重定向。大家耳熟能详的CDN(Content Delivery Network)就是 <strong>利用DNS的重定向技术，DNS服务器会返回一个跟用户最接近的点的IP地址给用户，CDN节点的服务器负责响应用户的请求，提供所需的内容。</strong></p>
+<h3 id="DNS劫持与污染"><a href="#DNS劫持与污染" class="headerlink" title="DNS劫持与污染"></a>DNS劫持与污染</h3><h4 id="DNS劫持"><a href="#DNS劫持" class="headerlink" title="DNS劫持"></a>DNS劫持</h4><p>DNS决定的是我们的域名将解析到哪一个IP地址的记录，是基于UDP协议的一种应用层协议。这种攻击的前提是攻击者掌控了你的本地DNS服务器</p>
+<p>攻击者劫持了DNS服务器，通过某些手段取得某域名的解析记录控制权，进而修改此域名的解析结果，导致用户对该域名地址进行访问的时候，由原来的IP地址转入到修改后的IP地址。结果就是让正确的网址不能解析或者是被解析到另一个网址的IP，实现获取用户资料或者破坏原有网址正常服务的目的。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506162712.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506162712.png" srcset="data:image/png;base64,666" alt="20210506162712"></p>
+<p>简单来说就是就是ip解析请求发送到了其他DNS服务器了，给你返回了一个错误的ip。</p>
+<h4 id="DNS污染"><a href="#DNS污染" class="headerlink" title="DNS污染"></a>DNS污染</h4><p>又称域名服务器缓存投毒（DNS cache poisoning），它和DNS劫持的不同之处，在于污染针对的是DNS缓存，是在查询信息到达目标DNS服务器前，经过的节点上做手脚，而劫持是DNS服务器中记录的是错误的内容。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.unclezs.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E8%B0%88DNS%E5%8D%8F%E8%AE%AE.html">浅谈DNS协议</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000006879700">前端经典面试题: 从输入URL到页面加载发生了什么？</a></p>
 
   
   
@@ -496,10 +529,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:25:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T16:27:40+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：May 6, 2021</p>
   </a>
 </div>
 
@@ -623,7 +656,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E6%9F%A5%E6%89%BE%E8%BF%87%E7%A8%8B"><span class="toc-text">DNS查找过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E7%9A%84%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-text">DNS的记录类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">DNS负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E5%8A%AB%E6%8C%81%E4%B8%8E%E6%B1%A1%E6%9F%93"><span class="toc-text">DNS劫持与污染</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS%E5%8A%AB%E6%8C%81"><span class="toc-text">DNS劫持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS%E6%B1%A1%E6%9F%93"><span class="toc-text">DNS污染</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
