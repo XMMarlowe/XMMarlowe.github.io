@@ -20,9 +20,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Linux常用命令总结 - Marlowe</title>
+  <title>Redis6.0 相关问题 - Marlowe</title>
   
-    <meta name="keywords" content="Linux,命令">
+    <meta name="keywords" content="多线程,Redis">
   
 
   
@@ -371,7 +371,7 @@
     
     
       <h1 class="title">
-        Linux常用命令总结
+        Redis6.0 相关问题
       </h1>
       <div class='new-meta-box'>
         
@@ -391,7 +391,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+      <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
     </a>
   </div>
 
@@ -402,7 +402,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 6, 2021</p>
+    <p>发布于：May 7, 2021</p>
   </a>
 </div>
 
@@ -413,7 +413,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Linux常用命令总结" data-path="/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+      <div id="lc-pv" data-title="Redis6.0 相关问题" data-path="/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>3.1k words</p>
+      <p>2k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>11 min</p>
+      <p>7 min</p>
     </a>
   </div>
 
@@ -450,167 +450,50 @@
   
   <a id="more"></a>
 
-<h3 id="目录切换命令"><a href="#目录切换命令" class="headerlink" title="目录切换命令"></a>目录切换命令</h3><ul>
-<li><strong>cd usr：</strong> 切换到该目录下 usr 目录</li>
-<li><strong>cd ..（或cd../）：</strong> 切换到上一层目录</li>
-<li><strong>cd /：</strong> 切换到系统根目录</li>
-<li><strong>cd ~：</strong> 切换到用户主目录</li>
-<li><strong>cd -：</strong> 切换到上一个操作所在目录</li>
-</ul>
-<h3 id="目录的操作命令-增删改查"><a href="#目录的操作命令-增删改查" class="headerlink" title="目录的操作命令(增删改查)"></a>目录的操作命令(增删改查)</h3><ul>
-<li><strong>mkdir 目录名称：</strong> 增加目录。</li>
-<li> <strong>ls/ll</strong>（ll 是 ls -l 的别名，ll 命令可以看到该目录下的所有目录和文件的详细信息）：查看目录信息。</li>
-<li><strong>find 目录 参数：</strong> 寻找目录（查）。示例：① 列出当前目录及子目录下所有文件和文件夹: find .；② 在/home目录下查找以.txt 结尾的文件名:find /home -name “<em>.txt” ,忽略大小写: find /home -iname “</em>.txt” ；③ 当前目录及子目录下查找所有以.txt 和.pdf 结尾的文件:find . ( -name “<em>.txt” -o -name “</em>.pdf” )或find . -name “<em>.txt” -o -name “</em>.pdf”。</li>
-<li><strong>mv 目录名称 新目录名称：</strong> 修改目录的名称（改）。注意：mv 的语法不仅可以对目录进行重命名而且也可以对各种文件，压缩包等进行 重命名的操作。mv 命令用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中。后面会介绍到 mv 命令的另一个用法。</li>
-<li><strong>mv 目录名称 目录的新位置：</strong> 移动目录的位置—剪切（改）。注意：mv 语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作。另外 mv 与 cp 的结果不同，mv 好像文件“搬家”，文件个数并未增加。而 cp 对文件进行复制，文件个数增加了。</li>
-<li><strong>cp -r 目录名称 目录拷贝的目标位置：</strong> 拷贝目录（改），-r 代表递归拷贝 。注意：cp 命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不 用写-r 递归。</li>
-<li><strong>rm [-rf] 目录:</strong> 删除目录（删）。注意：rm 不仅可以删除目录，也可以删除其他文件或压缩包，为了增强大家的记忆， 无论删除任何目录或文件，都直接使用rm -rf 目录/文件/压缩包。</li>
-</ul>
-<h3 id="文件的操作命令-增删改查"><a href="#文件的操作命令-增删改查" class="headerlink" title="文件的操作命令(增删改查)"></a>文件的操作命令(增删改查)</h3><ul>
-<li><strong>touch 文件名称:</strong> 文件的创建（增）。</li>
-<li><strong>cat/more/less/tail 文件名称：</strong> 文件的查看（查） 。命令 tail -f 文件 可以对某个文件进行动态监控，例如 tomcat 的日志文件， 会随着程序的运行，日志会变化，可以使用 tail -f catalina-2016-11-11.log 监控 文 件的变化 。</li>
-<li><strong>vim 文件：</strong> 修改文件的内容（改）。vim 编辑器是 Linux 中的强大组件，是 vi 编辑器的加强版，vim 编辑器的命令和快捷方式有很多，但此处不一一阐述，大家也无需研究的很透彻，使用 vim 编辑修改文件的方式基本会使用就可以了。在实际开发中，使用 vim 编辑器主要作用就是修改配置文件，下面是一般步骤： vim 文件——&gt;进入文件—–&gt;命令模式——&gt;按i进入编辑模式—–&gt;编辑文件 ——-&gt;按Esc进入底行模式—–&gt;输入：wq/q! （输入 wq 代表写入内容并退出，即保存；输入 q!代表强制退出不保存）。</li>
-<li><strong>rm -rf 文件：</strong> 删除文件（删）。</li>
-</ul>
-<h3 id="压缩文件的操作命令"><a href="#压缩文件的操作命令" class="headerlink" title="压缩文件的操作命令"></a>压缩文件的操作命令</h3><h4 id="打包并压缩文件"><a href="#打包并压缩文件" class="headerlink" title="打包并压缩文件"></a>打包并压缩文件</h4><p>Linux 中的打包文件一般是以.tar 结尾的，压缩的命令一般是以.gz 结尾的。而一般情况下打包和压缩是一起进行的，打包并压缩后的文件的后缀名一般.tar.gz。 命令：tar -zcvf 打包压缩后的文件名 要打包压缩的文件 ，其中：</p>
+<h3 id="Redis6-0之前的版本真的是单线程吗？"><a href="#Redis6-0之前的版本真的是单线程吗？" class="headerlink" title="Redis6.0之前的版本真的是单线程吗？"></a>Redis6.0之前的版本真的是单线程吗？</h3><p>Redis在处理客户端的请求时，包括获取 (socket 读)、解析、执行、内容返回 (socket 写) 等都由一个顺序串行的主线程处理，这就是所谓的“单线程”。但如果严格来讲从Redis4.0之后并不是单线程，除了主线程外，它也有后台线程在处理一些较为缓慢的操作，例如清理脏数据、无用连接的释放、大 key 的删除等等。</p>
+<h3 id="Redis6-0之前为什么一直不使用多线程？"><a href="#Redis6-0之前为什么一直不使用多线程？" class="headerlink" title="Redis6.0之前为什么一直不使用多线程？"></a>Redis6.0之前为什么一直不使用多线程？</h3><p>官方曾做过类似问题的回复：使用Redis时，几乎不存在CPU成为瓶颈的情况， Redis主要受限于内存和网络。例如在一个普通的Linux系统上，Redis通过使用pipelining每秒可以处理100万个请求，所以如果应用程序主要使用O(N)或O(log(N))的命令，它几乎不会占用太多CPU。</p>
+<p>使用了单线程后，可维护性高。多线程模型虽然在某些方面表现优异，但是它却引入了程序执行顺序的不确定性，带来了并发读写的一系列问题，增加了系统复杂度、同时可能存在线程切换、甚至加锁解锁、死锁造成的性能损耗。Redis通过AE事件模型以及IO多路复用等技术，处理性能非常高，因此没有必要使用多线程。单线程机制使得 Redis 内部实现的复杂度大大降低，Hash 的惰性 Rehash、Lpush 等等 “线程不安全” 的命令都可以无锁进行。</p>
+<h3 id="Redis6-0-之后为何引入了多线程？"><a href="#Redis6-0-之后为何引入了多线程？" class="headerlink" title="Redis6.0 之后为何引入了多线程？"></a>Redis6.0 之后为何引入了多线程？</h3><p><strong>Redis6.0 引入多线程主要是为了提高网络 IO 读写性能</strong>，因为这个算是 Redis 中的一个性能瓶颈（Redis 的瓶颈主要受限于内存和网络）。</p>
+<p>虽然，Redis6.0 引入了多线程，但是 Redis 的多线程只是在网络数据的读写这类耗时操作上使用了， 执行命令仍然是单线程顺序执行。因此，你也不需要担心线程安全问题。</p>
+<p>Redis将所有数据放在内存中，内存的响应时长大约为100纳秒，对于小数据包，Redis服务器可以处理80,000到100,000 QPS，这也是Redis处理的极限了，对于80%的公司来说，单线程的Redis已经足够使用了。</p>
+<p>但随着越来越复杂的业务场景，有些公司动不动就上亿的交易量，因此需要更大的QPS。常见的解决方案是在分布式架构中对数据进行分区并采用多个服务器，但该方案有非常大的缺点，例如要管理的Redis服务器太多，维护代价大；某些适用于单个Redis服务器的命令不适用于数据分区；数据分区无法解决热点读/写问题；数据偏斜，重新分配和放大/缩小变得更加复杂等等。</p>
+<p>从Redis自身角度来说，因为读写网络的read/write系统调用占用了Redis执行期间大部分CPU时间，瓶颈主要在于网络的 IO 消耗, 优化主要有两个方向:</p>
 <ul>
-<li>z：调用 gzip 压缩命令进行压缩</li>
-<li>c：打包文件</li>
-<li>v：显示运行过程</li>
-<li>f：指定文件名</li>
+<li>提高网络 IO 性能，典型的实现比如使用 DPDK 来替代内核网络栈的方式</li>
+<li>使用多线程充分利用多核，典型的实现比如 Memcached。</li>
 </ul>
-<p>比如：假如 test 目录下有三个文件分别是：aaa.txt bbb.txt ccc.txt，如果我们要打包 test 目录并指定压缩后的压缩包名称为 test.tar.gz 可以使用命令：<strong>tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt 或 tar -zcvf test.tar.gz /test/</strong></p>
-<h4 id="解压压缩包"><a href="#解压压缩包" class="headerlink" title="解压压缩包"></a>解压压缩包</h4><p>命令：<code>tar [-xvf] 压缩文件</code></p>
-<p>其中：x：代表解压</p>
-<p>示例：</p>
+<p>协议栈优化的这种方式跟 Redis 关系不大，支持多线程是一种最有效最便捷的操作方式。所以总结起来，redis支持多线程主要就是两个原因：</p>
 <ul>
-<li>将 /test 下的 test.tar.gz 解压到当前目录下可以使用命令：<strong>tar -xvf test.tar.gz</strong></li>
-<li>将 /test 下的 test.tar.gz 解压到根目录/usr 下:<strong>tar -xvf test.tar.gz -C /usr</strong>（- C 代表指定解压的位置）</li>
+<li>可以充分利用服务器 CPU 资源，目前主线程只能利用一个核</li>
+<li>多线程任务可以分摊 Redis 同步 IO 读写负荷</li>
 </ul>
-<h3 id="Linux-的权限命令"><a href="#Linux-的权限命令" class="headerlink" title="Linux 的权限命令"></a>Linux 的权限命令</h3><p>操作系统中每个文件都拥有特定的权限、所属用户和所属组。权限是操作系统用来限制资源访问的机制，在 Linux 中权限一般分为读(readable)、写(writable)和执行(excutable)，分为三组。分别对应文件的属主(owner)，属组(group)和其他用户(other)，通过这样的机制来限制哪些用户、哪些组可以对特定的文件进行什么样的操作。</p>
-<p>通过 ls -l 命令我们可以 查看某个目录下的文件或目录的权限</p>
-<p>示例：在随意某个目录下ls -l</p>
-<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223041.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223041.png" srcset="data:image/png;base64,666" alt="20210506223041"></p>
-<p>第一列的内容的信息解释如下：<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223056.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223056.png" srcset="data:image/png;base64,666" alt="20210506223056"></p>
-<p>下面将详细讲解文件的类型、Linux 中权限以及文件有所有者、所在组、其它组具体是什么？</p>
-<p><strong>文件的类型：</strong></p>
-<ul>
-<li>d： 代表目录</li>
-<li>-： 代表文件</li>
-<li>l： 代表软链接（可以认为是 window 中的快捷方式）</li>
-</ul>
-<p><strong>Linux 中权限分为以下几种：</strong></p>
-<ul>
-<li>r：代表权限是可读，r 也可以用数字 4 表示</li>
-<li>w：代表权限是可写，w 也可以用数字 2 表示</li>
-<li>x：代表权限是可执行，x 也可以用数字 1 表示</li>
-</ul>
-<p><strong>文件和目录权限的区别：</strong></p>
-<p>对文件和目录而言，读写执行表示不同的意义。</p>
-<p><strong>对于文件：</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">权限名称</th>
-<th align="center">可执行操作</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">r</td>
-<td align="center">可以使用 cat 查看文件的内容</td>
-</tr>
-<tr>
-<td align="center">w</td>
-<td align="center">可以修改文件的内容</td>
-</tr>
-<tr>
-<td align="center">x</td>
-<td align="center">可以将其运行为二进制文件</td>
-</tr>
-</tbody></table>
-<p><strong>对于目录：</strong><br>|权限名称|可执行操作|<br>|:–:|:–:|<br>|r|可以查看目录下列表|<br>|w|可以创建和删除目录下文件|<br>|x|可以使用 cd 进入目录|</p>
-<p>需要注意的是： <strong>超级用户可以无视普通用户的权限，即使文件目录权限是 000，依旧可以访问。</strong></p>
-<p><strong>在 linux 中的每个用户必须属于一个组，不能独立于组外。在 linux 中每个文件有所有者、所在组、其它组的概念。</strong></p>
-<ul>
-<li><strong>所有者(u)：</strong> 一般为文件的创建者，谁创建了该文件，就天然的成为该文件的所有者，用 ls ‐ahl 命令可以看到文件的所有者 也可以使用 chown 用户名 文件名来修改文件的所有者 。</li>
-<li><strong>文件所在组(g)：</strong> 当某个用户创建了一个文件后，这个文件的所在组就是该用户所在的组用 ls ‐ahl命令可以看到文件的所有组也可以使用 chgrp 组名 文件名来修改文件所在的组。</li>
-<li><strong>其它组(o)：</strong> 除开文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组。</li>
-</ul>
-<p><strong>修改文件/目录的权限的命令：chmod</strong></p>
-<p>示例：修改/test 下的 aaa.txt 的权限为文件所有者有全部权限，文件所有者所在的组有读写权限，其他用户只有读的权限。</p>
-<p>chmod u=rwx,g=rw,o=r aaa.txt 或者 chmod 764 aaa.txt</p>
-<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223516.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210506223516.png" srcset="data:image/png;base64,666" alt="20210506223516"></p>
-<p><strong>补充一个比较常用的东西:</strong></p>
-<p>假如我们装了一个 zookeeper，我们每次开机到要求其自动启动该怎么办？</p>
-<p>新建一个脚本 zookeeper<br>为新建的脚本 zookeeper 添加可执行权限，命令是:chmod +x zookeeper<br>把 zookeeper 这个脚本添加到开机启动项里面，命令是：chkconfig –add zookeeper<br>如果想看看是否添加成功，命令是：chkconfig –list</p>
-<h3 id="Linux-用户管理"><a href="#Linux-用户管理" class="headerlink" title="Linux 用户管理"></a>Linux 用户管理</h3><p>Linux 系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。</p>
-<p>用户的账号一方面可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护。</p>
-<p><strong>Linux 用户管理相关命令:</strong></p>
-<ul>
-<li>useradd 选项 用户名:添加用户账号</li>
-<li>userdel 选项 用户名:删除用户帐号</li>
-<li>usermod 选项 用户名:修改帐号</li>
-<li>passwd 用户名:更改或创建用户的密码</li>
-<li>passwd -S 用户名 :显示用户账号密码信息</li>
-<li>passwd -d 用户名: 清除用户密码</li>
-</ul>
-<p>useradd 命令用于 Linux 中创建的新的系统用户。useradd可用来建立用户帐号。帐号建好之后，再用passwd设定帐号的密码．而可用userdel删除帐号。使用useradd指令所建立的帐号，实际上是保存在 /etc/passwd文本文件中。</p>
-<p>passwd命令用于设置用户的认证信息，包括用户密码、密码过期时间等。系统管理者则能用它管理系统用户的密码。只有管理者可以指定用户名称，一般用户只能变更自己的密码。</p>
-<h3 id="Linux-系统用户组的管理"><a href="#Linux-系统用户组的管理" class="headerlink" title="Linux 系统用户组的管理"></a>Linux 系统用户组的管理</h3><p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。不同 Linux 系统对用户组的规定有所不同，如 Linux 下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。</p>
-<p>用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。</p>
-<p><strong>Linux 系统用户组的管理相关命令:</strong></p>
-<ul>
-<li>groupadd 选项 用户组 :增加一个新的用户组</li>
-<li>groupdel 用户组:要删除一个已有的用户组</li>
-<li>groupmod 选项 用户组 : 修改用户组的属性</li>
-</ul>
-<h3 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h3><ul>
-<li><p>pwd： 显示当前所在位置</p>
-</li>
-<li><p>sudo + 其他命令：以系统管理者的身份执行指令，也就是说，经由 sudo 所执行的指令就好像是 root 亲自执行。</p>
-</li>
-<li><p>grep 要搜索的字符串 要搜索的文件 –color： 搜索命令，–color 代表高亮显示</p>
-</li>
-<li><p>ps -ef/ps -aux： 这两个命令都是查看当前系统正在运行进程，两者的区别是展示格式不同。如果想要查看特定的进程可以使用这样的格式：<strong>ps aux|grep redis</strong> （查看包括 redis 字符串的进程），也可使用 pgrep redis -a。</p>
-</li>
-</ul>
-<p>注意：如果直接用 ps（（Process Status））命令，会显示所有进程的状态，通常结合 grep 命令查看某进程的状态。</p>
-<ul>
-<li>kill -9 进程的pid： 杀死进程（-9 表示强制终止。）<br>先用 ps 查找进程，然后用 kill 杀掉</li>
-</ul>
-<ul>
-<li><p><strong>网络通信命令：</strong></p>
-<ul>
-<li>查看当前系统的网卡信息：ifconfig</li>
-<li>查看与某台机器的连接情况：ping</li>
-<li>查看当前系统的端口使用：netstat -an</li>
-</ul>
-</li>
-<li><p><strong>查看磁盘信息命令：</strong></p>
-<ul>
-<li><p>df -hl：查看磁盘剩余空间</p>
-</li>
-<li><p>df -h：查看每个根路径的分区大小</p>
-</li>
-<li><p>du -sh [目录名]：返回该目录的大小</p>
-</li>
-<li><p>du -sm [文件夹]：返回该文件夹总M数</p>
-</li>
-<li><p>du -h [目录名]：查看指定文件夹下的所有文件大小（包含子文件夹）</p>
-<p><strong>du(disk usage)</strong><br><strong>df 以磁盘分区为单位查看文件系统，可以获取硬盘被占用了多少空间，目前还剩下多少空间等信息。</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>net-tools 和 iproute2 ： net-tools起源于 BSD 的 TCP/IP 工具箱，后来成为老版本 LinuxLinux 中配置网络功能的工具。但自 2001 年起，Linux 社区已经对其停止维护。同时，一些 Linux 发行版比如 Arch Linux 和 CentOS/RHEL 7 则已经完全抛弃了 net-tools，只支持iproute2。linux ip 命令类似于 ifconfig，但功能更强大，旨在替代它。更多详情请阅读如何在 Linux 中使用 IP 命令和示例</p>
-</li>
-<li><p>shutdown： shutdown -h now： 指定现在立即关机；shutdown +5 “System will shutdown after 5 minutes”：指定 5 分钟后关机，同时送出警告信息给登入用户。</p>
-</li>
-<li><p>reboot： reboot： 重开机。<strong>reboot -w：</strong> 做个重开机的模拟（只有纪录并不会真的重开机）。</p>
-</li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/operating-system/linux?id=_4-linux-%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4">Linux 基本命令</a></p>
+<h3 id="Redis6-0默认是否开启了多线程？"><a href="#Redis6-0默认是否开启了多线程？" class="headerlink" title="Redis6.0默认是否开启了多线程？"></a>Redis6.0默认是否开启了多线程？</h3><p><strong>Redis6.0 的多线程默认是禁用的，只使用主线程。</strong> 如需开启需要修改 redis 配置文件 redis.conf ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">io-threads-do-reads yes</span><br></pre></td></tr></table></figure>
+<h3 id="Redis6-0多线程开启时，线程数如何设置？"><a href="#Redis6-0多线程开启时，线程数如何设置？" class="headerlink" title="Redis6.0多线程开启时，线程数如何设置？"></a>Redis6.0多线程开启时，线程数如何设置？</h3><p>开启多线程后，还需要设置线程数，否则是不生效的。同样需要修改 redis 配置文件 redis.conf :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">io-threads 4 <span class="comment">#官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程</span></span><br></pre></td></tr></table></figure>
+<h3 id="Redis6-0多线程的实现机制？"><a href="#Redis6-0多线程的实现机制？" class="headerlink" title="Redis6.0多线程的实现机制？"></a>Redis6.0多线程的实现机制？</h3><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507130238.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507130238.png" srcset="data:image/png;base64,666" alt="20210507130238"></p>
+<p><strong>流程简述如下：</strong></p>
+<p>1、主线程负责接收建立连接请求，获取 socket 放入全局等待读处理队列</p>
+<p>2、主线程处理完读事件之后，通过 RR(Round Robin) 将这些连接分配给这些 IO 线程</p>
+<p>3、主线程阻塞等待 IO 线程读取 socket 完毕</p>
+<p>4、主线程通过单线程的方式执行请求命令，请求数据读取并解析完成，但并不执行</p>
+<p>5、主线程阻塞等待 IO 线程将数据回写 socket 完毕</p>
+<p>6、解除绑定，清空等待队列</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507130312.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507130312.png" srcset="data:image/png;base64,666" alt="20210507130312"></p>
+<p><strong>该设计有如下特点：</strong></p>
+<p>1、IO 线程要么同时在读 socket，要么同时在写，不会同时读或写</p>
+<p>2、IO 线程只负责读写 socket 解析命令，不负责命令处理</p>
+<h3 id="开启多线程后，是否会存在线程并发安全问题？"><a href="#开启多线程后，是否会存在线程并发安全问题？" class="headerlink" title="开启多线程后，是否会存在线程并发安全问题？"></a>开启多线程后，是否会存在线程并发安全问题？</h3><p>从上面的实现机制可以看出，Redis的多线程部分只是用来处理网络数据的读写和协议解析，执行命令仍然是单线程顺序执行。所以我们不需要去考虑控制 key、lua、事务，LPUSH/LPOP 等等的并发及线程安全问题。</p>
+<h3 id="Redis6-0的多线程和Memcached多线程模型进行对比"><a href="#Redis6-0的多线程和Memcached多线程模型进行对比" class="headerlink" title="Redis6.0的多线程和Memcached多线程模型进行对比"></a>Redis6.0的多线程和Memcached多线程模型进行对比</h3><p>前些年memcached 是各大互联网公司常用的缓存方案，因此redis 和 memcached 的区别基本成了面试官缓存方面必问的面试题，最近几年memcached用的少了，基本都是 redis。不过随着Redis6.0加入了多线程特性，类似的问题可能还会出现，接下来我们只针对多线程模型来简单比较一下。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507130420.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507130420.png" srcset="data:image/png;base64,666" alt="20210507130420"></p>
+<p>如上图所示：Memcached 服务器采用 master-woker 模式进行工作，服务端采用 socket 与客户端通讯。主线程、工作线程 采用 pipe管道进行通讯。主线程采用 libevent 监听 listen、accept 的读事件，事件响应后将连接信息的数据结构封装起来，根据算法选择合适的工作线程，将连接任务携带连接信息分发出去，相应的线程利用连接描述符建立与客户端的socket连接 并进行后续的存取数据操作。</p>
+<p><strong>Redis6.0与Memcached多线程模型对比：</strong></p>
+<p><strong>相同点：</strong> 都采用了 master线程-worker 线程的模型</p>
+<p><strong>不同点：</strong> Memcached 执行主逻辑也是在 worker 线程里，模型更加简单，实现了真正的线程隔离，符合我们对线程隔离的常规理解。而 Redis 把处理逻辑交还给 master 线程，虽然一定程度上增加了模型复杂度，但也解决了线程并发安全等问题。</p>
+<h3 id="Redis线程中经常提到IO多路复用，如何理解？"><a href="#Redis线程中经常提到IO多路复用，如何理解？" class="headerlink" title="Redis线程中经常提到IO多路复用，如何理解？"></a>Redis线程中经常提到IO多路复用，如何理解？</h3><p>这是IO模型的一种，即经典的Reactor设计模式，有时也称为异步阻塞IO。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507130518.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507130518.png" srcset="data:image/png;base64,666" alt="20210507130518"></p>
+<p>多路指的是多个socket连接，复用指的是复用一个线程。多路复用主要有三种技术：select，poll，epoll。epoll是最新的也是目前最好的多路复用技术。采用多路 I/O 复用技术可以让单个线程高效的处理多个连接请求（尽量减少网络IO的时间消耗），且Redis在内存中操作数据的速度非常快（内存内的操作不会成为这里的性能瓶颈），主要以上两点造就了Redis具有很高的吞吐量。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/FZu3acwK6zrCBZQ_3HoUgw">Redis 6.0 新特性-多线程连环13问！</a></p>
 
   
   
@@ -628,7 +511,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/>https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/>https://xmmarlowe.github.io/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</a></p>
               
             
           </blockquote>
@@ -656,10 +539,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T22:41:42+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-07T13:20:51+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 6, 2021</p>
+    <p>更新于：May 7, 2021</p>
   </a>
 </div>
 
@@ -673,7 +556,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/&title=Linux常用命令总结 - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/&title=Redis6.0 相关问题 - Marlowe&summary="
           
           >
           
@@ -685,7 +568,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/&title=Linux常用命令总结 - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/&title=Redis6.0 相关问题 - Marlowe&summary="
           
           >
           
@@ -697,7 +580,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/&title=Linux常用命令总结 - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/&title=Redis6.0 相关问题 - Marlowe&summary="
           
           >
           
@@ -727,23 +610,20 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/05/06/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis 单线程模型</p>
+        <a class='prev' href='/2021/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>进程调度算法</p>
           <p class='content'>
 
-
-</p>
+介绍无论是在批处理系统还是分时系统中，用户进程数一般都多于处理机数、这将导致它们互相争夺处理机。另外，系统进程也同样需要使用处理机。这就要求进程调度程序按一定的策略，动态地把处理机分配给处于...</p>
         </a>
       
       
-        <a class='next' href='/2021/05/06/%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E4%B8%8E%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E3%80%81%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/'>
-          <p class='title'>进程状态与僵尸进程、孤儿进程<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='next' href='/2021/05/06/NoSQL/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/'>
+          <p class='title'>Redis 单线程模型<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
-进程状态一个进程的生命周期可以划分为一组状态，这些状态刻画了整个进程。进程状态即体现一个进程的生命状态
-一般来说，进程有五种状态：
-
-创建状态： 进程在创建时需要申请一个空白PCB，向其中填...</p>
+Redis单线程模型文件事件处理器
+Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做文件事件处理器(file event handler).这个文件事件处理器是单线程的...</p>
         </a>
       
     </div>
@@ -786,7 +666,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E5%88%87%E6%8D%A2%E5%91%BD%E4%BB%A4"><span class="toc-text">目录切换命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">目录的操作命令(增删改查)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">文件的操作命令(增删改查)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">压缩文件的操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="toc-text">打包并压缩文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="toc-text">解压压缩包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%9A%84%E6%9D%83%E9%99%90%E5%91%BD%E4%BB%A4"><span class="toc-text">Linux 的权限命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 系统用户组的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">其他常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis6-0%E4%B9%8B%E5%89%8D%E7%9A%84%E7%89%88%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%90%97%EF%BC%9F"><span class="toc-text">Redis6.0之前的版本真的是单线程吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis6-0%E4%B9%8B%E5%89%8D%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%80%E7%9B%B4%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-text">Redis6.0之前为什么一直不使用多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis6-0-%E4%B9%8B%E5%90%8E%E4%B8%BA%E4%BD%95%E5%BC%95%E5%85%A5%E4%BA%86%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-text">Redis6.0 之后为何引入了多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis6-0%E9%BB%98%E8%AE%A4%E6%98%AF%E5%90%A6%E5%BC%80%E5%90%AF%E4%BA%86%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-text">Redis6.0默认是否开启了多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis6-0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%90%AF%E6%97%B6%EF%BC%8C%E7%BA%BF%E7%A8%8B%E6%95%B0%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%EF%BC%9F"><span class="toc-text">Redis6.0多线程开启时，线程数如何设置？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis6-0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-text">Redis6.0多线程的实现机制？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%90%8E%EF%BC%8C%E6%98%AF%E5%90%A6%E4%BC%9A%E5%AD%98%E5%9C%A8%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">开启多线程后，是否会存在线程并发安全问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis6-0%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8CMemcached%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E5%AF%B9%E6%AF%94"><span class="toc-text">Redis6.0的多线程和Memcached多线程模型进行对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%BB%8F%E5%B8%B8%E6%8F%90%E5%88%B0IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%8C%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-text">Redis线程中经常提到IO多路复用，如何理解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
@@ -806,7 +686,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Linux常用命令总结";
+  pdata.postTitle="Redis6.0 相关问题";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
