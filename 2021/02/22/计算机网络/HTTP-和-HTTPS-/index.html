@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>4k words</p>
+      <p>5.1k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>14 min</p>
+      <p>17 min</p>
     </a>
   </div>
 
@@ -488,6 +488,82 @@
 <h4 id="HTTP通信传输"><a href="#HTTP通信传输" class="headerlink" title="HTTP通信传输"></a>HTTP通信传输</h4><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210415105419.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210415105419.png" srcset="data:image/png;base64,666" alt="20210415105419"></p>
 <p>客户端输入URL回车，DNS解析域名得到服务器的IP地址，服务器在80端口监听客户端请求，端口通过TCP/IP协议（可以通过Socket实现）建立连接。HTTP属于TCP/IP模型中的运用层协议，所以通信的过程其实是对应数据的入栈和出栈。</p>
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210415105502.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210415105502.png" srcset="data:image/png;base64,666" alt="20210415105502"><br>报文从运用层传送到运输层，运输层通过TCP三次握手和服务器建立连接，四次挥手释放连接。</p>
+<h4 id="HTTP的性能优化"><a href="#HTTP的性能优化" class="headerlink" title="HTTP的性能优化"></a>HTTP的性能优化</h4><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210508153730.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210508153730.png" srcset="data:image/png;base64,666" alt="20210508153730"></p>
+<p>通过以上图，可以从三个方面来优化HTTP的性能。</p>
+<h5 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h5><p>衡量服务器性能的指标，主要有以下几个：</p>
+<ol>
+<li><p>吞吐量（或TPS、RPS、QPS）</p>
+</li>
+<li><p>并发数</p>
+</li>
+<li><p>响应时间</p>
+</li>
+<li><p>资源利用率（CPU、内存、硬盘、网络）</p>
+</li>
+</ol>
+<ul>
+<li><p>提高吞吐量，吞吐量越高，服务器的性能越好！</p>
+</li>
+<li><p>提高并发数，支持的并发数越大，服务器的性能越好！</p>
+</li>
+<li><p>降低响应时间，响应时间越短，服务器的性能越好！</p>
+</li>
+<li><p>合理利用服务器资源，过高肯定是不行，过低也有可能是存在问题的！</p>
+</li>
+<li><p>Linux服务器的监控工具主要有top、sar、glances等</p>
+</li>
+</ul>
+<h5 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h5><p>因为数据都要通过网络从服务器获取，所以它最基本的性能指标就是：<strong>延迟</strong>。</p>
+<p>所谓的“延迟”其实就是“等待”，等待数据到达客户端时所花费的时间。</p>
+<p><strong>延迟的原因，有几点：</strong></p>
+<ol>
+<li><p>距离：由于地理距离导致的延迟，是无法客服的，比如访问数千公里外的网站。</p>
+</li>
+<li><p>带宽</p>
+</li>
+<li><p>DNS查询（如果域名在本地没有缓存的话）</p>
+</li>
+<li><p>TCP握手（必须要经过 SYN、SYN/ACK、ACK 三个包之后才能建立连接）</p>
+</li>
+</ol>
+<ul>
+<li><p>对于 HTTP 性能优化，有一个专门的测试网站：WebPageTest，或使用浏览器的开发者工具</p>
+</li>
+<li><p>一次 HTTP“请求 - 响应”的过程中延迟的时间是非常大的，有可能会占到９０％以上</p>
+</li>
+<li><p>所以，客户端优化的关键，降低延迟</p>
+</li>
+</ul>
+<h5 id="传输链路（客户端和服务器之间的传输链路）"><a href="#传输链路（客户端和服务器之间的传输链路）" class="headerlink" title="传输链路（客户端和服务器之间的传输链路）"></a>传输链路（客户端和服务器之间的传输链路）</h5><p>使用CDN等技术，总之，要增加带宽，降低延迟，优化传输速度。</p>
+<p><strong>具体的优化手段：</strong></p>
+<p>主要是优化服务端的性能。</p>
+<ol>
+<li><p><strong>前端：</strong> 可以利用PageSpeed等工具进行检测并根据提示进行优化。</p>
+</li>
+<li><p><strong>后端：</strong> 主要有以下几方面</p>
+</li>
+</ol>
+<p><strong>a.硬件、软件或服务</strong></p>
+<p>比如更换强劲的CPU、内存、磁盘、带宽等，比如使用CDN</p>
+<p><strong>b.服务器选择、参数调优</strong></p>
+<p>选用高性能的服务器，比如Nginx，它强大的反向代理能力实现“动静分离”，动态页面交给Tomcat等，静态资源交给Nginx</p>
+<p>另外，Nginx自身也有可以调优的参数，比如说禁用负载均衡锁、增大连接池，绑定 CPU 等</p>
+<p>对于 HTTP 协议一定要启用长连接，因为TCP 和 SSL 建立新连接的成本非常高，可能会占到客户端总延迟的一半以上</p>
+<p>TCP 的新特性“TCP Fast Open“，类似 TLS 的“False Start”，可以在初次握手的时候就传输数据，尽可能在操作系统和 Nginx 里开启这个特性，减少外网和内网里的握手延迟。</p>
+<p>下面这个Nginx 配置，启用了长连接等优化参数，实现了动静分离</p>
+<p>server {<br>  listen 80 deferred reuseport backlog=4096 fastopen=1024; </p>
+<p>  keepalive_timeout  60;<br>  keepalive_requests 10000;<br>  <br>  location ~* .(png)$ {<br>    root /var/images/png/;<br>  }<br>  <br>  location ~* .(php)$ {<br>    proxy_pass <a target="_blank" rel="noopener" href="http://php_back_end/">http://php_back_end</a>;<br>  }<br>}
+ </p>
+<p>使用HTTP协议内置的“数据压缩”编码，可以选择标准的 gzip，也可以尝试新的压缩算法 br</p>
+<p>不过在数据压缩的时候应当注意选择适当的压缩率，不是压缩的越厉害越好</p>
+<p><strong>c.缓存</strong></p>
+<p>网站系统内部，可以使用 Memcache、Redis等专门的缓存服务，把计算的中间结果和资源存储在内存或者硬盘里</p>
+<p>Web 服务器首先检查缓存系统，如果有数据就立即返回给客户端</p>
+<p>另外，CDN 的网络加速功能就是建立在缓存的基础之上的，可以这么说，如果没有缓存，那就没有 CDN。</p>
+<p>利用好缓存功能的关键是理解它的工作原理，为每个资源都添加 ETag 和 Last-modified字段，再用 Cache-Control、Expires 设置好缓存控制属性。</p>
+<p>其中最基本的是 max-age 有效期，标记资源可缓存的时间。对于图片、CSS 等静态资源可以设置较长的时间，比如一天或者</p>
+<p>一个月，对于动态资源，除非是实时性非常高，也可以设置一个较短的时间，比如 1 秒或者 5 秒。这样一旦资源到达客户端，就</p>
+<p>会被缓存起来，在有效期内都不会再向服务器发送请求。</p>
 <h3 id="什么是HTTPS？"><a href="#什么是HTTPS？" class="headerlink" title="什么是HTTPS？"></a>什么是HTTPS？</h3><p>HTTPS是身披SSL外壳的HTTP。HTTPS是一种通过计算机网络进行安全通信的传输协议，经由HTTP进行通信，利用SSL/TLS建立全信道，加密数据包。HTTPS使用的主要目的是提供对网站服务器的身份认证，同时保护交换数据的隐私与完整性。</p>
 <p>PS:TLS是传输层加密协议，前身是SSL协议，由网景公司1995年发布，有时候两者不区分。</p>
 <h4 id="HTTPS的特点"><a href="#HTTPS的特点" class="headerlink" title="HTTPS的特点"></a>HTTPS的特点</h4><ol>
@@ -572,6 +648,7 @@
 <h4 id="为什么不都使用对称加密而是才有非对称与对称加密组合？"><a href="#为什么不都使用对称加密而是才有非对称与对称加密组合？" class="headerlink" title="为什么不都使用对称加密而是才有非对称与对称加密组合？"></a>为什么不都使用对称加密而是才有非对称与对称加密组合？</h4><p>因为非对称加密比较耗费性能，比对称加密慢了几倍甚至几百倍，所以才有了对称加密进行最终的数据加密。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.unclezs.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E4%B8%8EHTTPS%E8%AF%A6%E8%A7%A3.html">HTTP与HTTPS详解</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoming100001/article/details/81109617">HTTP和HTTPS协议，看一篇就够了</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fengchuanyun/article/details/102463146">HTTP的性能优化</a></p>
 
   
   
@@ -617,10 +694,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T20:47:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-08T15:44:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 3, 2021</p>
+    <p>更新于：May 8, 2021</p>
   </a>
 </div>
 
@@ -743,7 +820,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHTTP%EF%BC%9F"><span class="toc-text">什么是HTTP？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">HTTP的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-text">HTTP报文格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="toc-text">HTTP响应报文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E9%80%9A%E4%BF%A1%E4%BC%A0%E8%BE%93"><span class="toc-text">HTTP通信传输</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHTTPS%EF%BC%9F"><span class="toc-text">什么是HTTPS？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">HTTPS的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">HTTPS的缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E5%92%8CHTTPS%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">HTTP和HTTPS的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81HTTP%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9F"><span class="toc-text">如何保证HTTP传输安全性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-text">HTTPS为什么安全？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS%E7%9A%84%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84"><span class="toc-text">HTTPS的传输过程是怎样的?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E9%95%BF%E8%BF%9E%E6%8E%A5%E3%80%81%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="toc-text">HTTP长连接、短连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CA%E8%AF%81%E4%B9%A6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">CA证书的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%AF%81%E4%B9%A6"><span class="toc-text">为什么需要证书?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E8%AF%81%E4%B9%A6%E5%AE%89%E5%85%A8%E6%80%A7%E8%BF%87%E7%A8%8B"><span class="toc-text">验证证书安全性过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8HTTPS%E4%BC%9A%E8%A2%AB%E6%8A%93%E5%8C%85%E5%90%97%EF%BC%9F"><span class="toc-text">使用HTTPS会被抓包吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL-TLS%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%87%E7%A8%8B"><span class="toc-text">SSL&#x2F;TLS协议的基本过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E5%87%BA%E8%AF%B7%E6%B1%82%EF%BC%88ClientHello%EF%BC%89"><span class="toc-text">客户端发出请求（ClientHello）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9B%9E%E5%BA%94%EF%BC%88SeverHello%EF%BC%89"><span class="toc-text">服务器回应（SeverHello）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9B%9E%E5%BA%94"><span class="toc-text">客户端回应</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B"><span class="toc-text">SSL建立连接过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%A3%E4%B9%88%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%80%E5%AE%9A%E8%A6%81%E7%94%A8%E4%B8%89%E4%B8%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%EF%BC%8C%E6%9D%A5%E7%94%9F%E6%88%90%E2%80%9D%E4%BC%9A%E8%AF%9D%E5%AF%86%E9%92%A5%E2%80%9D%E5%91%A2%EF%BC%9F"><span class="toc-text">那么为什么一定要用三个随机数，来生成”会话密钥”呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E9%83%BD%E4%BD%BF%E7%94%A8%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E8%80%8C%E6%98%AF%E6%89%8D%E6%9C%89%E9%9D%9E%E5%AF%B9%E7%A7%B0%E4%B8%8E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%BB%84%E5%90%88%EF%BC%9F"><span class="toc-text">为什么不都使用对称加密而是才有非对称与对称加密组合？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHTTP%EF%BC%9F"><span class="toc-text">什么是HTTP？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">HTTP的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-text">HTTP报文格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="toc-text">HTTP响应报文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E9%80%9A%E4%BF%A1%E4%BC%A0%E8%BE%93"><span class="toc-text">HTTP通信传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">HTTP的性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">服务器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E9%93%BE%E8%B7%AF%EF%BC%88%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BC%A0%E8%BE%93%E9%93%BE%E8%B7%AF%EF%BC%89"><span class="toc-text">传输链路（客户端和服务器之间的传输链路）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHTTPS%EF%BC%9F"><span class="toc-text">什么是HTTPS？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">HTTPS的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">HTTPS的缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E5%92%8CHTTPS%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">HTTP和HTTPS的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81HTTP%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9F"><span class="toc-text">如何保证HTTP传输安全性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-text">HTTPS为什么安全？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS%E7%9A%84%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84"><span class="toc-text">HTTPS的传输过程是怎样的?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E9%95%BF%E8%BF%9E%E6%8E%A5%E3%80%81%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="toc-text">HTTP长连接、短连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CA%E8%AF%81%E4%B9%A6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">CA证书的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%AF%81%E4%B9%A6"><span class="toc-text">为什么需要证书?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E8%AF%81%E4%B9%A6%E5%AE%89%E5%85%A8%E6%80%A7%E8%BF%87%E7%A8%8B"><span class="toc-text">验证证书安全性过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8HTTPS%E4%BC%9A%E8%A2%AB%E6%8A%93%E5%8C%85%E5%90%97%EF%BC%9F"><span class="toc-text">使用HTTPS会被抓包吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL-TLS%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%87%E7%A8%8B"><span class="toc-text">SSL&#x2F;TLS协议的基本过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E5%87%BA%E8%AF%B7%E6%B1%82%EF%BC%88ClientHello%EF%BC%89"><span class="toc-text">客户端发出请求（ClientHello）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9B%9E%E5%BA%94%EF%BC%88SeverHello%EF%BC%89"><span class="toc-text">服务器回应（SeverHello）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9B%9E%E5%BA%94"><span class="toc-text">客户端回应</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B"><span class="toc-text">SSL建立连接过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%A3%E4%B9%88%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%80%E5%AE%9A%E8%A6%81%E7%94%A8%E4%B8%89%E4%B8%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%EF%BC%8C%E6%9D%A5%E7%94%9F%E6%88%90%E2%80%9D%E4%BC%9A%E8%AF%9D%E5%AF%86%E9%92%A5%E2%80%9D%E5%91%A2%EF%BC%9F"><span class="toc-text">那么为什么一定要用三个随机数，来生成”会话密钥”呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E9%83%BD%E4%BD%BF%E7%94%A8%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E8%80%8C%E6%98%AF%E6%89%8D%E6%9C%89%E9%9D%9E%E5%AF%B9%E7%A7%B0%E4%B8%8E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%BB%84%E5%90%88%EF%BC%9F"><span class="toc-text">为什么不都使用对称加密而是才有非对称与对称加密组合？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

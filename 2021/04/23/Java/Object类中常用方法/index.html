@@ -452,7 +452,7 @@
 
 <h3 id="取得对象信息的方法：toString"><a href="#取得对象信息的方法：toString" class="headerlink" title="取得对象信息的方法：toString()"></a>取得对象信息的方法：toString()</h3><p>该方法在打印对象时被调用，将对象信息变为字符串返回，默认输出对象地址。</p>
 <p>编译器默认调用toString()方法输出对象，但输出的是对象的地址，我们并不能看懂它的意思。那么就要通过重写Object类的toString()方法来输出对象属性信息。</p>
-<h3 id="对象相等判断方法：equals"><a href="#对象相等判断方法：equals" class="headerlink" title="对象相等判断方法：equals()"></a>对象相等判断方法：equals()</h3><p>public boolean equals(Object obj);用于比较当前对象与目标对象是否相等，默认是比较引用是否指向同一对象。为public方法，子类可重写。</p>
+<h3 id="对象相等判断方法：equals"><a href="#对象相等判断方法：equals" class="headerlink" title="对象相等判断方法：equals()"></a>对象相等判断方法：equals()</h3><p>public boolean equals(Object obj);用于比较当前对象与目标对象是否相等，<strong>默认是比较引用是否指向同一对象</strong>。为public方法，子类可重写。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Object</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>为什么需要重写equals方法？</strong></p>
 <p>因为如果不重写equals方法，当将自定义对象放到map或者set中时；如果这时两个对象的hashCode相同，就会调用equals方法进行比较，这个时候会调用Object中默认的equals方法，而默认的equals方法只是比较了两个对象的引用是否指向了同一个对象，显然大多数时候都不会指向，这样就会将重复对象存入map或者set中。这就 破坏了map与set不能存储重复对象的特性，会造成内存溢出 。</p>
@@ -466,7 +466,7 @@
 </ol>
 <p>建议equals及hashCode两个方法，需要重写时，两个都要重写，一般都是将自定义对象放至Set中，或者Map中的key时，需要重写这两个方法。</p>
 <hr>
-<h3 id="对象签名-hashCode"><a href="#对象签名-hashCode" class="headerlink" title="对象签名:hashCode()"></a>对象签名:hashCode()</h3><p>该方法用来返回其所在对象的物理地址（哈希码值），常会和equals方法同时重写，确保相等的两个对象拥有相等的.hashCode。</p>
+<h3 id="对象签名-hashCode"><a href="#对象签名-hashCode" class="headerlink" title="对象签名:hashCode()"></a>对象签名:hashCode()</h3><p>该方法用来返回其所在对象的物理地址（哈希码值），常会和equals方法同时重写，确保相等的两个对象拥有相等的hashCode。</p>
 <p>public native int hashCode();这是一个public的方法，所以 子类可以重写 它。这个方法返回当前对象的hashCode值，这个值是一个整数范围内的（-2^31 ~ 2^31 - 1）数字。</p>
 <p>对于hashCode有以下几点约束：</p>
 <ol>
@@ -565,10 +565,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:23:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-08T21:37:35+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：May 8, 2021</p>
   </a>
 </div>
 

@@ -20,13 +20,11 @@
 
   <!-- 页面元数据 -->
   
-  <title>海量数据Top K问题 - Marlowe</title>
+  <title>UDP如何实现可靠传输 - Marlowe</title>
   
-    <meta name="keywords" content="Top K">
+    <meta name="keywords" content="UDP,可靠传输">
   
 
-  
-    <meta name="description" content="问题引入：10亿个数中找出最大的10000个数（top K问题）">
   
 
   <!-- feed -->
@@ -373,7 +371,7 @@
     
     
       <h1 class="title">
-        海量数据Top K问题
+        UDP如何实现可靠传输
       </h1>
       <div class='new-meta-box'>
         
@@ -393,7 +391,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
+      <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
     </a>
   </div>
 
@@ -404,7 +402,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 7, 2021</p>
+    <p>发布于：May 8, 2021</p>
   </a>
 </div>
 
@@ -415,7 +413,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="海量数据Top K问题" data-path="/2021/05/07/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/">
+      <div id="lc-pv" data-title="UDP如何实现可靠传输" data-path="/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -431,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.4k words</p>
+      <p>964 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>9 min</p>
+      <p>3 min</p>
     </a>
   </div>
 
@@ -450,38 +448,25 @@
 
 
   
-  <p>问题引入：10亿个数中找出最大的10000个数（top K问题）</p>
-<a id="more"></a>
+  <a id="more"></a>
 
-
-<h3 id="Top-K-问题"><a href="#Top-K-问题" class="headerlink" title="Top K 问题"></a>Top K 问题</h3><p>在大规模数据处理中，经常会遇到的一类问题：在海量数据中找出出现频率最高的前k个数，或者从海量数据中找出最大的前k个数，这类问题通常被称为top K问题。例如，在搜索引擎中，统计搜索最热门的10个查询词；在歌曲库中统计下载最高的前10首歌等。</p>
-<p>针对top K类问题，通常比较好的方案是<strong>分治+Trie树/hash+小顶堆</strong>，即先将数据集按照Hash方法分解成多个小数据集，然后使用Trie树或者Hash统计每个小数据集中的query词频，之后用小顶堆求出每个数据集中出现频率最高的前K个数，最后在所有top K中求出最终的top K。</p>
-<h3 id="解决的几种方法"><a href="#解决的几种方法" class="headerlink" title="解决的几种方法"></a>解决的几种方法</h3><p>假设场景为：1亿个数中找出最大的1000个数</p>
-<h4 id="直接排序"><a href="#直接排序" class="headerlink" title="直接排序"></a>直接排序</h4><p>最容易想到的方法是将数据全部排序，然后在排序后的集合中进行查找，最快的排序算法的时间复杂度一般为O（nlogn），如快速排序。但是在32位的机器上，每个float类型占4个字节，1亿个浮点数就要占用400MB的存储空间，对于一些可用内存小于400M的计算机而言，很显然是不能一次将全部数据读入内存进行排序的。其实即使内存能够满足要求（我机器内存都是8GB），该方法也并不高效，因为题目的目的是寻找出最大的1000个数即可，而排序却是将所有的元素都排序了，做了很多的无用功。</p>
-<h4 id="局部淘汰法"><a href="#局部淘汰法" class="headerlink" title="局部淘汰法"></a>局部淘汰法</h4><p>第二种方法为局部淘汰法，该方法与排序方法类似，用一个容器保存前1000个数，然后将剩余的所有数字——与容器内的最小数字相比，如果所有后续的元素都比容器内的1000个数还小，那么容器内这个1000个数就是最大1000个数。如果某一后续元素比容器内最小数字大，则删掉容器内最小元素，并将该元素插入容器，最后遍历完这1亿个数，得到的结果容器中保存的数即为最终结果了。此时的时间复杂度为O（n+m^2），其中m为容器的大小，即1000。</p>
-<h4 id="分治法"><a href="#分治法" class="headerlink" title="分治法"></a>分治法</h4><p>第三种方法是分治法，将1亿个数据分成100份，每份100万个数据，找到每份数据中最大的1000个，最后在剩下的100*1000个数据里面找出最大的1000个。如果100万数据选择足够理想，那么可以过滤掉1亿数据里面99%的数据。100万个数据里面查找最大的1000个数据的方法如下：用快速排序的方法。</p>
-<h4 id="Hash法"><a href="#Hash法" class="headerlink" title="Hash法"></a>Hash法</h4><p>第四种方法是Hash法。如果这1亿个数里面有很多重复的数，先通过Hash法，把这1亿个数字去重复，这样如果重复率很高的话，会减少很大的内存用量，从而缩小运算空间，然后通过分治法或最小堆法查找最大的1000个数。</p>
-<h4 id="最小堆"><a href="#最小堆" class="headerlink" title="最小堆"></a>最小堆</h4><p>第五种方法采用最小堆。首先读入前1000个数来创建大小为1000的最小堆，建堆的时间复杂度为O（mlogm）（m为数组的大小即为1000），然后遍历后续的数字，并于堆顶（最小）数字进行比较。如果比最小的数小，则继续读取后续数字；如果比堆顶数字大，则替换堆顶元素并重新调整堆为最小堆。整个过程直至1亿个数全部遍历完为止。然后输出当前堆中的所有1000个数字。该算法的时间复杂度为O（nmlogm），空间复杂度是1000（常数）。</p>
-<h3 id="分场景方法选择"><a href="#分场景方法选择" class="headerlink" title="分场景方法选择"></a>分场景方法选择</h3><p>实际上，最优的解决方案应该是最符合实际设计需求的方案，在时间应用中，可能有足够大的内存，那么直接将数据扔到内存中一次性处理即可，也可能机器有多个核，这样可以采用多线程处理整个数据集。</p>
-<p>下面针对不同的应用场景，分析了适合相应应用场景的解决方案。</p>
-<h4 id="单机-单核-足够大内存"><a href="#单机-单核-足够大内存" class="headerlink" title="单机+单核+足够大内存"></a>单机+单核+足够大内存</h4><p>如果需要查找10亿个查询次（每个占8B）中出现频率最高的10个，考虑到每个查询词占8B，则10亿个查询次所需的内存大约是10^9 * 8B=8GB内存。如果有这么大内存，直接在内存中对查询次进行排序，顺序遍历找出10个出现频率最大的即可。这种方法简单快速，使用。然后，也可以先用HashMap求出每个词出现的频率，然后求出频率最大的10个词。</p>
-<h4 id="单机-多核-足够大内存"><a href="#单机-多核-足够大内存" class="headerlink" title="单机+多核+足够大内存"></a>单机+多核+足够大内存</h4><p>这时可以直接在内存中使用Hash方法将数据划分成n个partition，每个partition交给一个线程处理，线程的处理逻辑同（1）类似，最后一个线程将结果归并。</p>
-<p>该方法存在一个瓶颈会明显影响效率，即数据倾斜。每个线程的处理速度可能不同，快的线程需要等待慢的线程，最终的处理速度取决于慢的线程。而针对此问题，解决的方法是，将数据划分成c×n个partition（c&gt;1），每个线程处理完当前partition后主动取下一个partition继续处理，知道所有数据处理完毕，最后由一个线程进行归并。</p>
-<h4 id="单机-单核-受限内存"><a href="#单机-单核-受限内存" class="headerlink" title="单机+单核+受限内存"></a>单机+单核+受限内存</h4><p>这种情况下，需要将原数据文件切割成一个一个小文件，如次啊用hash(x)%M，将原文件中的数据切割成M小文件，如果小文件仍大于内存大小，继续采用Hash的方法对数据文件进行分割，知道每个小文件小于内存大小，这样每个文件可放到内存中处理。采用（1）的方法依次处理每个小文件。</p>
-<h4 id="多机-受限内存"><a href="#多机-受限内存" class="headerlink" title="多机+受限内存"></a>多机+受限内存</h4><p>这种情况，为了合理利用多台机器的资源，可将数据分发到多台机器上，每台机器采用（3）中的策略解决本地的数据。可采用hash+socket方法进行数据分发。</p>
-<h3 id="重点讲下最小堆算法"><a href="#重点讲下最小堆算法" class="headerlink" title="重点讲下最小堆算法"></a>重点讲下最小堆算法</h3><blockquote>
-<p>在几千亿个数据中如何获取10000个最大的数？</p>
-</blockquote>
-<p>一个复杂度比较低的算法就是利用最小堆算法，它的思想就是：先建立一个容量为K的最小堆，然后遍历这几千亿个数，如果对于遍历到的数大于最小堆的根节点，那么这个数入堆，并且调整最小堆的结构，遍历完成以后，最小堆的数字就是这几千亿个数中最大的K个数了。</p>
-<p>先来介绍一下最小堆：最小堆（小根堆）是一种数据结构，它首先是一颗完全二叉树，并且，它所有父节点的值小于或等于两个子节点的值。最小堆的存储结构（物理结构）实际上是一个数组。</p>
-<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507134615.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507134615.png" srcset="data:image/png;base64,666" alt="20210507134615"></p>
-<p>因为它是一个完全二叉树，对于下标小于 数组.length/2 - 1 时有叶子节点 ， 对于下标为i（基0），其左节点下标为2i + 1，右节点下标为2i + 2。</p>
-<p>最小堆如图所示，对于每个非叶子节点的数值，一定不大于孩子节点的数值。这样可用含有K个节点的最小堆来保存K个目前的最大值(当然根节点是其中的最小数值)。</p>
-<p>每次有数据输入的时候可以先与根节点比较。若不大于根节点，则舍弃；否则用新数值替换根节点数值。并进行最小堆的调整。</p>
-<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507134632.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210507134632.png" srcset="data:image/png;base64,666" alt="20210507134632"></p>
-<p>代码实现：创建堆的复杂度是O(N)，调整最小堆的时间复杂度为O(logK)，因此Top K算法(问题)时间复杂度为O(NlogK)。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TopK</span> </span>&#123;</span><br><span class="line">   <span class="comment">//创建堆</span></span><br><span class="line">   <span class="keyword">int</span>[] createHeap(<span class="keyword">int</span> a[], <span class="keyword">int</span> k) &#123;</span><br><span class="line">       <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[k];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">           result[i] = a[i];</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//完全二叉树的数组表示中，下标小于等于result.length / 2 - 1才有子节点</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = result.length / <span class="number">2</span> - <span class="number">1</span>;i &gt;= <span class="number">0</span>;i--)&#123;</span><br><span class="line">           heapify(i,result);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">heapify</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span>[] result)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> left = <span class="number">2</span> * i + <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">int</span> right = <span class="number">2</span> * i + <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> smallest = i;</span><br><span class="line">       <span class="keyword">if</span> (left &lt; result.length &amp;&amp; result[left] &lt; result[i])&#123;</span><br><span class="line">           smallest = left;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (right &lt; result.length &amp;&amp; result[right] &lt; result[smallest])&#123;</span><br><span class="line">           smallest = right;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (smallest == i)&#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">int</span> temp = result[i];</span><br><span class="line">           result[i] = result[smallest];</span><br><span class="line">           result[smallest] = temp;</span><br><span class="line">       &#125;</span><br><span class="line">       heapify(smallest,result);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//调整堆</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">filterDown</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">       a[<span class="number">0</span>] = value;</span><br><span class="line">       <span class="keyword">int</span> parent = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">while</span>(parent &lt; a.length)&#123;</span><br><span class="line">           <span class="keyword">int</span> left = <span class="number">2</span>*parent+<span class="number">1</span>;</span><br><span class="line">           <span class="keyword">int</span> right = <span class="number">2</span>*parent+<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">int</span> smallest = parent;</span><br><span class="line">           <span class="keyword">if</span>(left &lt; a.length &amp;&amp; a[parent] &gt; a[left])&#123;</span><br><span class="line">               smallest = left;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span>(right &lt; a.length &amp;&amp; a[smallest] &gt; a[right])&#123;</span><br><span class="line">               smallest = right;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span>(smallest == parent)&#123;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               <span class="keyword">int</span> temp = a[parent];</span><br><span class="line">               a[parent] = a[smallest];</span><br><span class="line">               a[smallest] = temp;</span><br><span class="line">               parent = smallest;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//遍历数组，并且调整堆</span></span><br><span class="line">   <span class="keyword">int</span>[] findTopKByHeap(<span class="keyword">int</span> input[], <span class="keyword">int</span> k) &#123;</span><br><span class="line">       <span class="keyword">int</span> heap[] = <span class="keyword">this</span>.createHeap(input, k);</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=k;i&lt;input.length;i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(input[i]&gt;heap[<span class="number">0</span>])&#123;</span><br><span class="line">               <span class="keyword">this</span>.filterDown(heap, input[i]);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> heap;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> a[] = &#123; <span class="number">100</span>,<span class="number">101</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">88</span>,<span class="number">89</span>,<span class="number">845</span>,<span class="number">45</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">452</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">588</span>,<span class="number">44444</span>,<span class="number">88888</span>,<span class="number">777777</span>,<span class="number">100000</span>&#125;;</span><br><span class="line">       <span class="keyword">int</span> result[] = <span class="keyword">new</span> TopK().findTopKByHeap(a, <span class="number">5</span>);</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> temp : result) &#123;</span><br><span class="line">           System.out.println(temp);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://herobin.blog.csdn.net/article/details/96851395">10亿个数中找出最大的10000个数（top K问题）</a></p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>UDP不属于连接协议，具有资源消耗少，处理速度快的优点，所以通常音频，视频和普通数据在传送时，<strong>使用UDP较多，因为即使丢失少量的包，也不会对接受结果产生较大的影响。</strong></p>
+<p>传输层无法保证数据的可靠传输，只能通过应用层来实现了。实现的方式可以参照tcp可靠性传输的方式，只是实现不在传输层，实现转移到了应用层。</p>
+<p>最简单的方式是<strong>在应用层模仿传输层TCP的可靠性传输</strong>。下面不考虑拥塞处理，可靠UDP的简单设计。</p>
+<ul>
+<li>1、添加seq/ack机制，确保数据发送到对端</li>
+<li>2、添加发送和接收缓冲区，主要是用户超时重传。</li>
+<li>3、添加超时重传机制。</li>
+</ul>
+<p><strong>详细说明：</strong> 送端发送数据时，生成一个随机seq=x，然后每一片按照数据大小分配seq。数据到达接收端后接收端放入缓存，并发送一个ack=x的包，表示对方已经收到了数据。发送端收到了ack包后，删除缓冲区对应的数据。时间到后，定时任务检查是否需要重传数据。</p>
+<p>目前有如下开源程序利用udp实现了可靠的数据传输。分别为<strong>RUDP、RTP、UDT</strong>。</p>
+<h3 id="开源程序"><a href="#开源程序" class="headerlink" title="开源程序"></a>开源程序</h3><h4 id="RUDP（Reliable-User-Datagram-Protocol）"><a href="#RUDP（Reliable-User-Datagram-Protocol）" class="headerlink" title="RUDP（Reliable User Datagram Protocol）"></a>RUDP（Reliable User Datagram Protocol）</h4><p><strong>RUDP 提供一组数据服务质量增强机制，如拥塞控制的改进、重发机制及淡化服务器算法等，</strong> 从而在包丢失和网络拥塞的情况下， RTP 客户机（实时位置）面前呈现的就是一个高质量的 RTP 流。在不干扰协议的实时特性的同时，可靠 UDP 的拥塞控制机制允许 TCP 方式下的流控制行为。</p>
+<h4 id="RTP（Real-Time-Protocol）"><a href="#RTP（Real-Time-Protocol）" class="headerlink" title="RTP（Real Time Protocol）"></a>RTP（Real Time Protocol）</h4><p><strong>RTP为数据提供了具有实时特征的端对端传送服务</strong>，如在组播或单播网络服务下的交互式视频音频或模拟数据。</p>
+<p>应用程序通常在 UDP 上运行 RTP 以便使用其多路结点和校验服务；这两种协议都提供了传输层协议的功能。但是 RTP 可以与其它适合的底层网络或传输协议一起使用。如果底层网络提供组播方式，那么 RTP 可以使用该组播表传输数据到多个目的地。</p>
+<p>RTP 本身并没有提供按时发送机制或其它服务质量（QoS）保证，它依赖于底层服务去实现这一过程。 RTP 并不保证传送或防止无序传送，也不确定底层网络的可靠性。 RTP 实行有序传送， RTP 中的序列号允许接收方重组发送方的包序列，同时序列号也能用于决定适当的包位置，例如：在视频解码中，就不需要顺序解码。</p>
+<h4 id="UDT（UDP-based-Data-Transfer-Protocol）"><a href="#UDT（UDP-based-Data-Transfer-Protocol）" class="headerlink" title="UDT（UDP-based Data Transfer Protocol）"></a>UDT（UDP-based Data Transfer Protocol）</h4><p>基于UDP的数据传输协议（UDP-basedData Transfer Protocol，简称UDT）是一种互联网数据传输协议。<strong>UDT的主要目的是支持高速广域网上的海量数据传输</strong>，而互联网上的标准数据传输协议TCP在高带宽长距离网络上性能很差。</p>
+<p>顾名思义，UDT建于UDP之上，并引入新的拥塞控制和数据可靠性控制机制。UDT是面向连接的双向的应用层协议。它同时支持可靠的数据流传输和部分可靠的数据报传输。由于UDT完全在UDP上实现，它也可以应用在除了高速数据传输之外的其它应用领域，例如点到点技术（P2P），防火墙穿透，多媒体数据传输等等。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6c73a4585eba">UDP如何实现可靠传输</a></p>
 
   
   
@@ -499,7 +484,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/07/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/>https://xmmarlowe.github.io/2021/05/07/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/>https://xmmarlowe.github.io/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/</a></p>
               
             
           </blockquote>
@@ -527,10 +512,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-07T22:49:06+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-08T21:20:38+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 7, 2021</p>
+    <p>更新于：May 8, 2021</p>
   </a>
 </div>
 
@@ -544,7 +529,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/07/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/&title=海量数据Top K问题 - Marlowe&summary=问题引入：10亿个数中找出最大的10000个数（top K问题）"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/&title=UDP如何实现可靠传输 - Marlowe&summary="
           
           >
           
@@ -556,7 +541,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/07/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/&title=海量数据Top K问题 - Marlowe&summary=问题引入：10亿个数中找出最大的10000个数（top K问题）"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/&title=UDP如何实现可靠传输 - Marlowe&summary="
           
           >
           
@@ -568,7 +553,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/07/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/&title=海量数据Top K问题 - Marlowe&summary=问题引入：10亿个数中找出最大的10000个数（top K问题）"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/&title=UDP如何实现可靠传输 - Marlowe&summary="
           
           >
           
@@ -598,12 +583,23 @@
   
     <div class="prev-next">
       
-      
-        <a class='next' href='/2021/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/'>
-          <p class='title'>进程调度算法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='prev' href='/2021/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>信号与信号量的区别</p>
           <p class='content'>
 
-介绍无论是在批处理系统还是分时系统中，用户进程数一般都多于处理机数、这将导致它们互相争夺处理机。另外，系统进程也同样需要使用处理机。这就要求进程调度程序按一定的策略，动态地把处理机分配给处于...</p>
+
+信号由用户、系统或者进程发送给目标进程的信息，以通知目标进程某个状态的改变或系统异常。
+信号量信号量是一个特殊的变量，它的本质是计数器，信号量里面记录了临界资源的数目，有多少数目，信号量的...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/'>
+          <p class='title'>Redis过期数据删除策略<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+
+
+如果假设你设置了一批 key 只能存活 1 分钟，那么 1 分钟后，Redis 是怎么对这批 key 进行删除的呢？
+常用的过期数据的删除策略就两个（重要！自己造缓存轮子的时候需要格外考虑...</p>
         </a>
       
     </div>
@@ -646,7 +642,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Top-K-%E9%97%AE%E9%A2%98"><span class="toc-text">Top K 问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text">解决的几种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%8E%92%E5%BA%8F"><span class="toc-text">直接排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%B7%98%E6%B1%B0%E6%B3%95"><span class="toc-text">局部淘汰法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%B2%BB%E6%B3%95"><span class="toc-text">分治法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hash%E6%B3%95"><span class="toc-text">Hash法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%A0%86"><span class="toc-text">最小堆</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%9C%BA%E6%99%AF%E6%96%B9%E6%B3%95%E9%80%89%E6%8B%A9"><span class="toc-text">分场景方法选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E6%9C%BA-%E5%8D%95%E6%A0%B8-%E8%B6%B3%E5%A4%9F%E5%A4%A7%E5%86%85%E5%AD%98"><span class="toc-text">单机+单核+足够大内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E6%9C%BA-%E5%A4%9A%E6%A0%B8-%E8%B6%B3%E5%A4%9F%E5%A4%A7%E5%86%85%E5%AD%98"><span class="toc-text">单机+多核+足够大内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E6%9C%BA-%E5%8D%95%E6%A0%B8-%E5%8F%97%E9%99%90%E5%86%85%E5%AD%98"><span class="toc-text">单机+单核+受限内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E6%9C%BA-%E5%8F%97%E9%99%90%E5%86%85%E5%AD%98"><span class="toc-text">多机+受限内存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E8%AE%B2%E4%B8%8B%E6%9C%80%E5%B0%8F%E5%A0%86%E7%AE%97%E6%B3%95"><span class="toc-text">重点讲下最小堆算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E7%A8%8B%E5%BA%8F"><span class="toc-text">开源程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RUDP%EF%BC%88Reliable-User-Datagram-Protocol%EF%BC%89"><span class="toc-text">RUDP（Reliable User Datagram Protocol）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RTP%EF%BC%88Real-Time-Protocol%EF%BC%89"><span class="toc-text">RTP（Real Time Protocol）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UDT%EF%BC%88UDP-based-Data-Transfer-Protocol%EF%BC%89"><span class="toc-text">UDT（UDP-based Data Transfer Protocol）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
@@ -666,7 +662,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="海量数据Top K问题";
+  pdata.postTitle="UDP如何实现可靠传输";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
