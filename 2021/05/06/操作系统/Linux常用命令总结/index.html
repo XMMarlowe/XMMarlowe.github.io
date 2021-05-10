@@ -429,7 +429,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>3.1k words</p>
+      <p>3.2k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -569,8 +569,21 @@
 </li>
 <li><p>sudo + 其他命令：以系统管理者的身份执行指令，也就是说，经由 sudo 所执行的指令就好像是 root 亲自执行。</p>
 </li>
+</ul>
+<p><strong>awk、sed、grep更适合的方向：</strong></p>
+<ul>
+<li>grep 更适合单纯的查找或匹配文本</li>
+<li>sed 更适合编辑匹配到的文本</li>
+<li>awk 更适合格式化文本，对文本进行较复杂格式处理</li>
+</ul>
+<hr>
+<ul>
 <li><p>grep 要搜索的字符串 要搜索的文件 –color： 搜索命令，–color 代表高亮显示</p>
 </li>
+<li><p>sed </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]</span><br></pre></td></tr></table></figure></li>
+<li><p>awk</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk [选项参数] <span class="string">&#x27;script&#x27;</span> var=value file(s)</span><br><span class="line">或</span><br><span class="line">awk [选项参数] -f scriptfile var=value file(s)</span><br></pre></td></tr></table></figure></li>
 <li><p>ps -ef/ps -aux： 这两个命令都是查看当前系统正在运行进程，两者的区别是展示格式不同。如果想要查看特定的进程可以使用这样的格式：<strong>ps aux|grep redis</strong> （查看包括 redis 字符串的进程），也可使用 pgrep redis -a。</p>
 </li>
 </ul>
@@ -656,10 +669,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-07T13:20:43+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-09T16:13:52+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 7, 2021</p>
+    <p>更新于：May 9, 2021</p>
   </a>
 </div>
 
