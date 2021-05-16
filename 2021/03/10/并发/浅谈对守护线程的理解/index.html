@@ -453,7 +453,7 @@
   <p>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。</p>
 <a id="more"></a>
 
-<p>守护线程的作用：<br>举例，<strong>GC垃圾回收线程</strong>:就是一个经典的守护线程, 当我们的程序中不再有任何运行的Thread,程序就不会再产生垃圾，垃圾回收器也就无事可做,所以当垃圾回收线程是JVM.上仅剩的线程时,垃圾回收线程会自动离开。它始终在低级别的状态中运行，用于实时监控和管理系统中的可回收资源。</p>
+<h3 id="守护线程的作用"><a href="#守护线程的作用" class="headerlink" title="守护线程的作用"></a>守护线程的作用</h3><p>举例，<strong>GC垃圾回收线程</strong>:就是一个经典的守护线程, 当我们的程序中不再有任何运行的Thread,程序就不会再产生垃圾，垃圾回收器也就无事可做,所以当垃圾回收线程是JVM.上仅剩的线程时,垃圾回收线程会自动离开。它始终在低级别的状态中运行，用于实时监控和管理系统中的可回收资源。</p>
 <p>（守护线程必须在线程开启前设置！）thread.setDaemon(true)必须在thread.start()之前设置,否则会抛出一个llegalThreadStateException异常。 你不能把正在运行的常规线程设置为守护线程。</p>
 <p>在守护(deamon)线程中产生的新线程也是守护线程</p>
 
@@ -501,10 +501,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-20T13:27:37+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-14T14:37:50+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 20, 2021</p>
+    <p>更新于：May 14, 2021</p>
   </a>
 </div>
 
@@ -616,6 +616,20 @@
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">守护线程的作用</span></a></li></ol>
+    </div>
+  </section>
 
 
   

@@ -20,9 +20,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Java浮点数精度问题 - Marlowe</title>
+  <title>Spring Bean 相关问题 - Marlowe</title>
   
-    <meta name="keywords" content="Java,精度">
+    <meta name="keywords" content="Bean,Spring">
   
 
   
@@ -371,7 +371,7 @@
     
     
       <h1 class="title">
-        Java浮点数精度问题
+        Spring Bean 相关问题
       </h1>
       <div class='new-meta-box'>
         
@@ -391,7 +391,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Java/">Java</a>
+      <a class="category-link" href="/categories/Spring/">Spring</a>
     </a>
   </div>
 
@@ -402,7 +402,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 10, 2021</p>
+    <p>发布于：May 16, 2021</p>
   </a>
 </div>
 
@@ -413,7 +413,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Java浮点数精度问题" data-path="/2021/05/10/NoSQL/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
+      <div id="lc-pv" data-title="Spring Bean 相关问题" data-path="/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.7k words</p>
+      <p>1.1k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>9 min</p>
+      <p>4 min</p>
     </a>
   </div>
 
@@ -450,15 +450,58 @@
   
   <a id="more"></a>
 
-<h3 id="一、精度丢失的原因"><a href="#一、精度丢失的原因" class="headerlink" title="一、精度丢失的原因"></a>一、精度丢失的原因</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">首先我们要搞清楚下面两个问题：</span><br><span class="line">(<span class="number">1</span>) 十进制整数如何转化为二进制数</span><br><span class="line">           算法很简单。举个例子，<span class="number">11</span>表示成二进制数：</span><br><span class="line">                     <span class="number">11</span>/<span class="number">2</span>=<span class="number">5</span> 余   <span class="number">1</span></span><br><span class="line">                     <span class="number">5</span>/<span class="number">2</span>=<span class="number">2</span>   余   <span class="number">1</span></span><br><span class="line">                     <span class="number">2</span>/<span class="number">2</span>=<span class="number">1</span>   余   <span class="number">0</span></span><br><span class="line">                     <span class="number">1</span>/<span class="number">2</span>=<span class="number">0</span>   余   <span class="number">1</span></span><br><span class="line">                     <span class="number">0</span>结束         <span class="number">11</span>二进制表示为(从下往上):<span class="number">1011</span></span><br><span class="line"> </span><br><span class="line">这里提一点：只要遇到除以后的结果为<span class="number">0</span>了就结束了，大家想一想，所有的整数除以<span class="number">2</span>是不是一定能够最终得到<span class="number">0</span>。换句话说，所有的整数转变为二进制数的算法会不会无限循环下去呢？绝对不会，整数永远可以用二进制精确表示 ，但小数就不一定了。</span><br><span class="line"> </span><br><span class="line">(<span class="number">2</span>) 十进制小数如何转化为二进制数</span><br><span class="line">算法是乘以<span class="number">2</span>直到没有了小数为止。举个例子，<span class="number">0.9</span>表示成二进制数</span><br><span class="line">   <span class="number">0.9</span>*<span class="number">2</span>=<span class="number">1.8</span>   取整数部分 <span class="number">1</span></span><br><span class="line">   <span class="number">0.8</span>(<span class="number">1.8</span>的小数部分)*<span class="number">2</span>=<span class="number">1.6</span>    取整数部分 <span class="number">1</span></span><br><span class="line">   <span class="number">0.6</span>*<span class="number">2</span>=<span class="number">1.2</span>   取整数部分 <span class="number">1</span></span><br><span class="line">   <span class="number">0.2</span>*<span class="number">2</span>=<span class="number">0.4</span>   取整数部分 <span class="number">0</span></span><br><span class="line">   <span class="number">0.4</span>*<span class="number">2</span>=<span class="number">0.8</span>   取整数部分 <span class="number">0</span></span><br><span class="line">   <span class="number">0.8</span>*<span class="number">2</span>=<span class="number">1.6</span> 取整数部分 <span class="number">1</span></span><br><span class="line">   <span class="number">0.6</span>*<span class="number">2</span>=<span class="number">1.2</span>   取整数部分 <span class="number">0</span></span><br><span class="line">    .........     </span><br><span class="line">   <span class="number">0.9</span>二进制表示为(从上往下): <span class="number">1100100100100.</span>.....</span><br><span class="line">注意：上面的计算过程循环了，也就是说*<span class="number">2</span>永远不可能消灭小数部分，这样算法将无限下去。很显然，小数的二进制表示有时是不可能精确的 。其实道理很简单，十进制系统中能不能准确表示出<span class="number">1</span>/<span class="number">3</span>呢？同样二进制系统也无法准确表示<span class="number">1</span>/<span class="number">10</span>。这也就解释了为什么浮点型减法出现了<span class="string">&quot;减不尽&quot;</span>的精度丢失问题。</span><br></pre></td></tr></table></figure>
-<h3 id="二、float存储原理"><a href="#二、float存储原理" class="headerlink" title="二、float存储原理"></a>二、float存储原理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">众所周知、 Java 的<span class="keyword">float</span>型在内存中占<span class="number">4</span>个字节。<span class="keyword">float</span>的<span class="number">32</span>个二进制位结构如下</span><br><span class="line"> </span><br><span class="line"><span class="keyword">float</span>内存存储结构</span><br><span class="line"> </span><br><span class="line">             4bytes      <span class="number">31</span>    <span class="number">30</span>    <span class="number">29</span>----<span class="number">23</span>    <span class="number">22</span>----<span class="number">0</span>        </span><br><span class="line"> </span><br><span class="line">             表示       实数符号位    指数符号位        指数位          有效数位</span><br><span class="line"> </span><br><span class="line">        其中符号位<span class="number">1</span>表示正，<span class="number">0</span>表示负。有效位数位<span class="number">24</span>位，其中一位是实数符号位。</span><br><span class="line"> </span><br><span class="line">         将一个<span class="keyword">float</span>型转化为内存存储格式的步骤为：</span><br><span class="line"> </span><br><span class="line">        （<span class="number">1</span>）先将这个实数的绝对值化为二进制格式，注意实数的整数部分和小数部分的二进制方法在上面已经探讨过了。</span><br><span class="line">     （<span class="number">2</span>）将这个二进制格式实数的小数点左移或右移n位，直到小数点移动到第一个有效数字的右边。</span><br><span class="line">     （<span class="number">3</span>）从小数点右边第一位开始数出二十三位数字放入第<span class="number">22</span>到第<span class="number">0</span>位。</span><br><span class="line">     （<span class="number">4</span>）如果实数是正的，则在第<span class="number">31</span>位放入“<span class="number">0</span>”，否则放入“<span class="number">1</span>”。</span><br><span class="line">     （<span class="number">5</span>）如果n 是左移得到的，说明指数是正的，第<span class="number">30</span>位放入“<span class="number">1</span>”。如果n是右移得到的或n=<span class="number">0</span>，则第<span class="number">30</span>位放入“<span class="number">0</span>”。</span><br><span class="line">     （<span class="number">6</span>）如果n是左移得到的，则将n减去<span class="number">1</span>后化为二进制，并在左边加“<span class="number">0</span>”补足七位，放入第<span class="number">29</span>到第<span class="number">23</span>位。如果n是右移得到的或n=<span class="number">0</span>，则将n化为二进制后在左边加“<span class="number">0</span>”补足七位，再各位求反，再放入第<span class="number">29</span>到第<span class="number">23</span>位。</span><br><span class="line"> </span><br><span class="line">          举例说明： <span class="number">11.9</span>的内存存储格式</span><br><span class="line"> </span><br><span class="line">       (<span class="number">1</span>) 将<span class="number">11.9</span>化为二进制后大约是<span class="string">&quot; 1011. 1110011001100110011001100...&quot;</span>。</span><br><span class="line"> </span><br><span class="line">       (<span class="number">2</span>) 将小数点左移三位到第一个有效位右侧： <span class="string">&quot;1. 011 11100110011001100110 &quot;</span>。 保证有效位数<span class="number">24</span>位，右侧多余的截取（误差在这里产生了 ）。</span><br><span class="line"> </span><br><span class="line">       (<span class="number">3</span>) 这已经有了二十四位有效数字，将最左边一位“<span class="number">1</span>”去掉，得到“ <span class="number">011</span> <span class="number">11100110011001100110</span> ”共23bit。将它放入<span class="keyword">float</span>存储结构的第<span class="number">22</span>到第<span class="number">0</span>位。</span><br><span class="line"> </span><br><span class="line">       (<span class="number">4</span>) 因为<span class="number">11.9</span>是正数，因此在第<span class="number">31</span>位实数符号位放入“<span class="number">0</span>”。</span><br><span class="line"> </span><br><span class="line">       (<span class="number">5</span>) 由于我们把小数点左移，因此在第<span class="number">30</span>位指数符号位放入“<span class="number">1</span>”。</span><br><span class="line"> </span><br><span class="line">       (<span class="number">6</span>) 因为我们是把小数点左移<span class="number">3</span>位，因此将<span class="number">3</span>减去<span class="number">1</span>得<span class="number">2</span>，化为二进制，并补足<span class="number">7</span>位得到<span class="number">0000010</span>，放入第<span class="number">29</span>到第<span class="number">23</span>位。</span><br><span class="line"> </span><br><span class="line">           最后表示<span class="number">11.9</span>为： <span class="number">0</span> <span class="number">1</span> <span class="number">0000010</span> <span class="number">011</span> <span class="number">11100110011001100110</span></span><br><span class="line"> </span><br><span class="line">           再举一个例子：<span class="number">0.2356</span>的内存存储格式</span><br><span class="line">      （<span class="number">1</span>）将<span class="number">0.2356</span>化为二进制后大约是<span class="number">0.00111100010100000100100000</span>。</span><br><span class="line">      （<span class="number">2</span>）将小数点右移三位得到<span class="number">1.11100010100000100100000</span>。</span><br><span class="line">      （<span class="number">3</span>）从小数点右边数出二十三位有效数字，即<span class="number">11100010100000100100000</span>放</span><br><span class="line">入第<span class="number">22</span>到第<span class="number">0</span>位。</span><br><span class="line">      （<span class="number">4</span>）由于<span class="number">0.2356</span>是正的，所以在第<span class="number">31</span>位放入“<span class="number">0</span>”。</span><br><span class="line">      （<span class="number">5</span>）由于我们把小数点右移了，所以在第<span class="number">30</span>位放入“<span class="number">0</span>”。</span><br><span class="line">      （<span class="number">6</span>）因为小数点被右移了<span class="number">3</span>位，所以将<span class="number">3</span>化为二进制，在左边补“<span class="number">0</span>”补足七</span><br><span class="line">位，得到<span class="number">0000011</span>，各位取反，得到<span class="number">1111100</span>，放入第<span class="number">29</span>到第<span class="number">23</span>位。</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">           最后表示<span class="number">0.2356</span>为：<span class="number">0</span> <span class="number">0</span> <span class="number">1111100</span> <span class="number">11100010100000100100000</span></span><br><span class="line"> </span><br><span class="line">          将一个内存存储的<span class="keyword">float</span>二进制格式转化为十进制的步骤：</span><br><span class="line">     （<span class="number">1</span>）将第<span class="number">22</span>位到第<span class="number">0</span>位的二进制数写出来，在最左边补一位“<span class="number">1</span>”，得到二十四位有效数字。将小数点点在最左边那个“<span class="number">1</span>”的右边。</span><br><span class="line">     （<span class="number">2</span>）取出第<span class="number">29</span>到第<span class="number">23</span>位所表示的值n。当<span class="number">30</span>位是“<span class="number">0</span>”时将n各位求反。当<span class="number">30</span>位是“<span class="number">1</span>”时将n增<span class="number">1</span>。</span><br><span class="line">     （<span class="number">3</span>）将小数点左移n位（当<span class="number">30</span>位是“<span class="number">0</span>”时）或右移n位（当<span class="number">30</span>位是“<span class="number">1</span>”时），得到一个二进制表示的实数。</span><br><span class="line">     （<span class="number">4</span>）将这个二进制实数化为十进制，并根据第<span class="number">31</span>位是“<span class="number">0</span>”还是“<span class="number">1</span>”加上正号或负号即可。</span><br></pre></td></tr></table></figure>
-<h3 id="三、浮点类型减法运算"><a href="#三、浮点类型减法运算" class="headerlink" title="三、浮点类型减法运算"></a>三、浮点类型减法运算</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">浮点加减运算过程比定点运算过程复杂。完成浮点加减运算的操作过程大体分为四步：</span><br><span class="line"> </span><br><span class="line">(<span class="number">1</span>) <span class="number">0</span>操作数的检查；</span><br><span class="line">        如果判断两个需要加减的浮点数有一个为<span class="number">0</span>，即可得知运算结果而没有必要再进行有序的一些列操作。</span><br><span class="line"> </span><br><span class="line">(<span class="number">2</span>) 比较阶码（指数位）大小并完成对阶；</span><br><span class="line">    两浮点数进行加减，首先要看两数的 指数位 是否相同，即小数点位置是否对齐。若两数 指数位 相同，表示小数点是对齐的，就可以进行尾数的加减运算。反之，若两数阶码不同，表示小数点位置没有对齐，此时必须使两数的阶码相同，这个过程叫做对阶 。</span><br><span class="line"> </span><br><span class="line">    如何对 阶(假设两浮点数的指数位为 Ex 和 Ey )：</span><br><span class="line">    通过尾数的移位以改变 Ex 或 Ey ，使之相等。 由 于浮点表示的数多是规格化的，尾数左移会引起最高有位的丢失，造成很大误差；而尾数右移虽引起最低有效位的丢失，但造成的误差较小，因此，对阶操作规定使 尾数右移，尾数右移后使阶码作相应增加，&lt;br&gt;    其数值保持不变。很显然，一个增加后的阶码与另一个相等，所增加的阶码一定是小阶。因此在对阶时，总是使小阶向大阶看齐 ，即小阶的尾数向右移位 ( 相当于小数点左移 ) ，每右移一位，其阶码加 <span class="number">1</span> ，直到两数的阶码相等为止，右移的位数等于阶差 △ E 。</span><br><span class="line"> </span><br><span class="line">(<span class="number">3</span>) 尾数（有效数位）进行加或减运算；</span><br><span class="line"> </span><br><span class="line">(<span class="number">4</span>) 结果规格化并进行舍入处理。</span><br></pre></td></tr></table></figure>
-<h3 id="四、浮点类型标识的有效数字及数值范围"><a href="#四、浮点类型标识的有效数字及数值范围" class="headerlink" title="四、浮点类型标识的有效数字及数值范围"></a>四、浮点类型标识的有效数字及数值范围</h3><p>1、Float：比特数为32，有效数字为6-7，数值范围为 -3.4E+38 和 3.4E+38</p>
-<p>2、Double：比特数为64，有效数字为15-16，数值范围为-1.7E-308～1.7E+308</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对于单精度浮点数（<span class="keyword">float</span>）来说，有一位符号位，指数位共<span class="number">8</span>位，尾数共<span class="number">23</span>位。指数能够表示的指数范围为-<span class="number">128</span>~<span class="number">127</span>。尾数为<span class="number">23</span>位。当尾数全<span class="number">1</span>时再加上小数点前面的<span class="number">1</span>，指数取到最大正数<span class="number">127</span>（<span class="number">8</span>位，正数最大<span class="number">127</span>，负数最小-<span class="number">128</span>）,浮点数取得正数的最大值。</span><br><span class="line">+<span class="number">1.111111111111111111111</span>*<span class="number">2</span>^<span class="number">127</span>（<span class="number">1.</span>后面<span class="number">23</span>个<span class="number">1</span>，由于尾数的范围<span class="number">1</span>～<span class="number">2</span>，其最高位总为<span class="number">1</span>，故只需存取小数部分，所以小数为是<span class="number">23</span>位<span class="number">1</span>），约等于<span class="number">2</span>*<span class="number">2</span>^<span class="number">127</span>=<span class="number">3.4</span>*<span class="number">10</span>^<span class="number">38</span>。为<span class="number">3.4</span>*<span class="number">10</span>^<span class="number">38</span>负数亦然。</span><br><span class="line"> </span><br><span class="line">Double的计算与此类似，<span class="keyword">double</span>的符号位为<span class="number">63</span>位，指数为<span class="number">62</span>～<span class="number">52</span>位，共<span class="number">11</span>位。表示的范围为-<span class="number">1024</span>～<span class="number">1023</span>。尾数为<span class="number">51</span>～<span class="number">0</span>。表示的范围为+<span class="number">1.111111111111111111111</span>*<span class="number">2</span>^<span class="number">1023</span>（<span class="number">1.</span>后面<span class="number">52</span>个<span class="number">1</span>）为<span class="number">1.7</span>*<span class="number">10</span>^<span class="number">308</span>。负数亦然。</span><br></pre></td></tr></table></figure>
-<h3 id="五、BigDecimal替代"><a href="#五、BigDecimal替代" class="headerlink" title="五、BigDecimal替代"></a>五、BigDecimal替代</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">大多数情况下，使用<span class="keyword">double</span>和<span class="keyword">float</span>计算的结果是准确的，但是在一些精度要求很高的系统中或者已知的小数计算得到的结果会不准确，这种问题是非常严重的。</span><br><span class="line"> </span><br><span class="line">《Effective Java》中提到一个原则，那就是<span class="keyword">float</span>和<span class="keyword">double</span>只能用来作科学计算或者是工程计算，但在商业计算中我们要用java.math.BigDecimal，通过使用BigDecimal类可以解决上述问题，java的设计者给编程人员提供了一个很有用的类BigDecimal，他可以完善<span class="keyword">float</span>和<span class="keyword">double</span>类无法进行精确计算的缺憾。</span><br><span class="line"> </span><br><span class="line">使用BigDecimal，但一定要用BigDecimal(String)构造器，而千万不要用BigDecimal(<span class="keyword">double</span>)来构造（也不能将<span class="keyword">float</span>或<span class="keyword">double</span>型转换成String再来使用BigDecimal(String)来构造，因为在将<span class="keyword">float</span>或<span class="keyword">double</span>转换成String时精度已丢失）。例如<span class="keyword">new</span> BigDecimal(<span class="number">0.1</span>)，它将返回一个BigDecimal，也即<span class="number">0.1000000000000000055511151231257827021181583404541015625</span>，正确使用BigDecimal，程序就可以打印出我们所期望的结果<span class="number">0.9</span>：</span><br><span class="line">Java代码 </span><br><span class="line">System.out.println(<span class="keyword">new</span> BigDecimal(<span class="string">&quot;2.0&quot;</span>).subtract(<span class="keyword">new</span> BigDecimal(<span class="string">&quot;1.10&quot;</span>)));<span class="comment">// 0.9 </span></span><br><span class="line"> </span><br><span class="line">另外，如果要比较两个浮点数的大小，要使用BigDecimal的compareTo方法。</span><br></pre></td></tr></table></figure>
-<h3 id="六、BigDecimal如何解决精度问题"><a href="#六、BigDecimal如何解决精度问题" class="headerlink" title="六、BigDecimal如何解决精度问题"></a>六、BigDecimal如何解决精度问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal的底层数据结构使什么？它是怎么保证精度的？</span><br><span class="line"></span><br><span class="line">这曾经是一道阿里巴巴的面试题，由于在工作中使用最多的是BigDecimal的加、减、乘、除的的方法，还真没想过它的实现原理（完全是拿来主义惹的祸），乍这么一问还真有点懵。BigDecimal保证精度的解决思路其实极其的简单朴素，还是用一句话来解释：十进制整数在转化成二进制数时不会有精度问题，那么把十进制小数扩大N倍让它在整数的维度上进行计算，并保留相应的精度信息。</span><br><span class="line">————————————————</span><br><span class="line"></span><br><span class="line">源码中 scale字段记录精度信息；intCompact字段记录放大的整数信息</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangsong412/p/11798633.html">浮点类型计算精度不准确原因及如何规避</a></p>
+
+<h3 id="Spring-中的-bean-的作用域有哪些"><a href="#Spring-中的-bean-的作用域有哪些" class="headerlink" title="Spring 中的 bean 的作用域有哪些?"></a>Spring 中的 bean 的作用域有哪些?</h3><ul>
+<li><strong>singleton:</strong> 唯一 bean 实例，Spring 中的 bean 默认都是单例的。</li>
+<li><strong>prototype:</strong> 每次请求都会创建一个新的 bean 实例。</li>
+<li><strong>request:</strong> 每一次HTTP请求都会产生一个新的bean，该bean仅在当前HTTP request内有效。</li>
+<li><strong>session:</strong> 每一次HTTP请求都会产生一个新的 bean，该bean仅在当前 HTTP session 内有效。</li>
+<li><strong>global-session：</strong> 全局session作用域，仅仅在基于portlet的web应用中才有意义，Spring5已经没有了。Portlet是能够生成语义代码(例如：HTML)片段的小型Java Web插件。它们基于portlet容器，可以像servlet一样处理HTTP请求。但是，与 servlet 不同，每个 portlet 都有不同的会话</li>
+</ul>
+<h3 id="Spring-中的单例-bean-的线程安全问题了解吗？"><a href="#Spring-中的单例-bean-的线程安全问题了解吗？" class="headerlink" title="Spring 中的单例 bean 的线程安全问题了解吗？"></a>Spring 中的单例 bean 的线程安全问题了解吗？</h3><p>的确是存在安全问题的。因为，当多个线程操作同一个对象的时候，对这个对象的成员变量的写操作会存在线程安全问题。</p>
+<p>但是，一般情况下，我们常用的 <code>Controller</code>、<code>Service</code>、<code>Dao</code> 这些 Bean 是无状态的。无状态的 Bean 不能保存数据，因此是线程安全的。</p>
+<p>常见的有 2 种解决办法：</p>
+<ol>
+<li>在类中定义一个 <code>ThreadLocal</code> 成员变量，将需要的可变成员变量保存在 <code>ThreadLocal</code> 中（推荐的一种方式）。</li>
+<li>改变 Bean 的作用域为 “prototype”：每次请求都会创建一个新的 bean 实例，自然不会存在线程安全问题。</li>
+</ol>
+<h3 id="Component-和-Bean-的区别是什么？"><a href="#Component-和-Bean-的区别是什么？" class="headerlink" title="@Component 和 @Bean 的区别是什么？"></a>@Component 和 @Bean 的区别是什么？</h3><ol>
+<li>作用对象不同: <code>@Component</code> 注解作用于类，而<code>@Bean</code>注解作用于方法。</li>
+<li><code>@Component</code>通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中（我们可以使用 <code>@ComponentScan</code> 注解定义要扫描的路径从中找出标识了需要装配的类自动装配到 Spring 的 bean 容器中）。<code>@Bean</code> 注解通常是我们在标有该注解的方法中定义产生这个 bean,<code>@Bean</code>告诉了Spring这是某个类的示例，当我需要用它的时候还给我。</li>
+<li><code>@Bean</code> 注解比 <code>Component</code> 注解的自定义性更强，而且很多地方我们只能通过 <code>@Bean</code> 注解来注册bean。比如当我们引用第三方库中的类需要装配到<code>Spring</code>容器时，则只能通过 <code>@Bean</code>来实现。</li>
+</ol>
+<p><code>@Bean</code>注解使用示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TransferService <span class="title">transferService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TransferServiceImpl();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码相当于下面的 xml 配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;transferService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.acme.TransferServiceImpl&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下面这个例子是通过 @Component 无法实现的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> OneService <span class="title">getService</span><span class="params">(status)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> (status)  &#123;</span><br><span class="line">        when <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> serviceImpl1();</span><br><span class="line">        when <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> serviceImpl2();</span><br><span class="line">        when <span class="number">3</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> serviceImpl3();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="将一个类声明为Spring的-bean-的注解有哪些"><a href="#将一个类声明为Spring的-bean-的注解有哪些" class="headerlink" title="将一个类声明为Spring的 bean 的注解有哪些?"></a>将一个类声明为Spring的 bean 的注解有哪些?</h3><p>我们一般使用 <code>@Autowired</code> 注解自动装配 bean，要想把类标识成可用于 <code>@Autowired</code> 注解自动装配的 bean 的类,采用以下注解可实现：</p>
+<ul>
+<li><strong>@Component：</strong>通用的注解，可标注任意类为 <code>Spring</code> 组件。如果一个Bean不知道属于哪个层，可以使用<code>@Component</code> 注解标注。</li>
+<li><strong>@Repository:</strong> 对应持久层即 Dao 层，主要用于数据库相关操作。</li>
+<li><strong>@Service:</strong> 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao层。</li>
+<li><strong>@Controller:</strong> 对应 Spring MVC 控制层，主要用于接受用户请求并调用 Service 层返回数据给前端页面。</li>
+</ul>
+<h3 id="Spring-中的-bean-生命周期"><a href="#Spring-中的-bean-生命周期" class="headerlink" title="Spring 中的 bean 生命周期?"></a>Spring 中的 bean 生命周期?</h3><ul>
+<li>Bean 容器找到配置文件中 Spring Bean 的定义。</li>
+<li>Bean 容器利用 Java Reflection API 创建一个Bean的实例。</li>
+<li>如果涉及到一些属性值 利用 <code>set()</code>方法设置一些属性值。</li>
+<li>如果 Bean 实现了 <code>BeanNameAware</code> 接口，调用 <code>setBeanName()</code>方法，传入Bean的名字。</li>
+<li>如果 Bean 实现了 <code>BeanClassLoaderAware</code> 接口，调用 <code>setBeanClassLoader()</code>方法，传入 <code>ClassLoader</code>对象的实例。</li>
+<li>与上面的类似，如果实现了其他 <code>*.Aware</code>接口，就调用相应的方法。</li>
+<li>如果有和加载这个 Bean 的 Spring 容器相关的 <code>BeanPostProcessor</code> 对象，执行<code>postProcessBeforeInitialization()</code> 方法</li>
+<li>如果Bean实现了<code>InitializingBean</code>接口，执行<code>afterPropertiesSet()</code>方法。</li>
+<li>如果 Bean 在配置文件中的定义包含 init-method 属性，执行指定的方法。</li>
+<li>如果有和加载这个 Bean的 Spring 容器相关的 <code>BeanPostProcessor</code> 对象，执行<code>postProcessAfterInitialization()</code> 方法</li>
+<li>当要销毁 Bean 的时候，如果 Bean 实现了 <code>DisposableBean</code> 接口，执行 <code>destroy()</code> 方法。</li>
+<li>当要销毁 Bean 的时候，如果 Bean 在配置文件中的定义包含 destroy-method 属性，执行指定的方法。</li>
+</ul>
+<p>图示：</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210516114740.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210516114740.png" srcset="data:image/png;base64,666" alt="20210516114740"></p>
+<p>与之比较类似的中文版本:</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210516114807.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210516114807.png" srcset="data:image/png;base64,666" alt="20210516114807"></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/system-design/framework/spring/Spring%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93?id=_5-spring-bean">Spring bean</a></p>
 
   
   
@@ -476,7 +519,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/10/NoSQL/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/>https://xmmarlowe.github.io/2021/05/10/NoSQL/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/>https://xmmarlowe.github.io/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</a></p>
               
             
           </blockquote>
@@ -504,10 +547,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-10T22:42:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-16T22:22:22+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 10, 2021</p>
+    <p>更新于：May 16, 2021</p>
   </a>
 </div>
 
@@ -521,7 +564,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/10/NoSQL/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/&title=Java浮点数精度问题 - Marlowe&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/&title=Spring Bean 相关问题 - Marlowe&summary="
           
           >
           
@@ -533,7 +576,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/10/NoSQL/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/&title=Java浮点数精度问题 - Marlowe&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/&title=Spring Bean 相关问题 - Marlowe&summary="
           
           >
           
@@ -545,7 +588,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/10/NoSQL/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/&title=Java浮点数精度问题 - Marlowe&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/&title=Spring Bean 相关问题 - Marlowe&summary="
           
           >
           
@@ -575,22 +618,20 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>MySQL一些规范以及优化问题</p>
+        <a class='prev' href='/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Spring的启动过程</p>
           <p class='content'>
 
-
-如何选择索引列的顺序建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
-
-区分度最高的放在联合索引的最左侧（...</p>
+spring的启动是建筑在servlet容器之上的，所有web工程的初始位置就是web.xml,它配置了servlet的上下文（context）和监听器（Listener），下面就来看看we...</p>
         </a>
       
       
-        <a class='next' href='/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/'>
-          <p class='title'>获取class对象六种方法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
+        <a class='next' href='/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/'>
+          <p class='title'>Spring中用到的设计模式<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>简单聊聊Spring中所用到的设计模式…
 
-简述Class类是Java反射机制的入口，封装了一个类或接口的运行时信息，通过调用Class类的方法可以获取这些信息。Class类有如下特点：1、该类在java.lang包中，不需要引包2、...</p>
+
+控制反转(IoC)和依赖注入(DI)IoC(Inversion of Control,控制翻转) 是Spring 中一个非常非常重要的概念，它不是什...</p>
         </a>
       
     </div>
@@ -633,7 +674,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">一、精度丢失的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81float%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86"><span class="toc-text">二、float存储原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97"><span class="toc-text">三、浮点类型减法运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E6%A0%87%E8%AF%86%E7%9A%84%E6%9C%89%E6%95%88%E6%95%B0%E5%AD%97%E5%8F%8A%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4"><span class="toc-text">四、浮点类型标识的有效数字及数值范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81BigDecimal%E6%9B%BF%E4%BB%A3"><span class="toc-text">五、BigDecimal替代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81BigDecimal%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98"><span class="toc-text">六、BigDecimal如何解决精度问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84-bean-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">Spring 中的 bean 的作用域有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BE%8B-bean-%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="toc-text">Spring 中的单例 bean 的线程安全问题了解吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Component-%E5%92%8C-Bean-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">@Component 和 @Bean 的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%A3%B0%E6%98%8E%E4%B8%BASpring%E7%9A%84-bean-%E7%9A%84%E6%B3%A8%E8%A7%A3%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">将一个类声明为Spring的 bean 的注解有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84-bean-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">Spring 中的 bean 生命周期?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
@@ -653,7 +694,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Java浮点数精度问题";
+  pdata.postTitle="Spring Bean 相关问题";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

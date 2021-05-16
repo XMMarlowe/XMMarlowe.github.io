@@ -534,7 +534,8 @@
 <p>什么是指令重排：你写的程序，计算机并不是按照你写的那样去执行的。<br>源代码–&gt; 编译器优化的重排–&gt; 指令并行也可能重排–&gt; 内存系统也会重排–&gt; 执行.</p>
 <p><strong>前提：处理器在进行指令重排的时候，会考虑数据之间的依赖性！</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">1</span>; <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">int</span> y = <span class="number">2</span>; <span class="comment">// 2</span></span><br><span class="line">x = x + <span class="number">5</span>; <span class="comment">// 3</span></span><br><span class="line">y = x * x; <span class="comment">// 4</span></span><br><span class="line"></span><br><span class="line">我们所期望的：<span class="number">1234</span> 但是可能执行的时候会变成 <span class="number">2134</span> <span class="number">1324</span></span><br></pre></td></tr></table></figure>
-<h4 id="volatile如何保证可见性？"><a href="#volatile如何保证可见性？" class="headerlink" title="volatile如何保证可见性？"></a>volatile如何保证可见性？</h4><p>volatile 主要是利用了java的先行发生原则 （简单介绍先行发生原则：在计算机科学中，先行发生原则是两个事件的结果之间的关系，如果一个事件发生在另一个事件之前，结果必须反映，即使这些事件实际上是乱序执行的（通常是优化程序流程））。<br><strong>volatile相关的规则：</strong></p>
+<h4 id="volatile如何保证可见性？"><a href="#volatile如何保证可见性？" class="headerlink" title="volatile如何保证可见性？"></a>volatile如何保证可见性？</h4><p>volatile 主要是利用了java的先行发生原则 （简单介绍先行发生原则：在计算机科学中，先行发生原则是两个事件的结果之间的关系，如果一个事件发生在另一个事件之前，结果必须反映，即使这些事件实际上是乱序执行的（通常是优化程序流程））。</p>
+<p><strong>volatile相关的规则：</strong></p>
 <ol>
 <li>对于一个volatile变量的写操作先行发生于后面对这个变量的读操作。</li>
 <li>因此当线程1执行了vlt=5；写操作是必然先发生2线程读操作。即线程2从主内存读到的数据一定是线程1写过的数据那就是5。所以volatile主要利用了先行发生原则保证线程之间的可见性。</li>
@@ -604,10 +605,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-28T15:23:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-14T17:07:19+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 28, 2021</p>
+    <p>更新于：May 14, 2021</p>
   </a>
 </div>
 

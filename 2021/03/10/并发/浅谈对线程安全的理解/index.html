@@ -457,7 +457,7 @@
 <blockquote>
 <p>在Java中，堆是Java虚拟机所管理的内存中最大的一块,是所有线程共享的一块内存区域，在虚拟机启动时创建。堆所存在的内存区域的唯一目的就是存放对象实例， 几乎所有的对象实例以及数组都在这里分配内存。</p>
 </blockquote>
-<p><strong>栈</strong>是每个线程独有的，保存其运行状态和局部自动变量的。栈在线程开始的时候初始化，每个线程的栈互相独立,因此，<strong>栈是线程安全的。</strong> 操作系统在切换线程的时候会自动切换栈。栈空间不需要在高级语言里面显式的分配和释放。</p>
+<p><strong>栈</strong>是每个线程独有的，保存其<strong>运行状态</strong>和<strong>局部自动变量</strong>的。栈在线程开始的时候初始化，每个线程的栈互相独立,因此，<strong>栈是线程安全的。</strong> 操作系统在切换线程的时候会自动切换栈。<strong>栈空间不需要在高级语言里面显式的分配和释放</strong>。</p>
 
   
   
@@ -503,10 +503,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-16T14:54:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-14T14:46:31+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 16, 2021</p>
+    <p>更新于：May 14, 2021</p>
   </a>
 </div>
 
@@ -579,7 +579,7 @@
           <p class='content'>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。
 
 
-守护线程的作用：举例，GC垃圾回收线程:就是一个经典的守护线程, 当我们的程序中不再有任...</p>
+守护线程的作用举例，GC垃圾回收线程:就是一个经典的守护线程, 当我们的程序中不再有任何...</p>
         </a>
       
       

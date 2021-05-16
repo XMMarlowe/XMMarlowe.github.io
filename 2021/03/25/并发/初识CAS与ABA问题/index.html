@@ -429,7 +429,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.9k words</p>
+      <p>2k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -469,7 +469,9 @@
 <li>线程2，期望值为A，欲更新的值为B</li>
 </ol>
 <p>线程1抢先获得CPU时间片，而线程2因为其他原因阻塞了，线程1取值与期望的A值比较，发现相等然后将值更新为B，然后这个时候<strong>出现了线程3，期望值为B，欲更新的值为A</strong>，线程3取值与期望的值B比较，发现相等则将值更新为A，此时线程2从阻塞中恢复，并且获得了CPU时间片，这时候线程2取值与期望的值A比较，发现相等则将值更新为B，虽然线程2也完成了操作，但是线程2并不知道值已经经过了A-&gt;B-&gt;A的变化过程。</p>
-<p><strong>ABA问题带来的危害：</strong><br>小明在提款机，提取了50元，因为提款机问题，有两个线程，同时把余额从100变为50<br>线程1（提款机）：获取当前值100，期望更新为50，<br>线程2（提款机）：获取当前值100，期望更新为50，<br>线程1成功执行，线程2某种原因block了，这时，某人给小明汇款50<br>线程3（默认）：获取当前值50，期望更新为100，<br>这时候线程3成功执行，余额变为100，<br>线程2从Block中恢复，获取到的也是100，compare之后，继续更新余额为50！！！<br>此时可以看到，实际余额应该为100（100-50+50），但是实际上变为了50（100-50+50-50）这就是ABA问题带来的成功提交。</p>
+<h4 id="ABA问题带来的危害"><a href="#ABA问题带来的危害" class="headerlink" title="ABA问题带来的危害"></a>ABA问题带来的危害</h4><p><strong>例1：</strong><br>小明在提款机，提取了50元，因为提款机问题，有两个线程，同时把余额从100变为50<br>线程1（提款机）：获取当前值100，期望更新为50，<br>线程2（提款机）：获取当前值100，期望更新为50，<br>线程1成功执行，线程2某种原因block了，这时，某人给小明汇款50<br>线程3（默认）：获取当前值50，期望更新为100，<br>这时候线程3成功执行，余额变为100，<br>线程2从Block中恢复，获取到的也是100，compare之后，继续更新余额为50！！！<br>此时可以看到，实际余额应该为100（100-50+50），但是实际上变为了50（100-50+50-50）这就是ABA问题带来的成功提交。</p>
+<p><strong>例2：</strong></p>
+<p>假如你的老板很有洁癖，现在桌子上有一杯水，在你非常渴的情况下发现这个盛满水的杯子，你一饮而尽。之后再给杯子里重新倒满水。然后你离开，当老板回来时看到杯子还是盛满水，他当然不知道是否被人喝完重新倒满。</p>
 <p><strong>解决方法：</strong> 在变量前面加上版本号，每次变量更新的时候变量的版本号都+1，即A-&gt;B-&gt;A就变成了1A-&gt;2B-&gt;3A。</p>
 <h4 id="循环会耗时"><a href="#循环会耗时" class="headerlink" title="循环会耗时"></a>循环会耗时</h4><p>如果CAS操作失败，就需要循环进行CAS操作(循环同时将期望值更新为最新的)，如果长时间都不成功的话，那么会造成CPU极大的开销。<br><strong>解决办法：</strong> 限制自旋次数，防止进入死循环。</p>
 <h4 id="只能保证一个共享变量的原子操作"><a href="#只能保证一个共享变量的原子操作" class="headerlink" title="只能保证一个共享变量的原子操作"></a>只能保证一个共享变量的原子操作</h4><p>CAS的原子操作只能针对一个共享变量。</p>
@@ -532,10 +534,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-28T14:12:29+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-14T14:26:09+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 28, 2021</p>
+    <p>更新于：May 14, 2021</p>
   </a>
 </div>
 
@@ -613,12 +615,12 @@
       
         <a class='next' href='/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/'>
           <p class='title'>异步回调<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
+          <p class='content'>To be continue…
+
 
 
 Future 设计初衷：对将来的某个事件的结果进行建模
 
-To be continue…
 </p>
         </a>
       
@@ -662,7 +664,7 @@ To be continue…
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCAS%EF%BC%9F"><span class="toc-text">什么是CAS？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-%E7%BC%BA%E7%82%B9"><span class="toc-text">CAS 缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ABA%E9%97%AE%E9%A2%98"><span class="toc-text">ABA问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%BC%9A%E8%80%97%E6%97%B6"><span class="toc-text">循环会耗时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E8%83%BD%E4%BF%9D%E8%AF%81%E4%B8%80%E4%B8%AA%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C"><span class="toc-text">只能保证一个共享变量的原子操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-ABA%E9%97%AE%E9%A2%98"><span class="toc-text">CAS:ABA问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFABA%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">什么是ABA问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3ABA%E9%97%AE%E9%A2%98"><span class="toc-text">怎么解决ABA问题?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">CAS的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCAS%EF%BC%9F"><span class="toc-text">什么是CAS？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-%E7%BC%BA%E7%82%B9"><span class="toc-text">CAS 缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ABA%E9%97%AE%E9%A2%98"><span class="toc-text">ABA问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ABA%E9%97%AE%E9%A2%98%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-text">ABA问题带来的危害</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%BC%9A%E8%80%97%E6%97%B6"><span class="toc-text">循环会耗时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E8%83%BD%E4%BF%9D%E8%AF%81%E4%B8%80%E4%B8%AA%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C"><span class="toc-text">只能保证一个共享变量的原子操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-ABA%E9%97%AE%E9%A2%98"><span class="toc-text">CAS:ABA问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFABA%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">什么是ABA问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3ABA%E9%97%AE%E9%A2%98"><span class="toc-text">怎么解决ABA问题?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">CAS的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

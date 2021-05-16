@@ -429,13 +429,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>143 words</p>
+      <p>1.5k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>5 min</p>
     </a>
   </div>
 
@@ -450,7 +450,66 @@
   
   <a id="more"></a>
 
+
+
+<h3 id="Java-异常类层次结构图"><a href="#Java-异常类层次结构图" class="headerlink" title="Java 异常类层次结构图"></a>Java 异常类层次结构图</h3><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210514162423.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210514162423.png" srcset="data:image/png;base64,666" alt="20210514162423"></p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210514162459.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210514162459.png" srcset="data:image/png;base64,666" alt="20210514162459"></p>
+<p>在 Java 中，所有的异常都有一个共同的祖先 <code>java.lang</code> 包中的 <code>Throwable</code> 类。<code>Throwable</code> 类有两个重要的子类 <code>Exception</code>（异常）和 <code>Error</code>（错误）。<code>Exception</code> 能被程序本身处理(try-catch)， <code>Error</code>是无法处理的(只能尽量避免)。</p>
+<p><code>Exception</code> 和 <code>Error</code> 二者都是 Java 异常处理的重要子类，各自都包含大量子类。</p>
 <ul>
+<li><strong>Exception:</strong> 程序本身可以处理的异常，可以通过 <code>catch</code> 来进行捕获。<code>Exception</code> 又可以分为 受检查异常(必须处理) 和 不受检查异常(可以不处理)。</li>
+<li><strong>Error：</strong> <code>Error</code> 属于程序无法处理的错误 ，我们没办法通过 <code>catch</code> 来进行捕获 。例如，Java 虚拟机运行错误（<code>Virtual MachineError</code>）、虚拟机内存不够错误(<code>OutOfMemoryError</code>)、类定义错误（<code>NoClassDefFoundError</code>）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。</li>
+</ul>
+<h4 id="受检查异常"><a href="#受检查异常" class="headerlink" title="受检查异常"></a>受检查异常</h4><p>Java 代码在编译过程中，如果受检查异常没有被 <code>catch/throw</code> 处理的话，就没办法通过编译 。除了<code>RuntimeException</code>及其子类以外，其他的<code>Exception</code>类及其子类都属于受检查异常 。常见的受检查异常有： IO 相关的异常、<code>ClassNotFoundException 、SQLException</code>…。</p>
+<h4 id="不受检查异常"><a href="#不受检查异常" class="headerlink" title="不受检查异常"></a>不受检查异常</h4><p>Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。</p>
+<p><code>RuntimeException</code>及其子类都统称为非受检查异常，例如：<code>NullPointerException、NumberFormatException</code>（字符串转换为数字）、<code>ArrayIndexOutOfBoundsException</code>（数组越界）、<code>ClassCastException</code>（类型转换错误）、<code>ArithmeticException</code>（算术错误）等。</p>
+<h3 id="自定义异常实现"><a href="#自定义异常实现" class="headerlink" title="自定义异常实现"></a>自定义异常实现</h3><p>自定义异常类步骤:</p>
+<ul>
+<li>创建一个类继承异常父类Exception</li>
+<li>在具体的实现方法首部抛出异常类(自己创建的那个类)，throws的运用</li>
+<li>在具体的实现方法的内部抛出异常信息,throw的运用</li>
+</ul>
+<p>创建一个类继承异常父类Exception</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmailException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  EmailException(String msg) &#123;</span><br><span class="line">    <span class="keyword">super</span>(msg);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Throwable-类常用方法"><a href="#Throwable-类常用方法" class="headerlink" title="Throwable 类常用方法"></a>Throwable 类常用方法</h3><ul>
+<li><strong>public string getMessage():</strong> 返回异常发生时的简要描述</li>
+<li><strong>public string toString():</strong> 返回异常发生时的详细信息</li>
+<li><strong>public string getLocalizedMessage():</strong> 返回异常对象的本地化信息。使用 <code>Throwable</code> 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 <code>getMessage（）</code>返回的结果相同</li>
+<li><strong>public void printStackTrace():</strong> 在控制台上打印 <code>Throwable</code> 对象封装的异常信息</li>
+</ul>
+<h3 id="try-catch-finally"><a href="#try-catch-finally" class="headerlink" title="try-catch-finally"></a>try-catch-finally</h3><ul>
+<li><strong>try块：</strong> 用于捕获异常。其后可接零个或多个 <code>catch</code> 块，如果没有 <code>catch</code> 块，则必须跟一个 <code>finally</code> 块。</li>
+<li><strong>catch块：</strong> 用于处理 <code>try</code> 捕获到的异常。</li>
+<li><strong>finally 块：</strong> 无论是否捕获或处理异常，<code>finally</code> 块里的语句都会被执行。当在 <code>try</code> 块或 <code>catch</code> 块中遇到 <code>return</code> 语句时，<code>finally</code> 语句块将在方法返回之前被执行。</li>
+</ul>
+<p><strong>在以下 3 种特殊情况下，finally 块不会被执行：</strong></p>
+<ol>
+<li>在 <code>try</code> 或 <code>finally</code> 块中用了 <code>System.exit(int)</code> 退出程序。但是，如果 <code>System.exit(int)</code> 在异常语句之后，<code>finally</code> 还是会被执行</li>
+<li>程序所在的线程死亡。</li>
+<li>关闭 CPU。</li>
+</ol>
+<p><strong>注意：</strong> 当 try 语句和 finally 语句中都有 return 语句时，在方法返回之前，finally 语句的内容将被执行，并且 finally 语句的返回值将会覆盖原始的返回值。如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> value * value;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (value == <span class="number">2</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果调用 f(2)，返回值将是 0，因为 finally 语句的返回值覆盖了 try 语句块的返回值。</p>
+<h3 id="使用-try-with-resources-来代替try-catch-finally"><a href="#使用-try-with-resources-来代替try-catch-finally" class="headerlink" title="使用 try-with-resources 来代替try-catch-finally"></a>使用 try-with-resources 来代替try-catch-finally</h3><ol>
+<li><strong>适用范围（资源的定义）：</strong> 任何实现 <code>java.lang.AutoCloseable</code>或者 <code>java.io.Closeable</code> 的对象</li>
+<li><strong>关闭资源和 finally 块的执行顺序：</strong> 在 <code>try-with-resources</code> 语句中，任何 <code>catch</code> 或 <code>finally</code> 块在声明的资源关闭后运行</li>
+</ol>
+<p>《Effecitve Java》中明确指出：</p>
+<blockquote>
+<p>面对必须要关闭的资源，我们总是应该优先使用 <code>try-with-resources</code> 而不是<code>try-finally</code>。随之产生的代码更简短，更清晰，产生的异常对我们也更有用。<code>try-with-resources</code>语句让我们更容易编写必须要关闭的资源的代码，若采用<code>try-finally</code>则几乎做不到这点。</p>
+</blockquote>
+<p>Java 中类似于<code>InputStream、OutputStream 、Scanner 、PrintWriter</code>等的资源都需要我们调用<code>close()</code>方法来手动关闭，一般情况下我们都是通过<code>try-catch-finally</code>语句来实现这个需求，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取文本文件的内容</span></span><br><span class="line">Scanner scanner = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">&quot;D://read.txt&quot;</span>));</span><br><span class="line">    <span class="keyword">while</span> (scanner.hasNext()) &#123;</span><br><span class="line">        System.out.println(scanner.nextLine());</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (scanner != <span class="keyword">null</span>) &#123;</span><br><span class="line">        scanner.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 Java 7 之后的 <code>try-with-resources</code> 语句改造上面的代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (Scanner scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">&quot;test.txt&quot;</span>))) &#123;</span><br><span class="line">    <span class="keyword">while</span> (scanner.hasNext()) &#123;</span><br><span class="line">        System.out.println(scanner.nextLine());</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException fnfe) &#123;</span><br><span class="line">    fnfe.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然多个资源需要关闭的时候，使用 <code>try-with-resources</code> 实现起来也非常简单，如果你还是用<code>try-catch-finally</code>可能会带来很多问题。</p>
+<p>通过使用分号分隔，可以在<code>try-with-resources</code>块中声明多个资源。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedInputStream bin = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">&quot;test.txt&quot;</span>)));</span><br><span class="line">             BufferedOutputStream bout = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">&quot;out.txt&quot;</span>)))) &#123;</span><br><span class="line">            <span class="keyword">int</span> b;</span><br><span class="line">            <span class="keyword">while</span> ((b = bin.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">                bout.write(b);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>所有异常类都是Throwable的子类</li>
 <li>异常可分为Error(错误)和Exception(异常)两类</li>
 <li>Exception又可分为RuntimeException(运行时异常)和非运行时异常两类</li>
@@ -458,7 +517,6 @@
 <li>Exception不会导致程序停止，分为<code>RuntimeException</code>运行时异常和<code>CheckedException</code>检查异常。</li>
 <li><code>RuntimeException</code>常常发生在程序运行过程中，会导致程序<strong>当前线程</strong>执行失败。<code>CheckedException</code>常常发生在程序编译过程中，会导致程序编译不通过。</li>
 </ul>
-<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210309155959.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210309155959.png" srcset="data:image/png;base64,666" alt="20210309155959"></p>
 
   
   
@@ -504,10 +562,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:22:33+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-14T17:04:37+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：May 14, 2021</p>
   </a>
 </div>
 
@@ -618,6 +676,20 @@
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-text">Java 异常类层次结构图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%97%E6%A3%80%E6%9F%A5%E5%BC%82%E5%B8%B8"><span class="toc-text">受检查异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%8F%97%E6%A3%80%E6%9F%A5%E5%BC%82%E5%B8%B8"><span class="toc-text">不受检查异常</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E5%AE%9E%E7%8E%B0"><span class="toc-text">自定义异常实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Throwable-%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">Throwable 类常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try-catch-finally"><span class="toc-text">try-catch-finally</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-try-with-resources-%E6%9D%A5%E4%BB%A3%E6%9B%BFtry-catch-finally"><span class="toc-text">使用 try-with-resources 来代替try-catch-finally</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </section>
 
 
   
