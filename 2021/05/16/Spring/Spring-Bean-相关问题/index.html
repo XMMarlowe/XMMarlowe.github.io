@@ -162,6 +162,22 @@
             
             
               <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
                 <a class="menuitem flat-box faa-parent animated-hover" href=/about/
                   
                   
@@ -251,6 +267,22 @@
                     id="archives"
                   >
                   <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
                 </a>
                 
               </li>
@@ -379,7 +411,7 @@
             
 <div class='new-meta-item author'>
   <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
-    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
     <p>Marlowe</p>
   </a>
 </div>
@@ -429,13 +461,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.1k words</p>
+      <p>1.5k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>4 min</p>
+      <p>5 min</p>
     </a>
   </div>
 
@@ -450,7 +482,24 @@
   
   <a id="more"></a>
 
-
+<h3 id="Spring-中-bean-的创建过程"><a href="#Spring-中-bean-的创建过程" class="headerlink" title="Spring 中 bean 的创建过程"></a>Spring 中 bean 的创建过程</h3><p><strong>首先:</strong> 简单来说，Spring框架中的Bean经过四个阶段:实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</p>
+<p><strong>然后:</strong> 具体来说，Spring中Bean 经过了以下几个步骤:</p>
+<ol>
+<li>实例化: new xxx(); 两个时机: 1、当客户端向容器申请一 个Bean时，2、 当容器在初始化一 个Bean时发现还需要依赖另一个Bean。BeanDefinition 对象保存。 – 到底new一个对象还是创建一个动态代理？</li>
+<li>设置对象属性(依赖注入): Spring通过BeanDefinition找到对象依赖的其他对象，并将这些对象赋予当前对象。</li>
+<li>处理Aware接口: Spring会检测对象是否实现了xxxAware接口，如果实现了，就会调用对应的方法。<br>BeanNameAware、BeanClassLoaderAware、 BeanFactoryAware、 ApplicationContextAware</li>
+<li>BeanPostProcessor前置处理: 调用BeanPostProcessor的postProcessBeforelnitialization方法</li>
+<li>InitializingBean: Spring检测对象如果实现了这个接口， 就会执行他的afterPropertiesSet()方法， 定制初始化逻辑。</li>
+<li>init-method: <code>&lt;bean init-method=xXx&gt;</code> 如果Spring发现Bean配置了这个属性，就会调用他的配置方法，执行初<br>始化逻辑。@PostConstruct</li>
+<li>BeanPostProcessor后置处理: 调用BeanPostProcessor的postProcessAfterlnitialization方法</li>
+</ol>
+<blockquote>
+<p>到这里，这个Bean的创建过程就完成了，Bean就可以正常使用了。</p>
+</blockquote>
+<ol start="8">
+<li>DisposableBean: 当Bean实现了这个接口， 在对象销毁前就会调用destory(方法。</li>
+<li>destroy-method: <code>&lt;bean destroy-method=xxx&gt;</code> @PreDestroy</li>
+</ol>
 <h3 id="Spring-中的-bean-的作用域有哪些"><a href="#Spring-中的-bean-的作用域有哪些" class="headerlink" title="Spring 中的 bean 的作用域有哪些?"></a>Spring 中的 bean 的作用域有哪些?</h3><ul>
 <li><strong>singleton:</strong> 唯一 bean 实例，Spring 中的 bean 默认都是单例的。</li>
 <li><strong>prototype:</strong> 每次请求都会创建一个新的 bean 实例。</li>
@@ -465,6 +514,7 @@
 <li>在类中定义一个 <code>ThreadLocal</code> 成员变量，将需要的可变成员变量保存在 <code>ThreadLocal</code> 中（推荐的一种方式）。</li>
 <li>改变 Bean 的作用域为 “prototype”：每次请求都会创建一个新的 bean 实例，自然不会存在线程安全问题。</li>
 </ol>
+<h3 id="Spring-框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？"><a href="#Spring-框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？" class="headerlink" title="Spring 框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？"></a>Spring 框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？</h3><pre><code>·</code></pre>
 <h3 id="Component-和-Bean-的区别是什么？"><a href="#Component-和-Bean-的区别是什么？" class="headerlink" title="@Component 和 @Bean 的区别是什么？"></a>@Component 和 @Bean 的区别是什么？</h3><ol>
 <li>作用对象不同: <code>@Component</code> 注解作用于类，而<code>@Bean</code>注解作用于方法。</li>
 <li><code>@Component</code>通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中（我们可以使用 <code>@ComponentScan</code> 注解定义要扫描的路径从中找出标识了需要装配的类自动装配到 Spring 的 bean 容器中）。<code>@Bean</code> 注解通常是我们在标有该注解的方法中定义产生这个 bean,<code>@Bean</code>告诉了Spring这是某个类的示例，当我需要用它的时候还给我。</li>
@@ -539,7 +589,7 @@
           
 <div class='new-meta-item author'>
   <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
-    <img no-lazy src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/陈浩南.jpg">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
     <p>Marlowe</p>
   </a>
 </div>
@@ -547,10 +597,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-16T22:22:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-17T22:47:25+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 16, 2021</p>
+    <p>更新于：May 17, 2021</p>
   </a>
 </div>
 
@@ -674,7 +724,7 @@ spring的启动是建筑在servlet容器之上的，所有web工程的初始位�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84-bean-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">Spring 中的 bean 的作用域有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BE%8B-bean-%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="toc-text">Spring 中的单例 bean 的线程安全问题了解吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Component-%E5%92%8C-Bean-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">@Component 和 @Bean 的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%A3%B0%E6%98%8E%E4%B8%BASpring%E7%9A%84-bean-%E7%9A%84%E6%B3%A8%E8%A7%A3%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">将一个类声明为Spring的 bean 的注解有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84-bean-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">Spring 中的 bean 生命周期?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD-bean-%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">Spring 中 bean 的创建过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84-bean-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">Spring 中的 bean 的作用域有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BE%8B-bean-%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="toc-text">Spring 中的单例 bean 的线程安全问题了解吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84Bean%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F%E5%A6%82%E6%9E%9C%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%EF%BC%8C%E8%A6%81%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%EF%BC%9F"><span class="toc-text">Spring 框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Component-%E5%92%8C-Bean-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">@Component 和 @Bean 的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%A3%B0%E6%98%8E%E4%B8%BASpring%E7%9A%84-bean-%E7%9A%84%E6%B3%A8%E8%A7%A3%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">将一个类声明为Spring的 bean 的注解有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-%E4%B8%AD%E7%9A%84-bean-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">Spring 中的 bean 生命周期?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
