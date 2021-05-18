@@ -82,6 +82,8 @@
         <a class="title flat-box" target="_self" href='/'>
           
           
+            <i class='https://marlowe.oss-cn-beijing.aliyuncs.com/img/bitbug_favicon.ico'></i>
+          
           
             Marlowe
           
@@ -452,13 +454,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.7k words</p>
+      <p>1.9k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>6 min</p>
+      <p>7 min</p>
     </a>
   </div>
 
@@ -473,12 +475,17 @@
   
   <a id="more"></a>
 
-<h3 id="什么是循环依赖"><a href="#什么是循环依赖" class="headerlink" title="什么是循环依赖"></a>什么是循环依赖</h3><p>循环依赖其实就是循环引用，也就是两个或则两个以上的bean互相持有对方，最终形成闭环。比如A依赖于B，B依赖于C，C又依赖于A。如下图：</p>
+<h3 id="什么是循环依赖"><a href="#什么是循环依赖" class="headerlink" title="什么是循环依赖?"></a>什么是循环依赖?</h3><p>循环依赖其实就是循环引用，也就是两个或则两个以上的bean互相持有对方，最终形成闭环。比如A依赖于B，B依赖于C，C又依赖于A。如下图：</p>
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210516221523.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210516221523.png" srcset="data:image/png;base64,666" alt="20210516221523"></p>
 <p>注意：这里不是函数的循环调用，是对象的相互依赖关系。循环调用其实就是一个死循环，除非有终结条件。</p>
 <p>Spring中循环依赖场景有：<br>（1）构造器的循环依赖<br>（2）field属性的循环依赖。</p>
-<h3 id="怎么检测是否存在循环依赖"><a href="#怎么检测是否存在循环依赖" class="headerlink" title="怎么检测是否存在循环依赖"></a>怎么检测是否存在循环依赖</h3><p>检测循环依赖相对比较容易，Bean在创建的时候可以给该Bean打标，如果递归调用回来发现正在创建中的话，即说明了循环依赖了。</p>
-<h3 id="Spring怎么解决循环依赖"><a href="#Spring怎么解决循环依赖" class="headerlink" title="Spring怎么解决循环依赖"></a>Spring怎么解决循环依赖</h3><p>Spring的循环依赖的理论依据其实是基于Java的引用传递，当我们获取到对象的引用时，对象的field或则属性是可以延后设置的(但是构造器必须是在获取引用之前)。</p>
+<h3 id="怎么检测是否存在循环依赖"><a href="#怎么检测是否存在循环依赖" class="headerlink" title="怎么检测是否存在循环依赖?"></a>怎么检测是否存在循环依赖?</h3><p>检测循环依赖相对比较容易，Bean在创建的时候可以给该Bean打标，如果递归调用回来发现正在创建中的话，即说明了循环依赖了。</p>
+<h3 id="Spring怎么解决循环依赖"><a href="#Spring怎么解决循环依赖" class="headerlink" title="Spring怎么解决循环依赖?"></a>Spring怎么解决循环依赖?</h3><p><strong>@Lazy注解：</strong> 解决构造方法造成的循环依赖问题</p>
+<p><strong>对于对象之间的普通引用：</strong> <strong>二级缓存</strong> 会保存new出来的不完整对象，这样当单例池中找到不依赖的属性时，就可以先从二级缓存中获取到不完整对象，完成对象创建，在后续的依赖注入过程中，将单例池中对象的引用关系调整完成。</p>
+<p><strong>三级缓存:</strong> 如果引用的对象配置了AOP，那在单例池中最终就会需要注入动态代理对象，而不是原对象。而生成动态代理是要在对象初始化完成之后才开始的。于是Spring增加三E级缓存，保存所有对象的动态代理配置信息。在发现有循环依赖时，将这个对象的动态代理信息获取出来，提前进行AOP，生成动态代理。</p>
+<p>核心代码就在DefaultSingletonBeanRegistry的getSingleton方法当中。</p>
+<hr>
+<p>Spring的循环依赖的理论依据其实是基于Java的引用传递，当我们获取到对象的引用时，对象的field或则属性是可以延后设置的(但是构造器必须是在获取引用之前)。</p>
 <p>Spring的单例对象的初始化主要分为三步：</p>
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210516221617.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210516221617.png" srcset="data:image/png;base64,666" alt="20210516221617"></p>
 <p>（1）createBeanInstance：实例化，其实也就是调用对象的构造方法实例化对象</p>
@@ -559,10 +566,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-16T22:24:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-18T16:16:24+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 16, 2021</p>
+    <p>更新于：May 18, 2021</p>
   </a>
 </div>
 
@@ -685,7 +692,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-text">什么是循环依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E6%A3%80%E6%B5%8B%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-text">怎么检测是否存在循环依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-text">Spring怎么解决循环依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-text">什么是循环依赖?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E6%A3%80%E6%B5%8B%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-text">怎么检测是否存在循环依赖?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-text">Spring怎么解决循环依赖?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
