@@ -461,13 +461,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.5k words</p>
+      <p>1.8k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>5 min</p>
+      <p>6 min</p>
     </a>
   </div>
 
@@ -514,7 +514,16 @@
 <li>在类中定义一个 <code>ThreadLocal</code> 成员变量，将需要的可变成员变量保存在 <code>ThreadLocal</code> 中（推荐的一种方式）。</li>
 <li>改变 Bean 的作用域为 “prototype”：每次请求都会创建一个新的 bean 实例，自然不会存在线程安全问题。</li>
 </ol>
-<h3 id="Spring-框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？"><a href="#Spring-框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？" class="headerlink" title="Spring 框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？"></a>Spring 框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？</h3><pre><code>·</code></pre>
+<h3 id="Spring-框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？"><a href="#Spring-框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？" class="headerlink" title="Spring 框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？"></a>Spring 框架中的Bean是线程安全的吗？如果线程不安全，要如何处理？</h3><p>Spring容器本身没有提供Bean的线程安全策略，因此，也可以说Spring容器中的Bean不是线程安全的。</p>
+<p>要如何处理线程安全问题，就要分情况来分析。</p>
+<p><strong>Spring中的作用域:</strong><br>1、sington<br>2、prototype: 为每个Bean请求创建给实例。<br>3、request: 为每个request请求创建一个实例，请求完成后失效。<br>4、session: 与request是类似的。<br>5、global-session: 全局作用域。</p>
+<p><strong>对于线程安全问题:</strong></p>
+<p>1&gt; 对于prototype作用域，每次都是生成一个新的对象，所以不存在线程安全问题。<br>2&gt; sington作用域:默认就是线程不完全的。 但是对于开发中大部分的Bean,其实是无状态的，不需要保证线程安全。所以在平常的MVC开发中，是不会有线程安全问题的。</p>
+<blockquote>
+<p>无状态表示这个实例没有属性对象，不能保存数据， 是不变的类。比如: controller. service、 dao<br>有状态表示示例是有属性对象，可以保存数据，是线程不安全的，比如pojo.</p>
+</blockquote>
+<p>但是如果要保证线程安全，可以将Bean的作用域改为prototype比如像Model View。</p>
+<p>另外还可以采用ThreadLocal来解决线程安全问题。ThreadLocal为每 个线程保存一个副本变量， 每个线程只操作自己的副本变量。</p>
 <h3 id="Component-和-Bean-的区别是什么？"><a href="#Component-和-Bean-的区别是什么？" class="headerlink" title="@Component 和 @Bean 的区别是什么？"></a>@Component 和 @Bean 的区别是什么？</h3><ol>
 <li>作用对象不同: <code>@Component</code> 注解作用于类，而<code>@Bean</code>注解作用于方法。</li>
 <li><code>@Component</code>通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中（我们可以使用 <code>@ComponentScan</code> 注解定义要扫描的路径从中找出标识了需要装配的类自动装配到 Spring 的 bean 容器中）。<code>@Bean</code> 注解通常是我们在标有该注解的方法中定义产生这个 bean,<code>@Bean</code>告诉了Spring这是某个类的示例，当我需要用它的时候还给我。</li>
@@ -597,10 +606,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-17T22:47:25+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-18T09:24:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 17, 2021</p>
+    <p>更新于：May 18, 2021</p>
   </a>
 </div>
 

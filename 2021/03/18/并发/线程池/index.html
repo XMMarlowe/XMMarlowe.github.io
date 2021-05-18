@@ -463,13 +463,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>4.3k words</p>
+      <p>5.1k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>19 min</p>
+      <p>21 min</p>
     </a>
   </div>
 
@@ -485,10 +485,39 @@
   <p>池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。<br>三大创建方法、七大参数、四种拒绝策略…</p>
 <a id="more"></a>
 <h3 id="1、为什么要用线程池？"><a href="#1、为什么要用线程池？" class="headerlink" title="1、为什么要用线程池？"></a>1、为什么要用线程池？</h3><ul>
-<li>降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
-<li>提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。</li>
-<li>提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
+<li><p><strong>降低资源消耗：</strong> 通过池化技术重复利用已创建的线程，降低线程创建和销毁造成的损耗。</p>
+</li>
+<li><p><strong>提高响应速度：</strong> 任务到达时，无需等待线程创建即可立即执行。</p>
+</li>
+<li><p><strong>提高线程的可管理性：</strong> 线程是稀缺资源，如果无限制创建，不仅会消耗系统资源，还会因为线程的不合理分布导致资源调度失衡，降低系统的稳定性。使用线程池可以进行统一的分配、调优和监控。</p>
+</li>
+<li><p><strong>提供更多更强大的功能：</strong> 线程池具备可拓展性，允许开发人员向其中增加更多的功能。比如延时定时线程池ScheduledThreadPoolExecutor，就允许任务延期执行或定期执行。</p>
+</li>
 </ul>
+<h4 id="线程池解决的问题是什么"><a href="#线程池解决的问题是什么" class="headerlink" title="线程池解决的问题是什么"></a>线程池解决的问题是什么</h4><p>线程池解决的核心问题就是资源管理问题。在并发环境下，系统不能够确定在任意时刻中，有多少任务需要执行，有多少资源需要投入。这种不确定性将带来以下若干问题：</p>
+<ol>
+<li><p>频繁申请/销毁资源和调度资源，将带来额外的消耗，可能会非常巨大。</p>
+</li>
+<li><p>对资源无限申请缺少抑制手段，易引发系统资源耗尽的风险。</p>
+</li>
+<li><p>系统无法合理管理内部的资源分布，会降低系统的稳定性。</p>
+</li>
+</ol>
+<p>为解决资源分配这个问题，线程池采用了“池化”（Pooling）思想。池化，顾名思义，是为了最大化收益并最小化风险，而将资源统一在一起管理的一种思想。</p>
+<blockquote>
+<p>Pooling is the grouping together of resources (assets, equipment, personnel, effort, etc.) for the purposes of maximizing advantage or minimizing risk to the users. The term is used in finance, computing and equipment management.——wikipedia</p>
+</blockquote>
+<p>“池化”思想不仅仅能应用在计算机领域，在金融、设备、人员管理、工作管理等领域也有相关的应用。</p>
+<p>在计算机领域中的表现为：统一管理IT资源，包括服务器、存储、和网络资源等等。通过共享资源，使用户在低投入中获益。除去线程池，还有其他比较典型的几种使用策略包括：</p>
+<ol>
+<li><p>内存池(Memory Pooling)：预先申请内存，提升申请内存速度，减少内存碎片。</p>
+</li>
+<li><p>连接池(Connection Pooling)：预先申请数据库连接，提升申请连接的速度，降低系统的开销。</p>
+</li>
+<li><p>实例池(Object Pooling)：循环使用对象，减少资源在初始化和释放时的昂贵损耗。</p>
+</li>
+</ol>
+<p>在了解完“是什么”和“为什么”之后，下面我们来一起深入一下线程池的内部实现原理。</p>
 <h3 id="2、线程池的三大创建方法"><a href="#2、线程池的三大创建方法" class="headerlink" title="2、线程池的三大创建方法"></a>2、线程池的三大创建方法</h3><p>通过 Executor 框架的工具类 Executors 来实现 我们可以创建三种类型的 ThreadPoolExecutor：</p>
 <ul>
 <li><strong>FixedThreadPool：</strong> <strong>该方法返回一个固定线程数量的线程池。</strong> 该线程池中的线程数量始终不变。当有一个新的任务提交时，线程池中若有空闲线程，则立即执行。若没有，则新的任务会被暂存在一个任务队列中，待有线程空闲时，便处理在任务队列中的任务。</li>
@@ -580,13 +609,22 @@
 <p>输出结果：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">999032162</span></span><br></pre></td></tr></table></figure>
 <p>这里。先调用<code>shutdown()</code>使线程池状态改变为<code>SHUTDOWN</code>，线程池不允许继续添加线程，并且等待正在执行的线程返回。<br>调用<code>awaitTermination</code>设置定时任务，代码内的意思为 2s 后检测线程池内的线程是否均执行完毕（就像老师告诉学生，“最后给你 2s 钟时间把作业写完”），若没有执行完毕，则调用<code>shutdownNow()</code>方法。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>线程池最大线程数到底该如何定义：</p>
-<ol>
+<h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><h4 id="线程池被创建后里面有线程吗？如果没有的话，你知道有什么方法对线程池进行预热吗？"><a href="#线程池被创建后里面有线程吗？如果没有的话，你知道有什么方法对线程池进行预热吗？" class="headerlink" title="线程池被创建后里面有线程吗？如果没有的话，你知道有什么方法对线程池进行预热吗？"></a>线程池被创建后里面有线程吗？如果没有的话，你知道有什么方法对线程池进行预热吗？</h4><p>线程池被创建后如果没有任务过来，里面是不会有线程的。如果需要预热的话可以调用下面的两个方法：</p>
+<p><strong>启动一个</strong></p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518144636.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518144636.png" srcset="data:image/png;base64,666" alt="20210518144636"></p>
+<p><strong>全部启动</strong></p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518144659.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518144659.png" srcset="data:image/png;base64,666" alt="20210518144659"></p>
+<h4 id="核心线程数会被回收吗？需要什么设置？"><a href="#核心线程数会被回收吗？需要什么设置？" class="headerlink" title="核心线程数会被回收吗？需要什么设置？"></a>核心线程数会被回收吗？需要什么设置？</h4><p>核心线程数默认是不会被回收的，如果需要回收核心线程数，需要调用下面的方法：</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518144740.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518144740.png" srcset="data:image/png;base64,666" alt="20210518144740"></p>
+<p>allowCoreThreadTimeOut 该值默认为 false。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518144801.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518144801.png" srcset="data:image/png;base64,666" alt="20210518144801"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><h4 id="线程池最大线程数到底该如何定义"><a href="#线程池最大线程数到底该如何定义" class="headerlink" title="线程池最大线程数到底该如何定义"></a>线程池最大线程数到底该如何定义</h4><ol>
 <li>CPU 密集型：电脑是几核，就是几，可以保持CPU的效率最高。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取CPU核心数</span></span><br><span class="line">Runtime.getRuntime().availableProcessors()</span><br></pre></td></tr></table></figure></li>
 <li>IO 密集型：判断程序中十分耗IO的线程有多少个，大于这个数（或者2倍）</li>
 </ol>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/java/multi-thread/2020%E6%9C%80%E6%96%B0Java%E5%B9%B6%E5%8F%91%E8%BF%9B%E9%98%B6%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93?id=_4-%e7%ba%bf%e7%a8%8b%e6%b1%a0">线程池</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/riemann_/article/details/97621077">线程池的关闭方式有几种，各自的区别是什么。</a></p>
+<p>好文推荐：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5NjQ5MTI5OA==&mid=2651751537&idx=1&sn=c50a434302cc06797828782970da190e&chksm=bd125d3c8a65d42aaf58999c89b6a4749f092441335f3c96067d2d361b9af69ad4ff1b73504c&scene=21#wechat_redirect">Java线程池实现原理及其在美团业务中的实践</a></p>
 
   
   
@@ -632,10 +670,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-16T21:01:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-18T14:52:00+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 16, 2021</p>
+    <p>更新于：May 18, 2021</p>
   </a>
 </div>
 
@@ -760,7 +798,7 @@ execute方法源码：
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="toc-text">1、为什么要用线程池？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%B8%89%E5%A4%A7%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="toc-text">2、线程池的三大创建方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AE%9E%E7%8E%B0-Runnable-%E6%8E%A5%E5%8F%A3%E5%92%8C-Callable-%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">3、实现 Runnable 接口和 Callable 接口的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%89%A7%E8%A1%8C-execute-%E6%96%B9%E6%B3%95%E5%92%8C-submit-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-text">4、执行 execute()方法和 submit()方法的区别是什么呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81ThreadPoolExecutor-%E7%B1%BB%E5%88%86%E6%9E%90"><span class="toc-text">5、ThreadPoolExecutor 类分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-ThreadPoolExecutor%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90"><span class="toc-text">5.1 ThreadPoolExecutor构造函数重要参数分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-ThreadPoolExecutor-%E9%A5%B1%E5%92%8C%E7%AD%96%E7%95%A5-4%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="toc-text">5.2 ThreadPoolExecutor 饱和策略(4种拒绝策略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-text">6、线程池原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%85%B3%E9%97%AD%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">7、关闭线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#shutdown"><span class="toc-text">shutdown()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shutdownNow"><span class="toc-text">shutdownNow()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">源码分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-text">实战</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="toc-text">1、为什么要用线程池？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">线程池解决的问题是什么</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%B8%89%E5%A4%A7%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="toc-text">2、线程池的三大创建方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AE%9E%E7%8E%B0-Runnable-%E6%8E%A5%E5%8F%A3%E5%92%8C-Callable-%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">3、实现 Runnable 接口和 Callable 接口的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%89%A7%E8%A1%8C-execute-%E6%96%B9%E6%B3%95%E5%92%8C-submit-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-text">4、执行 execute()方法和 submit()方法的区别是什么呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81ThreadPoolExecutor-%E7%B1%BB%E5%88%86%E6%9E%90"><span class="toc-text">5、ThreadPoolExecutor 类分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-ThreadPoolExecutor%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90"><span class="toc-text">5.1 ThreadPoolExecutor构造函数重要参数分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-ThreadPoolExecutor-%E9%A5%B1%E5%92%8C%E7%AD%96%E7%95%A5-4%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="toc-text">5.2 ThreadPoolExecutor 饱和策略(4种拒绝策略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-text">6、线程池原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%85%B3%E9%97%AD%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">7、关闭线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#shutdown"><span class="toc-text">shutdown()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shutdownNow"><span class="toc-text">shutdownNow()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">源码分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-text">实战</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E8%A2%AB%E5%88%9B%E5%BB%BA%E5%90%8E%E9%87%8C%E9%9D%A2%E6%9C%89%E7%BA%BF%E7%A8%8B%E5%90%97%EF%BC%9F%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E7%9A%84%E8%AF%9D%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E6%9C%89%E4%BB%80%E4%B9%88%E6%96%B9%E6%B3%95%E5%AF%B9%E7%BA%BF%E7%A8%8B%E6%B1%A0%E8%BF%9B%E8%A1%8C%E9%A2%84%E7%83%AD%E5%90%97%EF%BC%9F"><span class="toc-text">线程池被创建后里面有线程吗？如果没有的话，你知道有什么方法对线程池进行预热吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%BA%BF%E7%A8%8B%E6%95%B0%E4%BC%9A%E8%A2%AB%E5%9B%9E%E6%94%B6%E5%90%97%EF%BC%9F%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88%E8%AE%BE%E7%BD%AE%EF%BC%9F"><span class="toc-text">核心线程数会被回收吗？需要什么设置？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B%E6%95%B0%E5%88%B0%E5%BA%95%E8%AF%A5%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89"><span class="toc-text">线程池最大线程数到底该如何定义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
