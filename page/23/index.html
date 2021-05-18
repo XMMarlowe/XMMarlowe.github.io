@@ -411,6 +411,58 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/03/09/Java/JVM-GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/">
+        JVM-GC如何判断对象可以被回收
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+引用计数法方式：每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。优点：实现简单，效率高。缺点：无法解决循环引用。
+可达性分析法方式：从一系列被称为GC ROOT的对象开始，向下搜索，搜索走过的路径称为引用链，当一个对象到GC ROOT之间没有引用链，说明这个对象不可用。
+GC ROOT对象：
+虚拟机栈中引用的对象
+方法区内类的静态属性引用的对象...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/09/Java/JVM-GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/03/09/Java/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/">
         Java中的异常体系
       </a>
@@ -639,6 +691,11 @@ Exception 和 Error 二者都是 Java 异常处...
             ><div class='name'>java</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
+            id="categoriesE4B8AAE4BABAE58D9AE5AEA2"
+            ><div class='name'>个人博客</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
             id="categoriesE5ADA6E4B9A0E696B9E6B395"
             ><div class='name'>学习方法</div><div class='badge'>(1)</div></a></li>
@@ -738,7 +795,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>222 篇</div>
+          <div>223 篇</div>
         </div>
       
 
@@ -760,7 +817,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>296.7k 字</div>
+          <div>296.9k 字</div>
         </div>
       
 
@@ -786,7 +843,7 @@ Exception 和 Error 二者都是 Java 异常处...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Tue May 18 2021 16:48:02 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Tue May 18 2021 22:38:44 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-05-18 日</div>
           
         </div>

@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>2021-5-18更新日志</title>
+      <link href="2021/05/18/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2021-5-18%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/"/>
+      <url>2021/05/18/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2021-5-18%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
+      
+        <content type="html"><![CDATA[<p>记录2021-5-18博客更新日志…</p><a id="more"></a><h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><h4 id="头像更新"><a href="#头像更新" class="headerlink" title="头像更新"></a>头像更新</h4><p><strong>上一版头像：</strong></p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518221115.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518221115.png" srcset="data:image/png;base64,666" alt="上一版头像"></p><p><strong>现役头像：</strong><br><img src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg" srcset="data:image/png;base64,666" alt="现役头像"></p><h4 id="个人主页更新"><a href="#个人主页更新" class="headerlink" title="个人主页更新"></a>个人主页更新</h4><p><strong>上一版主页：</strong></p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518215529.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518215529.png" srcset="data:image/png;base64,666" alt="20210518215529"></p><p><strong>现役主页：</strong></p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518215637.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518215637.png" srcset="data:image/png;base64,666" alt="20210518215637"></p><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><h4 id="友链功能"><a href="#友链功能" class="headerlink" title="友链功能"></a>友链功能</h4><p>具体操作方式可参考官方文档：<a href="https://volantis.js.org/v5/page-settings/">友链页面</a></p><p><strong>效果图：</strong></p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518220424.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518220424.png" srcset="data:image/png;base64,666" alt="20210518220424"></p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518220442.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518220442.png" srcset="data:image/png;base64,666" alt="20210518220442"></p><h4 id="评论通知功能"><a href="#评论通知功能" class="headerlink" title="评论通知功能"></a>评论通知功能</h4><p>保姆级教程推荐：<a href="https://github.com/zhaojun1998/Valine-Admin">Valine Admin</a></p><p>好文推荐：<a href="https://blog.unclezs.com/%E9%97%AE%E9%A2%98%E6%95%99%E7%A8%8B/%E6%9C%80%E4%BD%B3%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9FValine-Valine-Admin%E7%AE%80%E6%B4%81%E4%B8%94%E5%B8%A6%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5.html">最佳评论系统Valine+Valine-Admin简洁且带邮件通知</a></p><p><strong>测试：</strong></p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518223344.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518223344.png" srcset="data:image/png;base64,666" alt="20210518223344"></p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518223448.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518223448.png" srcset="data:image/png;base64,666" alt="20210518223448"></p><p><strong>收到邮件提示</strong></p><p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518223544.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518223544.png" srcset="data:image/png;base64,666" alt="20210518223544"></p><h3 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h3><p><code>valine</code> 评论系统失效</p><p>解决办法：</p><ol><li>登录 <a href="https://console.leancloud.cn/">LeanCloud</a></li><li>点击恢复按钮，稍等即可</li></ol><h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><h4 id="删除侧边栏标签"><a href="#删除侧边栏标签" class="headerlink" title="删除侧边栏标签"></a>删除侧边栏标签</h4><p>由于标签太多,影响侧边栏美观，若想查看标签，可直接在导航栏中寻找。</p><p><strong>修改前</strong><br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518220829.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518220829.png" srcset="data:image/png;base64,666" alt="20210518220829"></p><p><strong>修改后</strong><br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518220927.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210518220927.png" srcset="data:image/png;base64,666" alt="20210518220927"></p><p>直接修改配置文件即可：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sidebar:</span></span><br><span class="line">  <span class="comment"># 主页、分类、归档等独立页面 侧边栏标签配置：tagcloud(已移除)、dnate(二维码)</span></span><br><span class="line">  <span class="attr">for_page:</span> [<span class="string">blogger</span>, <span class="string">category</span>, <span class="string">webinfo</span>]</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java内存区域</title>
       <link href="2021/05/18/Java/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/"/>
       <url>2021/05/18/Java/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/</url>
@@ -1046,9 +1071,9 @@
       
         <tags>
             
-            <tag> 多线程 </tag>
-            
             <tag> Redis </tag>
+            
+            <tag> 多线程 </tag>
             
         </tags>
       
@@ -1443,9 +1468,9 @@
       
         <tags>
             
-            <tag> volatile </tag>
-            
             <tag> AQS </tag>
+            
+            <tag> volatile </tag>
             
             <tag> CAS </tag>
             
@@ -1524,11 +1549,11 @@
       
         <tags>
             
+            <tag> 线程安全 </tag>
+            
             <tag> Java </tag>
             
             <tag> 线程 </tag>
-            
-            <tag> 线程安全 </tag>
             
         </tags>
       
@@ -2594,9 +2619,9 @@
       
         <tags>
             
-            <tag> BTree </tag>
-            
             <tag> B+Tree </tag>
+            
+            <tag> BTree </tag>
             
         </tags>
       
@@ -2850,9 +2875,9 @@
       
         <tags>
             
-            <tag> 动态代理 </tag>
-            
             <tag> JDK </tag>
+            
+            <tag> 动态代理 </tag>
             
         </tags>
       
@@ -4446,11 +4471,11 @@
       
         <tags>
             
-            <tag> 锁 </tag>
-            
             <tag> Java </tag>
             
             <tag> 多线程 </tag>
+            
+            <tag> 锁 </tag>
             
         </tags>
       
@@ -4475,11 +4500,11 @@
       
         <tags>
             
-            <tag> 锁 </tag>
-            
             <tag> Java </tag>
             
             <tag> 多线程 </tag>
+            
+            <tag> 锁 </tag>
             
         </tags>
       
@@ -4506,9 +4531,9 @@
             
             <tag> Java </tag>
             
-            <tag> 行为型模式 </tag>
-            
             <tag> 策略 </tag>
+            
+            <tag> 行为型模式 </tag>
             
         </tags>
       
@@ -4649,9 +4674,9 @@
             
             <tag> Java </tag>
             
-            <tag> 模板 </tag>
-            
             <tag> 行为型模式 </tag>
+            
+            <tag> 模板 </tag>
             
         </tags>
       
@@ -5115,9 +5140,9 @@
       
         <tags>
             
-            <tag> finally </tag>
-            
             <tag> final </tag>
+            
+            <tag> finally </tag>
             
             <tag> finalize </tag>
             
@@ -5144,9 +5169,9 @@
       
         <tags>
             
-            <tag> 锁 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 锁 </tag>
             
         </tags>
       
