@@ -414,6 +414,114 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/28/Java/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/">
+        对象在内存中的内存布局
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+对象的内存布局HotSpot虚拟机中，对象在内存中存储的布局可以分为三块区域：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。
+
+从上面的这张图里面可以看出，对象在内存中的结构主要包含以下几个部分：
+
+Mark Word(标记字段)：对象的Mark Word部分占4个字节，其内容是一系列的标记位，比如轻量级锁的标记位，偏向锁标记位等等。
+Kla...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-28</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/28/Java/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88AQS%E5%BA%95%E5%B1%82%E6%98%AFCAS-volatile/">
+        为什么AQS底层是CAS + volatile
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+CAS操作和volatile简述CAS操作CAS是什么？CAS是compare and swap的缩写，从字面上理解就是比较并更新；主要是通过 处理器的指令 来保证操作的原子性 。
+CAS 操作包含三个操作数：
+
+内存位置（V）
+预期原值（A）
+更新值(B)
+
+简单来说： 从内存位置V上取到存储的值，将值和预期值A进行比较，如果值和预期值A的结果相等，那么我们就把新值B更新到内存位置V上...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-28</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88AQS%E5%BA%95%E5%B1%82%E6%98%AFCAS-volatile/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/Synchronized%E4%B8%8EReentrantLock/">
         Synchronized与ReentrantLock
       </a>
@@ -809,105 +917,6 @@ Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
-        操作系统之内存管理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-虚拟地址转换为物理地址
-第一步，先将虚拟地址转换为逻辑地址： 根据程序中的虚拟地址得出其所在的段，然后加上段偏移，我们就能得到一个逻辑地址
-第二步，再将逻辑地址转换为线型地址： 有了逻辑地址之后，我们需要将逻辑地址转换为线型地址（因为线型地址是逻辑地址转换到物理地址的一个中间层），只需要把逻辑地址加上段的基地址就能生成一个线型地址
-第三步，再将线型地址再转换为物理地址：
-如果启用了分页机制...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/">
-        Java并发之Unsafe类
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级别、不安全操作的方法，如直接访问系统内存资源、自主管理内存资源等，这些方法在提升Java运行效率、增强Java语言底层资源操作能力方面起到了很大的作用。但由于Unsafe类使Java语言拥有了类似C语言指针一样操作内存空间的能力，这无疑也增加了程序发生相关指针问题的风险。在程序中过度、不正确使用Unsafe类会使得程...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-21</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1027,7 +1036,7 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(43)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1082,7 +1091,7 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(21)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1164,7 +1173,7 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>226 篇</div>
+          <div>228 篇</div>
         </div>
       
 
@@ -1186,7 +1195,7 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>312k 字</div>
+          <div>321k 字</div>
         </div>
       
 
@@ -1212,8 +1221,8 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 20 2021 22:59:38 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-20 日</div>
+            <div id="last-update" style="display: none;">Fri May 21 2021 22:46:34 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-21 日</div>
           
         </div>
         
@@ -1263,7 +1272,7 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-20 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-21 日';
           }
         </script>
         

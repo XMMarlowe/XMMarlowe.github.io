@@ -414,6 +414,108 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/">
+        为什么用线程池？线程池参数解释
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+为什么使用线程池?1、降低资源消耗;提高线程利用率,降低创建和销毁线程的消耗。
+2、提高响应速度;任务来了,直接有线程可用可执行,而不是先创建线程,再执行。
+3、提高线程的可管理性;线程是稀缺资源,使用线程池可以统一分配调优监控。
+corePoolsize代表核心线程数,也就是正常情况下创建工作的线程数,这些线程创建后并不会消除,而是一种常驻线程
+maxinumPoolsize代表的是最...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/">
+        并发的三大特性
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+原子性定义：原子性是指在一个操作中cpu不可以在中途暂停然后再调度,即不被中断操作，要不全部执行完成，要不都不执行。就好比转账，从账户A向账户B转1000元，那么必然包括2个操作:从账户A减去1000元,往账户B加上1000元。2个操作必须全部完成。
+关键字：synchronized
+1234private long count = 0;public void calc()&#123; ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/03/10/%E5%B9%B6%E5%8F%91/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
         ThreadLocal原理和使用场景
       </a>
@@ -768,106 +870,6 @@ DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53。大
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E3%80%81%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/">
-        TCP流量控制、拥塞控制
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-一、流量控制什么是流量控制？流量控制的目的？如果发送者发送数据过快，接收者来不及接收，那么就会有分组丢失。为了避免分组丢失，控制发送者的发送速度，使得接收者来得及接收，这就是流量控制。流量控制根本目的是防止分组丢失，它是构成TCP可靠性的一方面。
-如何实现流量控制？由滑动窗口协议（连续ARQ协议）实现。滑动窗口协议既保证了分组无差错、有序接收，也实现了流量控制。主要的方式就是接收方返回的...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-23</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E3%80%81%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP-%E5%92%8C-HTTPS-/">
-        HTTP 和 HTTPS
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-什么是HTTP？超文本传输协议，是一个基于请求与响应，无状态的，应用层的协议，常基于TCP/IP协议传输数据，互联网上应用最为广泛的一种网络协议,所有的WWW文件都必须遵守这个标准。设计HTTP的初衷是为了提供一种发布和接收HTML页面的方法。
-HTTP的特点
-无状态： 协议对客户端没有状态存储，对事物处理没有“记忆”能力，比如访问一个网站需要反复进行登录操作。
-无连接： HTTP/1....
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP-%E5%92%8C-HTTPS-/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -987,7 +989,7 @@ HTTP的特点
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(43)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1042,7 +1044,7 @@ HTTP的特点
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(21)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1124,7 +1126,7 @@ HTTP的特点
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>226 篇</div>
+          <div>228 篇</div>
         </div>
       
 
@@ -1146,7 +1148,7 @@ HTTP的特点
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>312k 字</div>
+          <div>321k 字</div>
         </div>
       
 
@@ -1172,8 +1174,8 @@ HTTP的特点
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 20 2021 22:59:39 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-20 日</div>
+            <div id="last-update" style="display: none;">Fri May 21 2021 22:46:35 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-21 日</div>
           
         </div>
         
@@ -1223,7 +1225,7 @@ HTTP的特点
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-20 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-21 日';
           }
         </script>
         

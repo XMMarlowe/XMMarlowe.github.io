@@ -415,6 +415,129 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/04/09/Java/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95/">
+        JVM垃圾回收算法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+两个概念：新生代： 存放生命周期较短的对象的区域。老年代： 存放生命周期较长的对象的区域。
+相同点： 都在Java堆上。
+1. 标记-清除算法执行步骤：
+
+标记：遍历内存区域，对需要回收的对象打上标记。
+清除：再次遍历内存，对已经标记过的内存进行回收。
+
+图解：
+
+
+
+
+
+
+
+
+
+
+缺点：
+
+效率问题；遍历了两次内存空间（第一次标记，第二次清除）。
+空间问题：容易产生大量内存碎片，当再需...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/09/Java/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+        Java类加载过程
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+类的生命周期一个类的完整生命周期如下：
+类加载过程系统加载 Class 类型的文件主要三步:加载-&gt;连接-&gt;初始化。连接过程又可分为三步:验证-&gt;准备-&gt;解析。
+加载类加载过程的第一步，主要完成下面3件事情：
+
+通过全类名获取定义此类的二进制字节流
+将字节流所代表的静态存储结构转换为方法区的运行时数据结构
+在内存中生成一个代表该类的 Class 对象,作为方法区这...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-31</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/03/25/Java/Java8%E5%9B%9B%E5%A4%A7%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">
         Java8四大函数式接口
       </a>
@@ -782,101 +905,6 @@ Arraylist 与 LinkedList 区别?
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/">
-        HashMap是线程安全的吗？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><code>HashMap</code>的线程不安全体现在会造成死循环、数据丢失、数据覆盖这些问题。其中死循环和数据丢失是在JDK1.7中出现的问题，在JDK1.8中已经得到解决，然而1.8中仍会有数据覆盖这样的问题。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-03-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
-        HashMap底层原理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-JDK1.7数据结构则是采用的位桶和链表相结合的形式完成了，即拉链法。具体如下图所示：
-HashMap里面存储的是静态内部类Entry的对象，这个对象其实也是一个key-value的结构。
-hash源码：
-12345678static int hash(int h) &#123;    // This function ensures that hashCodes that differ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-03-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -995,7 +1023,7 @@ hash源码：
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(43)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1050,7 +1078,7 @@ hash源码：
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(21)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1132,7 +1160,7 @@ hash源码：
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>226 篇</div>
+          <div>228 篇</div>
         </div>
       
 
@@ -1154,7 +1182,7 @@ hash源码：
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>312k 字</div>
+          <div>321k 字</div>
         </div>
       
 
@@ -1180,8 +1208,8 @@ hash源码：
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 20 2021 22:59:46 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-20 日</div>
+            <div id="last-update" style="display: none;">Fri May 21 2021 22:46:51 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-21 日</div>
           
         </div>
         
@@ -1231,7 +1259,7 @@ hash源码：
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-20 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-21 日';
           }
         </script>
         

@@ -440,6 +440,56 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E9%95%BF%E8%BF%9E%E6%8E%A5%E3%80%81%E7%9F%AD%E8%BF%9E%E6%8E%A5%E3%80%81%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
+        MySQL长连接、短连接、连接池
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+什么是短连接？短连接是指程序和数据库通信时需要建立连接，执行操作后，连接关闭。短连接简单来说就是每一次操作数据库，都要打开和关闭数据库连接，基本步骤是：连接 →数据传输 →关闭连接。
+什么是长连接？长连接是指程序之间的连接在建立之后，就一直打开，被后续程序重用。使用长连接的初衷是减少连接的开销，尽管MySQL的连接比其他数据库要快得多。
+以PHP程序为例，当收到一个永久连接的请求时，PH...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-21</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E9%95%BF%E8%BF%9E%E6%8E%A5%E3%80%81%E7%9F%AD%E8%BF%9E%E6%8E%A5%E3%80%81%E8%BF%9E%E6%8E%A5%E6%B1%A0/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">
         高并发之数据库分库分表
       </a>
@@ -873,60 +923,6 @@ Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/01/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%9D%E8%AF%86BufferPoll/">
-        初识BufferPoll
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Buffer Pool是什么?
-是一块内存区域，当数据库操作数据的时候，把硬盘上的数据加载到buffer pool，不直接和硬盘打交道，操作的是buffer pool里面的数据
-数据库的增删改查都是在buffer pool上进行，和undo log/redo log/redo log buffer/binlog一起使用，后续会把数据刷到硬盘上
-默认大小 128M
-
-数据页
-磁盘文件被分成...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-01-19</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/01/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%9D%E8%AF%86BufferPoll/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1041,7 +1037,7 @@ Buffer Pool是什么?
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(43)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1096,7 +1092,7 @@ Buffer Pool是什么?
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(21)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1178,7 +1174,7 @@ Buffer Pool是什么?
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>226 篇</div>
+          <div>228 篇</div>
         </div>
       
 
@@ -1200,7 +1196,7 @@ Buffer Pool是什么?
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>312k 字</div>
+          <div>321k 字</div>
         </div>
       
 
@@ -1226,8 +1222,8 @@ Buffer Pool是什么?
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 20 2021 22:59:28 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-20 日</div>
+            <div id="last-update" style="display: none;">Fri May 21 2021 22:46:43 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-21 日</div>
           
         </div>
         
@@ -1277,7 +1273,7 @@ Buffer Pool是什么?
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-20 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-21 日';
           }
         </script>
         

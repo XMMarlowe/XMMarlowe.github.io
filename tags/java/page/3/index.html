@@ -416,6 +416,60 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/04/09/Java/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B/">
+        Java对象的创建过程
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+对象的创建
+
+
+
+
+Step1:类加载检查虚拟机遇到一条 new 指令时，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程。
+Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生对象分配内存。对象所需的内存大小在类加载完成后便可确定，为对象分配空间的任务等同于把一块...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/09/Java/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/03/09/Java/JVM-GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/">
         JVM-GC如何判断对象可以被回收
       </a>
@@ -670,7 +724,7 @@ Exception 和 Error 二者都是 Java 异常处...
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(43)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -725,7 +779,7 @@ Exception 和 Error 二者都是 Java 异常处...
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(21)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -807,7 +861,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>226 篇</div>
+          <div>228 篇</div>
         </div>
       
 
@@ -829,7 +883,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>312k 字</div>
+          <div>321k 字</div>
         </div>
       
 
@@ -855,8 +909,8 @@ Exception 和 Error 二者都是 Java 异常处...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 20 2021 22:59:49 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-20 日</div>
+            <div id="last-update" style="display: none;">Fri May 21 2021 22:46:52 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-21 日</div>
           
         </div>
         
@@ -906,7 +960,7 @@ Exception 和 Error 二者都是 Java 异常处...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-20 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-21 日';
           }
         </script>
         

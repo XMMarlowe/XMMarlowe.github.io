@@ -507,7 +507,7 @@
 <li>DispatcherServlet对View进行渲染视图（即将模型数据model填充至视图中）。</li>
 <li>DispatcherServlet响应用户。</li>
 </ol>
-<h3 id="组件说明："><a href="#组件说明：" class="headerlink" title="组件说明："></a>组件说明：</h3><ol>
+<h3 id="组件说明"><a href="#组件说明" class="headerlink" title="组件说明"></a>组件说明</h3><ol>
 <li><strong>DispatcherServlet：前端控制器</strong>。用户请求到达前端控制器，它就相当于mvc模式中的c，dispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，dispatcherServlet的存在降低了组件之间的耦合性,系统扩展性提高。由框架实现</li>
 <li><strong>HandlerMapping：处理器映射器</strong>。HandlerMapping负责根据用户请求的url找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，根据一定的规则去查找,例如：xml配置方式，实现接口方式，注解方式等。由框架实现</li>
 <li><strong>Handler：处理器</strong>。Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。由于Handler涉及到具体的用户业务请求，所以一般情况需要程序员根据业务需求开发Handler。</li>
@@ -561,10 +561,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-11T22:34:25+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-21T10:25:55+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 11, 2021</p>
+    <p>更新于：May 21, 2021</p>
   </a>
 </div>
 
@@ -641,8 +641,8 @@
         </a>
       
       
-        <a class='next' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/'>
-          <p class='title'>虚拟内存<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='next' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E5%92%8C%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/'>
+          <p class='title'>虚拟内存和局部性原理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
 什么是虚拟内存(Virtual Memory)?这个在我们平时使用电脑特别是 Windows 系统的时候太常见了。很多时候我们使用点开了很多占内存的软件，这些软件占用的内存可能已经远远超出了...</p>
@@ -688,7 +688,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">图解SpringMVC执行流程:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">SpringMVC执行流程:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-text">组件说明：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">图解SpringMVC执行流程:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">SpringMVC执行流程:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">组件说明</span></a></li></ol>
     </div>
   </section>
 
