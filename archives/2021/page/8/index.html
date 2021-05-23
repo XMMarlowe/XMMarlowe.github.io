@@ -414,6 +414,55 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/23/%E6%95%B0%E6%8D%AE%E5%BA%93/broadcast-hash-join%E5%92%8Csort-merge-join/">
+        broadcast hash join和sort merge join
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL技术总体可以分为简单操作（过滤操作-where、排序操作-limit等），聚合操作-groupby以及Join操作等。其中Join操作是最复杂、代价最大的操作类型，也是OLAP场景中使用相对较多的操作。因此很有必要对其进行深入研究。
+另外，从业务层面来讲，用户在数仓建设的时候也会涉及Join使用的问题。通常情况下，数据仓...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/%E6%95%B0%E6%8D%AE%E5%BA%93/broadcast-hash-join%E5%92%8Csort-merge-join/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
         操作系统之内存管理
       </a>
@@ -839,56 +888,6 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/Java/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/">
-        Java内存模型-JMM
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-介绍Java内存模型（Java Memery Model）用来屏蔽掉各种硬件和操作系统的内存访问差异。以至于让Java在各中平台下都能达到一致的内存访问效果。
-简单的说，JMM 定义了一套在多线程读写共享数据时（成员变量、数组）时，对数据的可见性、有序性、和原子性的规则和保障.
-从硬件角度来看。因为处理器的运算速度很快，比如做一个递增操作，就需要从内存中拿值，操作后再放回内存。这样的I/...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/Java/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1008,7 +1007,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(45)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1145,7 +1144,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>228 篇</div>
+          <div>229 篇</div>
         </div>
       
 
@@ -1167,7 +1166,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>321k 字</div>
+          <div>328.5k 字</div>
         </div>
       
 
@@ -1193,8 +1192,8 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri May 21 2021 22:51:34 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-21 日</div>
+            <div id="last-update" style="display: none;">Sun May 23 2021 22:59:31 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-23 日</div>
           
         </div>
         
@@ -1244,7 +1243,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-23 日';
           }
         </script>
         

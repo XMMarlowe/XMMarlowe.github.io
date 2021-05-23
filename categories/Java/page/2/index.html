@@ -416,6 +416,62 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        Java 中 a = a+b和a += b 的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+区别
+a += b执行实际过程实际是 是先计算出a的值，然后用一个temp对象存储，之后和b进行相加，然后将值赋值给a引用。
+
+a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a引用的时候如果 引用a 有计算过程，则会再次计算。
+
++=如果两边的操作数的精度不一样时会自动向低转化，而a = a+b则不会自动转化，需要手动进行强制类型转化。
+
+
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/">
         Java对象创建的4种方式
       </a>
@@ -852,55 +908,6 @@ Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/16/Java/String%E7%B1%BB%E5%92%8C%E5%B8%B8%E9%87%8F%E6%B1%A0/">
-        String类和常量池
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-String 对象的两种创建方式：
-12345String str1 = &quot;abcd&quot;;//先检查字符串常量池中有没有&quot;abcd&quot;，如果字符串常量池中没有，则创建一个，然后 str1 指向字符串常量池中的对象，如果有，则直接将 str1 指向&quot;abcd&quot;&quot;；String str2 = new String(&quot;...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/16/Java/String%E7%B1%BB%E5%92%8C%E5%B8%B8%E9%87%8F%E6%B1%A0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1021,7 +1028,7 @@ String 对象的两种创建方式：
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(45)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1158,7 +1165,7 @@ String 对象的两种创建方式：
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>228 篇</div>
+          <div>229 篇</div>
         </div>
       
 
@@ -1180,7 +1187,7 @@ String 对象的两种创建方式：
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>321k 字</div>
+          <div>328.5k 字</div>
         </div>
       
 
@@ -1206,8 +1213,8 @@ String 对象的两种创建方式：
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri May 21 2021 22:51:39 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-21 日</div>
+            <div id="last-update" style="display: none;">Sun May 23 2021 22:59:37 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-23 日</div>
           
         </div>
         
@@ -1257,7 +1264,7 @@ String 对象的两种创建方式：
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-23 日';
           }
         </script>
         
