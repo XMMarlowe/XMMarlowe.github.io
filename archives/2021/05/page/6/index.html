@@ -414,6 +414,115 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/06/NoSQL/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
+        Redis 单线程模型
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Redis单线程模型文件事件处理器
+Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做文件事件处理器(file event handler).这个文件事件处理器是单线程的,所以Redis才叫做单线程的模型,文件事件处理器采用了IO多路复用机制同时监听多个socket,根据socket上的事件来选择对应的事件处理器来处理这个事件;
+
+如果被监听的socket准备好执行a...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-06</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/06/NoSQL/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+        Linux常用命令总结
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+目录切换命令
+cd usr： 切换到该目录下 usr 目录
+cd ..（或cd../）： 切换到上一层目录
+cd /： 切换到系统根目录
+cd ~： 切换到用户主目录
+cd -： 切换到上一个操作所在目录
+
+目录的操作命令(增删改查)
+mkdir 目录名称： 增加目录。
+ ls/ll（ll 是 ls -l 的别名，ll 命令可以看到该目录下的所有目录和文件的详细信息）：查看目录信息。
+f...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-06</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E4%B8%8E%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E3%80%81%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/">
         进程状态与僵尸进程、孤儿进程
       </a>
@@ -1014,7 +1123,7 @@ EXPIRE key locktime: 设置key的...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>229 篇</div>
+          <div>231 篇</div>
         </div>
       
 
@@ -1036,7 +1145,7 @@ EXPIRE key locktime: 设置key的...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>328.5k 字</div>
+          <div>328.8k 字</div>
         </div>
       
 
@@ -1062,8 +1171,8 @@ EXPIRE key locktime: 设置key的...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon May 24 2021 22:32:03 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-24 日</div>
+            <div id="last-update" style="display: none;">Tue May 25 2021 21:07:36 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-25 日</div>
           
         </div>
         
@@ -1113,7 +1222,7 @@ EXPIRE key locktime: 设置key的...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-25 日';
           }
         </script>
         

@@ -415,6 +415,106 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/">
+        线程崩溃必会使进程崩溃吗？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+结论：线程崩溃不一定导致进程崩溃。
+线程崩溃的本质就是内存出错。而内存出错有时不会引起其他线程出错的，因为崩溃的线程，也就是出错的内存有时侯没有被其他线程访问，也就不会产生问题，但有时候会打乱其他线程的内存。
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/23/Java/Object%E7%B1%BB%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+        Object类中常用方法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+取得对象信息的方法：toString()该方法在打印对象时被调用，将对象信息变为字符串返回，默认输出对象地址。
+编译器默认调用toString()方法输出对象，但输出的是对象的地址，我们并不能看懂它的意思。那么就要通过重写Object类的toString()方法来输出对象属性信息。
+对象相等判断方法：equals()public boolean equals(Object obj);用于...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/Java/Object%E7%B1%BB%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/23/%E6%95%B0%E6%8D%AE%E5%BA%93/broadcast-hash-join%E5%92%8Csort-merge-join/">
         broadcast hash join和sort merge join
       </a>
@@ -791,104 +891,6 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">
-        布隆过滤器
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-简介布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都比一般的算法要好的多，缺点是有一定的误识别率和删除困难。
-在讲述布隆过滤器的原理之前，我们先思考一个问题，如果想要判断一个元素是否存在，你通常会怎么做？一般的做法都是将其保存起来然后通过比较确...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9B%B8%E6%AF%94%E4%BA%8EBST%E5%92%8CAVL%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%EF%BC%9F/">
-        红黑树相比于BST和AVL树有什么优点？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-红黑树是牺牲了严格的高度平衡的优越条件为代价，它只要求部分地达到平衡要求，降低了对旋转的要求，从而提高了性能。红黑树能够以O(log2 n)的时间复杂度进行搜索、插入、删除操作。此外，由于它的设计，任何不平衡都会在三次旋转之内解决。当然，还有一些更好的，但实现起来更复杂的数据结构能够做到一步旋转之内达到平衡，但红黑树能够给我们一个比较“便宜”的解决方案。
-
-相比于BST，因为红黑树可以能确...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9B%B8%E6%AF%94%E4%BA%8EBST%E5%92%8CAVL%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -903,7 +905,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           </a>
         
         <p class="current">
-          8 / 23
+          8 / 24
         </p>
         
           <a class="next" rel="next" href="/page/9/">
@@ -1144,7 +1146,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>229 篇</div>
+          <div>231 篇</div>
         </div>
       
 
@@ -1166,7 +1168,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>328.5k 字</div>
+          <div>328.8k 字</div>
         </div>
       
 
@@ -1192,8 +1194,8 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon May 24 2021 22:32:04 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-24 日</div>
+            <div id="last-update" style="display: none;">Tue May 25 2021 21:07:50 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-25 日</div>
           
         </div>
         
@@ -1243,7 +1245,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-25 日';
           }
         </script>
         

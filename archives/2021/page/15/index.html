@@ -414,6 +414,111 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        get和post的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+功能不同
+get是从服务器上获取数据。
+
+post是向服务器传送数据。 
+
+
+过程不同
+get是把参数数据队列加到提交表单的ACTION属性所指的URL中，值和表单内各个字段一一对应，在URL中可以看到。
+
+post是通过HTTP post机制，将表单内各个字段与其内容放置在HTML HEADER内一起传送到ACTION属性所指的URL地址。用户看不到这个过程。 
+
+
+获取值不同
+对于g...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-02-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/02/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/">
+        HTTP常见状态码
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>常见的http状态码：100,200,202,204,301,302,404,500,502,503,504…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-02-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/02/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/02/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E6%98%AF%E4%B8%8D%E4%BF%9D%E5%AD%98%E7%8A%B6%E6%80%81%E7%9A%84%E5%8D%8F%E8%AE%AE-%E5%A6%82%E4%BD%95%E4%BF%9D%E5%AD%98%E7%94%A8%E6%88%B7%E7%8A%B6%E6%80%81/">
         HTTP是不保存状态的协议,如何保存用户状态?
       </a>
@@ -794,100 +899,6 @@ Buffer Pool是什么?
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E6%80%8E%E4%B9%88%E8%AE%A9%E5%B7%A6%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F/">
-        MySQL怎么让左模糊查询走索引？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-需要做模糊匹配，又要用到索引，索引的最左匹配原则更是不能被打破，这时候可以增加一个字段，这个字段的内容等于USER_NAME字段内容的反转，同时加上这个字段的相关索引，如下：
-
-此时如果是要模糊搜索出用户名后几位有杰这个词的所有用户信息，可以对REVERSE_USER_NAME字段做右模糊查询，效果其实就是和对USER_NAME字段做左模糊查询是一样的，因为二者的内容是相反的，结果如下：...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-01-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E6%80%8E%E4%B9%88%E8%AE%A9%E5%B7%A6%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93/left-join%E3%80%81right-join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        left join、right join和join的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>简要介绍三种连接查询的区别…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-01-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93/left-join%E3%80%81right-join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1144,7 +1155,7 @@ Buffer Pool是什么?
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>229 篇</div>
+          <div>231 篇</div>
         </div>
       
 
@@ -1166,7 +1177,7 @@ Buffer Pool是什么?
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>328.5k 字</div>
+          <div>328.8k 字</div>
         </div>
       
 
@@ -1192,8 +1203,8 @@ Buffer Pool是什么?
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon May 24 2021 22:31:59 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-24 日</div>
+            <div id="last-update" style="display: none;">Tue May 25 2021 21:07:38 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-25 日</div>
           
         </div>
         
@@ -1243,7 +1254,7 @@ Buffer Pool是什么?
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-25 日';
           }
         </script>
         

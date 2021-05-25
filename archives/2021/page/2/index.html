@@ -414,6 +414,98 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/17/%E5%B9%B6%E5%8F%91/7%E7%A7%8D%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97/">
+        7种阻塞队列
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>队列：FIFO(先进先出)的数据结构即为队列<br>阻塞队列：操作会被阻塞的队列即为阻塞队列, 在java中 BlockingQueue 接口在 Queue 接口的基础上增加了两组阻塞方法, offer(e,time) put , poll(time) take()</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/17/%E5%B9%B6%E5%8F%91/7%E7%A7%8D%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/17/Java/%E7%AE%80%E8%BF%B0ConcurrentLinkedQueue%E5%8E%9F%E7%90%86/">
+        简述ConcurrentLinkedQueue原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介在并发编程中我们有时候需要使用线程安全的队列。如果我们要实现一个线程安全的队列有两种实现方式一种是使用阻塞算法，另一种是使用非阻塞算法。使用阻塞算法的队列可以用一个锁（入队和出队用同一把锁）或两个锁（入队和出队用不同的锁）等方式来实现，而非阻塞的实现方式则可以使用循环CAS的方式来实现，下面我们一起来研究下Doug Lea是如何使用非阻塞的方式来实现线程安全队列ConcurrentL...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/17/Java/%E7%AE%80%E8%BF%B0ConcurrentLinkedQueue%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/17/Java/ConcurrentHashMap%E6%89%A9%E5%AE%B9%E5%8E%9F%E7%90%86/">
         ConcurrentHashMap扩容原理
       </a>
@@ -783,109 +875,6 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-        Spring中用到的设计模式
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>简单聊聊Spring中所用到的设计模式…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">
-        Spring事务实现方式
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Spring 管理事务的方式有几种？
-编程式事务，在代码中硬编码。(不推荐使用)
-声明式事务，在配置文件中配置（推荐使用）
-
-声明式事务又分为两种：
-
-基于XML的声明式事务
-基于注解的声明式事务
-
-Spring 事务中的隔离级别有哪几种?TransactionDefinition 接口中定义了五个表示隔离级别的常量：
-
-TransactionDefinition.ISOLATION_D...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1142,7 +1131,7 @@ TransactionDefinition.ISOLATION_D...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>229 篇</div>
+          <div>231 篇</div>
         </div>
       
 
@@ -1164,7 +1153,7 @@ TransactionDefinition.ISOLATION_D...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>328.5k 字</div>
+          <div>328.8k 字</div>
         </div>
       
 
@@ -1190,8 +1179,8 @@ TransactionDefinition.ISOLATION_D...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon May 24 2021 22:31:57 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-24 日</div>
+            <div id="last-update" style="display: none;">Tue May 25 2021 21:07:29 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-25 日</div>
           
         </div>
         
@@ -1241,7 +1230,7 @@ TransactionDefinition.ISOLATION_D...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-25 日';
           }
         </script>
         

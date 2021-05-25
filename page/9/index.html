@@ -415,6 +415,104 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">
+        布隆过滤器
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都比一般的算法要好的多，缺点是有一定的误识别率和删除困难。
+在讲述布隆过滤器的原理之前，我们先思考一个问题，如果想要判断一个元素是否存在，你通常会怎么做？一般的做法都是将其保存起来然后通过比较确...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/16/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9B%B8%E6%AF%94%E4%BA%8EBST%E5%92%8CAVL%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%EF%BC%9F/">
+        红黑树相比于BST和AVL树有什么优点？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+红黑树是牺牲了严格的高度平衡的优越条件为代价，它只要求部分地达到平衡要求，降低了对旋转的要求，从而提高了性能。红黑树能够以O(log2 n)的时间复杂度进行搜索、插入、删除操作。此外，由于它的设计，任何不平衡都会在三次旋转之内解决。当然，还有一些更好的，但实现起来更复杂的数据结构能够做到一步旋转之内达到平衡，但红黑树能够给我们一个比较“便宜”的解决方案。
+
+相比于BST，因为红黑树可以能确...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/16/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9B%B8%E6%AF%94%E4%BA%8EBST%E5%92%8CAVL%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/16/Java/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/">
         Java内存模型-JMM
       </a>
@@ -801,101 +899,6 @@ Ecl...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/15/NoSQL/Redis-%E5%AF%B9%E6%AF%94-MySQL%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%98%AF%E5%BF%AB%E7%9A%84%EF%BC%9F/">
-        Redis 对比 MySQL，为什么 redis 是快的？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-1.Redis是基于内存存储的，MySQL是基于磁盘存储的
-2.Redis存储的是k-v格式的数据。时间复杂度是O(1),常数阶，而MySQL引擎的底层实现是B+Tree，时间复杂度是O(logn)，对数阶。Redis会比MySQL快一点点。
-3.MySQL数据存储是存储在表中，查找数据时要先对表进行全局扫描或者根据索引查找，这涉及到磁盘的查找，磁盘查找如果是按条点查找可能会快点，但是...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/15/NoSQL/Redis-%E5%AF%B9%E6%AF%94-MySQL%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%98%AF%E5%BF%AB%E7%9A%84%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8/">
-        设计模式-装饰器
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -910,7 +913,7 @@ Ecl...
           </a>
         
         <p class="current">
-          9 / 23
+          9 / 24
         </p>
         
           <a class="next" rel="next" href="/page/10/">
@@ -1151,7 +1154,7 @@ Ecl...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>229 篇</div>
+          <div>231 篇</div>
         </div>
       
 
@@ -1173,7 +1176,7 @@ Ecl...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>328.5k 字</div>
+          <div>328.8k 字</div>
         </div>
       
 
@@ -1199,8 +1202,8 @@ Ecl...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon May 24 2021 22:32:04 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-24 日</div>
+            <div id="last-update" style="display: none;">Tue May 25 2021 21:07:50 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-25 日</div>
           
         </div>
         
@@ -1250,7 +1253,7 @@ Ecl...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-25 日';
           }
         </script>
         

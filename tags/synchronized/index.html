@@ -22,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: synchronized - Marlowe</title>
+  <title>Tag: Synchronized - Marlowe</title>
   
 
   
@@ -422,28 +422,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
-        synchronized相关知识点
+      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/Synchronized%E4%B8%8EReentrantLock/">
+        Synchronized与ReentrantLock
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-1、synchronized 关键字
-1.1 synchronized 关键字简介synchronized 关键字解决的是多个线程之间访问资源的同步性，synchronized关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。
-另外，在 Java 早期版本中，synchronized 属于 重量级锁，效率低下。
-为什么呢？因为监视器锁（monitor）是依赖于底层的操作...
-      
+      <p>Java 里面，最基本的互斥同步手段就是 synchronized 关键字，这是一种块结构( Block Structured ）的同步语法。还有就是 Java 类库中新提供了 java. util.concurrent 包，其中的 java.util.concurrent.locks.Lock 接口便成了 Java 另一 全新的互斥 同步手段。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-17</time>
+        <time>2021-04-28</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -451,7 +444,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
+          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/Synchronized%E4%B8%8EReentrantLock/'>
             Read More
           </a>
         </div>
@@ -700,7 +693,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>229 篇</div>
+          <div>231 篇</div>
         </div>
       
 
@@ -722,7 +715,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>328.5k 字</div>
+          <div>328.8k 字</div>
         </div>
       
 
@@ -748,8 +741,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon May 24 2021 22:32:23 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-24 日</div>
+            <div id="last-update" style="display: none;">Tue May 25 2021 21:08:17 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-25 日</div>
           
         </div>
         
@@ -799,7 +792,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-25 日';
           }
         </script>
         
@@ -1108,6 +1101,11 @@ var loadCSS = function( href, before, media, attributes ){
             $span[0].innerText = 'COPIED';
             wait(function () {
                 $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('er('fa-check-circle');
                 $icon.addClass('fa-copy');
                 $span[0].innerText = 'COPY'
             }, 2000)

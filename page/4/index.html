@@ -415,6 +415,105 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/">
+        获取class对象六种方法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简述Class类是Java反射机制的入口，封装了一个类或接口的运行时信息，通过调用Class类的方法可以获取这些信息。Class类有如下特点：1、该类在java.lang包中，不需要引包2、该类被final修饰，不可被继承3、该类实现了Serializable接口4、该类的构造方法被private修饰，不能通过关键字new创建该类的对象
+获取对应class类对象1、（建议）通过Class...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/">
+        LockSupport简单用法及原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介LockSupport是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
+作用接下面我来看看LockSupport有哪些常用的方法。主要有两类方法：park和unpark。
+12345678public static void park(Object blocker); // 暂停当前线程public static void pa...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/">
         Java9-Java14新特性
       </a>
@@ -795,104 +894,6 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/">
-        Java对象创建的4种方式
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-使用 new 关键字创建对象这是常用的创建对象的方法，语法格式如下：类名 对象名=new 类名()；
-调用 java.lang.Class 或者 java.lang.reflect.Constuctor 类的 newlnstance() 实例方法在 Java 中，可以使用 java.lang.Class 或者 java.lang.reflect.Constuctor 类的 newlns...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
-        hashCode()与 equals()相关问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode()定义在 JDK 的 Object 类中，这就意味着 Java 中的任何类都包含有 hashCode() 函数。另外需要注意的是： Object 的 hashcode 方法是本地方法，也就是用 c 语言或 c...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -907,7 +908,7 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
           </a>
         
         <p class="current">
-          4 / 23
+          4 / 24
         </p>
         
           <a class="next" rel="next" href="/page/5/">
@@ -1148,7 +1149,7 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>229 篇</div>
+          <div>231 篇</div>
         </div>
       
 
@@ -1170,7 +1171,7 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>328.5k 字</div>
+          <div>328.8k 字</div>
         </div>
       
 
@@ -1196,8 +1197,8 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon May 24 2021 22:32:04 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-24 日</div>
+            <div id="last-update" style="display: none;">Tue May 25 2021 21:07:49 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-25 日</div>
           
         </div>
         
@@ -1247,7 +1248,7 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-25 日';
           }
         </script>
         

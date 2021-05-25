@@ -415,6 +415,107 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/04/10/Java/JVM-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">
+        JVM 垃圾收集器
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+不同的垃圾收集器下图是HotSpot虚拟机1.6版Undate 22d的所有收集器：
+
+
+JVM 垃圾收集器
+
+
+注： 如果两个收集器之间存在连线，就说明它们可以搭配使用。
+七种垃圾收集器:1. Serial（串行GC）-复制Serial是一个新生代收集器，曾经是JDK1.3.1之前新生代唯一的垃圾收集器。采用复制算法。
+Serial是一个单线程收集器，会使用一个CPU、一条线程去完成...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/Java/JVM-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/Java/finally%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E7%9C%9F%E7%9A%84%E4%B8%80%E5%AE%9A%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%90%97%EF%BC%9F/">
+        finally中的代码真的一定会执行吗？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>finally中的代码在某些情况下不一定能执行…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/Java/finally%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E7%9C%9F%E7%9A%84%E4%B8%80%E5%AE%9A%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%90%97%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/04/09/Java/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B/">
         Java对象的创建过程
       </a>
@@ -810,107 +911,6 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        HashMap 和 Hashtable 的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-线程是否安全： HashMap 是非线程安全的，HashTable 是线程安全的,因为 HashTable 内部的方法基本都经过synchronized 修饰。（如果你要保证线程安全的话就使用 ConcurrentHashMap 吧！）；
-效率： 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它；
-对 N...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-03-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        ArrayList和LinkedList的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-Arraylist 与 LinkedList 区别?
-是否保证线程安全： ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
-底层数据结构： Arraylist 底层使用的是 Object 数组；LinkedList 底层使用的是 双向链表 数据结构（JDK1.6 之前为循环链表，JDK1.7 取消了循环。）
-插入和删除是否受元素位置的影响： ① Array...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-03-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -925,7 +925,7 @@ Arraylist 与 LinkedList 区别?
           </a>
         
         <p class="current">
-          22 / 23
+          22 / 24
         </p>
         
           <a class="next" rel="next" href="/page/23/">
@@ -1166,7 +1166,7 @@ Arraylist 与 LinkedList 区别?
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>229 篇</div>
+          <div>231 篇</div>
         </div>
       
 
@@ -1188,7 +1188,7 @@ Arraylist 与 LinkedList 区别?
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>328.5k 字</div>
+          <div>328.8k 字</div>
         </div>
       
 
@@ -1214,8 +1214,8 @@ Arraylist 与 LinkedList 区别?
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon May 24 2021 22:32:07 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-24 日</div>
+            <div id="last-update" style="display: none;">Tue May 25 2021 21:07:56 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-05-25 日</div>
           
         </div>
         
@@ -1265,7 +1265,7 @@ Arraylist 与 LinkedList 区别?
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-24 日';
+            document.getElementById('last-update-show').innerHTML = '2021-05-25 日';
           }
         </script>
         
