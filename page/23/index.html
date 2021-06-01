@@ -415,8 +415,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        HashMap 和 Hashtable 的区别
+      <a href="/2020/04/11/%E5%B9%B6%E5%8F%91/Java%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%94%81%E6%80%BB%E7%BB%93/">
+        Java高并发之锁总结
       </a>
     </h2>
   
@@ -425,10 +425,17 @@
       
         
 
+Java线程锁机制是怎样的？
+JAVA的锁就是在对象的Markword中记录一个锁状态。无锁，偏向锁，轻量级锁，重量级锁对应不同的锁状态。
+JAVA的锁机制就是根据资源竞争的激烈程度不断进行锁升级的过程。
 
-线程是否安全： HashMap 是非线程安全的，HashTable 是线程安全的,因为 HashTable 内部的方法基本都经过synchronized 修饰。（如果你要保证线程安全的话就使用 ConcurrentHashMap 吧！）；
-效率： 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它；
-对 N...
+锁的分类1. 乐观锁与悲观锁
+乐观锁
+
+
+对共享数据进行访问时，乐观锁总是认为不会有其他线程修改数据修改数据。
+于是直接执行操作，只是在更新时检查数据是否已经被其他线程修改。
+如果没...
       
     
   </div>
@@ -436,15 +443,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-04-11</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/04/11/%E5%B9%B6%E5%8F%91/Java%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%94%81%E6%80%BB%E7%BB%93/'>
             Read More
           </a>
         </div>
@@ -466,8 +473,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        ArrayList和LinkedList的区别
+      <a href="/2020/04/11/Java/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%8F%8A%E5%85%B3%E7%B3%BB%E5%9B%BE/">
+        Java中的集合类及关系图
       </a>
     </h2>
   
@@ -475,10 +482,17 @@
     
       
         
-Arraylist 与 LinkedList 区别?
-是否保证线程安全： ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
-底层数据结构： Arraylist 底层使用的是 Object 数组；LinkedList 底层使用的是 双向链表 数据结构（JDK1.6 之前为循环链表，JDK1.7 取消了循环。）
-插入和删除是否受元素位置的影响： ① Array...
+
+
+
+
+
+
+
+List 和 Set 继承自 Collection 接口。
+Set 无序不允许元素重复。HashSet 和 TreeSet 是两个主要的实现类。
+List 有序且允许元素重复。ArrayList、LinkedList 和 Vector 是三个主要的实现 类。
+Map 也属于集合系统，但和 Collection 接口没关系。Map 是 key 对 value 的映 射集合，其中...
       
     
   </div>
@@ -486,7 +500,7 @@ Arraylist 与 LinkedList 区别?
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-04-11</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -494,7 +508,7 @@ Arraylist 与 LinkedList 区别?
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/04/11/Java/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%8F%8A%E5%85%B3%E7%B3%BB%E5%9B%BE/'>
             Read More
           </a>
         </div>
@@ -516,8 +530,8 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">
-        ArrayList扩容机制
+      <a href="/2020/04/11/Java/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        抽象类和接口的区别
       </a>
     </h2>
   
@@ -526,7 +540,22 @@ Arraylist 与 LinkedList 区别?
       
         
 
-1234567891、添加元素时，首先进行判断是否大于默认容量102、如果，小于默认容量，直接在原来基础上+1，元素添加完毕3、如果，大于默认容量，则需要进行扩容，扩容核心是grow()方法   3.1 扩容之前，首先创建一个新的数组，且旧数组被复制到新的数组中       这样就得到了一个全新的副本，我们在操作时就不会影响原来数组了   3.2 然后通过位运算符将新的容量更新为旧容量的...
+
+
+
+
+
+
+
+抽象类抽象类是用来捕捉子类的通用特性的 。它不能被实例化，只能被用作子类的超类。抽象类是被用来创建继承层级里子类的模板。
+
+抽象类不能被实例化只能被继承；
+
+包含抽象方法的一定是抽象类，但是抽象类不一定含有抽象方法；
+
+抽象类中的抽象方法的修饰符只能为public或者protected，默认为public；
+
+一个子类继承一个抽象类，则子类必须实现父类抽象方法，否则子类也必...
       
     
   </div>
@@ -534,7 +563,7 @@ Arraylist 与 LinkedList 区别?
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-04-11</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -542,7 +571,7 @@ Arraylist 与 LinkedList 区别?
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/'>
+          <a class='readmore' href='/2020/04/11/Java/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/'>
             Read More
           </a>
         </div>
@@ -564,21 +593,34 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/">
-        HashMap是线程安全的吗？
+      <a href="/2020/04/10/Java/JVM-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">
+        JVM 垃圾收集器
       </a>
     </h2>
   
   <div class='md'>
     
-      <p><code>HashMap</code>的线程不安全体现在会造成死循环、数据丢失、数据覆盖这些问题。其中死循环和数据丢失是在JDK1.7中出现的问题，在JDK1.8中已经得到解决，然而1.8中仍会有数据覆盖这样的问题。</p>
+      
+        
+
+
+不同的垃圾收集器下图是HotSpot虚拟机1.6版Undate 22d的所有收集器：
+
+
+JVM 垃圾收集器
+
+
+注： 如果两个收集器之间存在连线，就说明它们可以搭配使用。
+七种垃圾收集器:1. Serial（串行GC）-复制Serial是一个新生代收集器，曾经是JDK1.3.1之前新生代唯一的垃圾收集器。采用复制算法。
+Serial是一个单线程收集器，会使用一个CPU、一条线程去完成...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-04-10</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -586,7 +628,7 @@ Arraylist 与 LinkedList 区别?
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/'>
+          <a class='readmore' href='/2020/04/10/Java/JVM-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/'>
             Read More
           </a>
         </div>
@@ -608,28 +650,21 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
-        HashMap底层原理
+      <a href="/2020/04/10/Java/finally%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E7%9C%9F%E7%9A%84%E4%B8%80%E5%AE%9A%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%90%97%EF%BC%9F/">
+        finally中的代码真的一定会执行吗？
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-JDK1.7数据结构则是采用的位桶和链表相结合的形式完成了，即拉链法。具体如下图所示：
-HashMap里面存储的是静态内部类Entry的对象，这个对象其实也是一个key-value的结构。
-hash源码：
-12345678static int hash(int h) &#123;    // This function ensures that hashCodes that differ...
-      
+      <p>finally中的代码在某些情况下不一定能执行…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-04-10</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -637,7 +672,7 @@ hash源码：
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/'>
+          <a class='readmore' href='/2020/04/10/Java/finally%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E7%9C%9F%E7%9A%84%E4%B8%80%E5%AE%9A%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%90%97%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -659,21 +694,31 @@ hash源码：
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        常见的IO模型有哪些？Java中的BIO，NIO，AIO的区别
+      <a href="/2020/04/09/Java/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B/">
+        Java对象的创建过程
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>从应用程序的视角来看的话，我们的应用程序对操作系统的内核发起 IO 调用（系统调用），操作系统负责的内核执行具体的 IO 操作。也就是说，我们的应用程序实际上只是发起了 IO 操作的调用而已，具体 IO 的执行是由操作系统的内核来完成的。</p>
+      
+        
+
+对象的创建
+
+
+
+
+Step1:类加载检查虚拟机遇到一条 new 指令时，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程。
+Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生对象分配内存。对象所需的内存大小在类加载完成后便可确定，为对象分配空间的任务等同于把一块...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-04-09</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -681,7 +726,7 @@ hash源码：
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/04/09/Java/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B/'>
             Read More
           </a>
         </div>
@@ -703,8 +748,8 @@ hash源码：
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/13/Java/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/">
-        final,static,this,super关键字总结
+      <a href="/2020/04/09/Java/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95/">
+        JVM垃圾回收算法
       </a>
     </h2>
   
@@ -713,13 +758,28 @@ hash源码：
       
         
 
-final 关键字final关键字，意思是最终的、不可修改的，最见不得变化 ，用来修饰类、方法和变量，具有以下特点：
+两个概念：新生代： 存放生命周期较短的对象的区域。老年代： 存放生命周期较长的对象的区域。
+相同点： 都在Java堆上。
+1. 标记-清除算法执行步骤：
 
-final修饰的类不能被继承，final类中的所有成员方法都会被隐式的指定为final方法；
+标记：遍历内存区域，对需要回收的对象打上标记。
+清除：再次遍历内存，对已经标记过的内存进行回收。
 
-final修饰的方法不能被重写；
+图解：
 
-final修饰的变量是常量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能让...
+
+
+
+
+
+
+
+
+
+缺点：
+
+效率问题；遍历了两次内存空间（第一次标记，第二次清除）。
+空间问题：容易产生大量内存碎片，当再需...
       
     
   </div>
@@ -727,7 +787,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-13</time>
+        <time>2020-04-09</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -735,7 +795,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/13/Java/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/'>
+          <a class='readmore' href='/2020/04/09/Java/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95/'>
             Read More
           </a>
         </div>
@@ -757,21 +817,31 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/13/Java/Arrays-asList-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-        Arrays.asList()使用指南
+      <a href="/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+        Java类加载过程
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Arrays.asList()将数组转换为集合后,底层其实还是数组</p>
+      
+        
+
+类的生命周期一个类的完整生命周期如下：
+类加载过程系统加载 Class 类型的文件主要三步:加载-&gt;连接-&gt;初始化。连接过程又可分为三步:验证-&gt;准备-&gt;解析。
+加载类加载过程的第一步，主要完成下面3件事情：
+
+通过全类名获取定义此类的二进制字节流
+将字节流所代表的静态存储结构转换为方法区的运行时数据结构
+在内存中生成一个代表该类的 Class 对象,作为方法区这...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-13</time>
+        <time>2020-03-31</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -779,7 +849,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/13/Java/Arrays-asList-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+          <a class='readmore' href='/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/'>
             Read More
           </a>
         </div>
@@ -801,29 +871,21 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/09/Java/JVM-GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/">
-        JVM-GC如何判断对象可以被回收
+      <a href="/2020/03/25/Java/Java8%E5%9B%9B%E5%A4%A7%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">
+        Java8四大函数式接口
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-引用计数法方式：每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。优点：实现简单，效率高。缺点：无法解决循环引用。
-可达性分析法方式：从一系列被称为GC ROOT的对象开始，向下搜索，搜索走过的路径称为引用链，当一个对象到GC ROOT之间没有引用链，说明这个对象不可用。
-GC ROOT对象：
-虚拟机栈中引用的对象
-方法区内类的静态属性引用的对象...
-      
+      <p>只有一个方法的接口叫做函数式接口。<br>Function、Predicate、Consumer、Supplier</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-09</time>
+        <time>2020-03-25</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -831,7 +893,7 @@ GC ROOT对象：
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/09/Java/JVM-GC%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6/'>
+          <a class='readmore' href='/2020/03/25/Java/Java8%E5%9B%9B%E5%A4%A7%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/'>
             Read More
           </a>
         </div>
@@ -853,30 +915,21 @@ GC ROOT对象：
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/09/Java/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/">
-        Java中的异常体系
+      <a href="/2020/03/23/Java/JVM-GC%E8%B0%83%E4%BC%98/">
+        JVM GC调优
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-
-
-Java 异常类层次结构图
-
-在 Java 中，所有的异常都有一个共同的祖先 java.lang 包中的 Throwable 类。Throwable 类有两个重要的子类 Exception（异常）和 Error（错误）。Exception 能被程序本身处理(try-catch)， Error是无法处理的(只能尽量避免)。
-Exception 和 Error 二者都是 Java 异常处...
-      
+      <p>JVM调优入门…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-09</time>
+        <time>2020-03-23</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -884,7 +937,7 @@ Exception 和 Error 二者都是 Java 异常处...
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/09/Java/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/'>
+          <a class='readmore' href='/2020/03/23/Java/JVM-GC%E8%B0%83%E4%BC%98/'>
             Read More
           </a>
         </div>
@@ -911,7 +964,7 @@ Exception 和 Error 二者都是 Java 异常处...
           </a>
         
         <p class="current">
-          23 / 24
+          23 / 25
         </p>
         
           <a class="next" rel="next" href="/page/24/">
@@ -1035,7 +1088,7 @@ Exception 和 Error 二者都是 Java 异常处...
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1065,12 +1118,12 @@ Exception 和 Error 二者都是 Java 异常处...
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1095,7 +1148,7 @@ Exception 和 Error 二者都是 Java 异常处...
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1110,7 +1163,7 @@ Exception 和 Error 二者都是 Java 异常处...
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -1152,7 +1205,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>231 篇</div>
+          <div>244 篇</div>
         </div>
       
 
@@ -1174,7 +1227,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>329k 字</div>
+          <div>370.7k 字</div>
         </div>
       
 
@@ -1200,8 +1253,8 @@ Exception 和 Error 二者都是 Java 异常处...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 27 2021 22:42:22 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-27 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:23 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-01 日</div>
           
         </div>
         
@@ -1251,7 +1304,7 @@ Exception 和 Error 二者都是 Java 异常处...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
           }
         </script>
         

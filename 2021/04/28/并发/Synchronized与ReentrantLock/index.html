@@ -504,7 +504,7 @@
 <h4 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h4><p><strong>作用于对象的时候</strong></p>
 <p>当synchronized作用于对象时候（即代码块方式），JVM会使用字节码monitorenter，monitorexit来进行同步代码块区分:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">4</span>: monitorenter</span><br><span class="line"> 5: getstatic     #3                  // Field java/lang/System.out:Ljava/io/PrintStream;</span><br><span class="line"> <span class="number">8</span>: sipush        <span class="number">666</span></span><br><span class="line">11: invokevirtual #4                  // Method java/io/PrintStream.println:(I)V</span><br><span class="line"><span class="number">14</span>: aload_1</span><br><span class="line"><span class="number">15</span>: monitorexit</span><br></pre></td></tr></table></figure>
-<p>在执行 monitorenter 指令时，首先要去尝试获取对象的锁 如果这个对象没被锁定，或者当前线程已经持有了那个对象的锁，就把锁的计数器的值增加一，而在执行 monitorexit 指令时会将锁计数器的值减一 一旦计数器的值为零，锁随即就被释放了 如果获取对象锁失败，那当前线程就应当被阻塞等待，直到请求锁定的对象被持有它的线程释放为止。</p>
+<p>在执行 monitorenter 指令时，首先要去尝试获取对象的锁 如果这个对象没被锁定，或者当前线程已经持有了那个对象的锁，就把锁的计数器的值增加一，而在执行 monitorexit 指令时会将锁计数器的值减一，一旦计数器的值为零，锁随即就被释放了 如果获取对象锁失败，那当前线程就应当被阻塞等待，直到请求锁定的对象被持有它的线程释放为止。</p>
 <h4 id="锁的优化"><a href="#锁的优化" class="headerlink" title="锁的优化"></a>锁的优化</h4><p>Java HotSpot 虚拟机中，每个对象都有对象头（包括 class 指针和 Mark Word）。Mark Word 平时存储这个对象的 哈希码 、 分代年龄 ，当加锁时，这些信息就根据情况被替换为 标记位 、 线程锁记录指 针 、 重量级锁指针 、 线程ID 等内容。</p>
 <p>高效并发是从 JDK 升级到 JDK 后一项重要的改进项， Hotspot 虚拟机开发团队在这个版本上花费了大 的资源去实现各种锁优化技术，如适应性自旋（ Adaptive Spinning锁消除（ Lock Elimination ）、锁膨胀（ Lock Coarsening 、轻量级锁（ Lightweight Locking）、偏向锁（ Biased Locking ）等，这些技术都是为了在线程之间更高效地共享数据及解决竞争问题，从而提高程序的执行效率。</p>
 <ul>
@@ -618,10 +618,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-17T16:33:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-01T10:45:32+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 17, 2021</p>
+    <p>更新于：Jun 1, 2021</p>
   </a>
 </div>
 

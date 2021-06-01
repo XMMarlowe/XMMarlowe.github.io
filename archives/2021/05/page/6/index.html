@@ -414,6 +414,264 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/">
+        Redis过期数据删除策略
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+如果假设你设置了一批 key 只能存活 1 分钟，那么 1 分钟后，Redis 是怎么对这批 key 进行删除的呢？
+常用的过期数据的删除策略就两个（重要！自己造缓存轮子的时候需要格外考虑的东西）：
+
+惰性删除： 只会在取出 key 的时候才对数据进行过期检查。这样对 CPU 最友好，但是可能会造成太多过期 key 没有被删除。
+定期删除： 每隔一段时间抽取一批 key 执行删除过期 ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
+        Redis和memcached的区别和使用场景
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+共同点
+都是基于内存的数据库，一般都用来当做缓存使用。
+都有过期策略。
+两者的性能都非常高。
+
+区别
+Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等；
+
+Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，hash等数据结构的存储；
+
+虚拟内存–Redis当物理内存用完时，可以将一些很久...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/07/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/">
+        海量数据Top K问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>问题引入：10亿个数中找出最大的10000个数（top K问题）</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-07</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/07/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+        进程调度算法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+介绍无论是在批处理系统还是分时系统中，用户进程数一般都多于处理机数、这将导致它们互相争夺处理机。另外，系统进程也同样需要使用处理机。这就要求进程调度程序按一定的策略，动态地把处理机分配给处于就绪队列中的某一个进程，以使之执行。
+
+
+
+
+
+7种调度算法先来先服务调度算法（FCFS）先来先服务(FCFS)调度算法是一种最简单的调度算法，该算法既可用于作业调度，也可用于进程调度。当在作业调度中...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-07</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+        Redis6.0 相关问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Redis6.0之前的版本真的是单线程吗？Redis在处理客户端的请求时，包括获取 (socket 读)、解析、执行、内容返回 (socket 写) 等都由一个顺序串行的主线程处理，这就是所谓的“单线程”。但如果严格来讲从Redis4.0之后并不是单线程，除了主线程外，它也有后台线程在处理一些较为缓慢的操作，例如清理脏数据、无用连接的释放、大 key 的删除等等。
+Redis6.0之前为...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-07</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/06/NoSQL/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
         Redis 单线程模型
       </a>
@@ -670,209 +928,6 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/05/%E9%9A%8F%E7%AC%94/Java%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D/">
-        Java学习推荐书籍
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>列举一些接下来要读的书单…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/05/%E9%9A%8F%E7%AC%94/Java%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/04/NoSQL/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/">
-        海量数据下，如何快速查找一条记录？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-1、使用布隆过滤器，快速过滤不存在的记录。
-使用Redis的bitmap结构来实现布隆过滤器。
-2、在Redis中建立数据缓存。将我们对Redis使用场景的理解尽量表达出来。
-以普通字符串的形式来存储，(userld -&gt; user.json)。 以一个hash来存储一条记录(userld key-&gt; username field-&gt; ，userAge-&gt;)。以一...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/04/NoSQL/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/04/NoSQL/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
-        Redis 如何配置Key的过期时间？他的实现原理是什么？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Redis设置key的过期时间
-EXPIRE
-SETEX
-
-实现原理定期删除每隔一段时间， 执行一次删除过期key的操作。
-懒汉式删除当使用get、getset等指令 去获取数据时，判断key是否过期。 过期后，就先把key删除，再执行后面的操作。
-Redis是将两种方式结合来使用。
-定期删除：平衡执行频率和执行时长。
-定期删除时会遍历每个datapase(默认16个),检查当前库中指定...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/04/NoSQL/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/">
-        如何设计一个分布式锁？如何对锁的性能进行优化？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-分布式锁的本质就是在所有进程都能访问到的一个地方，设置一一个锁资源， 让这些进程都来竞争锁资源。数据库、zookeeper, Redis。
-通常对于分布式锁，会要求响应快、性能高、与业务无关。
-Redis实现分布式锁
-SETNX key value: 当key不存在时，就将key设置为value,并返回1。如果key存在，就返回0。
-EXPIRE key locktime: 设置key的...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -887,8 +942,14 @@ EXPIRE key locktime: 设置key的...
           </a>
         
         <p class="current">
-          6 / 6
+          6 / 7
         </p>
+        
+          <a class="next" rel="next" href="/archives/2021/05/page/7/">
+            <section class="post next white-box shadow">
+              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </section>
+          </a>
         
       </div>
     
@@ -1006,7 +1067,7 @@ EXPIRE key locktime: 设置key的...
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1036,12 +1097,12 @@ EXPIRE key locktime: 设置key的...
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1066,7 +1127,7 @@ EXPIRE key locktime: 设置key的...
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1081,7 +1142,7 @@ EXPIRE key locktime: 设置key的...
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -1123,7 +1184,7 @@ EXPIRE key locktime: 设置key的...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>231 篇</div>
+          <div>244 篇</div>
         </div>
       
 
@@ -1145,7 +1206,7 @@ EXPIRE key locktime: 设置key的...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>329k 字</div>
+          <div>370.7k 字</div>
         </div>
       
 
@@ -1171,8 +1232,8 @@ EXPIRE key locktime: 设置key的...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 27 2021 22:42:12 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-27 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:16 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-01 日</div>
           
         </div>
         
@@ -1222,7 +1283,7 @@ EXPIRE key locktime: 设置key的...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
           }
         </script>
         

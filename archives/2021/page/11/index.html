@@ -414,52 +414,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
-        进程间的通信方式
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>进程间的7种通信方式概述…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/">
-        死锁产生的原因以及产生的必要条件
+      <a href="/2021/04/16/NoSQL/%E4%B8%BA%E4%BB%80%E4%B9%88redis%E9%9C%80%E8%A6%81%E6%8A%8A%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E6%94%BE%E5%88%B0%E5%86%85%E5%AD%98%E4%B8%AD/">
+        为什么redis需要把所有数据放到内存中?
       </a>
     </h2>
   
@@ -468,18 +424,9 @@
       
         
 
-死锁产生的原因
-系统资源不足。
-进程运行推进的顺序不合适。
-资源分配不当。
+Redis为了达到最快的读写速度将数据都读到内存中，并通过异步的方式将数据写入磁盘。所以redis具有快速和数据持久化的特征。如果不将数据放在内存中，磁盘I/O速度为严重影响redis的性能。在内存越来越便宜的今天，redis将会越来越受欢迎。
+如果设置了最大使用的内存，则数据已有记录数达到内存限值后不能继续插入新值。
 
-死锁产生的四个必要条件
-互斥条件：一个资源每次只能被一个进程使用。
-请求与保持条件：一个进程因请求资源而阻塞时，对已经获得的资源保持不放。
-不剥夺条件：进程已获得的资源，在未使用完之前，不能强行剥夺。
-循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。
-
-如何避免死锁？1. 避免嵌套锁如果您已经持有...
       
     
   </div>
@@ -487,335 +434,7 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/01/%E9%A2%98%E8%A7%A3/%E7%A0%94%E5%8F%91%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/">
-        研发高频算法题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>牛客研发最爱考、剑指offer经典题目</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/01/%E9%A2%98%E8%A7%A3/%E7%A0%94%E5%8F%91%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/27/%E9%A2%98%E8%A7%A3/Leetcode-%E5%89%91%E6%8C%87offer-40-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0/">
-        Leetcode-剑指offer 40.最小的K个数
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。
-示例 1：
-输入：arr = [3,2,1], k = 2输出：[1,2] 或者 [2,1]示例 2：
-输入：arr = [0,1,2,1], k = 1输出：[0]
- 
-限制：
-0 &lt;= k &lt;= arr.length &lt;= 10000...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-27</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/27/%E9%A2%98%E8%A7%A3/Leetcode-%E5%89%91%E6%8C%87offer-40-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/27/%E9%A2%98%E8%A7%A3/%E5%AF%8C%E9%80%94%E7%AC%94%E8%AF%95-%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E8%8A%82%E7%82%B9/">
-        富途笔试-找到搜索二叉树中两个错误的节点
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-题目描述一棵二叉树原本是搜索二叉树，但是其中有两个节点调换了位置，使得这棵二叉树不再是搜索二叉树，请按升序输出这两个错误节点的值。(每个节点的值各不相同)示例1输入{1,2,3}返回值[1,2]
-思路中序遍历可以得到搜索二叉树的升序遍历结果，题目描述其中两个节点交换了位置，因此只需在中序遍历中找到异常数据即可。
-
-中序遍历二叉树
-从前面往后找，发现当前数比后一个数大，则是异常数据，放在结...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-27</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/27/%E9%A2%98%E8%A7%A3/%E5%AF%8C%E9%80%94%E7%AC%94%E8%AF%95-%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E8%8A%82%E7%82%B9/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%88%9D%E8%AF%86CAS%E4%B8%8EABA%E9%97%AE%E9%A2%98/">
-        初识CAS与ABA问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-什么是CAS？CAS是英文单词CompareAndSwap的缩写，中文意思是：比较并替换。CAS需要有3个操作数：内存地址V，旧的预期值A，即将要更新的目标值B。 CAS指令执行时，当且仅当内存地址V的值与预期值A相等时，将内存地址V的值修改为B，否则就什么都不做。整个比较并替换的操作是一个原子操作。它体现的一种乐观锁的思想，比如多个线程要对一个共享的整型变量执行 +1 操作
-获取共享变量...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%88%9D%E8%AF%86CAS%E4%B8%8EABA%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/">
-        异步回调
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>To be continue…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/ForkJoin/">
-        ForkJoin
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>ForkJoin 在JDK1.7， 并行执行任务！ 在大数据量下提高效率。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/ForkJoin/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/23/NoSQL/Redis-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
-        Redis 相关知识点总结
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>总结一些Redis常见知识点…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-23</time>
+        <time>2021-04-16</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
@@ -823,7 +442,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/23/NoSQL/Redis-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/'>
+          <a class='readmore' href='/2021/04/16/NoSQL/%E4%B8%BA%E4%BB%80%E4%B9%88redis%E9%9C%80%E8%A6%81%E6%8A%8A%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E6%94%BE%E5%88%B0%E5%86%85%E5%AD%98%E4%B8%AD/'>
             Read More
           </a>
         </div>
@@ -845,8 +464,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/23/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/B%E6%A0%91%E4%B8%8EB+%E6%A0%91/">
-        B树与B+树
+      <a href="/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/">
+        Redis内存淘汰机制
       </a>
     </h2>
   
@@ -855,17 +474,11 @@
       
         
 
-B树简介
+Redis 提供 6 种数据淘汰策略：
 
-一种二叉搜索树。
-除根节点外的所有非叶节点至少含有（M/2（向上取整）-1）个关键字，每个节点最多有M-1个关键字，并且以升序排列。所以M阶B树的除根节点外的所有非叶节点的关键字取值区间为[M/2-1(向上取整),M-1]。
-每个节点最多有M-1个关键字。
-
-动图演示
-
-B+树简介
-
-有n棵子树的非叶子结点中含有n个关键字（b树是n-1个），这些关键字不保存数据，只用来索引，...
+volatile-lru（least recently used）： 从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
+volatile-ttl： 从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰
+volatile-random： 从已设置过期时间的数据集...
       
     
   </div>
@@ -873,15 +486,411 @@ B+树简介
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-23</time>
+        <time>2021-04-16</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/23/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/B%E6%A0%91%E4%B8%8EB+%E6%A0%91/'>
+          <a class='readmore' href='/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/16/Java/Java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        Java反射相关知识点
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+什么是反射？反射是在运行状态中，对于任意一个类， 都能够知道这个类的所有属性和方法；对于任意一个对象， 都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为 Java 语言的反射机制。
+哪里用到反射机制？
+JDBC中，利用反射 (Class.forName(xxx)) 动态加载了数据库驱动程序。
+Web服务器中利用反射调用了Sevlet的服务方法。
+Ecl...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/16/Java/Java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/15/NoSQL/Redis-%E5%AF%B9%E6%AF%94-MySQL%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%98%AF%E5%BF%AB%E7%9A%84%EF%BC%9F/">
+        Redis 对比 MySQL，为什么 redis 是快的？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+1.Redis是基于内存存储的，MySQL是基于磁盘存储的
+2.Redis存储的是k-v格式的数据。时间复杂度是O(1),常数阶，而MySQL引擎的底层实现是B+Tree，时间复杂度是O(logn)，对数阶。Redis会比MySQL快一点点。
+3.MySQL数据存储是存储在表中，查找数据时要先对表进行全局扫描或者根据索引查找，这涉及到磁盘的查找，磁盘查找如果是按条点查找可能会快点，但是...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/15/NoSQL/Redis-%E5%AF%B9%E6%AF%94-MySQL%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%98%AF%E5%BF%AB%E7%9A%84%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8/">
+        设计模式-装饰器
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/">
+        线程上下文切换
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。
+概括来说就是： 当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-14</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/">
+        操作系统IO模型
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>IO模型的分类：主要有同步IO、异步IO、阻塞IO、非阻塞IO…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/11/Spring/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+        SpringMVC执行流程及工作原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+图解SpringMVC执行流程:
+
+SpringMVC执行流程
+
+
+SpringMVC执行流程:
+用户发送请求至前端控制器DispatcherServlet
+DispatcherServlet收到请求调用处理器映射器HandlerMapping。
+处理器映射器根据请求url找到具体的处理器，生成处理器执行链HandlerExecutionChain(包括处理器对象和处理器拦截器)一并返...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/11/Spring/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E5%92%8C%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/">
+        虚拟内存和局部性原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+什么是虚拟内存(Virtual Memory)?这个在我们平时使用电脑特别是 Windows 系统的时候太常见了。很多时候我们使用点开了很多占内存的软件，这些软件占用的内存可能已经远远超出了我们电脑本身具有的物理内存。为什么可以这样呢？ 正是因为 虚拟内存 的存在，通过 虚拟内存 可以让程序可以拥有超过系统物理内存大小的可用内存空间。另外，虚拟内存为每个进程提供了一个一致的、私有的地址空...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E5%92%8C%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">
+        IO多路复用
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+举例现实场景来理解我们试想一下这样的现实场景:
+一个餐厅同时有100位客人到店，当然到店后第一件要做的事情就是点菜。但是问题来了，餐厅老板为了节约人力成本目前只有一位大堂服务员拿着唯一的一本菜单等待客人进行服务。
+
+方法A 无论有多少客人等待点餐，服务员都把仅有的一份菜单递给其中一位客人，然后站在客人身旁等待这个客人完成点菜过程。在记录客人点菜内容后，把点菜记录交给后堂厨师。然后是第二位...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/'>
             Read More
           </a>
         </div>
@@ -908,7 +917,7 @@ B+树简介
           </a>
         
         <p class="current">
-          11 / 16
+          11 / 18
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/12/">
@@ -1033,7 +1042,7 @@ B+树简介
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1063,12 +1072,12 @@ B+树简介
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1093,7 +1102,7 @@ B+树简介
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1108,7 +1117,7 @@ B+树简介
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -1150,7 +1159,7 @@ B+树简介
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>231 篇</div>
+          <div>244 篇</div>
         </div>
       
 
@@ -1172,7 +1181,7 @@ B+树简介
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>329k 字</div>
+          <div>370.7k 字</div>
         </div>
       
 
@@ -1198,8 +1207,8 @@ B+树简介
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 27 2021 22:42:07 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-27 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:02 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-01 日</div>
           
         </div>
         
@@ -1249,7 +1258,7 @@ B+树简介
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
           }
         </script>
         

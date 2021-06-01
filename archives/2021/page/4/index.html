@@ -414,34 +414,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/">
-        获取class对象六种方法
+      <a href="/2021/05/16/Spring/Spring%E4%B8%ADBeanFactory%E5%92%8CFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        Spring中BeanFactory和FactoryBean的区别
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-简述Class类是Java反射机制的入口，封装了一个类或接口的运行时信息，通过调用Class类的方法可以获取这些信息。Class类有如下特点：1、该类在java.lang包中，不需要引包2、该类被final修饰，不可被继承3、该类实现了Serializable接口4、该类的构造方法被private修饰，不能通过关键字new创建该类的对象
-获取对应class类对象1、（建议）通过Class...
-      
+      <p>BeanFactory是个Factory，也就是IOC容器或对象工厂，FactoryBean是个Bean。在Spring中，所有的Bean都是由BeanFactory(也就是IOC容器)来进行管理的。但对FactoryBean而言，这个Bean不是简单的Bean，而是一个能生产或者修饰对象生成的工厂Bean,它的实现与设计模式中的工厂模式和修饰器模式类似。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-10</time>
+        <time>2021-05-16</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/'>
+          <a class='readmore' href='/2021/05/16/Spring/Spring%E4%B8%ADBeanFactory%E5%92%8CFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB/'>
             Read More
           </a>
         </div>
@@ -463,8 +458,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/">
-        LockSupport简单用法及原理
+      <a href="/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/">
+        Spring的启动过程
       </a>
     </h2>
   
@@ -473,9 +468,359 @@
       
         
 
-简介LockSupport是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
-作用接下面我来看看LockSupport有哪些常用的方法。主要有两类方法：park和unpark。
-12345678public static void park(Object blocker); // 暂停当前线程public static void pa...
+spring的启动是建筑在servlet容器之上的，所有web工程的初始位置就是web.xml,它配置了servlet的上下文（context）和监听器（Listener），下面就来看看web.xml里面的配置：
+123456789101112131415161718192021222324252627282930313233343536&lt;!--上下文监听器，用于监听servlet...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+        Spring Bean 相关问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经过四个阶段:实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁
+然后: 具体来说，Spring中Bean 经过了以下几个步骤:
+
+实例化: new xxx(); 两个时机: 1、当客户端向容器申请一 个Bean时，2、 当容器在初始化一 个Bean时发现还需要依赖另一个Bean。Bean...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+        Spring中用到的设计模式
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>简单聊聊Spring中所用到的设计模式…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">
+        Spring事务实现方式
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Spring 管理事务的方式有几种？
+编程式事务，在代码中硬编码。(不推荐使用)
+声明式事务，在配置文件中配置（推荐使用）
+
+声明式事务又分为两种：
+
+基于XML的声明式事务
+基于注解的声明式事务
+
+Spring 事务中的隔离级别有哪几种?TransactionDefinition 接口中定义了五个表示隔离级别的常量：
+
+TransactionDefinition.ISOLATION_D...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/">
+        Java限流-实现每秒n个请求
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+概要在大数据量高并发访问时，经常会出现服务或接口面对暴涨的请求而不可用的情况，甚至引发连锁反映导致整个系统崩溃。此时你需要使用的技术手段之一就是限流，当请求达到一定的并发数或速率，就进行等待、排队、降级、拒绝服务等。在限流时，常见的两种算法是漏桶和令牌桶算法算法。
+限流算法令牌桶(Token Bucket)、漏桶(leaky bucket)和计数器算法是最常用的三种限流的算法。
+1. ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/14/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/REST%E4%B8%8ERPC%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+        REST与RPC区别？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+REST与RPC概念什么是RESTREST是一种架构风格，指的是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是 RESTful。REST规范把所有内容都视为资源，网络上一切皆资源。
+REST并没有创造新的技术，组件或服务，只是使用Web的现有特征和能力。 可以完全通过HTTP协议实现，使用 HTTP 协议处理数据通信。REST架构对资源的操作包括获取、创建、修改和删除...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-14</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/14/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/REST%E4%B8%8ERPC%E5%8C%BA%E5%88%AB%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/14/Spring/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+        spring循环依赖
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+什么是循环依赖?循环依赖其实就是循环引用，也就是两个或则两个以上的bean互相持有对方，最终形成闭环。比如A依赖于B，B依赖于C，C又依赖于A。如下图：
+
+注意：这里不是函数的循环调用，是对象的相互依赖关系。循环调用其实就是一个死循环，除非有终结条件。
+Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属性的循环依赖。
+怎么检测是否存在循环依赖?检测循环依赖相对比较容易...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-14</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/14/Spring/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+        读写锁之ReadWriteLock源码分析
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁可以在没有写锁的时候被多个线程同时持有，写锁是独占的。所有读写锁的实现必须确保写操作对读操作的内存影响。换句话说，一个获得了读锁的线程必须能看到前一个释放的写锁所更新的内容。读写锁比互斥锁允许对于共享数据更大程度的并发。每次只能有一个写线程，但是同时可以有多个线程并发地读数据。ReadWriteLock适用于读多写少的...
       
     
   </div>
@@ -491,7 +836,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/'>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/'>
             Read More
           </a>
         </div>
@@ -513,14 +858,12 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/">
-        Java9-Java14新特性
+      <a href="/2021/05/10/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A/">
+        Java四种引用-强软弱虚
       </a>
     </h2>
   
   <div class='md'>
-    
-      <p>待完善…</p>
     
   </div>
   
@@ -529,358 +872,10 @@
         
         <time>2021-05-10</time>
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/">
-        InnoDB引擎 - 行记录存储 - Compact 行格式
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>待完善…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
-        局部性原理和工作原理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-程序访问的局部性原理程序访问的局部性原理包括时间局部性和空间局部性。
-
-空间局部性：在最近的未来要用到的信息（指令和数据），很可能与现在正在使用的信息在存储空间上是邻近的
-时间局部性：在最近的未来要用到的信息，很可能是现在正在使用的信息高速缓冲技术是利用程序访问的局部性原理，把程序中正在使用的部分存放在一个高速的、容量较小的Cache中，使CPU的访存操作大多数针对Cache进行，从而大...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">
-        ThreadLocal专题学习
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>通过ThreadLocal源码和相关问题专题学习…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/09/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
-        Java序列化与反序列化
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-一些问题Java序列化，反序列化Java序列化指将Java对象转换为字节序列的过程，反序列化指将字节序列转换为目标对象的过程；
-什么情况下需要序列化当Java对象需要网络传输或者持久化到磁盘上时；
-序列化的实现？让类实现Serializable接口，标注该类对象可以被序列化；
-Java 序列化中如果有些字段不想进行序列化，怎么办？对于不想进行序列化的变量，使用 transient 关键字...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/09/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/09/Java/OOM%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%EF%BC%8CSOF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5/">
-        OOM有哪些情况，SOF有哪些情况
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-OOM(OutOfMemory)1、全称为OutOfMemoryError异常，如果虚拟机在扩展栈时无法申请足够的内存空间，抛出它；
-2、Java heap异常:java.lang.OutOfMemoryError:Java heap Space；
-3、虚拟机栈和本地方法溢出；
-4、运行时常量池溢出异常信息：java.lang.OutOfMemoryError:PermGen Space...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/09/Java/OOM%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%EF%BC%8CSOF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/Java/%E5%A6%82%E4%BD%95%E5%9C%A8List%E7%A7%8D%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
-        如何在List种移除元素
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Itr对象源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667private class Itr implements Iterator&lt;E&gt; &#123;	    int c...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/java/">java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/Java/%E5%A6%82%E4%BD%95%E5%9C%A8List%E7%A7%8D%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        Java 中 a = a+b和a += b 的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-区别
-a += b执行实际过程实际是 是先计算出a的值，然后用一个temp对象存储，之后和b进行相加，然后将值赋值给a引用。
-
-a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a引用的时候如果 引用a 有计算过程，则会再次计算。
-
-+=如果两边的操作数的精度不一样时会自动向低转化，而a = a+b则不会自动转化，需要手动进行强制类型转化。
-
-
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/05/10/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A/'>
             Read More
           </a>
         </div>
@@ -907,7 +902,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           </a>
         
         <p class="current">
-          4 / 16
+          4 / 18
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/5/">
@@ -1032,7 +1027,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1062,12 +1057,12 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1092,7 +1087,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1107,7 +1102,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -1149,7 +1144,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>231 篇</div>
+          <div>244 篇</div>
         </div>
       
 
@@ -1171,7 +1166,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>329k 字</div>
+          <div>370.7k 字</div>
         </div>
       
 
@@ -1197,8 +1192,8 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 27 2021 22:42:06 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-27 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:02 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-01 日</div>
           
         </div>
         
@@ -1248,7 +1243,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
           }
         </script>
         

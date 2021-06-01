@@ -415,8 +415,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/">
-        Java对象创建的4种方式
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+        Fork/Join框架基本使用
       </a>
     </h2>
   
@@ -425,9 +425,8 @@
       
         
 
-
-使用 new 关键字创建对象这是常用的创建对象的方法，语法格式如下：类名 对象名=new 类名()；
-调用 java.lang.Class 或者 java.lang.reflect.Constuctor 类的 newlnstance() 实例方法在 Java 中，可以使用 java.lang.Class 或者 java.lang.reflect.Constuctor 类的 newlns...
+1. 概述Java.util.concurrent.ForkJoinPool由Java大师Doug Lea主持编写，它可以将一个大的任务拆分成多个子任务进行并行处理，最后将子任务结果合并成最后的计算结果，并进行输出。本文中对Fork/Join框架的讲解，基于JDK1.8+中的Fork/Join框架实现，参考的Fork/Join框架主要源代码也基于JDK1.8+。
+这几篇文章将试图解释Fo...
       
     
   </div>
@@ -435,15 +434,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/'>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/'>
             Read More
           </a>
         </div>
@@ -465,8 +464,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
-        hashCode()与 equals()相关问题
+      <a href="/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/">
+        MySQL一些规范以及优化问题
       </a>
     </h2>
   
@@ -475,7 +474,12 @@
       
         
 
-hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode()定义在 JDK 的 Object 类中，这就意味着 Java 中的任何类都包含有 hashCode() 函数。另外需要注意的是： Object 的 hashcode 方法是本地方法，也就是用 c 语言或 c...
+
+如何选择索引列的顺序建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
+
+区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）
+尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）
+使用最频繁的列放到联合索引的左侧（这样可以比较少的建立...
       
     
   </div>
@@ -483,57 +487,7 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6/">
-        InnoDB崩溃恢复机制
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-概述数据库系统与文件系统大的区别在于数据库能保证操作的原子性，一个操作要么不做要么都做，即使在数据库宕机的情况下，也不会出现操作一半的情况，这个就需要数据库的日志和一套完善的崩溃恢复机制来保证。下面简单介绍一下InnoDB的崩溃恢复流程。
-相关概念
-lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值越大，说明数据库的更新越多，也可以理解为更新的时刻。此外，每个数据页上也有一...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
@@ -541,7 +495,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6/'>
+          <a class='readmore' href='/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/'>
             Read More
           </a>
         </div>
@@ -563,8 +517,8 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        信号与信号量的区别
+      <a href="/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
+        Java浮点数精度问题
       </a>
     </h2>
   
@@ -573,10 +527,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       
         
 
-
-信号由用户、系统或者进程发送给目标进程的信息，以通知目标进程某个状态的改变或系统异常。
-信号量信号量是一个特殊的变量，它的本质是计数器，信号量里面记录了临界资源的数目，有多少数目，信号量的值就为多少，进程对其访问都是原子操作（pv操作，p：占用资源，v：释放资源）。它的作用就是，调协进程对共享资源的访问，让一个临界区同一时间只有一个进程在访问它。
-区别信号是通知进程产生了某个事件，信号...
+一、精度丢失的原因1234567891011121314151617181920212223首先我们要搞清楚下面两个问题：(1) 十进制整数如何转化为二进制数           算法很简单。举个例子，11表示成二进制数：                     11/2=5 余   1                     5/2=2   余   1                 ...
       
     
   </div>
@@ -584,7 +535,245 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/">
+        获取class对象六种方法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简述Class类是Java反射机制的入口，封装了一个类或接口的运行时信息，通过调用Class类的方法可以获取这些信息。Class类有如下特点：1、该类在java.lang包中，不需要引包2、该类被final修饰，不可被继承3、该类实现了Serializable接口4、该类的构造方法被private修饰，不能通过关键字new创建该类的对象
+获取对应class类对象1、（建议）通过Class...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/">
+        LockSupport简单用法及原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介LockSupport是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
+作用接下面我来看看LockSupport有哪些常用的方法。主要有两类方法：park和unpark。
+12345678public static void park(Object blocker); // 暂停当前线程public static void pa...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/">
+        Java9-Java14新特性
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>待完善…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/">
+        InnoDB引擎 - 行记录存储 - Compact 行格式
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>待完善…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+        局部性原理和工作原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+程序访问的局部性原理程序访问的局部性原理包括时间局部性和空间局部性。
+
+空间局部性：在最近的未来要用到的信息（指令和数据），很可能与现在正在使用的信息在存储空间上是邻近的
+时间局部性：在最近的未来要用到的信息，很可能是现在正在使用的信息高速缓冲技术是利用程序访问的局部性原理，把程序中正在使用的部分存放在一个高速的、容量较小的Cache中，使CPU的访存操作大多数针对Cache进行，从而大...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
@@ -592,7 +781,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -614,35 +803,29 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/">
-        UDP如何实现可靠传输
+      <a href="/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">
+        ThreadLocal专题学习
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-概述UDP不属于连接协议，具有资源消耗少，处理速度快的优点，所以通常音频，视频和普通数据在传送时，使用UDP较多，因为即使丢失少量的包，也不会对接受结果产生较大的影响。
-传输层无法保证数据的可靠传输，只能通过应用层来实现了。实现的方式可以参照tcp可靠性传输的方式，只是实现不在传输层，实现转移到了应用层。
-最简单的方式是在应用层模仿传输层TCP的可靠性传输。下面不考虑拥塞处理，可靠UDP...
-      
+      <p>通过ThreadLocal源码和相关问题专题学习…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/'>
+          <a class='readmore' href='/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/'>
             Read More
           </a>
         </div>
@@ -664,8 +847,8 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/">
-        Redis过期数据删除策略
+      <a href="/2021/05/09/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+        Java序列化与反序列化
       </a>
     </h2>
   
@@ -674,12 +857,10 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       
         
 
-
-如果假设你设置了一批 key 只能存活 1 分钟，那么 1 分钟后，Redis 是怎么对这批 key 进行删除的呢？
-常用的过期数据的删除策略就两个（重要！自己造缓存轮子的时候需要格外考虑的东西）：
-
-惰性删除： 只会在取出 key 的时候才对数据进行过期检查。这样对 CPU 最友好，但是可能会造成太多过期 key 没有被删除。
-定期删除： 每隔一段时间抽取一批 key 执行删除过期 ...
+一些问题Java序列化，反序列化Java序列化指将Java对象转换为字节序列的过程，反序列化指将字节序列转换为目标对象的过程；
+什么情况下需要序列化当Java对象需要网络传输或者持久化到磁盘上时；
+序列化的实现？让类实现Serializable接口，标注该类对象可以被序列化；
+Java 序列化中如果有些字段不想进行序列化，怎么办？对于不想进行序列化的变量，使用 transient 关键字...
       
     
   </div>
@@ -687,220 +868,15 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
-        Redis和memcached的区别和使用场景
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-共同点
-都是基于内存的数据库，一般都用来当做缓存使用。
-都有过期策略。
-两者的性能都非常高。
-
-区别
-Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等；
-
-Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，hash等数据结构的存储；
-
-虚拟内存–Redis当物理内存用完时，可以将一些很久...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/07/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/">
-        海量数据Top K问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>问题引入：10亿个数中找出最大的10000个数（top K问题）</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/07/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
-        进程调度算法
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-介绍无论是在批处理系统还是分时系统中，用户进程数一般都多于处理机数、这将导致它们互相争夺处理机。另外，系统进程也同样需要使用处理机。这就要求进程调度程序按一定的策略，动态地把处理机分配给处于就绪队列中的某一个进程，以使之执行。
-
-
-
-
-
-7种调度算法先来先服务调度算法（FCFS）先来先服务(FCFS)调度算法是一种最简单的调度算法，该算法既可用于作业调度，也可用于进程调度。当在作业调度中...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
-        Redis6.0 相关问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Redis6.0之前的版本真的是单线程吗？Redis在处理客户端的请求时，包括获取 (socket 读)、解析、执行、内容返回 (socket 写) 等都由一个顺序串行的主线程处理，这就是所谓的“单线程”。但如果严格来讲从Redis4.0之后并不是单线程，除了主线程外，它也有后台线程在处理一些较为缓慢的操作，例如清理脏数据、无用连接的释放、大 key 的删除等等。
-Redis6.0之前为...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/07/NoSQL/Redis6-0%20%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
+          <a class='readmore' href='/2021/05/09/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/'>
             Read More
           </a>
         </div>
@@ -927,7 +903,7 @@ Redis6.0之前为...
           </a>
         
         <p class="current">
-          5 / 24
+          5 / 25
         </p>
         
           <a class="next" rel="next" href="/page/6/">
@@ -1051,7 +1027,7 @@ Redis6.0之前为...
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1081,12 +1057,12 @@ Redis6.0之前为...
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1111,7 +1087,7 @@ Redis6.0之前为...
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1126,7 +1102,7 @@ Redis6.0之前为...
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -1168,7 +1144,7 @@ Redis6.0之前为...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>231 篇</div>
+          <div>244 篇</div>
         </div>
       
 
@@ -1190,7 +1166,7 @@ Redis6.0之前为...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>329k 字</div>
+          <div>370.7k 字</div>
         </div>
       
 
@@ -1216,8 +1192,8 @@ Redis6.0之前为...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 27 2021 22:42:19 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-27 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:18 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-01 日</div>
           
         </div>
         
@@ -1267,7 +1243,7 @@ Redis6.0之前为...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
           }
         </script>
         

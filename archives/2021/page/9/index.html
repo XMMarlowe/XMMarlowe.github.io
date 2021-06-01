@@ -414,8 +414,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">
-        布隆过滤器
+      <a href="/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">
+        Java如何开启线程?怎么保证线程安全?
       </a>
     </h2>
   
@@ -424,8 +424,474 @@
       
         
 
-简介布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都比一般的算法要好的多，缺点是有一定的误识别率和删除困难。
-在讲述布隆过滤器的原理之前，我们先思考一个问题，如果想要判断一个元素是否存在，你通常会怎么做？一般的做法都是将其保存起来然后通过比较确...
+线程和进程的区别进程是操作系统进行资源分配的最小单元。线程是操作系统进行任务调度分配的最小单元，线程隶属于进程。
+如何开启线程？
+继承Thread类,重写run方法。
+实现Runnable接口， 实现run方法。
+实现Callable接口， 实现call方法。通过FutureTask创建一个线程，获取到线程执行的返回值。
+通过线程池来开启线程。
+
+怎么保证线程安全？加锁
+
+JVM提供的锁...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-26</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/">
+        聊聊对关系型数据库和非关系型数据库的理解
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+关系型数据库关系型数据库最典型的数据结构是表，由二维表及其之间的联系所组成的一个数据组织
+优点
+易于维护：都是使用表结构，格式一致；
+使用方便：SQL语言通用，可用于复杂查询；
+复杂操作：支持SQL，可用于一个表以及多个表之间非常复杂的查询。
+
+缺点
+读写性能比较差，尤其是海量数据的高效率读写；
+固定的表结构，灵活度稍欠；
+高并发读写需求，传统关系型数据库来说，硬盘I/O是一个很大的瓶颈...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-25</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/">
+        同一线程组下的线程，一个线程的异常会影响其他线程运行么？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+当一个线程抛出OOM异常后，它所占据的内存资源会全部被释放掉，从而不会影响其他线程的运行！
+一个线程溢出后，进程里的其他线程还能照常运行。
+同一线程组下的线程，一个线程出现异常不会影响其他线程的运行。
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/">
+        线程崩溃必会使进程崩溃吗？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+结论：线程崩溃不一定导致进程崩溃。
+线程崩溃的本质就是内存出错。而内存出错有时不会引起其他线程出错的，因为崩溃的线程，也就是出错的内存有时侯没有被其他线程访问，也就不会产生问题，但有时候会打乱其他线程的内存。
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/23/Java/Object%E7%B1%BB%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+        Object类中常用方法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+取得对象信息的方法：toString()该方法在打印对象时被调用，将对象信息变为字符串返回，默认输出对象地址。
+编译器默认调用toString()方法输出对象，但输出的是对象的地址，我们并不能看懂它的意思。那么就要通过重写Object类的toString()方法来输出对象属性信息。
+对象相等判断方法：equals()public boolean equals(Object obj);用于...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/Java/Object%E7%B1%BB%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/23/%E6%95%B0%E6%8D%AE%E5%BA%93/broadcast-hash-join%E5%92%8Csort-merge-join/">
+        broadcast hash join和sort merge join
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL技术总体可以分为简单操作（过滤操作-where、排序操作-limit等），聚合操作-groupby以及Join操作等。其中Join操作是最复杂、代价最大的操作类型，也是OLAP场景中使用相对较多的操作。因此很有必要对其进行深入研究。
+另外，从业务层面来讲，用户在数仓建设的时候也会涉及Join使用的问题。通常情况下，数据仓...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/%E6%95%B0%E6%8D%AE%E5%BA%93/broadcast-hash-join%E5%92%8Csort-merge-join/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+        操作系统之内存管理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+虚拟地址转换为物理地址
+第一步，先将虚拟地址转换为逻辑地址： 根据程序中的虚拟地址得出其所在的段，然后加上段偏移，我们就能得到一个逻辑地址
+第二步，再将逻辑地址转换为线型地址： 有了逻辑地址之后，我们需要将逻辑地址转换为线型地址（因为线型地址是逻辑地址转换到物理地址的一个中间层），只需要把逻辑地址加上段的基地址就能生成一个线型地址
+第三步，再将线型地址再转换为物理地址：
+如果启用了分页机制...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-22</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/">
+        Java并发之Unsafe类
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级别、不安全操作的方法，如直接访问系统内存资源、自主管理内存资源等，这些方法在提升Java运行效率、增强Java语言底层资源操作能力方面起到了很大的作用。但由于Unsafe类使Java语言拥有了类似C语言指针一样操作内存空间的能力，这无疑也增加了程序发生相关指针问题的风险。在程序中过度、不正确使用Unsafe类会使得程...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-21</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/19/%E5%B9%B6%E5%8F%91/%E7%BB%A7%E6%89%BFThread%E5%92%8C%E5%AE%9E%E7%8E%B0Runnable%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        继承Thread和实现Runnable的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+
+当使用继承的时候，主要是为了不必重新开发，并且在不必了解实现细节的情况下拥有了父类我所需要的特征。它也有一个很大的缺点，那就是如果我们的类已经从一个类继承（如小程序必须继承自 Applet 类），则无法再继承 Thread 类，
+Java只能单继承，因此如果是采用继承Thread的方法，那么在以后进行代码重构的时候可能会遇到问题，因为你无法继承别的类了，在其他的方面，两者之间并没什么...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/19/%E5%B9%B6%E5%8F%91/%E7%BB%A7%E6%89%BFThread%E5%92%8C%E5%AE%9E%E7%8E%B0Runnable%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/">
+        多线程Future的用法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+在并发编程时，一般使用runnable，然后扔给线程池完事，这种情况下不需要线程的结果。
+所以run的返回值是void类型。
+如果是一个多线程协作程序，比如斐波那契数列，1，1，2，3，5，8…使用多线程来计算。但后者需要前者的结果，就需要用callable接口了。callable用法和runnable一样，只不过调用的是call方法，该方法有一个泛型返回值类型，你可以任意指定。
+线程是...
       
     
   </div>
@@ -436,456 +902,12 @@
         <time>2021-04-17</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9B%B8%E6%AF%94%E4%BA%8EBST%E5%92%8CAVL%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%EF%BC%9F/">
-        红黑树相比于BST和AVL树有什么优点？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-红黑树是牺牲了严格的高度平衡的优越条件为代价，它只要求部分地达到平衡要求，降低了对旋转的要求，从而提高了性能。红黑树能够以O(log2 n)的时间复杂度进行搜索、插入、删除操作。此外，由于它的设计，任何不平衡都会在三次旋转之内解决。当然，还有一些更好的，但实现起来更复杂的数据结构能够做到一步旋转之内达到平衡，但红黑树能够给我们一个比较“便宜”的解决方案。
-
-相比于BST，因为红黑树可以能确...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9B%B8%E6%AF%94%E4%BA%8EBST%E5%92%8CAVL%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/Java/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/">
-        Java内存模型-JMM
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-介绍Java内存模型（Java Memery Model）用来屏蔽掉各种硬件和操作系统的内存访问差异。以至于让Java在各中平台下都能达到一致的内存访问效果。
-简单的说，JMM 定义了一套在多线程读写共享数据时（成员变量、数组）时，对数据的可见性、有序性、和原子性的规则和保障.
-从硬件角度来看。因为处理器的运算速度很快，比如做一个递增操作，就需要从内存中拿值，操作后再放回内存。这样的I/...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/Java/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E9%97%AE%E9%A2%98/">
-        线程间通信问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-wait/notify/notifyAll
-wait()、notify/notifyAll() 方法是Object的本地final方法，无法被重写。
-
-wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchronized 关键字使用，即，一般在synchronized 同步代码块里使用 wait()、notify/notifyAll() 方法。
-
-由于 wait()、not...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/16/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/NoSQL/Redis%E8%B7%B3%E8%B7%83%E8%A1%A8/">
-        Redis跳跃表
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Redis跳跃表相关问题…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/NoSQL/Redis%E8%B7%B3%E8%B7%83%E8%A1%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/NoSQL/%E5%81%87%E5%A6%82Redis%E9%87%8C%E9%9D%A2%E6%9C%891%E4%BA%BF%E4%B8%AAkey%EF%BC%8C%E5%85%B6%E4%B8%AD%E6%9C%8910w%E4%B8%AAkey%E6%98%AF%E4%BB%A5%E6%9F%90%E4%B8%AA%E5%9B%BA%E5%AE%9A%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E5%89%8D%E7%BC%80%E5%BC%80%E5%A4%B4%E7%9A%84%EF%BC%8C%E5%A6%82%E4%BD%95%E5%B0%86%E5%AE%83%E4%BB%AC%E5%85%A8%E9%83%A8%E6%89%BE%E5%87%BA%E6%9D%A5%EF%BC%9F/">
-        假如Redis里面有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如何将它们全部找出来？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-使用keys指令可以扫出指定模式的key列表。
-对方接着追问：如果这个redis正在给线上的业务提供服务，那使用keys指令会有什么问题？
-这个时候你要回答redis关键的一个特性：redis的单线程的。keys指令会导致线程阻塞一段时间，线上服务会停顿，直到指令执行完毕，服务才能恢复。这个时候可以使用scan指令， scan指令可以无阻塞的提取出指定模式的key列表，但是会有一定的重复...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/NoSQL/%E5%81%87%E5%A6%82Redis%E9%87%8C%E9%9D%A2%E6%9C%891%E4%BA%BF%E4%B8%AAkey%EF%BC%8C%E5%85%B6%E4%B8%AD%E6%9C%8910w%E4%B8%AAkey%E6%98%AF%E4%BB%A5%E6%9F%90%E4%B8%AA%E5%9B%BA%E5%AE%9A%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E5%89%8D%E7%BC%80%E5%BC%80%E5%A4%B4%E7%9A%84%EF%BC%8C%E5%A6%82%E4%BD%95%E5%B0%86%E5%AE%83%E4%BB%AC%E5%85%A8%E9%83%A8%E6%89%BE%E5%87%BA%E6%9D%A5%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/NoSQL/Redis%E4%BA%8B%E5%8A%A1%E7%9A%84CAS-check-and-set/">
-        Redis事务的CAS(check-and-set)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>和众多其它数据库一样，Redis作为NoSQL数据库也同样提供了事务机制。在Redis中，MULTI/EXEC/DISCARD/WATCH这四个命令是我们实现事务的基石。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/NoSQL/Redis%E4%BA%8B%E5%8A%A1%E7%9A%84CAS-check-and-set/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/NoSQL/%E4%B8%BA%E4%BB%80%E4%B9%88redis%E9%9C%80%E8%A6%81%E6%8A%8A%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E6%94%BE%E5%88%B0%E5%86%85%E5%AD%98%E4%B8%AD/">
-        为什么redis需要把所有数据放到内存中?
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Redis为了达到最快的读写速度将数据都读到内存中，并通过异步的方式将数据写入磁盘。所以redis具有快速和数据持久化的特征。如果不将数据放在内存中，磁盘I/O速度为严重影响redis的性能。在内存越来越便宜的今天，redis将会越来越受欢迎。
-如果设置了最大使用的内存，则数据已有记录数达到内存限值后不能继续插入新值。
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/NoSQL/%E4%B8%BA%E4%BB%80%E4%B9%88redis%E9%9C%80%E8%A6%81%E6%8A%8A%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E6%94%BE%E5%88%B0%E5%86%85%E5%AD%98%E4%B8%AD/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/">
-        Redis内存淘汰机制
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Redis 提供 6 种数据淘汰策略：
-
-volatile-lru（least recently used）： 从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
-volatile-ttl： 从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰
-volatile-random： 从已设置过期时间的数据集...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/Java/Java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
-        Java反射相关知识点
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-什么是反射？反射是在运行状态中，对于任意一个类， 都能够知道这个类的所有属性和方法；对于任意一个对象， 都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为 Java 语言的反射机制。
-哪里用到反射机制？
-JDBC中，利用反射 (Class.forName(xxx)) 动态加载了数据库驱动程序。
-Web服务器中利用反射调用了Sevlet的服务方法。
-Ecl...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/Java/Java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
+          <a class='readmore' href='/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/'>
             Read More
           </a>
         </div>
@@ -912,7 +934,7 @@ Ecl...
           </a>
         
         <p class="current">
-          9 / 16
+          9 / 18
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/10/">
@@ -1037,7 +1059,7 @@ Ecl...
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1067,12 +1089,12 @@ Ecl...
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1097,7 +1119,7 @@ Ecl...
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1112,7 +1134,7 @@ Ecl...
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -1154,7 +1176,7 @@ Ecl...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>231 篇</div>
+          <div>244 篇</div>
         </div>
       
 
@@ -1176,7 +1198,7 @@ Ecl...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>329k 字</div>
+          <div>370.7k 字</div>
         </div>
       
 
@@ -1202,8 +1224,8 @@ Ecl...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 27 2021 22:42:07 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-27 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:02 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-01 日</div>
           
         </div>
         
@@ -1253,7 +1275,7 @@ Ecl...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
           }
         </script>
         

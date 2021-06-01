@@ -415,21 +415,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/">
-        Java类加载机制和类加载器概述
+      <a href="/2020/03/16/Java/HashMap%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">
+        HashMap扩容机制
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来对该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。</p>
+      <p>聊聊HashMap扩容机制</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-09</time>
+        <time>2020-03-16</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -437,7 +437,444 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/'>
+          <a class='readmore' href='/2020/03/16/Java/HashMap%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/16/Java/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/">
+        ConcurrentHashMap 线程安全的具体实现方式/底层具体实现
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+JDK1.7
+首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。
+ConcurrentHashMap 是由 Segment 数组结构和 HashEntry 数组结构组成。
+Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数据...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/16/Java/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/16/Java/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        ConcurrentHashMap 和 Hashtable 的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p><code>ConcurrentHashMap</code> 和 <code>Hashtable</code> 的区别主要体现在实现线程安全的方式上不同。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/16/Java/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        HashMap 和 Hashtable 的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+线程是否安全： HashMap 是非线程安全的，HashTable 是线程安全的,因为 HashTable 内部的方法基本都经过synchronized 修饰。（如果你要保证线程安全的话就使用 ConcurrentHashMap 吧！）；
+效率： 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它；
+对 N...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        ArrayList和LinkedList的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+Arraylist 与 LinkedList 区别?
+是否保证线程安全： ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
+底层数据结构： Arraylist 底层使用的是 Object 数组；LinkedList 底层使用的是 双向链表 数据结构（JDK1.6 之前为循环链表，JDK1.7 取消了循环。）
+插入和删除是否受元素位置的影响： ① Array...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">
+        ArrayList扩容机制
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+1234567891、添加元素时，首先进行判断是否大于默认容量102、如果，小于默认容量，直接在原来基础上+1，元素添加完毕3、如果，大于默认容量，则需要进行扩容，扩容核心是grow()方法   3.1 扩容之前，首先创建一个新的数组，且旧数组被复制到新的数组中       这样就得到了一个全新的副本，我们在操作时就不会影响原来数组了   3.2 然后通过位运算符将新的容量更新为旧容量的...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/">
+        HashMap是线程安全的吗？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p><code>HashMap</code>的线程不安全体现在会造成死循环、数据丢失、数据覆盖这些问题。其中死循环和数据丢失是在JDK1.7中出现的问题，在JDK1.8中已经得到解决，然而1.8中仍会有数据覆盖这样的问题。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
+        HashMap底层原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+JDK1.7数据结构则是采用的位桶和链表相结合的形式完成了，即拉链法。具体如下图所示：
+HashMap里面存储的是静态内部类Entry的对象，这个对象其实也是一个key-value的结构。
+hash源码：
+12345678static int hash(int h) &#123;    // This function ensures that hashCodes that differ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        常见的IO模型有哪些？Java中的BIO，NIO，AIO的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>从应用程序的视角来看的话，我们的应用程序对操作系统的内核发起 IO 调用（系统调用），操作系统负责的内核执行具体的 IO 操作。也就是说，我们的应用程序实际上只是发起了 IO 操作的调用而已，具体 IO 的执行是由操作系统的内核来完成的。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/13/Java/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/">
+        final,static,this,super关键字总结
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+final 关键字final关键字，意思是最终的、不可修改的，最见不得变化 ，用来修饰类、方法和变量，具有以下特点：
+
+final修饰的类不能被继承，final类中的所有成员方法都会被隐式的指定为final方法；
+
+final修饰的方法不能被重写；
+
+final修饰的变量是常量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能让...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/13/Java/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/'>
             Read More
           </a>
         </div>
@@ -464,8 +901,14 @@
           </a>
         
         <p class="current">
-          24 / 24
+          24 / 25
         </p>
+        
+          <a class="next" rel="next" href="/page/25/">
+            <section class="post next white-box shadow">
+              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </section>
+          </a>
         
       </div>
     
@@ -582,7 +1025,7 @@
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -612,12 +1055,12 @@
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(22)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -642,7 +1085,7 @@
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -657,7 +1100,7 @@
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(17)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
@@ -699,7 +1142,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>231 篇</div>
+          <div>244 篇</div>
         </div>
       
 
@@ -721,7 +1164,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>329k 字</div>
+          <div>370.7k 字</div>
         </div>
       
 
@@ -747,8 +1190,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu May 27 2021 22:42:23 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-05-27 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:28 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-01 日</div>
           
         </div>
         
@@ -798,7 +1241,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-05-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
           }
         </script>
         

@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1'>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>IPv4地址 - Marlowe</title>
+  
+    <meta name="keywords" content="IPv4">
+  
+
+  
+    <meta name="description" content="OSI/RM 的网络层和 TCP/IP 协议体系结果的网际互连层最重要的一个协议就是 IP 协议，目前正处于 IPv4 和 IPv6 这两个版本的交替、过渡时间。这篇博客主要介绍 IPv4 地址。">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+            <i class='https://marlowe.oss-cn-beijing.aliyuncs.com/img/bitbug_favicon.ico'></i>
+          
+          
+            Marlowe
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/"
+              
+              
+              id="https:githubcomvolantis-xhexo-theme-volantis">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        IPv4地址
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 25, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="IPv4地址" data-path="/2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IPv4%E5%9C%B0%E5%9D%80/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>4.9k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>18 min</p>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <p>OSI/RM 的网络层和 TCP/IP 协议体系结果的网际互连层最重要的一个协议就是 IP 协议，目前正处于 IPv4 和 IPv6 这两个版本的交替、过渡时间。这篇博客主要介绍 IPv4 地址。</p>
+<a id="more"></a>
+
+<h3 id="IPv4-地址基本格式"><a href="#IPv4-地址基本格式" class="headerlink" title="IPv4 地址基本格式"></a>IPv4 地址基本格式</h3><p>IPv4 使用 32 位（4 字节）地址，因此整个地址空间有 4 294 967 296（2^32^）个地址，也就是近43亿个地址。不过，有一些地址是特殊用途而保留的，如局域网专用地址（约1800万个地址）和组播地址（约2700万个地址），这样一来可直接在广域网上使用、路由的公网 IP 地址数量就更加少了。</p>
+<hr>
+<p><strong>说明</strong>：公网 IP 地址是指可以子啊广域网上直接使用的，直接被路由（也就是可以被指路径查到），并需向 IP 地址管理机构申请、注册、购买，且全球唯一（不存在多个用户拥有、使用相同的公网 IP 地址的情况）的 IPv4 地址。打个比方，公网 IP 地址就像公民的身份证号码，每个身份证号都是全国唯一的，并且通过这个号码可以查到我们的基本信息，找到我们。公网 IP 地址直接分配给互联网上的主机、服务器或其他设备，可以通过它在全球范围内找到对应的主机、服务器和设备。如各大企业网站通常都是直接使用公网 IP 地址的。</p>
+<p>与公网 IP 地址相对应的自然是私网 IP 地址，又称为专用网络 IP 地址或者局域网 IP 地址。私网 IP 地址是指仅可以在各用户自己的局域网内部使用，且不同用户可以重复使用，无须向 IP 地址管理机构申请、注册，也无须购买的 IPv4 地址。私网 IP 地址就相当于我们企业内部的员工编号，仅在内部使用，不能通过这个员工编号来在全国范围内找到我们。企业内部局域网使用的就是私网 IP 地址，具体有哪些地址属于私网 IP 地址我们将会在后面进行详细的介绍。</p>
+<hr>
+<p>随着公网地址不断被分配给最终的用户，IPv4 地址枯竭问题也随之产生。虽然基于可变的子网掩码（VLSM）、无类别域间路由（CIDR）和网络地址转换（NAT）的地址结构重构显著地减少了地址的枯竭的速度，但在 2011 年 2 月 3 日，在最后 5 个地址块被分配给 5 个区域互联网注册管理机构之后，IANA 的主要地址池空了，所以现在正在积极推动 IPv6，我们将会在下一篇博客讲解 IPv6 地址。</p>
+<p>IPv4 地址在计算机内部是以二进制形式表示的，每个地址都有 32 位，由数字 0 和 1 构成。在这 32 位的二进制数中，其实每个 8 位之间并没有我们所看到的那个用来分隔各段的一个小圆点，只是为了方便我们自己阅读，在每个字节之间用一个小圆点分隔。因为整个 IP 地址有 32 位，无论是书写还是记忆都很不方便，于是我们在日常的 IP 地址管理中把这个 32 位长的二进制 IP 地址分段转换成对应的十进制，在每个字节间用小圆点分隔。引用某个 IPv4地址时，可使用 W.X.Y.Z 的点分十进制表示形式，如 192.168.1.10 等。</p>
+<p>由前面介绍的数据转换内容可以知道，每个 8 位二进制所能表示的最大数就是 2^8^ −1=256−1=255 （最小数为0），所以 IPv4地址转换成十进制数后，每段8位二进制组的取值范围是 0~255。因为 IP 地址在计算机是以二进制表示的，32位就相当于 4 字节，所以在 IPv4 协议数据报格式，无论是源 IP 字段，还是目的 IP 地址字段都占 4 字节。</p>
+<h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3><p>我们为设备配置 IP 地址时，通常是不能仅配置 IPv4 地址，而必须同时配置所谓的子网掩码，如下图所示。那么子网掩码是什么？它有什么用呢？</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131511.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131511.png" srcset="data:image/png;base64,666" alt="20210528131511"></p>
+<p>要想理解什么是子网掩码，就不能不先了解 IPv4 地址的构成。互联网是由很多小型网络构成的，每个网络上有很多主机，这样便构成了一个有层次的结构。IPv4 地址在设计时就考虑到地址分配的层次特点，将每个 IP 地址都分割成网络 ID 和主机 ID 两部分，以便于 IPv4 地址的寻址操作。那么 IPv4 地址的网络 ID 和主机 ID 各是多少位呢？如果不指定，在寻址时就不知道对应 IPv4 地址中哪些位代表网络 ID、哪些位代表主机 ID，这就需要通过这里所说的子网掩码来实现了。</p>
+<p>与二进制 IPv4 相同，子网掩码也有 1 和 0 组成，且长度也是 32 位，我们也可以把它分成网络 ID 和主机 ID 两部分，且各自长度与 IPv4 地址的网络 ID 和主机 ID 部分对应相等。但子网掩码的网络 ID 部分全是 1，1 的数目等于网络 ID 的长度；主机 ID 部分全是 0 表示，0 的数目等于主机 ID 的长度。下图所示是一个网络长度为 20 的子网掩码。这样做的目的是为了在寻址过程中使子网掩码与对应的 IPv4 地址做逻辑与运算时用 0 遮住 IPv4 地址中原主机 ID 部分（因为 0 与任何数相与的结果都是 0 ），而不改变原网络 ID 部分（因为 1 与任何数相与都不改变原来的值），这样就一来就可以很容易确定对应目的 IPv4 地址所在的网络了，确定了网络，也就确定了主机，因为在 IPv4 地址中除了网络 ID 部分就是主机 ID 部分。<br>子网掩码不是一个地址，但是可以确定一个 IPv4地址中的哪一部分是网络 ID，哪一部分是主机 ID，连续 1 的部分就代表网络 ID，连续 0 的部分就代表主机 ID。子网掩码的作用就是获取主机通信不同情况，选择不同路由，子网掩码一旦设置，对应 IPv4地址中的网络 ID 和主机 ID 部分就固定了。</p>
+<p>与 IPv4地址一样，子网掩码也可以转换成点分十进制形式。根据子网掩码格式可以发现，子网掩码有 0.0.0.0；255.0.0.0；255.255.0.0；255.255.255.0；255.255.255.255 五种，其中 0.0.0.0 代表任意网路的掩码，如我们在设置默认路由时，不仅 IP 地址为 0.0.0.0，子网掩码也为 0.0.0.0；A 类地址的默认子网掩码为 255.0.0.0；B 类地址的默认子网掩码为 255.255.0.0；C 类地址的默认子网掩码为 255.255.255.0；而 255.255.255.255 可以看作是单一主机网络，代表这个网络就这一个 IPv4 地址，在配置 ACL（访问控制列表）时，如果控制的是一台主机，则对应的子网掩码也为 255.255.255.255。有关 A、B、C 类地址的分类将在下面介绍。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131541.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131541.png" srcset="data:image/png;base64,666" alt="20210528131541"></p>
+<h3 id="IPv4-地址的基本分类"><a href="#IPv4-地址的基本分类" class="headerlink" title="IPv4 地址的基本分类"></a>IPv4 地址的基本分类</h3><p>IPv4 地址共有 2^32^ 个，最初把一个地址分成两部分：“网络识别码”在地址的最高的字节当中，”主机识别码“在剩下的部分中。这样划分的话，就使得最多只能分配给 256 个网络，显然这样是远远不够的。</p>
+<p>为了克服这个限制，在随后出现的分类网络中，地址的最高位字节被重新定义为网路的类别（即网络 ID），共 5 个：A、B、C、D 和 E。A、B 和 C 类用于单播通信中设备 IP 地址分配；D 类属于组播地址，用于组播通信；E类是保留地址。他们均有不同的网络类别（也就是网络 ID） 长度，剩余部分用来识别网络内的主机（称为主机 ID）。网络 ID 用来确定每类网络中有的网络数，而主机 ID 用来确定每个网络中的 IP 地址数。下面分别介绍这五类地址的结构。</p>
+<h4 id="A-类-IPv4-地址"><a href="#A-类-IPv4-地址" class="headerlink" title="A 类 IPv4 地址"></a>A 类 IPv4 地址</h4><p>A 类 IPv4 地址结构如下图所示，其中网络 ID 占用最高一个字节，也就是第一个二进制 8 位组，而主机 ID 则占用剩余三个字节，也就是后面的三个二进制 8 位组（一共 24 位）。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131628.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131628.png" srcset="data:image/png;base64,666" alt="20210528131628"></p>
+<p>在分类中规定，A 类 IPv4 地址中网络 ID 的最高位固定为 0，后面 7 位可变。这样一来，A 类网络的总数从 256（2^8^）个减少到 128（2^7^)个。但实际可以使用的只有 126 个，即整个 IPv4 地址中可构建 126 个 A 类网络，因为网络 ID 为 0 和 127 的 A 类网络不可用的。网络 ID 全为 0 的地址为保留地址，不能被分配；而网络 ID 为 01111111（相当于十进制的 127）的地址专用本地环路测试（也就是通常所说的环路地址），也是不能分配的。也就是以 0 或者 127 开头的地址是不能分配给节点使用的。</p>
+<p>又因为 A 类 IPv4 地址中主机 ID 又24 位，所有可以使用的主机 ID 数，也就是可以每个 A 类网络中拥有的 IPv4 地址数为 166 777 216（2^24^）。但主机 ID 全为 0 的地址为网路地址，而主机全为 1 的地址为广播地址，不能分配给主机使用，所以实际上可用的地址数为 166 777 214（2^24^−2）。A 类网络中可以构建的网络数最少，但每个网络中拥有的地址数是最多的，也就是可以构建的网络规模最大，适用于大型企业和运营商。</p>
+<p>A 类 IPv4 地址的子网掩码固定为 255.0.0.0，因为子掩码就是网络 ID 部分全为 1，主机 ID 部分全为 0，而 A 类地址中网络 ID 部分就是最高的那个字节。</p>
+<h4 id="B-类-IPv4-地址"><a href="#B-类-IPv4-地址" class="headerlink" title="B 类 IPv4 地址"></a>B 类 IPv4 地址</h4><p>B 类 IPv4 地址结构如下图所示，其网络 ID 占用最高的前两个字节，也就是第一个和第二个二进制 8 位组，而主机 ID 则占用剩余的两个字节，也就是后面两个二进制 8 位组。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131732.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131732.png" srcset="data:image/png;base64,666" alt="20210528131732"></p>
+<p>B 类 IPv4 地址的网络 ID 的最高两位固定分别为 1、0，后面 14 位可变。由此可知 B 类网络的总数从 65536（2^16^）减少到 16384（2^14^）个；B 类 IPv4 地址中主机 ID 为 16 位，所以可用的主机数，也就是每个 B 类网络拥有的 IPv4 地址数为 65536（2^16^）个。同样因为主机 ID 全为 0 的地址是网络地址，而主机 ID 全为 1 的地址为广播地址，不能分配给主机使用，所以实际上可以使用的地址数为 65534 个。</p>
+<p>B 类 IPv4 地址的子网掩码为固定的255.255.0.0，因为 B 类地址中网络 ID 部分是最高的两字节，每个字节均为 8 个连续的 1，转换成十进制后每个字节就是 255 了。</p>
+<h4 id="C-类-IPv4-地址"><a href="#C-类-IPv4-地址" class="headerlink" title="C 类 IPv4 地址"></a>C 类 IPv4 地址</h4><p>C 类 IPv4 地址结构如下图所示，其网络 ID 占用最高的前三个字节，也就是第一个、第二个和第三个二进制 8 位组，而主机 ID 只占用最后的一个字节，也就是只有最后一个二进制 8 位组。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131824.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528131824.png" srcset="data:image/png;base64,666" alt="20210528131824"></p>
+<p>C 类 IPv4 地址的网络ID的最高三位固定分别为 1、1、0，后面的 21 位可变。由此得知 C 类网络总数从 166 777 216（2^24^）减少到 2 097 152（2^22^）个。C 类地址中主机 ID 仅为 8 位，所以可用的主机 ID 数，也就是每个 C 类网络拥有的 IPv4 地址数为 256（2^8^）个。同样因为主机 ID 全为 0的地址为网络地址，而主机 ID 全为1的地址为广播地址，不能分配给主机使用，所以实际上可用的地址数为 254（2^8^−2）。</p>
+<p>C 类单播地址的子网掩码为固定的255.255.255.0，因为 C 类地址中网络 ID 部分是最高的前 3 个字节，每个字节均为 8 个连续的 1，转换成十进制后每个字节就是 255 了。</p>
+<p>下表总结了A、B 和 C三类 IPv4 地址的主要特征</p>
+<p>类别|    w 的值|    网络 ID 部分|    主机 ID 部分|    网络 ID 数|    每个网络的主机 ID 数|<br>|:—:|:—:|:—:|:—:|:—:|:—:|<br>A|    1-126|    w|    x.y.z|    126|    16 777 214|<br>B|    128-191|    w.x|    y.z|    16 384|    65 534|<br>C|    192-223|    w.x.y|    z|    2 097 152|    254|</p>
+<h4 id="D-类-IPv4-地址"><a href="#D-类-IPv4-地址" class="headerlink" title="D 类 IPv4 地址"></a>D 类 IPv4 地址</h4><p>D 类 IPv4 地址是组播地址，用于 IPv4 组播通信中。通过组播 IPv4 地址，组播时源主机（组播源）只需发送一份数据，就可以使对应组播组（组播组使用 D IPv4 地址标识）中的一个主机或者多个主机收到这份数据的副本的通信方式，但只有组播组内的主机可以接收到该数据。</p>
+<p>IP 组播技术有效地解决了单点发送多点接受的问题，实现了 IP 网络中点到多点的高效数据传输，能够大量节约网络带宽、降低网络负载。还可以利用网络的组播特性方便地提供一些新的增值服务，包括在线直播、网络电视、远程教育、远程医疗、网络电台、实时视频会议等互联网的信息服务领域。</p>
+<p>D 类 IPv4 地址结构如下图所示，规定在最高字节中前四位分别固定为 1、1、1、0，组播地址范围为 224.0.0.0 ~ 239.255.255.255。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528132055.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528132055.png" srcset="data:image/png;base64,666" alt="20210528132055"></p>
+<p>整个组播 IPv4 地址根据不同的应用环境和用途又可以分为预留组播地址、公用组播地址、临时组播地址、本地管理组播地址四大类。</p>
+<h5 id="1）预留组播地址"><a href="#1）预留组播地址" class="headerlink" title="1）预留组播地址"></a>1）预留组播地址</h5><p>预留组播地址（又称永久组播地址）就是由 IANA 保留不分配给特定用户使用，仅为公用的组播路由协议分配使用的组播地址，地址范围为 224.0.0.0 ~ 224.0.0.255。使用这些预留组播地址的组播协议包括 IGMP（Internet 组管理协议）、CGMP（Cisco 组管理协议）、IGMP Snooping（IGMP 侦听）和 PIM（协议无关组播）等。使用这段组播地址的 IP 包不被路由器转发。</p>
+<p>在这个地址组段中，224.0.0.0 不分配；224.0.0.1 分配给本地组播网络所有支持组播的主机；224.0.0.2 分配给本地组播网络中的所有组播路由器；224.0.0.4 分配给本地组播网络中的所有 SVMRP 路由器；224.0.0.5 分配给本地组播网络中的所有 OSPF 路由器；224.0.0.6 分配给本地组播网络中的所有 OSPF 指定路由器（DR）；224.0.0.9 分配给本地组播网络中的所有 RIPv2 路由器；224.0.0.10 分配给组播网络中所有 IGRP 路由器；224.0.0.13 分配给本地组播网络中的所有 PIMv2 路由器；224.0.0.22 分配给本地组播网络中的所有 IGMPv3 路由器。</p>
+<h5 id="2）公用组播地址"><a href="#2）公用组播地址" class="headerlink" title="2）公用组播地址"></a>2）公用组播地址</h5><p>公用组播地址就是在全球范围内可以直接在互联网上使用的组播地址，就像前面介绍的公网单播 IPv4 地址一样。公用组播地址范围为 224.0.1.0 ~ 224.0.1.255，也是有 IANA 为提出申请并付费的用户分配。</p>
+<h5 id="3）临时组播地址"><a href="#3）临时组播地址" class="headerlink" title="3）临时组播地址"></a>3）临时组播地址</h5><p>临时组播地址就是由企业用户在本企业局域网内部使用的组播地址，地址范围为 224.0.2.0 ~ 238.255.255.255，仅在本地局域网有效，就像前面介绍的局域网 IPv4 地址一样。</p>
+<h5 id="4）本地管理组播地址"><a href="#4）本地管理组播地址" class="headerlink" title="4）本地管理组播地址"></a>4）本地管理组播地址</h5><p>本地管理组播地址也是保留使用的，专用于局域网内部测试，地址范围为 239.0.0.0~238.255.255.255，仅在特定的本地网络范围有效。</p>
+<p>当网络层收到组播报文时，根据组播目的查找组播转发表，对报文进行转发。在私网中，组播时不需要再工作站配置的，只需要在网络中的路由器或者支持组播协议的三层交换机上进行配置。私网工作站被分配的组播地址都是 224.0.0.1，就像环路地址 127.0.0.1 一样，无需另外配置。只要在路由器中启用了组播协议后就可以对加入到组播组中。公网中，工作站组播地址选择 224.0.1.0 ~ 238.255.255.255 范围中的一个就可以了。</p>
+<p>另外，要注意的是，在进行组播通信时，在数据链路层目的 MAC 地址封装的也是组播 MAC 地址。IANA 把 0.：00：5E 开头的以太网 MAC 块作为组播地址对应的二层组播 MAC 地址。组播 MAC 地址的范围是 01:00:5E:00:00:00 ~ 01:00:5E:7F:FF:FF（前 24 位为 MAC 头，固定不变，第 25 位为 0），并要求将 IPv4 组播地址的后 28 位（因为最高的 4 位是固定不变的）映射到 48 位的 MAC 地址空间中。</p>
+<p>具体的映射方法是将组播 IPv4 地址中的低 23 位放入 MAC 地址的低 23 位，如下图所示。至于为什么要映射后面的23位，原因在于根据 IANA 给出组播 MAC 地址段是前 3 字节（也就是 24 位）来标识单位或者厂商，只有后面的 24 位来和 IP 地址映射；而给定的地址空间后 3 字节的最高位相同，都为0，那么给定的 MAC 地址段内只有 23 位了，所以最终只能丢弃 28 位 IPv4 地址中的 5 位，剩下的 23 位和 MAC 的 23 位相映射。注意，这个映射无须手动进行，在路由器启动组播协议，站点加入到组播后就会自动生成。</p>
+<p>由于 IPv4 多播地址的后 28 位中只有 23 位被映射到 MAC 地址，这样会有 32 个（2^5^，IPv4 多播地址中有 5 位可变）IP 多播地址映射到同一 MAC 地址上。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528132243.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528132243.png" srcset="data:image/png;base64,666" alt="20210528132243"></p>
+<h4 id="E-类-IPv4-地址"><a href="#E-类-IPv4-地址" class="headerlink" title="E 类 IPv4 地址"></a>E 类 IPv4 地址</h4><p>E 类地址输入 IANA 保留地址，不分配给用户使用，地址段范围为 240.0.0.0 ~ 247.255.255.255，其特征是最高 5 位分别是 1、1、1、1、0，如下图所示，也就是有 27 位是可变的。</p>
+<p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528132317.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210528132317.png" srcset="data:image/png;base64,666" alt="20210528132317"></p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IPv4%E5%9C%B0%E5%9D%80/>https://xmmarlowe.github.io/2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IPv4%E5%9C%B0%E5%9D%80/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+        
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-28T13:24:06+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：May 28, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IPv4%E5%9C%B0%E5%9D%80/&title=IPv4地址 - Marlowe&summary=OSI/RM 的网络层和 TCP/IP 协议体系结果的网际互连层最重要的一个协议就是 IP 协议，目前正处于 IPv4 和 IPv6 这两个版本的交替、过渡时间。这篇博客主要介绍 IPv4 地址。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IPv4%E5%9C%B0%E5%9D%80/&title=IPv4地址 - Marlowe&summary=OSI/RM 的网络层和 TCP/IP 协议体系结果的网际互连层最重要的一个协议就是 IP 协议，目前正处于 IPv4 和 IPv6 这两个版本的交替、过渡时间。这篇博客主要介绍 IPv4 地址。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IPv4%E5%9C%B0%E5%9D%80/&title=IPv4地址 - Marlowe&summary=OSI/RM 的网络层和 TCP/IP 协议体系结果的网际互连层最重要的一个协议就是 IP 协议，目前正处于 IPv4 和 IPv6 这两个版本的交替、过渡时间。这篇博客主要介绍 IPv4 地址。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/05/28/Spring/Spring%E5%92%8CSpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Spring和SpringBoot常用注解</p>
+          <p class='content'>总结Spring和SpringBoot常用注解…
+
+
+Spring常用注解1、用于注册bean对象注解@Component作用：
+调用无参构造创建一个bean对象，并把对象存入Spring的Io...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/05/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F/'>
+          <p class='title'>数据库三大范式<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+
+三大范式简介
+第一范式：第一范式（1NF）是指数据库表的每一列都是不可分割的基本数据项
+第二范式：第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4-%E5%9C%B0%E5%9D%80%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-text">IPv4 地址基本格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-text">子网掩码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4-%E5%9C%B0%E5%9D%80%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="toc-text">IPv4 地址的基本分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E7%B1%BB-IPv4-%E5%9C%B0%E5%9D%80"><span class="toc-text">A 类 IPv4 地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-%E7%B1%BB-IPv4-%E5%9C%B0%E5%9D%80"><span class="toc-text">B 类 IPv4 地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-%E7%B1%BB-IPv4-%E5%9C%B0%E5%9D%80"><span class="toc-text">C 类 IPv4 地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D-%E7%B1%BB-IPv4-%E5%9C%B0%E5%9D%80"><span class="toc-text">D 类 IPv4 地址</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%EF%BC%89%E9%A2%84%E7%95%99%E7%BB%84%E6%92%AD%E5%9C%B0%E5%9D%80"><span class="toc-text">1）预留组播地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%EF%BC%89%E5%85%AC%E7%94%A8%E7%BB%84%E6%92%AD%E5%9C%B0%E5%9D%80"><span class="toc-text">2）公用组播地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%EF%BC%89%E4%B8%B4%E6%97%B6%E7%BB%84%E6%92%AD%E5%9C%B0%E5%9D%80"><span class="toc-text">3）临时组播地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%EF%BC%89%E6%9C%AC%E5%9C%B0%E7%AE%A1%E7%90%86%E7%BB%84%E6%92%AD%E5%9C%B0%E5%9D%80"><span class="toc-text">4）本地管理组播地址</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-%E7%B1%BB-IPv4-%E5%9C%B0%E5%9D%80"><span class="toc-text">E 类 IPv4 地址</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="IPv4地址";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1" target="_blank" class="codename">Volantis</a>
+        as theme
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2019-2021 Marlowe</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            swal({
+                title: '复制成功',
+                text: "代码已复制，请遵守相关授权协议。",
+                icon: 'success',
+                button: "我承诺遵守",
+            });
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "j60P94k1oxBXjVeNMHqSO4ny-gzGzoHsz",
+      appKey: "4AbQyRP2XQmS6K0dSMgSqPfo",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      recordIP: 'false',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2.6.4/js/search.js"></script>
+
+  
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+(function ($) {
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+})(jQuery);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://xmmarlowe.github.io' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+
