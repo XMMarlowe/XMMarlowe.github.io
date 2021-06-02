@@ -415,6 +415,57 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/04/NoSQL/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/">
+        海量数据下，如何快速查找一条记录？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+1、使用布隆过滤器，快速过滤不存在的记录。
+使用Redis的bitmap结构来实现布隆过滤器。
+2、在Redis中建立数据缓存。将我们对Redis使用场景的理解尽量表达出来。
+以普通字符串的形式来存储，(userld -&gt; user.json)。 以一个hash来存储一条记录(userld key-&gt; username field-&gt; ，userAge-&gt;)。以一...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-04</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/04/NoSQL/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/04/NoSQL/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
         Redis 如何配置Key的过期时间？他的实现原理是什么？
       </a>
@@ -855,52 +906,6 @@ CAS 操作包含三个操作数：
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%A4%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E6%AF%8D/">
-        两个线程交替打印数字和字母
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <ol>
-<li>使用<code>LockSupport</code>的 <code>park()</code> 和 <code>unpark()</code> 方法</li>
-<li>使用<code>wait()</code>和<code>notify()</code>方法
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%A4%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E6%AF%8D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1074,7 +1079,7 @@ CAS 操作包含三个操作数：
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(24)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1156,7 +1161,7 @@ CAS 操作包含三个操作数：
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>244 篇</div>
+          <div>245 篇</div>
         </div>
       
 
@@ -1178,7 +1183,7 @@ CAS 操作包含三个操作数：
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>370.7k 字</div>
+          <div>375k 字</div>
         </div>
       
 
@@ -1204,8 +1209,8 @@ CAS 操作包含三个操作数：
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:19 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-01 日</div>
+            <div id="last-update" style="display: none;">Wed Jun 02 2021 22:58:34 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-02 日</div>
           
         </div>
         
@@ -1255,7 +1260,7 @@ CAS 操作包含三个操作数：
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-02 日';
           }
         </script>
         

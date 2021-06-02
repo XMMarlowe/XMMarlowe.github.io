@@ -414,6 +414,64 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
+        Redis和memcached的区别和使用场景
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+共同点
+都是基于内存的数据库，一般都用来当做缓存使用。
+都有过期策略。
+两者的性能都非常高。
+
+区别
+Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等；
+
+Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，hash等数据结构的存储；
+
+虚拟内存–Redis当物理内存用完时，可以将一些很久...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/07/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AETop%20K%E9%97%AE%E9%A2%98/">
         海量数据Top K问题
       </a>
@@ -861,57 +919,6 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/04/NoSQL/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/">
-        海量数据下，如何快速查找一条记录？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-1、使用布隆过滤器，快速过滤不存在的记录。
-使用Redis的bitmap结构来实现布隆过滤器。
-2、在Redis中建立数据缓存。将我们对Redis使用场景的理解尽量表达出来。
-以普通字符串的形式来存储，(userld -&gt; user.json)。 以一个hash来存储一条记录(userld key-&gt; username field-&gt; ，userAge-&gt;)。以一...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/04/NoSQL/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1086,7 +1093,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(24)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1168,7 +1175,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>244 篇</div>
+          <div>245 篇</div>
         </div>
       
 
@@ -1190,7 +1197,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>370.7k 字</div>
+          <div>375k 字</div>
         </div>
       
 
@@ -1216,8 +1223,8 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:01 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-01 日</div>
+            <div id="last-update" style="display: none;">Wed Jun 02 2021 22:58:50 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-02 日</div>
           
         </div>
         
@@ -1267,7 +1274,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-02 日';
           }
         </script>
         

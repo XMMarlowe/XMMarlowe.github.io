@@ -414,6 +414,57 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/">
+        多线程Future的用法
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+在并发编程时，一般使用runnable，然后扔给线程池完事，这种情况下不需要线程的结果。
+所以run的返回值是void类型。
+如果是一个多线程协作程序，比如斐波那契数列，1，1，2，3，5，8…使用多线程来计算。但后者需要前者的结果，就需要用callable接口了。callable用法和runnable一样，只不过调用的是call方法，该方法有一个泛型返回值类型，你可以任意指定。
+线程是...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/17/NoSQL/Redis%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
         Redis哨兵模式
       </a>
@@ -835,50 +886,6 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/NoSQL/Redis%E4%BA%8B%E5%8A%A1%E7%9A%84CAS-check-and-set/">
-        Redis事务的CAS(check-and-set)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>和众多其它数据库一样，Redis作为NoSQL数据库也同样提供了事务机制。在Redis中，MULTI/EXEC/DISCARD/WATCH这四个命令是我们实现事务的基石。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/NoSQL/Redis%E4%BA%8B%E5%8A%A1%E7%9A%84CAS-check-and-set/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1053,7 +1060,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(23)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(24)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1135,7 +1142,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>244 篇</div>
+          <div>245 篇</div>
         </div>
       
 
@@ -1157,7 +1164,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>370.7k 字</div>
+          <div>375k 字</div>
         </div>
       
 
@@ -1183,8 +1190,8 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Tue Jun 01 2021 23:15:03 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-01 日</div>
+            <div id="last-update" style="display: none;">Wed Jun 02 2021 22:58:51 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-02 日</div>
           
         </div>
         
@@ -1234,7 +1241,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-01 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-02 日';
           }
         </script>
         
