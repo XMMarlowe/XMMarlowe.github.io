@@ -425,9 +425,67 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/06/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5%E4%B9%8BMySQL%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">
+        项目实践之MySQL创建存储过程
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+问题来源歌曲表：
+
+歌手表：
+
+起初，我将歌手表和歌曲表分离，并没有在歌曲表中存储歌手的名字，需要利用歌曲表中的singer_id在歌曲表中进行连接查询才能获得歌手的姓名。
+但是，后面发现连接查询的效率过低，因此选择将歌手的名字singer_name 冗余在歌曲表中，提升查询效率。
+解决方案方案一
+修改歌曲表，添加singer_name字段
+清空数据库，修改实体类，修改爬虫，直接将歌手名...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-06-03</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/06/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5%E4%B9%8BMySQL%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -973,7 +1031,7 @@
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
             id="categoriesLeetCodeE9A298E8A7A3"
-            ><div class='name'>LeetCode题解</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>LeetCode题解</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
@@ -994,6 +1052,11 @@
             title="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
             id="categoriesE4B8AAE4BABAE58D9AE5AEA2"
             ><div class='name'>个人博客</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
+            id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
+            ><div class='name'>个人项目</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1073,7 +1136,7 @@
           <li><a class="flat-box"
             title="/categories/%E9%A2%98%E8%A7%A3/" href="/categories/%E9%A2%98%E8%A7%A3/"
             id="categoriesE9A298E8A7A3"
-            ><div class='name'>题解</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>题解</div><div class='badge'>(7)</div></a></li>
         
       </ul>
     </div>
@@ -1100,7 +1163,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>245 篇</div>
+          <div>246 篇</div>
         </div>
       
 
@@ -1122,7 +1185,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>375k 字</div>
+          <div>375.6k 字</div>
         </div>
       
 
@@ -1148,8 +1211,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jun 02 2021 22:59:11 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-02 日</div>
+            <div id="last-update" style="display: none;">Thu Jun 03 2021 21:52:49 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-03 日</div>
           
         </div>
         
@@ -1199,7 +1262,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-02 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-03 日';
           }
         </script>
         

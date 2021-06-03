@@ -414,6 +414,59 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/">
+        Redis过期数据删除策略
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+如果假设你设置了一批 key 只能存活 1 分钟，那么 1 分钟后，Redis 是怎么对这批 key 进行删除的呢？
+常用的过期数据的删除策略就两个（重要！自己造缓存轮子的时候需要格外考虑的东西）：
+
+惰性删除： 只会在取出 key 的时候才对数据进行过期检查。这样对 CPU 最友好，但是可能会造成太多过期 key 没有被删除。
+定期删除： 每隔一段时间抽取一批 key 执行删除过期 ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
         Redis和memcached的区别和使用场景
       </a>
@@ -875,50 +928,6 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/05/%E9%9A%8F%E7%AC%94/Java%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D/">
-        Java学习推荐书籍
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>列举一些接下来要读的书单…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/05/%E9%9A%8F%E7%AC%94/Java%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1048,7 +1057,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
             id="categoriesLeetCodeE9A298E8A7A3"
-            ><div class='name'>LeetCode题解</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>LeetCode题解</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
@@ -1069,6 +1078,11 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
             title="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
             id="categoriesE4B8AAE4BABAE58D9AE5AEA2"
             ><div class='name'>个人博客</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
+            id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
+            ><div class='name'>个人项目</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1148,7 +1162,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
           <li><a class="flat-box"
             title="/categories/%E9%A2%98%E8%A7%A3/" href="/categories/%E9%A2%98%E8%A7%A3/"
             id="categoriesE9A298E8A7A3"
-            ><div class='name'>题解</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>题解</div><div class='badge'>(7)</div></a></li>
         
       </ul>
     </div>
@@ -1175,7 +1189,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>245 篇</div>
+          <div>246 篇</div>
         </div>
       
 
@@ -1197,7 +1211,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>375k 字</div>
+          <div>375.6k 字</div>
         </div>
       
 
@@ -1223,8 +1237,8 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jun 02 2021 22:58:50 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-02 日</div>
+            <div id="last-update" style="display: none;">Thu Jun 03 2021 21:52:19 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-03 日</div>
           
         </div>
         
@@ -1274,7 +1288,7 @@ URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-02 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-03 日';
           }
         </script>
         
