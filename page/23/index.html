@@ -415,6 +415,54 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/04/16/Java/8%E7%A7%8D%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%92%8C%E5%B8%B8%E9%87%8F%E6%B1%A0/">
+        8种基本类型的包装类和常量池
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,Short,Integer,Long,Character,Boolean；前面 4 种包装类默认创建了数值[-128，127] 的相应类型的缓存数据，Character创建了数值在[0,127]范围的缓存数据，Boolean 直接返回True Or False。如果超出对应范围仍然会去创建新的对象。
+为啥把缓存设置为[-1...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/16/Java/8%E7%A7%8D%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%92%8C%E5%B8%B8%E9%87%8F%E6%B1%A0/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/04/16/Java/String%E7%B1%BB%E5%92%8C%E5%B8%B8%E9%87%8F%E6%B1%A0/">
         String类和常量池
       </a>
@@ -901,60 +949,6 @@ Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
-        Java类加载过程
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-类的生命周期一个类的完整生命周期如下：
-类加载过程系统加载 Class 类型的文件主要三步:加载-&gt;连接-&gt;初始化。连接过程又可分为三步:验证-&gt;准备-&gt;解析。
-加载类加载过程的第一步，主要完成下面3件事情：
-
-通过全类名获取定义此类的二进制字节流
-将字节流所代表的静态存储结构转换为方法区的运行时数据结构
-在内存中生成一个代表该类的 Class 对象,作为方法区这...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-03-31</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/03/31/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1108,7 +1102,7 @@ Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生�
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1215,7 +1209,7 @@ Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>246 篇</div>
+          <div>247 篇</div>
         </div>
       
 
@@ -1237,7 +1231,7 @@ Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>375.6k 字</div>
+          <div>378k 字</div>
         </div>
       
 
@@ -1263,8 +1257,8 @@ Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Jun 03 2021 21:57:41 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-03 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 08 2021 22:59:33 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-08 日</div>
           
         </div>
         
@@ -1314,7 +1308,7 @@ Step2:分配内存在类加载检查通过后，接下来虚拟机将为新生�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-03 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-08 日';
           }
         </script>
         

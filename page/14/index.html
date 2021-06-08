@@ -415,6 +415,50 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/03/19/%E5%B9%B6%E5%8F%91/Atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB/">
+        Atomic 原子类
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/19/%E5%B9%B6%E5%8F%91/Atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/03/19/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
         线程池原理分析
       </a>
@@ -826,56 +870,6 @@ maxinumPoolsize代表的是最...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/">
-        并发的三大特性
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-原子性定义：原子性是指在一个操作中cpu不可以在中途暂停然后再调度,即不被中断操作，要不全部执行完成，要不都不执行。就好比转账，从账户A向账户B转1000元，那么必然包括2个操作:从账户A减去1000元,往账户B加上1000元。2个操作必须全部完成。
-关键字：synchronized
-1234private long count = 0;public void calc()&#123; ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1029,7 +1023,7 @@ maxinumPoolsize代表的是最...
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1136,7 +1130,7 @@ maxinumPoolsize代表的是最...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>246 篇</div>
+          <div>247 篇</div>
         </div>
       
 
@@ -1158,7 +1152,7 @@ maxinumPoolsize代表的是最...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>375.6k 字</div>
+          <div>378k 字</div>
         </div>
       
 
@@ -1184,8 +1178,8 @@ maxinumPoolsize代表的是最...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Jun 03 2021 21:57:39 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-03 日</div>
+            <div id="last-update" style="display: none;">Tue Jun 08 2021 22:59:31 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-08 日</div>
           
         </div>
         
@@ -1235,7 +1229,7 @@ maxinumPoolsize代表的是最...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-03 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-08 日';
           }
         </script>
         
