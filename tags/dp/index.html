@@ -751,7 +751,7 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jun 23 2021 20:24:08 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Wed Jun 23 2021 20:30:40 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-06-23 日</div>
           
         </div>
@@ -1094,7 +1094,25 @@ var loadCSS = function( href, before, media, attributes ){
         copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
         copyHtml += '</button>';
         $(".highlight .code pre").before(copyHtml);
-        $(".article pre code    $span[0].innerText = 'COPY'
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            swal({
+                title: '复制成功',
+                text: "代码已复制，请遵守相关授权协议。",
+                icon: 'success',
+                button: "我承诺遵守",
+            });
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
             }, 2000)
         });
         clipboard.off('error').on('error', function (e) {
@@ -1629,46 +1647,6 @@ document.addEventListener("pjax:success", listennSidebarTOC);
 
       $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
       $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
-      $('script[data-pjax], .pjax-reload script').each(function () {
-        $(this).parent().append($(this).remove());
-      });
-      try{
-          if (typeof $.fancybox == "undefined") {
-            SCload_fancybox();
-          } else {
-            pjax_fancybox();
-          }
-        
-        
-        
-        
-        
-          pjax_initCopyCode();
-        
-        
-          pjax_valine();
-        
-        
-        
-        
-      } catch (e) {
-        console.log(e);
-      }
-      window.HideLoading();
-    });
-
-    document.addEventListener('pjax:error', function (e) {
-      window.HideLoading();
-      window.location.href = e.triggerElement.href;
-    });
-</script>
-
-    
-  </div>
-</body>
-</html>
-
-/ 移除小尾巴的移除
       $('script[data-pjax], .pjax-reload script').each(function () {
         $(this).parent().append($(this).remove());
       });
