@@ -415,6 +415,188 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E6%80%8E%E4%B9%88%E8%AE%A9%E5%B7%A6%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F/">
+        MySQL怎么让左模糊查询走索引？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+需要做模糊匹配，又要用到索引，索引的最左匹配原则更是不能被打破，这时候可以增加一个字段，这个字段的内容等于USER_NAME字段内容的反转，同时加上这个字段的相关索引，如下：
+
+此时如果是要模糊搜索出用户名后几位有杰这个词的所有用户信息，可以对REVERSE_USER_NAME字段做右模糊查询，效果其实就是和对USER_NAME字段做左模糊查询是一样的，因为二者的内容是相反的，结果如下：...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E6%80%8E%E4%B9%88%E8%AE%A9%E5%B7%A6%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93/left-join%E3%80%81right-join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        left join、right join和join的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>简要介绍三种连接查询的区别…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93/left-join%E3%80%81right-join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/13/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+        初识MySQL索引实现原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>MySQL索引的实现原理，以及什么时候会走索引…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/13/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/12/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/">
+        InnoDB引擎的特点以及调优
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>谈谈InnoDB的特点，以及InnoDB解决的问题…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/12/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/01/12/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95%E4%B8%8E%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95/">
         聚集索引与非聚集索引
       </a>
@@ -694,211 +876,6 @@ countDownLatch这个类使一个线程等待其他线程各自执行完毕后再
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/26/%E5%B9%B6%E5%8F%91/Callable/">
-        Callable
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-Callable简介：
-
-可以有返回值
-可以抛出异常
-方法不同，Runnable 是 run()， Callable 是call()
-
-1234567891011121314151617181920212223242526public class CallableTest &#123;    public static void main(String[] args) throws Exe...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/26/%E5%B9%B6%E5%8F%91/Callable/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/">
-        Redis 发布与订阅
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接受消息。微博、微信、关注系统！Redis客户端可以订阅任意数量的频道。订阅/发布消息图：第一个：消息发送者，第二个：频道，第三个：消息订阅者使用场景
-
-实时消息系统
-实时聊天(频道当做聊天室，将信息回显给所有人即可)
-订阅，关注系统
-
-缺点：稍微复杂的场景就会使用消息中间件MQ。在消费者下...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/25/NoSQL/Redis-%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/">
-        Redis 缓存穿透与雪崩(面试高频)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-缓存穿透什么是缓存穿透？缓存穿透说简单点就是大量请求的 key 根本不存在于缓存中，导致请求直接到了数据库上，根本没有经过缓存这一层。举个例子：某个黑客故意制造我们缓存中不存在的 key 发起大量请求，导致大量请求落到数据库。
-缓存穿透情况的处理流程是怎样的？如下图所示，用户的请求最终都要跑到数据库中查询一遍。
-
-
-
-
-
-有哪些解决办法？最基本的就是首先做好参数校验，一些不合法的参数请求...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-24</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E4%B8%8E%E9%9B%AA%E5%B4%A9-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/">
-        Redis 持久化
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失，所以Redis提供了持久化功能！</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-24</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -913,7 +890,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           </a>
         
         <p class="current">
-          18 / 25
+          18 / 26
         </p>
         
           <a class="next" rel="next" href="/page/19/">
@@ -1037,7 +1014,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(16)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1052,7 +1029,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1159,7 +1136,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>247 篇</div>
+          <div>251 篇</div>
         </div>
       
 
@@ -1181,7 +1158,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>378k 字</div>
+          <div>381k 字</div>
         </div>
       
 
@@ -1207,8 +1184,8 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jun 09 2021 09:59:44 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-09 日</div>
+            <div id="last-update" style="display: none;">Wed Jun 23 2021 20:23:29 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-23 日</div>
           
         </div>
         
@@ -1258,7 +1235,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-09 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-23 日';
           }
         </script>
         

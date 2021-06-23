@@ -581,7 +581,7 @@
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(15)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(16)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -596,7 +596,7 @@
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -703,7 +703,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>247 篇</div>
+          <div>251 篇</div>
         </div>
       
 
@@ -725,7 +725,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>378k 字</div>
+          <div>381k 字</div>
         </div>
       
 
@@ -751,8 +751,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jun 09 2021 10:00:33 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-09 日</div>
+            <div id="last-update" style="display: none;">Wed Jun 23 2021 20:24:08 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-23 日</div>
           
         </div>
         
@@ -802,7 +802,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-09 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-23 日';
           }
         </script>
         
@@ -1094,25 +1094,7 @@ var loadCSS = function( href, before, media, attributes ){
         copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
         copyHtml += '</button>';
         $(".highlight .code pre").before(copyHtml);
-        $(".article pre code").before(copyHtml);
-        clipboard.off('success').on('success', function (e) {
-            swal({
-                title: '复制成功',
-                text: "代码已复制，请遵守相关授权协议。",
-                icon: 'success',
-                button: "我承诺遵守",
-            });
-            let $btn = $(e.trigger);
-            $btn.addClass('copied');
-            let $icon = $($btn.find('i'));
-            $icon.removeClass('fa-copy');
-            $icon.addClass('fa-check-circle');
-            let $span = $($btn.find('span'));
-            $span[0].innerText = 'COPIED';
-            wait(function () {
-                $icon.removeClass('fa-check-circle');
-                $icon.addClass('fa-copy');
-                $span[0].innerText = 'COPY'
+        $(".article pre code    $span[0].innerText = 'COPY'
             }, 2000)
         });
         clipboard.off('error').on('error', function (e) {
@@ -1647,6 +1629,46 @@ document.addEventListener("pjax:success", listennSidebarTOC);
 
       $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
       $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+
+/ 移除小尾巴的移除
       $('script[data-pjax], .pjax-reload script').each(function () {
         $(this).parent().append($(this).remove());
       });
