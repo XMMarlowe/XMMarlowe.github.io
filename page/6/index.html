@@ -415,6 +415,54 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
+        Java浮点数精度问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+一、精度丢失的原因1234567891011121314151617181920212223首先我们要搞清楚下面两个问题：(1) 十进制整数如何转化为二进制数           算法很简单。举个例子，11表示成二进制数：                     11/2=5 余   1                     5/2=2   余   1                 ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/">
         获取class对象六种方法
       </a>
@@ -838,62 +886,6 @@ Itr对象源码12345678910111213141516171819202122232425262728293031323334353637
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        Java 中 a = a+b和a += b 的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-区别
-a += b执行实际过程实际是 是先计算出a的值，然后用一个temp对象存储，之后和b进行相加，然后将值赋值给a引用。
-
-a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a引用的时候如果 引用a 有计算过程，则会再次计算。
-
-+=如果两边的操作数的精度不一样时会自动向低转化，而a = a+b则不会自动转化，需要手动进行强制类型转化。
-
-
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1060,6 +1052,11 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
             ><div class='name'>学习笔记</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"
+            id="categoriesE5B8B8E794A8E5B7A5E585B7"
+            ><div class='name'>常用工具</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
             ><div class='name'>并发</div><div class='badge'>(42)</div></a></li>
@@ -1154,7 +1151,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>251 篇</div>
+          <div>252 篇</div>
         </div>
       
 
@@ -1176,7 +1173,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>381k 字</div>
+          <div>381.2k 字</div>
         </div>
       
 
@@ -1202,8 +1199,8 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jun 23 2021 20:29:44 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-23 日</div>
+            <div id="last-update" style="display: none;">Fri Jun 25 2021 19:11:49 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-25 日</div>
           
         </div>
         
@@ -1253,7 +1250,7 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-23 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-25 日';
           }
         </script>
         

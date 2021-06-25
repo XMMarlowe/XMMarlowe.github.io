@@ -415,6 +415,59 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8D%8F%E8%AE%AE%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/">
+        TCP 协议如何保证可靠传输
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+可靠传输
+应用数据被分割成 TCP 认为最适合发送的数据块。
+TCP 给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。
+校验和： TCP 将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输过程中的任何变化。如果收到段的检验和有差错，TCP 将丢弃这个报文段和不确认收到此报文段。
+TCP 的接收端会丢弃重复的数据。
+流量控制： TCP 连接的...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-02-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8D%8F%E8%AE%AE%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB/">
         get和post的区别
       </a>
@@ -845,61 +898,6 @@ Buffer Pool是什么?
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%80%82%E5%90%88%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%B8%8D%E9%80%82%E5%90%88%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9F/">
-        MySQL什么时候适合建索引，什么时候不适合建索引？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-1、什么是索引（本质：数据结构）索引是帮助MySQL高效获取数据的数据结构。
-2、优势
-提高数据检索的效率，降低数据库IO成本
-
-通过索引对数据进行排序，降低数据排序的成本，降低了CPU的消耗
-
-
-3、劣势　　降低更新表的速度，如对表进行update 、delete、insert等操作时，MySQL不急要保存数据，还要保存一下索引文件每次添加了索引列的字段，都会调整因为更新带来的键值变化...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-01-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%80%82%E5%90%88%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%B8%8D%E9%80%82%E5%90%88%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1066,6 +1064,11 @@ Buffer Pool是什么?
             ><div class='name'>学习笔记</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"
+            id="categoriesE5B8B8E794A8E5B7A5E585B7"
+            ><div class='name'>常用工具</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
             ><div class='name'>并发</div><div class='badge'>(42)</div></a></li>
@@ -1160,7 +1163,7 @@ Buffer Pool是什么?
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>251 篇</div>
+          <div>252 篇</div>
         </div>
       
 
@@ -1182,7 +1185,7 @@ Buffer Pool是什么?
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>381k 字</div>
+          <div>381.2k 字</div>
         </div>
       
 
@@ -1208,8 +1211,8 @@ Buffer Pool是什么?
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jun 23 2021 20:29:46 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-23 日</div>
+            <div id="last-update" style="display: none;">Fri Jun 25 2021 19:11:51 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-06-25 日</div>
           
         </div>
         
@@ -1259,7 +1262,7 @@ Buffer Pool是什么?
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-23 日';
+            document.getElementById('last-update-show').innerHTML = '2021-06-25 日';
           }
         </script>
         
