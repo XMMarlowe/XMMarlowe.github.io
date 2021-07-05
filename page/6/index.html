@@ -415,6 +415,59 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/">
+        MySQL一些规范以及优化问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+如何选择索引列的顺序建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
+
+区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）
+尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）
+使用最频繁的列放到联合索引的左侧（这样可以比较少的建立...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
         Java浮点数精度问题
       </a>
@@ -838,54 +891,6 @@ OOM(OutOfMemory)1、全称为OutOfMemoryError异常，如果虚拟机在扩展�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/Java/%E5%A6%82%E4%BD%95%E5%9C%A8List%E7%A7%8D%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
-        如何在List种移除元素
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Itr对象源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667private class Itr implements Iterator&lt;E&gt; &#123;	    int c...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/java/">java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/Java/%E5%A6%82%E4%BD%95%E5%9C%A8List%E7%A7%8D%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1039,7 +1044,7 @@ Itr对象源码12345678910111213141516171819202122232425262728293031323334353637
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1151,7 +1156,7 @@ Itr对象源码12345678910111213141516171819202122232425262728293031323334353637
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>252 篇</div>
+          <div>253 篇</div>
         </div>
       
 
@@ -1173,7 +1178,7 @@ Itr对象源码12345678910111213141516171819202122232425262728293031323334353637
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>381.2k 字</div>
+          <div>382.7k 字</div>
         </div>
       
 
@@ -1199,8 +1204,8 @@ Itr对象源码12345678910111213141516171819202122232425262728293031323334353637
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Jun 25 2021 19:15:41 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-25 日</div>
+            <div id="last-update" style="display: none;">Mon Jul 05 2021 18:18:50 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-07-05 日</div>
           
         </div>
         
@@ -1250,7 +1255,7 @@ Itr对象源码12345678910111213141516171819202122232425262728293031323334353637
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-25 日';
+            document.getElementById('last-update-show').innerHTML = '2021-07-05 日';
           }
         </script>
         

@@ -426,8 +426,8 @@
       
         
 
-说明：SpringBoot2.x之后，原来使用jedis被替换为了lettucejedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全，使用jedis pool连接池！ 更像BIO模式lettuce：采用netty，示例可以在多个线程中共享，不存在线程不安全的情况！可以减少线程数据了，更像NIO模式原码分析：
-12345678910111213141516171819@...
+说明：SpringBoot2.x之后，原来使用jedis被替换为了lettucejedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全，使用jedis pool连接池！ 更像BIO模式lettuce：采用netty，示例可以在多个线程中共享，不存在线程不安全的情况！可以减少线程数据了，更像NIO模式
+原码分析：12345678910111213141516171819@...
       
     
   </div>
@@ -825,7 +825,7 @@
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -937,7 +937,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>252 篇</div>
+          <div>253 篇</div>
         </div>
       
 
@@ -959,7 +959,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>381.2k 字</div>
+          <div>382.7k 字</div>
         </div>
       
 
@@ -985,8 +985,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Jun 25 2021 19:15:48 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-06-25 日</div>
+            <div id="last-update" style="display: none;">Mon Jul 05 2021 18:18:41 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-07-05 日</div>
           
         </div>
         
@@ -1036,7 +1036,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-06-25 日';
+            document.getElementById('last-update-show').innerHTML = '2021-07-05 日';
           }
         </script>
         
