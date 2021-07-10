@@ -6,8 +6,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -22,7 +20,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: Linux - Marlowe</title>
+  <title>MySQL 中 MyISAM 和 InnoDB 的区别有哪些？ - Marlowe</title>
+  
+    <meta name="keywords" content="InnoDB,MyISAM">
   
 
   
@@ -323,7 +323,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -398,88 +398,267 @@
       <div class='body-wrapper' id="pjax-container">
         
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      
-  <section class="post-list">
     
-      
+    
+      <h1 class="title">
+        MySQL 中 MyISAM 和 InnoDB 的区别有哪些？
+      </h1>
+      <div class='new-meta-box'>
         
           
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
-        Linux常用命令总结
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
 
-目录切换命令
-cd usr： 切换到该目录下 usr 目录
-cd ..（或cd../）： 切换到上一层目录
-cd /： 切换到系统根目录
-cd ~： 切换到用户主目录
-cd -： 切换到上一个操作所在目录
-
-目录的操作命令(增删改查)
-mkdir 目录名称： 增加目录。
- ls/ll（ll 是 ls -l 的别名，ll 命令可以看到该目录下的所有目录和文件的详细信息）：查看目录信息。
-f...
-      
-    
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+          
         
-        <time>2021-05-06</time>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 11, 2021</p>
+  </a>
+</div>
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="MySQL 中 MyISAM 和 InnoDB 的区别有哪些？" data-path="/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-%E4%B8%AD-MyISAM-%E5%92%8C-InnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>496 words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>1 min</p>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  <a id="more"></a>
+
+<p><strong>区别：</strong></p>
+<ol>
+<li>InnoDB <strong>支持事务</strong>，MyISAM <strong>不支持事务</strong>。这是 MySQL 将<strong>默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一</strong>；</li>
+<li>InnoDB <strong>支持外键</strong>，而 MyISAM <strong>不支持</strong>。对一个包含外键的 InnoDB 表转为 MYISAM 会失败；  </li>
+<li>InnoDB 是<strong>聚集索引</strong>，MyISAM 是<strong>非聚集索引</strong>。聚簇索引的文件存放在主键索引的叶子节点上，因此 InnoDB 必须要有主键，通过主键索引效率很高。但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此，主键不应该过大，因为主键太大，其他索引也都会很大。而 MyISAM 是非聚集索引，数据文件是分离的，索引保存的是数据文件的指针。主键索引和辅助索引是独立的。 </li>
+<li>InnoDB 不保存表的具体行数，执行 select count(*) from table 时需要全表扫描。而MyISAM 用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快；    </li>
+<li>InnoDB 最小的锁粒度是行锁，MyISAM 最小的锁粒度是表锁。一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一；</li>
+</ol>
+<p><strong>如何选择：</strong></p>
+<ol>
+<li>是否要支持事务，如果要请选择 InnoDB，如果不需要可以考虑 MyISAM；</li>
+<li>如果表中绝大多数都只是读查询，可以考虑 MyISAM，如果既有读写也挺频繁，请使用InnoDB。</li>
+<li>系统奔溃后，MyISAM恢复起来更困难，能否接受，不能接受就选 InnoDB； </li>
+<li>MySQL5.5版本开始Innodb已经成为Mysql的默认引擎(之前是MyISAM)，说明其优势是有目共睹的。如果你不知道用什么存储引擎，那就用InnoDB，至少不会差。</li>
+</ol>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20596402">Mysql 中 MyISAM 和 InnoDB 的区别有哪些？</a></p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-%E4%B8%AD-MyISAM-%E5%92%8C-InnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/>https://xmmarlowe.github.io/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-%E4%B8%AD-MyISAM-%E5%92%8C-InnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
 </div>
 
-          </div>
         
       
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-01T10:57:15+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jun 1, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
-  </section>
-  
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-%E4%B8%AD-MyISAM-%E5%92%8C-InnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/&title=MySQL 中 MyISAM 和 InnoDB 的区别有哪些？ - Marlowe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
     
-  
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-%E4%B8%AD-MyISAM-%E5%92%8C-InnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/&title=MySQL 中 MyISAM 和 InnoDB 的区别有哪些？ - Marlowe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-%E4%B8%AD-MyISAM-%E5%92%8C-InnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/&title=MySQL 中 MyISAM 和 InnoDB 的区别有哪些？ - Marlowe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
 
 
-    
+
+        
+      
+    </div>
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%8E-InnoDB-%E9%94%81%E7%AE%97%E6%B3%95/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>锁机制与 InnoDB 锁算法</p>
+          <p class='content'>
+
+MyISAM 和 InnoDB 存储引擎使用的锁
+MyISAM 采用表级锁(table-level locking)。
+InnoDB 支持行级锁(row-level locking)和表级锁...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/01/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%BA%8B%E5%8A%A1%E4%BB%A5%E5%8F%8A%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/'>
+          <p class='title'>MySQL事务以及隔离级别<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>MySQL事务相关面试题…
+
+
+何为事务？事务是逻辑上的一组操作，要么都执行，要么都不执行。举一个简单的例子：事务最经典也经常被拿出来说例子就是转账了。假如小明要给小红转账 1000 元，这个转...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -487,348 +666,28 @@ f...
     
     
 
-<section class="widget blogger shadow desktop">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box circle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>Marlowe</h2>
-        
-        
-          <p>有梦不觉人生寒~</p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/XMMarlowe/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
-            id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java/" href="/categories/Java/"
-            id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(45)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
-            id="categoriesJavaE59FBAE7A180"
-            ><div class='name'>Java基础</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
-            id="categoriesLeetCodeE9A298E8A7A3"
-            ><div class='name'>LeetCode题解</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/NoSQL/" href="/categories/NoSQL/"
-            id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(26)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Spring/" href="/categories/Spring/"
-            id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(16)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/java/" href="/categories/java/"
-            id="categoriesjava"
-            ><div class='name'>java</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
-            id="categoriesE4B8AAE4BABAE58D9AE5AEA2"
-            ><div class='name'>个人博客</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
-            id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
-            id="categoriesE5ADA6E4B9A0E696B9E6B395"
-            ><div class='name'>学习方法</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-            id="categoriesE5ADA6E4B9A0E7AC94E8AEB0"
-            ><div class='name'>学习笔记</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"
-            id="categoriesE5B8B8E794A8E5B7A5E585B7"
-            ><div class='name'>常用工具</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
-            id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(42)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
-            id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
-            id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(24)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>数据结构</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
-            id="categoriesE698A5E68B9BE99DA2E8AF95"
-            ><div class='name'>春招面试</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
-            id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
-            ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"
-            id="categoriesE7AE97E6B395"
-            ><div class='name'>算法</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
-            id="categoriesE7BD91E7BB9CE5AE89E585A8"
-            ><div class='name'>网络安全</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/"
-            id="categoriesE887AAE5AE9AE4B989E5B7A5E585B7E7B1BB"
-            ><div class='name'>自定义工具类</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
-            id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
-            id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(7)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
-            id="categoriesE99A8FE7AC94"
-            ><div class='name'>随笔</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E9%A2%98%E8%A7%A3/" href="/categories/%E9%A2%98%E8%A7%A3/"
-            id="categoriesE9A298E8A7A3"
-            ><div class='name'>题解</div><div class='badge'>(7)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
 
   
 
-  
-    
-    
-
-<section class="widget shadow desktop">
-  
-  <header>
-    
-      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>253 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2020/10/12'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>382.7k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Sat Jul 10 2021 12:59:41 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-10 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-10 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
-
-  
-
 
 </aside>
+
 
 
         
@@ -838,8 +697,8 @@ f...
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="MySQL 中 MyISAM 和 InnoDB 的区别有哪些？";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
