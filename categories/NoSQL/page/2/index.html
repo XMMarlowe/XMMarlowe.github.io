@@ -416,6 +416,55 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">
+        布隆过滤器
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都比一般的算法要好的多，缺点是有一定的误识别率和删除困难。
+在讲述布隆过滤器的原理之前，我们先思考一个问题，如果想要判断一个元素是否存在，你通常会怎么做？一般的做法都是将其保存起来然后通过比较确...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/16/NoSQL/Redis%E8%B7%B3%E8%B7%83%E8%A1%A8/">
         Redis跳跃表
       </a>
@@ -850,50 +899,6 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/">
-        Redis 持久化
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失，所以Redis提供了持久化功能！</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-24</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/24/NoSQL/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1029,7 +1034,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(26)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(27)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1209,8 +1214,8 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Jul 10 2021 12:58:55 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-10 日</div>
+            <div id="last-update" style="display: none;">Mon Jul 19 2021 21:18:34 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-07-19 日</div>
           
         </div>
         
@@ -1260,7 +1265,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-10 日';
+            document.getElementById('last-update-show').innerHTML = '2021-07-19 日';
           }
         </script>
         
