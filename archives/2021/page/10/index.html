@@ -414,6 +414,63 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">
+        Java如何开启线程?怎么保证线程安全?
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+线程和进程的区别进程是操作系统进行资源分配的最小单元。线程是操作系统进行任务调度分配的最小单元，线程隶属于进程。
+如何开启线程？
+继承Thread类,重写run方法。
+实现Runnable接口， 实现run方法。
+实现Callable接口， 实现call方法。通过FutureTask创建一个线程，获取到线程执行的返回值。
+通过线程池来开启线程。
+
+怎么保证线程安全？加锁
+
+JVM提供的锁...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-26</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/">
         聊聊对关系型数据库和非关系型数据库的理解
       </a>
@@ -863,50 +920,6 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/17/NoSQL/Redis%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
-        Redis哨兵模式
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>主从切换技术的方法是：当主服务器宕机后，需要手动把一台从服务器切换为主服务器，这就需要人工干预，费事费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑哨兵模式…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/17/NoSQL/Redis%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1086,7 +1099,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(19)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -1173,7 +1186,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>253 篇</div>
+          <div>254 篇</div>
         </div>
       
 
@@ -1195,7 +1208,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>382.7k 字</div>
+          <div>383.3k 字</div>
         </div>
       
 
@@ -1221,8 +1234,8 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon Jul 19 2021 21:18:24 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-19 日</div>
+            <div id="last-update" style="display: none;">Tue Jul 20 2021 21:29:58 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-07-20 日</div>
           
         </div>
         
@@ -1272,7 +1285,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-19 日';
+            document.getElementById('last-update-show').innerHTML = '2021-07-20 日';
           }
         </script>
         
