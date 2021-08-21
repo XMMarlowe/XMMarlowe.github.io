@@ -414,6 +414,55 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/">
+        Spring的启动过程
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+spring的启动是建筑在servlet容器之上的，所有web工程的初始位置就是web.xml,它配置了servlet的上下文（context）和监听器（Listener），下面就来看看web.xml里面的配置：
+123456789101112131415161718192021222324252627282930313233343536&lt;!--上下文监听器，用于监听servlet...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
         Spring Bean 相关问题
       </a>
@@ -844,59 +893,6 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/">
-        MySQL一些规范以及优化问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-如何选择索引列的顺序建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
-
-区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）
-尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）
-使用最频繁的列放到联合索引的左侧（这样可以比较少的建立...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -911,7 +907,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           </a>
         
         <p class="current">
-          7 / 20
+          7 / 21
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/8/">
@@ -1036,7 +1032,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1173,7 +1169,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>272 篇</div>
+          <div>273 篇</div>
         </div>
       
 
@@ -1195,7 +1191,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>427k 字</div>
+          <div>429k 字</div>
         </div>
       
 
@@ -1221,7 +1217,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Aug 21 2021 16:54:45 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Sat Aug 21 2021 17:33:21 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-21 日</div>
           
         </div>
