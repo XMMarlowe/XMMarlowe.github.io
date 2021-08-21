@@ -415,9 +415,212 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/17/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/Maven%E6%89%93%E5%8C%85%E4%B9%8BFat-Shade-Shadow-Jar/">
+        Maven打包之Fat/Shade/Shadow Jar
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+问题
+java -jar xxx.jar 执行时找不到主类 或 ClassNotFoundException
+
+引入的 jar 包中依赖冲突了怎么办，有多个版本的依赖类
+
+
+正文有没有想过 Spring Boot 项目可以直接打包成一个 jar 包还能直接通过java -jar运行，而当我们自己去写一个小项目去打成 jar 包的时候，要么就是打成的 jar 包运行的时候报 “找不到主类”...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/17/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/Maven%E6%89%93%E5%8C%85%E4%B9%8BFat-Shade-Shadow-Jar/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/06/Spring/Spring%20Gateway%E3%80%81Zuul%E3%80%81Nginx%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        Spring Gateway、Zuul、Nginx的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Spring Cloud GateWay学习之微服务网关Zuul、Gateway、nginx的区别。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-06</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/06/Spring/Spring%20Gateway%E3%80%81Zuul%E3%80%81Nginx%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/">
+        登录业务技术选型
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+单点登录三种常见方式一、session广播机制简单来说，就是session复制
+二、cookie + redis
+在项目任何一个模块进行登录，登录之后，把数据放到两个地方（1）redis：key：生成唯一随机值（ip、用户id等），value：用户数据。（2）cookie：把redis中生成的key值放到cookie里面
+访问项目其他模块，发送请求带着cookie发送，获取cookie值...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-03</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/07/30/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%88%9D%E8%AF%86oAuth2/">
+        初识oAuth2
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>OAuth全称为Open Authorization（开放授权）。OAuth协议为用户资源的授权提供了一个安全的、开放而又简易的标准。与以往的授权方式不同之处是OAuth的授权不会使第三方触及到用户的帐号信息（如用户名与密码），即第三方无需使用用户的用户名与密码就可以申请获得该用户资源的授权，因此OAUTH是安全的。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-07-30</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/07/30/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%88%9D%E8%AF%86oAuth2/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -510,6 +713,50 @@
       
         <div>
           <a class='readmore' href='/2021/06/23/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/RBAC%E6%9D%83%E9%99%90%E8%AF%A6%E8%A7%A3/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/06/12/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88Shiro+Jwt/">
+        SpringBoot整合Shiro+Jwt
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>RBAC项目中用到的Shiro、Jwt相关配置以及工具类</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-06-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/06/12/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88Shiro+Jwt/'>
             Read More
           </a>
         </div>
@@ -719,14 +966,9 @@
             ><div class='name'>Docker</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
-            id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(45)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(48)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -746,7 +988,7 @@
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(16)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -761,7 +1003,17 @@
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
+            id="categoriesE4B8ADE997B4E4BBB6"
+            ><div class='name'>中间件</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
+            id="categoriesE58886E5B883E5BC8F"
+            ><div class='name'>分布式</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -771,17 +1023,17 @@
           <li><a class="flat-box"
             title="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"
             id="categoriesE5B8B8E794A8E5B7A5E585B7"
-            ><div class='name'>常用工具</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>常用工具</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(42)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -799,6 +1051,11 @@
             ><div class='name'>春招面试</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
+            id="categoriesE69D83E99990"
+            ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
             id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
             ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
@@ -811,7 +1068,7 @@
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -868,7 +1125,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>254 篇</div>
+          <div>272 篇</div>
         </div>
       
 
@@ -890,7 +1147,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>383.3k 字</div>
+          <div>427k 字</div>
         </div>
       
 
@@ -916,8 +1173,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jul 21 2021 22:47:39 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-21 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 21 2021 16:55:06 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-21 日</div>
           
         </div>
         
@@ -967,7 +1224,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-21 日';
           }
         </script>
         

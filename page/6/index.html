@@ -415,26 +415,65 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
-        Fork/Join框架基本使用
+      <a href="/2021/05/18/Java/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/">
+        Java内存区域
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-1. 概述Java.util.concurrent.ForkJoinPool由Java大师Doug Lea主持编写，它可以将一个大的任务拆分成多个子任务进行并行处理，最后将子任务结果合并成最后的计算结果，并进行输出。本文中对Fork/Join框架的讲解，基于JDK1.8+中的Fork/Join框架实现，参考的Fork/Join框架主要源代码也基于JDK1.8+。
-这几篇文章将试图解释Fo...
-      
+      <p>对于 Java 程序员来说，在虚拟机自动内存管理机制下，不再需要像 C/C++程序开发程序员这样为每一个 new 操作去写对应的 delete/free 操作，不容易出现内存泄漏和内存溢出问题。正是因为 Java 程序员把内存控制权利交给 Java 虚拟机，一旦出现内存泄漏和溢出方面的问题，如果不了解虚拟机是怎样使用内存的，那么排查错误将会是一个非常艰巨的任务。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-10</time>
+        <time>2021-05-18</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/18/Java/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/17/%E5%B9%B6%E5%8F%91/7%E7%A7%8D%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97/">
+        7种阻塞队列
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>队列：FIFO(先进先出)的数据结构即为队列<br>阻塞队列：操作会被阻塞的队列即为阻塞队列, 在java中 BlockingQueue 接口在 Queue 接口的基础上增加了两组阻塞方法, offer(e,time) put , poll(time) take()</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-17</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -442,7 +481,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/'>
+          <a class='readmore' href='/2021/05/17/%E5%B9%B6%E5%8F%91/7%E7%A7%8D%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97/'>
             Read More
           </a>
         </div>
@@ -464,8 +503,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/">
-        MySQL一些规范以及优化问题
+      <a href="/2021/05/17/Java/%E7%AE%80%E8%BF%B0ConcurrentLinkedQueue%E5%8E%9F%E7%90%86/">
+        简述ConcurrentLinkedQueue原理
       </a>
     </h2>
   
@@ -474,12 +513,7 @@
       
         
 
-
-如何选择索引列的顺序建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
-
-区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）
-尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）
-使用最频繁的列放到联合索引的左侧（这样可以比较少的建立...
+简介在并发编程中我们有时候需要使用线程安全的队列。如果我们要实现一个线程安全的队列有两种实现方式一种是使用阻塞算法，另一种是使用非阻塞算法。使用阻塞算法的队列可以用一个锁（入队和出队用同一把锁）或两个锁（入队和出队用不同的锁）等方式来实现，而非阻塞的实现方式则可以使用循环CAS的方式来实现，下面我们一起来研究下Doug Lea是如何使用非阻塞的方式来实现线程安全队列ConcurrentL...
       
     
   </div>
@@ -487,55 +521,7 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
-        Java浮点数精度问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-一、精度丢失的原因1234567891011121314151617181920212223首先我们要搞清楚下面两个问题：(1) 十进制整数如何转化为二进制数           算法很简单。举个例子，11表示成二进制数：                     11/2=5 余   1                     5/2=2   余   1                 ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-10</time>
+        <time>2021-05-17</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -543,7 +529,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/'>
+          <a class='readmore' href='/2021/05/17/Java/%E7%AE%80%E8%BF%B0ConcurrentLinkedQueue%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -565,26 +551,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/">
-        获取class对象六种方法
+      <a href="/2021/05/17/Java/ConcurrentHashMap%E6%89%A9%E5%AE%B9%E5%8E%9F%E7%90%86/">
+        ConcurrentHashMap扩容原理
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-简述Class类是Java反射机制的入口，封装了一个类或接口的运行时信息，通过调用Class类的方法可以获取这些信息。Class类有如下特点：1、该类在java.lang包中，不需要引包2、该类被final修饰，不可被继承3、该类实现了Serializable接口4、该类的构造方法被private修饰，不能通过关键字new创建该类的对象
-获取对应class类对象1、（建议）通过Class...
-      
+      <p>ConcurrentHashMap从名称是可以看出，它是一个HashMap而且是线程安全的。在多线程编程中使用非常广泛。<br>ConcurrentHashMap的实现方式，在jdk6,7,8中都不一样。本文只针对jdk8中的实现作一些说明。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-10</time>
+        <time>2021-05-17</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -592,7 +573,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/'>
+          <a class='readmore' href='/2021/05/17/Java/ConcurrentHashMap%E6%89%A9%E5%AE%B9%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -614,8 +595,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/">
-        LockSupport简单用法及原理
+      <a href="/2021/05/16/%E5%B9%B6%E5%8F%91/Condition%E6%8E%A5%E5%8F%A3/">
+        Condition接口
       </a>
     </h2>
   
@@ -624,9 +605,8 @@
       
         
 
-简介LockSupport是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
-作用接下面我来看看LockSupport有哪些常用的方法。主要有两类方法：park和unpark。
-12345678public static void park(Object blocker); // 暂停当前线程public static void pa...
+简介wait()、notify()与synchronized配合可以实现等待通知，condition和Lock配合同样也可以实现等待通知，但是两者之前还是有区别的。
+Condition定义了等待/通知两种类型的方法，当前线程调用这些方法时，需要提前获取到Condition对象关联的锁，**Condition对象是由Lock对象创建出来的(Lock.newCondition)**，换句话说...
       
     
   </div>
@@ -634,7 +614,7 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-10</time>
+        <time>2021-05-16</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -642,7 +622,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/'>
+          <a class='readmore' href='/2021/05/16/%E5%B9%B6%E5%8F%91/Condition%E6%8E%A5%E5%8F%A3/'>
             Read More
           </a>
         </div>
@@ -664,160 +644,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/">
-        Java9-Java14新特性
+      <a href="/2021/05/16/%E5%B9%B6%E5%8F%91/%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%BE%AA%E7%8E%AF%E6%89%93%E5%8D%B0ABC%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/">
+        三个线程循环打印ABC代码实现
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>待完善…</p>
+      <p>三个线程分别打印A，B，C，要求这三个线程一起运行，打印n次，输出形如“ABCABCABC….”的字符串。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/">
-        InnoDB引擎 - 行记录存储 - Compact 行格式
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>待完善…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
-        局部性原理和工作原理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-程序访问的局部性原理程序访问的局部性原理包括时间局部性和空间局部性。
-
-空间局部性：在最近的未来要用到的信息（指令和数据），很可能与现在正在使用的信息在存储空间上是邻近的
-时间局部性：在最近的未来要用到的信息，很可能是现在正在使用的信息高速缓冲技术是利用程序访问的局部性原理，把程序中正在使用的部分存放在一个高速的、容量较小的Cache中，使CPU的访存操作大多数针对Cache进行，从而大...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">
-        ThreadLocal专题学习
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>通过ThreadLocal源码和相关问题专题学习…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-09</time>
+        <time>2021-05-16</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -825,7 +666,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/'>
+          <a class='readmore' href='/2021/05/16/%E5%B9%B6%E5%8F%91/%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%BE%AA%E7%8E%AF%E6%89%93%E5%8D%B0ABC%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/'>
             Read More
           </a>
         </div>
@@ -847,8 +688,55 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/09/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
-        Java序列化与反序列化
+      <a href="/2021/05/16/Spring/Spring+IOC+%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+        Spring IOC 容器源码分析
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。</p>
+<p>本文采用的源码版本是 4.3.11.RELEASE，算是 5.0.x 前比较新的版本了。为了降低难度，本文所说的所有的内容都是基于 xml 的配置的方式，实际使用已经很少人这么做了，至少不是纯 xml 配置，不过从理解源码的角度来看用这种方式来说无疑是最合适的。</p>
+<p>阅读建议：读者至少需要知道怎么配置 Spring，了解 Spring 中的各种概念，少部分内容我还假设读者使用过 SpringMVC。本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean，如果读者觉得一次性看完本文压力有点大，那么可以按这个思路分两次消化。读者不一定对 Spring 容器的源码感兴趣，也许附录部分介绍的知识对读者有些许作用。</p>
+<p>希望通过本文可以让读者不惧怕阅读 Spring 源码，也希望大家能反馈表述错误或不合理的地方。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring+IOC+%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/Spring-AOP-%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E7%AE%80%E6%9E%90/">
+        Spring AOP 运行原理简析
       </a>
     </h2>
   
@@ -857,10 +745,9 @@
       
         
 
-一些问题Java序列化，反序列化Java序列化指将Java对象转换为字节序列的过程，反序列化指将字节序列转换为目标对象的过程；
-什么情况下需要序列化当Java对象需要网络传输或者持久化到磁盘上时；
-序列化的实现？让类实现Serializable接口，标注该类对象可以被序列化；
-Java 序列化中如果有些字段不想进行序列化，怎么办？对于不想进行序列化的变量，使用 transient 关键字...
+AOP联盟标准
+AOP联盟将AOP体系分为三层，从三层结构可以看出，AOP实现方式有很多种，包括反射、元数据处理、程序处理、拦截器处理等，通过本节学习，你就会看到Spring AOP的实现使用的是Java语言本身的特性，即Java Proxy代理类、拦截器技术实现。
+AOP简介概念切面（Aspect）： 官方的抽象定义为“一个关注点的模块化，这个关注点可能会横切多个对象”。连接点（Joi...
       
     
   </div>
@@ -868,15 +755,108 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-09</time>
+        <time>2021-05-16</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/09/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/'>
+          <a class='readmore' href='/2021/05/16/Spring/Spring-AOP-%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E7%AE%80%E6%9E%90/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/Spring%E4%B8%ADBeanFactory%E5%92%8CFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        Spring中BeanFactory和FactoryBean的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>BeanFactory是个Factory，也就是IOC容器或对象工厂，FactoryBean是个Bean。在Spring中，所有的Bean都是由BeanFactory(也就是IOC容器)来进行管理的。但对FactoryBean而言，这个Bean不是简单的Bean，而是一个能生产或者修饰对象生成的工厂Bean,它的实现与设计模式中的工厂模式和修饰器模式类似。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring%E4%B8%ADBeanFactory%E5%92%8CFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/">
+        Spring的启动过程
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+spring的启动是建筑在servlet容器之上的，所有web工程的初始位置就是web.xml,它配置了servlet的上下文（context）和监听器（Listener），下面就来看看web.xml里面的配置：
+123456789101112131415161718192021222324252627282930313233343536&lt;!--上下文监听器，用于监听servlet...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/'>
             Read More
           </a>
         </div>
@@ -903,7 +883,7 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
           </a>
         
         <p class="current">
-          6 / 26
+          6 / 28
         </p>
         
           <a class="next" rel="next" href="/page/7/">
@@ -1005,14 +985,9 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
             ><div class='name'>Docker</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
-            id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(45)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(48)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1032,7 +1007,7 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(16)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1047,7 +1022,17 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
+            id="categoriesE4B8ADE997B4E4BBB6"
+            ><div class='name'>中间件</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
+            id="categoriesE58886E5B883E5BC8F"
+            ><div class='name'>分布式</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1057,17 +1042,17 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
           <li><a class="flat-box"
             title="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"
             id="categoriesE5B8B8E794A8E5B7A5E585B7"
-            ><div class='name'>常用工具</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>常用工具</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(42)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -1085,6 +1070,11 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
             ><div class='name'>春招面试</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
+            id="categoriesE69D83E99990"
+            ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
             id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
             ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
@@ -1097,7 +1087,7 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1154,7 +1144,7 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>254 篇</div>
+          <div>272 篇</div>
         </div>
       
 
@@ -1176,7 +1166,7 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>383.3k 字</div>
+          <div>427k 字</div>
         </div>
       
 
@@ -1202,8 +1192,8 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jul 21 2021 22:47:41 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-21 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 21 2021 16:55:09 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-21 日</div>
           
         </div>
         
@@ -1253,7 +1243,7 @@ Java 序列化中如果有些字段不想进行序列化，怎么办？对于不
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-21 日';
           }
         </script>
         

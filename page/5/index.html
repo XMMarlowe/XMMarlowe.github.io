@@ -415,21 +415,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/16/Spring/Spring%E4%B8%ADBeanFactory%E5%92%8CFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        Spring中BeanFactory和FactoryBean的区别
+      <a href="/2021/05/28/Spring/Spring%E5%92%8CSpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">
+        Spring和SpringBoot常用注解
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>BeanFactory是个Factory，也就是IOC容器或对象工厂，FactoryBean是个Bean。在Spring中，所有的Bean都是由BeanFactory(也就是IOC容器)来进行管理的。但对FactoryBean而言，这个Bean不是简单的Bean，而是一个能生产或者修饰对象生成的工厂Bean,它的实现与设计模式中的工厂模式和修饰器模式类似。</p>
+      <p>总结Spring和SpringBoot常用注解…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-16</time>
+        <time>2021-05-28</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Spring/">Spring</a>
@@ -437,7 +437,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/16/Spring/Spring%E4%B8%ADBeanFactory%E5%92%8CFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/05/28/Spring/Spring%E5%92%8CSpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/'>
             Read More
           </a>
         </div>
@@ -459,34 +459,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/">
-        Spring的启动过程
+      <a href="/2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IPv4%E5%9C%B0%E5%9D%80/">
+        IPv4地址
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-spring的启动是建筑在servlet容器之上的，所有web工程的初始位置就是web.xml,它配置了servlet的上下文（context）和监听器（Listener），下面就来看看web.xml里面的配置：
-123456789101112131415161718192021222324252627282930313233343536&lt;!--上下文监听器，用于监听servlet...
-      
+      <p>OSI/RM 的网络层和 TCP/IP 协议体系结果的网际互连层最重要的一个协议就是 IP 协议，目前正处于 IPv4 和 IPv6 这两个版本的交替、过渡时间。这篇博客主要介绍 IPv4 地址。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-16</time>
+        <time>2021-05-25</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
+          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/'>
+          <a class='readmore' href='/2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IPv4%E5%9C%B0%E5%9D%80/'>
             Read More
           </a>
         </div>
@@ -508,8 +503,8 @@ spring的启动是建筑在servlet容器之上的，所有web工程的初始位�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
-        Spring Bean 相关问题
+      <a href="/2021/05/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F/">
+        数据库三大范式
       </a>
     </h2>
   
@@ -518,10 +513,10 @@ spring的启动是建筑在servlet容器之上的，所有web工程的初始位�
       
         
 
-Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经过四个阶段:实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁
-然后: 具体来说，Spring中Bean 经过了以下几个步骤:
-
-实例化: new xxx(); 两个时机: 1、当客户端向容器申请一 个Bean时，2、 当容器在初始化一 个Bean时发现还需要依赖另一个Bean。Bean...
+三大范式简介
+第一范式：第一范式（1NF）是指数据库表的每一列都是不可分割的基本数据项
+第二范式：第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满足第一范式（1NF）。第二范式要求每一行都要有唯一标识存在，这个唯一属性列被称为主关键字或主键、主码。实体的属性完全依赖于主关键字。
+第三范式：第三范式是在第二范式的基础上建立起来的。第三范式指：属性...
       
     
   </div>
@@ -529,15 +524,15 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-16</time>
+        <time>2021-05-25</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
+          <a class='readmore' href='/2021/05/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F/'>
             Read More
           </a>
         </div>
@@ -559,29 +554,29 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-        Spring中用到的设计模式
+      <a href="/2021/05/23/Java/Java%E6%95%B0%E7%BB%84%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+        Java数组拷贝的几种方式
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>简单聊聊Spring中所用到的设计模式…</p>
+      <p>目前在Java中数据拷贝提供了如下方式：1、clone 2、System.arraycopy 3、Arrays.copyOf 4、Arrays.copyOfRange。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-16</time>
+        <time>2021-05-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/'>
+          <a class='readmore' href='/2021/05/23/Java/Java%E6%95%B0%E7%BB%84%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/'>
             Read More
           </a>
         </div>
@@ -603,8 +598,8 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">
-        Spring事务实现方式
+      <a href="/2021/05/21/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E3%80%81%E8%BD%AF%E3%80%81%E5%BC%B1%E3%80%81%E8%99%9A/">
+        Java四种引用-强、软、弱、虚
       </a>
     </h2>
   
@@ -613,18 +608,9 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
       
         
 
-Spring 管理事务的方式有几种？
-编程式事务，在代码中硬编码。(不推荐使用)
-声明式事务，在配置文件中配置（推荐使用）
-
-声明式事务又分为两种：
-
-基于XML的声明式事务
-基于注解的声明式事务
-
-Spring 事务中的隔离级别有哪几种?TransactionDefinition 接口中定义了五个表示隔离级别的常量：
-
-TransactionDefinition.ISOLATION_D...
+Java的四种对象引用的基本概念从JDK1.2版本开始，把对象的引用分为四种级别，从而使程序更加灵活的控制对象的生命周期。这四种级别由高到低依次为：强引用、软引用、弱引用和虚引用。
+1、强引用Object obj =new Object();
+上述Object这类对象就具有强引用，属于不可回收的资源，垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryEr...
       
     
   </div>
@@ -632,15 +618,15 @@ TransactionDefinition.ISOLATION_D...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-15</time>
+        <time>2021-05-21</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/'>
+          <a class='readmore' href='/2021/05/21/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E3%80%81%E8%BD%AF%E3%80%81%E5%BC%B1%E3%80%81%E8%99%9A/'>
             Read More
           </a>
         </div>
@@ -662,8 +648,8 @@ TransactionDefinition.ISOLATION_D...
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/">
-        Java限流-实现每秒n个请求
+      <a href="/2021/05/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E9%95%BF%E8%BF%9E%E6%8E%A5%E3%80%81%E7%9F%AD%E8%BF%9E%E6%8E%A5%E3%80%81%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
+        MySQL长连接、短连接、连接池
       </a>
     </h2>
   
@@ -672,10 +658,9 @@ TransactionDefinition.ISOLATION_D...
       
         
 
-
-概要在大数据量高并发访问时，经常会出现服务或接口面对暴涨的请求而不可用的情况，甚至引发连锁反映导致整个系统崩溃。此时你需要使用的技术手段之一就是限流，当请求达到一定的并发数或速率，就进行等待、排队、降级、拒绝服务等。在限流时，常见的两种算法是漏桶和令牌桶算法算法。
-限流算法令牌桶(Token Bucket)、漏桶(leaky bucket)和计数器算法是最常用的三种限流的算法。
-1. ...
+什么是短连接？短连接是指程序和数据库通信时需要建立连接，执行操作后，连接关闭。短连接简单来说就是每一次操作数据库，都要打开和关闭数据库连接，基本步骤是：连接 →数据传输 →关闭连接。
+什么是长连接？长连接是指程序之间的连接在建立之后，就一直打开，被后续程序重用。使用长连接的初衷是减少连接的开销，尽管MySQL的连接比其他数据库要快得多。
+以PHP程序为例，当收到一个永久连接的请求时，PH...
       
     
   </div>
@@ -683,15 +668,15 @@ TransactionDefinition.ISOLATION_D...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-15</time>
+        <time>2021-05-21</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/'>
+          <a class='readmore' href='/2021/05/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E9%95%BF%E8%BF%9E%E6%8E%A5%E3%80%81%E7%9F%AD%E8%BF%9E%E6%8E%A5%E3%80%81%E8%BF%9E%E6%8E%A5%E6%B1%A0/'>
             Read More
           </a>
         </div>
@@ -713,8 +698,8 @@ TransactionDefinition.ISOLATION_D...
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/14/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/REST%E4%B8%8ERPC%E5%8C%BA%E5%88%AB%EF%BC%9F/">
-        REST与RPC区别？
+      <a href="/2021/05/20/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%88%9D%E8%AF%86CSRF%E6%94%BB%E5%87%BB/">
+        初识CSRF攻击
       </a>
     </h2>
   
@@ -723,8 +708,10 @@ TransactionDefinition.ISOLATION_D...
       
         
 
-REST与RPC概念什么是RESTREST是一种架构风格，指的是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是 RESTful。REST规范把所有内容都视为资源，网络上一切皆资源。
-REST并没有创造新的技术，组件或服务，只是使用Web的现有特征和能力。 可以完全通过HTTP协议实现，使用 HTTP 协议处理数据通信。REST架构对资源的操作包括获取、创建、修改和删除...
+什么是CSRF攻击?CSRF: Cross Site Regust Forgery跨站请求伪造
+一个正常的请求会将合法用户的session id保存到浏览器的cookie。这时候，如果用户在浏览器中打来另一个tab页，那这个tab页也是可以获得浏览器的cookie。黑客就可以利用这个cookie信息进行攻击。
+攻击过程原理及过程
+用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登...
       
     
   </div>
@@ -732,15 +719,15 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-14</time>
+        <time>2021-05-20</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/14/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/REST%E4%B8%8ERPC%E5%8C%BA%E5%88%AB%EF%BC%9F/'>
+          <a class='readmore' href='/2021/05/20/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%88%9D%E8%AF%86CSRF%E6%94%BB%E5%87%BB/'>
             Read More
           </a>
         </div>
@@ -762,82 +749,29 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/14/Spring/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
-        spring循环依赖
+      <a href="/2021/05/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ES%E5%86%99%E6%95%B0%E6%8D%AE%E4%BB%A5%E5%8F%8A%E6%96%87%E6%A1%A3%E8%AF%BB%E5%86%99%E5%8E%9F%E7%90%86/">
+        ES写数据以及文档读写原理
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-什么是循环依赖?循环依赖其实就是循环引用，也就是两个或则两个以上的bean互相持有对方，最终形成闭环。比如A依赖于B，B依赖于C，C又依赖于A。如下图：
-
-注意：这里不是函数的循环调用，是对象的相互依赖关系。循环调用其实就是一个死循环，除非有终结条件。
-Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属性的循环依赖。
-怎么检测是否存在循环依赖?检测循环依赖相对比较容易...
-      
+      <p>es写入数据的工作原理是什么啊？es查询数据的工作原理是什么？底层的lucence介绍一下呗？倒排索引了解吗？</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-14</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/14/Spring/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
-        读写锁之ReadWriteLock源码分析
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁可以在没有写锁的时候被多个线程同时持有，写锁是独占的。所有读写锁的实现必须确保写操作对读操作的内存影响。换句话说，一个获得了读锁的线程必须能看到前一个释放的写锁所更新的内容。读写锁比互斥锁允许对于共享数据更大程度的并发。每次只能有一个写线程，但是同时可以有多个线程并发地读数据。ReadWriteLock适用于读多写少的...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-10</time>
+        <time>2021-05-19</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/'>
+          <a class='readmore' href='/2021/05/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ES%E5%86%99%E6%95%B0%E6%8D%AE%E4%BB%A5%E5%8F%8A%E6%96%87%E6%A1%A3%E8%AF%BB%E5%86%99%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -859,24 +793,73 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/10/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A/">
-        Java四种引用-强软弱虚
+      <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">
+        高并发之数据库分库分表
       </a>
     </h2>
   
   <div class='md'>
+    
+      <p>记录一些数据库分库分表问题…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-10</time>
+        <time>2021-05-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/10/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A/'>
+          <a class='readmore' href='/2021/05/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/18/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2021-5-18%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/">
+        2021-5-18更新日志
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>记录2021-5-18博客更新日志…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-18</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">个人博客</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/18/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2021-5-18%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/'>
             Read More
           </a>
         </div>
@@ -903,7 +886,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           </a>
         
         <p class="current">
-          5 / 26
+          5 / 28
         </p>
         
           <a class="next" rel="next" href="/page/6/">
@@ -1005,14 +988,9 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
             ><div class='name'>Docker</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
-            id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(45)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(48)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1032,7 +1010,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(16)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1047,7 +1025,17 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
+            id="categoriesE4B8ADE997B4E4BBB6"
+            ><div class='name'>中间件</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
+            id="categoriesE58886E5B883E5BC8F"
+            ><div class='name'>分布式</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1057,17 +1045,17 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           <li><a class="flat-box"
             title="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"
             id="categoriesE5B8B8E794A8E5B7A5E585B7"
-            ><div class='name'>常用工具</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>常用工具</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(42)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -1085,6 +1073,11 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
             ><div class='name'>春招面试</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
+            id="categoriesE69D83E99990"
+            ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
             id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
             ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
@@ -1097,7 +1090,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1154,7 +1147,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>254 篇</div>
+          <div>272 篇</div>
         </div>
       
 
@@ -1176,7 +1169,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>383.3k 字</div>
+          <div>427k 字</div>
         </div>
       
 
@@ -1202,8 +1195,8 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jul 21 2021 22:47:40 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-21 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 21 2021 16:55:09 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-21 日</div>
           
         </div>
         
@@ -1253,7 +1246,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-21 日';
           }
         </script>
         

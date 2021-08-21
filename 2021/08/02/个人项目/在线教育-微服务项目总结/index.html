@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1'>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>在线教育-微服务项目总结 - Marlowe</title>
+  
+    <meta name="keywords" content="SpringBoot,Docker,SpringCloud">
+  
+
+  
+    <meta name="description" content="简单总结一下在线教育项目…">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+            <i class='https://marlowe.oss-cn-beijing.aliyuncs.com/img/bitbug_favicon.ico'></i>
+          
+          
+            Marlowe
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/"
+              
+              
+              id="https:githubcomvolantis-xhexo-theme-volantis">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        在线教育-微服务项目总结
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 2, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="在线教育-微服务项目总结" data-path="/2021/08/02/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>3.9k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>14 min</p>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <p>简单总结一下在线教育项目…</p>
+<a id="more"></a>
+
+<h3 id="一、项目描述"><a href="#一、项目描述" class="headerlink" title="一、项目描述"></a>一、项目描述</h3><p>在线教育系统，分为前台网站系统和后台运营平台，B2C模式。</p>
+<p>前台用户系统包括首页、课程、讲师、订单四大部分，使用了微服务技术架构，前后端分离开发。</p>
+<p>后端的主要技术架构是：SpringBoot + SpringCloud + Shiro + MyBatis-Plus + MySQL + Maven + EasyExcel</p>
+<p>前端的架构是：Node.js + Vue.js +element-ui+NUXT+ECharts</p>
+<p>其他涉及到的中间件包括Redis、阿里云OSS、阿里云视频点播，业务中使用了ECharts做图表展示，使用EasyExcel完成分类批量添加、注册分布式单点登录使用了Jwt。</p>
+<p>项目前后端分离开发，后端采用SpringCloud微服务架构，持久层用的是MyBatis-Plus，使用Swagger生成接口文档，接入了阿里云视频点播、阿里云OSS。</p>
+<p>系统分为前台用户系统和后台管理系统两部分。</p>
+<p>前台用户系统包括：首页、课程、名师、订单。</p>
+<p>后台管理系统包括：讲师管理、课程分类管理、课程管理、统计分析、Banner管理、订单管理、权限管理等功能。</p>
+<h3 id="二、后台管理系统功能"><a href="#二、后台管理系统功能" class="headerlink" title="二、后台管理系统功能"></a>二、后台管理系统功能</h3><h4 id="1、登录功能"><a href="#1、登录功能" class="headerlink" title="1、登录功能"></a>1、登录功能</h4><p>Shiro + Jwt</p>
+<h4 id="2、权限管理模块"><a href="#2、权限管理模块" class="headerlink" title="2、权限管理模块"></a>2、权限管理模块</h4><h5 id="菜单管理"><a href="#菜单管理" class="headerlink" title="菜单管理"></a>菜单管理</h5><ul>
+<li>列表，添加，删除，修改</li>
+</ul>
+<h5 id="角色管理"><a href="#角色管理" class="headerlink" title="角色管理"></a>角色管理</h5><ul>
+<li>列表，添加，删除，修改，批量删除</li>
+<li>为角色分配菜单</li>
+</ul>
+<h5 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h5><ul>
+<li>列表，添加，删除，修改，批量删除</li>
+<li>为用户分配角色</li>
+</ul>
+<h5 id="权限管理表和关系"><a href="#权限管理表和关系" class="headerlink" title="权限管理表和关系"></a>权限管理表和关系</h5><p>使用最基础的RBAC五张表结构：用户表、角色表、权限表、用户角色表、角色权限表</p>
+<h4 id="3、讲师管理模块"><a href="#3、讲师管理模块" class="headerlink" title="3、讲师管理模块"></a>3、讲师管理模块</h4><ul>
+<li>条件查询分页列表、添加、修改、删除</li>
+</ul>
+<h4 id="4、课程分类模块"><a href="#4、课程分类模块" class="headerlink" title="4、课程分类模块"></a>4、课程分类模块</h4><ul>
+<li>添加课程分类<ul>
+<li>读取Excel里面课程分类数据，添加到数据库中</li>
+</ul>
+</li>
+<li>课程分类列表<ul>
+<li>使用树形结构显示课程分类列表</li>
+</ul>
+</li>
+</ul>
+<h4 id="5、课程管理模块"><a href="#5、课程管理模块" class="headerlink" title="5、课程管理模块"></a>5、课程管理模块</h4><h5 id="课程列表功能"><a href="#课程列表功能" class="headerlink" title="课程列表功能"></a>课程列表功能</h5><h5 id="添加课程"><a href="#添加课程" class="headerlink" title="添加课程"></a>添加课程</h5><ul>
+<li><p>课程发布流程</p>
+<ul>
+<li>填写课程基本信息</li>
+<li>添加课程大纲（章节和小节）</li>
+<li>课程信息确认</li>
+</ul>
+</li>
+<li><p>如何判断课程是否发布？<br>使用一个status字段，Draft-&gt; 未发布，Normal-&gt;已发布。</p>
+</li>
+<li><p>课程添加过程中，中途把课程停止添加，重新去添加另外的课程，如何找到之前没有发布的课程，继续进行发布？<br>到课程列表中，根据课程状态找到未发布的课程，点击编辑按钮，可以选择编辑课程基本信息和课程大纲信息，编辑完成后，可以选择对课程是否发布。</p>
+</li>
+</ul>
+<h5 id="添加小节上传课程视频"><a href="#添加小节上传课程视频" class="headerlink" title="添加小节上传课程视频"></a>添加小节上传课程视频</h5><p>阿里云视频点播服务，调用SDK，new 一个文件上传对象，传入id，secret，和视频的基本信息，然后调用上传方法，得到response。</p>
+<p>业务代码入下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 上传视频到阿里云</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> file</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">uploadVideoAly</span><span class="params">(MultipartFile file)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String fileName = file.getOriginalFilename();</span><br><span class="line">            String title = fileName.substring(<span class="number">0</span>, fileName.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">            InputStream inputStream = file.getInputStream();</span><br><span class="line">            UploadStreamRequest request = <span class="keyword">new</span> UploadStreamRequest(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET, title, fileName, inputStream);</span><br><span class="line">            UploadVideoImpl uploader = <span class="keyword">new</span> UploadVideoImpl();</span><br><span class="line">            UploadStreamResponse response = uploader.uploadStream(request);</span><br><span class="line"></span><br><span class="line">            String videoId = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">if</span> (response.isSuccess()) &#123;</span><br><span class="line">                videoId = response.getVideoId();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                videoId = response.getVideoId();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> videoId;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="视频播放功能"><a href="#视频播放功能" class="headerlink" title="视频播放功能"></a>视频播放功能</h5><p>调用阿里云的SDK，此处采用直接通过视频id获取视频链接的方式，不安全，视频可以直接被别人下载到本地，应该采用授权的方式，并整合阿里云的播放器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据视频id获取视频url</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ApiOperation(&quot;根据视频id获取视频url&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;getPlayUrl/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> R <span class="title">getPlayAuth</span><span class="params">(<span class="meta">@PathVariable</span> String id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 创建初始化对象</span></span><br><span class="line">            DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET);</span><br><span class="line">            <span class="comment">// 创建获取在线url的request和response对象</span></span><br><span class="line">            GetPlayInfoRequest request = <span class="keyword">new</span> GetPlayInfoRequest();</span><br><span class="line">            <span class="comment">// 向request设置视频id</span></span><br><span class="line">            request.setVideoId(id);</span><br><span class="line">            <span class="comment">// 调用方法得到url</span></span><br><span class="line">            GetPlayInfoResponse response = client.getAcsResponse(request);</span><br><span class="line">            List&lt;GetPlayInfoResponse.PlayInfo&gt; playInfoList = response.getPlayInfoList();</span><br><span class="line">            List&lt;String&gt; playUrl = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (GetPlayInfoResponse.PlayInfo playInfo : playInfoList) &#123;</span><br><span class="line">                playUrl.add(playInfo.getPlayURL());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> R.ok().data(<span class="string">&quot;playUrl&quot;</span>, playUrl);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> GuliException(<span class="number">20001</span>, <span class="string">&quot;获取视频Url失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6、统计分析模块"><a href="#6、统计分析模块" class="headerlink" title="6、统计分析模块"></a>6、统计分析模块</h4><h5 id="生成统计数据"><a href="#生成统计数据" class="headerlink" title="生成统计数据"></a>生成统计数据</h5><ul>
+<li>通过定时任务，每天凌晨12点采集前一天的数据，数据通过远程调用采集，获取前一天用户模块中的注册数，视频播放次数，课程数量，并插入到统计表中</li>
+</ul>
+<h5 id="统计数据图表显示"><a href="#统计数据图表显示" class="headerlink" title="统计数据图表显示"></a>统计数据图表显示</h5><ul>
+<li>根据数据类型和时间段条件查询统计表，前台展示数据</li>
+</ul>
+<h3 id="三、前台用户系统功能"><a href="#三、前台用户系统功能" class="headerlink" title="三、前台用户系统功能"></a>三、前台用户系统功能</h3><h4 id="1、前台数据显示"><a href="#1、前台数据显示" class="headerlink" title="1、前台数据显示"></a>1、前台数据显示</h4><p>由于主页数据不经常改变，但又是用户高频访问的地方，为了减少数据库查询压力，将首页数据放入redis中，每次返回首页，从redis中获取数据。</p>
+<h5 id="显示轮播图"><a href="#显示轮播图" class="headerlink" title="显示轮播图"></a>显示轮播图</h5><h5 id="显示热门课程"><a href="#显示热门课程" class="headerlink" title="显示热门课程"></a>显示热门课程</h5><ul>
+<li>根据观看次数选出前8个课程</li>
+</ul>
+<h5 id="显示名师"><a href="#显示名师" class="headerlink" title="显示名师"></a>显示名师</h5><ul>
+<li>根据等级选出前4为名师</li>
+</ul>
+<h4 id="2、注册"><a href="#2、注册" class="headerlink" title="2、注册"></a>2、注册</h4><h5 id="获取手机验证码"><a href="#获取手机验证码" class="headerlink" title="获取手机验证码"></a>获取手机验证码</h5><ul>
+<li><p>用户填写完个人信息后，点击注册按钮，将手机号和验证码发送者kafka，直接返回，短信模块从kafka里面消费消息，给指定手机号发送短信验证码，验证码验证成功，将用户数据存入数据库。</p>
+</li>
+<li><p>阿里云短信服务，首先直接从redis中根据电话号码拿验证码，如果拿到了，直接返回，提示验证码已存在，请稍后再发送，如果redis中没有验证码，生成4位随机短信验证码，放入redis中，5分钟后过期。</p>
+</li>
+<li><p>注册时，对用户输入的数据进行校验，然后从redis中拿取验证码，和用户输入的验证码对比，看是否相等，相等则执行后续操作，接着，查询该手机号是否注册过，如果已经注册，则提示直接登录，没有注册，执行后续操作，将密码按照MD5加密后，放到数据库中保存。</p>
+</li>
+</ul>
+<h4 id="3、登录"><a href="#3、登录" class="headerlink" title="3、登录"></a>3、登录</h4><h5 id="普通登录"><a href="#普通登录" class="headerlink" title="普通登录"></a>普通登录</h5><ul>
+<li>SSO(Single sign-on：单点登录)</li>
+</ul>
+<p><strong>登录实现流程：</strong> 登录调用登录接口返回token字符串，把返回的token字符串放到cookie里面，创建前端拦截器进行判断，如果cookie里面包含token字符串，把token字符串放到header里面。调用接口，根据token获取用户信息，把用户信息放到cookie里面，进行显示。</p>
+<h5 id="微信扫码登录"><a href="#微信扫码登录" class="headerlink" title="微信扫码登录"></a>微信扫码登录</h5><ul>
+<li><p>OAuth2：<strong>是针对特定问题的解决方案</strong><br>主要有两个问题：1、开放系统间授权 2、分布式访问</p>
+</li>
+<li><p>如何获取扫描人信息过程？</p>
+<ul>
+<li>扫描之后，微信接口返回code(临时票据)，拿着code值请求微信固定地址，得到两个值：access_token(访问凭证)和openid(微信唯一标识)，你拿着这两个值再去请求微信固定的地址，得到微信扫描人信息(比如昵称、头像等等)</li>
+</ul>
+</li>
+</ul>
+<h4 id="4、名师列表功能"><a href="#4、名师列表功能" class="headerlink" title="4、名师列表功能"></a>4、名师列表功能</h4><h4 id="5、名师详情功能"><a href="#5、名师详情功能" class="headerlink" title="5、名师详情功能"></a>5、名师详情功能</h4><h4 id="6、课程列表功能"><a href="#6、课程列表功能" class="headerlink" title="6、课程列表功能"></a>6、课程列表功能</h4><ul>
+<li>条件查询分页列表功能<ul>
+<li>根据一级分类，再根据二级分类查询课程</li>
+<li>根据销量查询</li>
+<li>根据课程发布时间查询</li>
+<li>根据课程价格查询</li>
+</ul>
+</li>
+</ul>
+<h4 id="7、课程详情页"><a href="#7、课程详情页" class="headerlink" title="7、课程详情页"></a>7、课程详情页</h4><ul>
+<li>课程信息显示（包含课程基本信息、分类、讲师、课程大纲）</li>
+<li>判断课程是否需要购买</li>
+</ul>
+<h4 id="8、课程视频在线播放"><a href="#8、课程视频在线播放" class="headerlink" title="8、课程视频在线播放"></a>8、课程视频在线播放</h4><h4 id="9、课程支付功能-微信支付"><a href="#9、课程支付功能-微信支付" class="headerlink" title="9、课程支付功能(微信支付)"></a>9、课程支付功能(微信支付)</h4><h5 id="订单流程"><a href="#订单流程" class="headerlink" title="订单流程"></a>订单流程</h5><ul>
+<li>生成课程订单<ul>
+<li>通过远程调用，根据用户id获取用户信息</li>
+<li>通过远程调用，根据课程id获取课程信息</li>
+<li>将订单信息传给kafka，直接返回给用户，让用户创建订单是无感知的。</li>
+<li>从kafka里面获取订单信息，存入订单表  </li>
+</ul>
+</li>
+<li>根据订单号生成微信支付二维码，并在前端设置定时器，隔3s查询一次支付状态</li>
+<li>微信最终支付</li>
+</ul>
+<h5 id="微信支付实现流程"><a href="#微信支付实现流程" class="headerlink" title="微信支付实现流程"></a>微信支付实现流程</h5><ul>
+<li>如果课程是收费课程，点击立即购买，生成课程订单</li>
+<li>点击订单页面去支付，生成微信支付二维码</li>
+<li>使用微信扫描二维码实现支付</li>
+<li>支付之后，每隔3s查询支付状态(是否支付成功)，如果没有成功，等待支付，如果支付成功，更新订单状态(已经支付状态)，向支付记录表添加支付成功记录。</li>
+</ul>
+<h3 id="四、项目后端技术点总结"><a href="#四、项目后端技术点总结" class="headerlink" title="四、项目后端技术点总结"></a>四、项目后端技术点总结</h3><h4 id="1、微服务架构"><a href="#1、微服务架构" class="headerlink" title="1、微服务架构"></a>1、微服务架构</h4><h4 id="2、SpringBoot"><a href="#2、SpringBoot" class="headerlink" title="2、SpringBoot"></a>2、SpringBoot</h4><p>(1) SpringBoot本质就是Spring，只是快速构建Spring工程的脚手架</p>
+<p>(2) 细节：</p>
+<ul>
+<li>启动类包扫描机制</li>
+<li>设置扫描规则@ComponentScan(“packagePath”)</li>
+<li>配置类</li>
+</ul>
+<p>(3) SpringBoot配置文件</p>
+<ul>
+<li>配置文件类型：yml，properties</li>
+<li>配置文件加载顺序：<ul>
+<li>bootstrap-&gt;application-&gt;application-dev</li>
+</ul>
+</li>
+</ul>
+<h4 id="3、SpringCloud"><a href="#3、SpringCloud" class="headerlink" title="3、SpringCloud"></a>3、SpringCloud</h4><p>(1) 是很多框架总称，使用这些框架实现微服务架构，基于SpringBoot实现</p>
+<p>(2) 组成框架有哪些？</p>
+<ul>
+<li>服务发现–Netflix Eureka (Nacos)</li>
+<li>服务调用–Netflix Feign</li>
+<li>熔断器–Netflix Hystrix</li>
+<li>服务网关–SpringCloud Gateway</li>
+<li>分布式配置–SpringCloud Config (Nacos)</li>
+<li>消息总线–SpringCloud Bus (Nacos)</li>
+</ul>
+<p>(3) 项目中，使用阿里巴巴Nacos，替代SpringCloud的一些组件</p>
+<p>(4) Nacos</p>
+<ul>
+<li>使用Nacos作为注册中心</li>
+<li>使用Nacos作为配置中心</li>
+</ul>
+<p>(5) Feign</p>
+<ul>
+<li>服务调用，一个微服务调用另外一个微服务，实现远程调用</li>
+</ul>
+<p>(6) 熔断器</p>
+<ul>
+<li>服务调用失败或者超时，有一个兜底的方法（在调用接口上添加注解：@FeignClient(name = “service-vod”, fallback = VodFileDegradeFeignClient.class)，然后用fallback中的类实现调用接口）</li>
+</ul>
+<p>(7) Gateway网关</p>
+<ul>
+<li>SpringCloud之前用Zuul网关，目前用GateWay网关</li>
+</ul>
+<p>(8) 版本对应<br>SpringBoot 2.2.1.RELEASE<br>SpringCloud Hoxton.RELEASE</p>
+<h4 id="4、MyBatisPlus"><a href="#4、MyBatisPlus" class="headerlink" title="4、MyBatisPlus"></a>4、MyBatisPlus</h4><p>(1) MyBatisPlus就是对MyBatis的增强<br>(2) 自动填充<br>(3) 乐观锁<br>(4) 逻辑删除<br>(5) 代码生成器</p>
+<h4 id="5、EasyExcel"><a href="#5、EasyExcel" class="headerlink" title="5、EasyExcel"></a>5、EasyExcel</h4><p>(1) 阿里巴巴提供操作Excel工具，代码简洁，效率很高。<br>(2) EasyExcel对poi进行封装，采用SAX方式解析<br>(3) 项目应用在添加课程分类，读取excel数据</p>
+<ul>
+<li><p>EasyExcel简介<br>Java解析、生成Excel比较有名的框架有Apache poi、jxl。但他们都存在一个严重的问题就是非常的耗内存，poi有一套SAX模式的API可以一定程度的解决一些内存溢出的问题，但POI还是有一些缺陷，比如07版Excel解压缩以及解压后存储都是在内存中完成的，内存消耗依然很大。easyexcel重写了poi对07版Excel的解析，能够原本一个3M的excel用POI sax依然需要100M左右内存降低到几M，并且再大的excel不会出现内存溢出，03版依赖POI的sax模式。在上层做了模型转换的封装，让使用者更加简单方便.</p>
+</li>
+<li><p>EasyExcel项目地址:<a target="_blank" rel="noopener" href="https://github.com/alibaba/easyexcel">EasyExcel</a></p>
+</li>
+</ul>
+<h4 id="6、Spring-Security"><a href="#6、Spring-Security" class="headerlink" title="6、Spring Security"></a>6、Spring Security</h4><h4 id="7、Redis"><a href="#7、Redis" class="headerlink" title="7、Redis"></a>7、Redis</h4><p>(1) 首页数据通过Redis进行缓存<br>(2) Redis数据类型<br>(3) 使用Redis作为缓存，不太重要获取不经常改变的数据适合放到Redis作为缓存</p>
+<h4 id="8、Nginx"><a href="#8、Nginx" class="headerlink" title="8、Nginx"></a>8、Nginx</h4><p>(1) 反向代理服务器<br>(2) 请求转发，负载均衡，动静分离</p>
+<h4 id="9、OAuth2-Jwt"><a href="#9、OAuth2-Jwt" class="headerlink" title="9、OAuth2 + Jwt"></a>9、OAuth2 + Jwt</h4><p>(1) OAuth2针对特定问题的解决方案<br>(2) Jwt包含三部分</p>
+<h4 id="10、HttpClient"><a href="#10、HttpClient" class="headerlink" title="10、HttpClient"></a>10、HttpClient</h4><p>(1) 发送请求返回响应的工具，不需要浏览器完成请求和响应的过程<br>(2) 应用场景，微信登陆获取扫描人信息，微信支付查询支付状态</p>
+<h4 id="11、Cookie"><a href="#11、Cookie" class="headerlink" title="11、Cookie"></a>11、Cookie</h4><p>(1) Cookie特点</p>
+<ul>
+<li>客户端技术</li>
+<li>每次发送请求带着cookie值进行发送</li>
+<li>cookie有默认会话级别，关闭浏览器cookie默认不存在了，但是可以设置cookie有效时长：setMaxAge</li>
+</ul>
+<h4 id="12、微信登录"><a href="#12、微信登录" class="headerlink" title="12、微信登录"></a>12、微信登录</h4><h4 id="13、微信支付"><a href="#13、微信支付" class="headerlink" title="13、微信支付"></a>13、微信支付</h4><h4 id="14、阿里云OSS"><a href="#14、阿里云OSS" class="headerlink" title="14、阿里云OSS"></a>14、阿里云OSS</h4><p>(1) 文件存储服务器</p>
+<p>(2) 添加讲师时候上传讲师头像</p>
+<h4 id="15、阿里云视频点播服务"><a href="#15、阿里云视频点播服务" class="headerlink" title="15、阿里云视频点播服务"></a>15、阿里云视频点播服务</h4><p>(1) 视频上传、删除、播放</p>
+<p>(2) 整合阿里云视频播放器进行视频播放</p>
+<ul>
+<li>使用视频播放凭证</li>
+</ul>
+<h4 id="16、阿里云短信服务"><a href="#16、阿里云短信服务" class="headerlink" title="16、阿里云短信服务"></a>16、阿里云短信服务</h4><p>(1) 用户注册时，发送手机验证码</p>
+<h4 id="17、Git"><a href="#17、Git" class="headerlink" title="17、Git"></a>17、Git</h4><h4 id="18、Docker"><a href="#18、Docker" class="headerlink" title="18、Docker"></a>18、Docker</h4><h3 id="五、问题总结"><a href="#五、问题总结" class="headerlink" title="五、问题总结"></a>五、问题总结</h3><h4 id="1、MyBatis生成19位id值"><a href="#1、MyBatis生成19位id值" class="headerlink" title="1、MyBatis生成19位id值"></a>1、MyBatis生成19位id值</h4><p>分布式系统中分布式id生成器生成的id 长度过大（19个字符长度的整数），js无法解析（js只能解析16个长度：2的53次幂）</p>
+<p>id策略改成 ID_WORKER_STR,把id的类型在程序中设置成了字符串</p>
+<h4 id="2、跨域问题"><a href="#2、跨域问题" class="headerlink" title="2、跨域问题"></a>2、跨域问题</h4><p>(1) 访问协议、ip地址、端口号，这三个有任何一个不一样，都会产生跨域。</p>
+<p>(2) 跨域解决：</p>
+<ul>
+<li>在Controller上加@CrossOrigin注解</li>
+<li>通过网关，编写配置文件，编写配置类</li>
+</ul>
+<h4 id="3、413问题"><a href="#3、413问题" class="headerlink" title="3、413问题"></a>3、413问题</h4><p>(1) 上传视频的时候，因为Nginx有上传文件大小限制，如果超过Nginx大小，会出现413</p>
+<p>(2) 413错误:请求体过大</p>
+<ul>
+<li>解决方案：在Nginx配置客户端大小</li>
+</ul>
+<h4 id="4、Maven加载问题"><a href="#4、Maven加载问题" class="headerlink" title="4、Maven加载问题"></a>4、Maven加载问题</h4><p>(1) maven加载项目的时候，默认不会加载src-java文件夹里面xml类型的文件</p>
+<ul>
+<li>解决方案：<ul>
+<li>直接复制xml文件到target目录</li>
+<li>通过配置pom实现</li>
+</ul>
+</li>
+</ul>
+<h4 id="5、分布式系统CAP原理"><a href="#5、分布式系统CAP原理" class="headerlink" title="5、分布式系统CAP原理"></a>5、分布式系统CAP原理</h4><h5 id="CAP定理"><a href="#CAP定理" class="headerlink" title="CAP定理"></a>CAP定理</h5><p>指的是在一个分布式系统中，Consistency（一致性）、Availability（可用性）、Partition tolerance（分区容错性），三者不可同时获得。</p>
+<p><strong>一致性（C）：</strong> 在分布式系统中的所有数据备份，在同一时刻是否同样的值。（所有节点在同一时间的数据完全一致，越多节点，数据同步越耗时）</p>
+<p><strong>可用性（A）：</strong> 负载过大后，集群整体是否还能响应客户端的读写请求。（服务一直可用，而且是正常响应时间）</p>
+<p><strong>分区容错性（P）：</strong> 分区容错性，就是高可用性，一个节点崩了，并不影响其它的节点（100个节点，挂了几个，不影响服务，越多机器越好）</p>
+<p><strong>CA 满足的情况下，P不能满足的原因：</strong></p>
+<p>数据同步(C)需要时间，也要正常的时间内响应(A)，那么机器数量就要少，所以P就不满足</p>
+<p><strong>CP 满足的情况下，A不能满足的原因：</strong></p>
+<p>数据同步(C)需要时间, 机器数量也多(P)，但是同步数据需要时间，所以不能再正常时间内响应，所以A就不满足</p>
+<p><strong>AP 满足的情况下，C不能满足的原因：</strong></p>
+<p>机器数量也多(P)，正常的时间内响应(A)，那么数据就不能及时同步到其他节点，所以C不满足</p>
+<h5 id="注册中心选择的原则"><a href="#注册中心选择的原则" class="headerlink" title="注册中心选择的原则"></a>注册中心选择的原则</h5><p>Zookeeper：CP设计，保证了一致性，集群搭建的时候，某个节点失效，则会进行选举行的leader，或者半数以上节点不可用，则无法提供服务，因此可用性没法满足。</p>
+<p>Eureka：AP原则，无主从节点，一个节点挂了，自动切换其他节点可以使用，去中心化。</p>
+<h5 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h5><p>分布式系统中P,肯定要满足，所以我们只能在一致性和可用性之间进行权衡</p>
+<p>如果要求一致性，则选择zookeeper，如金融行业</p>
+<p>如果要求可用性，则Eureka，如教育、电商系统</p>
+<p>没有最好的选择，最好的选择是根据业务场景来进行架构设计</p>
+<h4 id="6、前端渲染和后端渲染有什么区别"><a href="#6、前端渲染和后端渲染有什么区别" class="headerlink" title="6、前端渲染和后端渲染有什么区别"></a>6、前端渲染和后端渲染有什么区别</h4><p>前端渲染是返回json给前端，通过javascript将数据绑定到页面上</p>
+<p>后端渲染是在服务器端将页面生成直接发送给服务器，有利于SEO的优化</p>
+<h4 id="7、系统架构图"><a href="#7、系统架构图" class="headerlink" title="7、系统架构图"></a>7、系统架构图</h4><p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210806081158.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210806081158.png" srcset="data:image/png;base64,666" alt="20210806081158"></p>
+<h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/XMMarlowe/onlineEducation">onlineEducation</a></p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/08/02/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/>https://xmmarlowe.github.io/2021/08/02/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+        
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-21T11:29:42+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Aug 21, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/02/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/&title=在线教育-微服务项目总结 - Marlowe&summary=简单总结一下在线教育项目…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/02/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/&title=在线教育-微服务项目总结 - Marlowe&summary=简单总结一下在线教育项目…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/02/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/&title=在线教育-微服务项目总结 - Marlowe&summary=简单总结一下在线教育项目…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/08/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>登录业务技术选型</p>
+          <p class='content'>
+
+单点登录三种常见方式一、session广播机制简单来说，就是session复制
+二、cookie + redis
+在项目任何一个模块进行登录，登录之后，把数据放到两个地方（1）redis：k...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/07/30/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%88%9D%E8%AF%86oAuth2/'>
+          <p class='title'>初识oAuth2<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>OAuth全称为Open Authorization（开放授权）。OAuth协议为用户资源的授权提供了一个安全的、开放而又简易的标准。与以往的授权方式不同之处是OAuth的授权不会使第三方触及到...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">一、项目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="toc-text">二、后台管理系统功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD"><span class="toc-text">1、登录功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97"><span class="toc-text">2、权限管理模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86"><span class="toc-text">菜单管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86"><span class="toc-text">角色管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%A1%A8%E5%92%8C%E5%85%B3%E7%B3%BB"><span class="toc-text">权限管理表和关系</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97"><span class="toc-text">3、讲师管理模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E8%AF%BE%E7%A8%8B%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9D%97"><span class="toc-text">4、课程分类模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97"><span class="toc-text">5、课程管理模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD"><span class="toc-text">课程列表功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B"><span class="toc-text">添加课程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%B0%8F%E8%8A%82%E4%B8%8A%E4%BC%A0%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91"><span class="toc-text">添加小节上传课程视频</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD"><span class="toc-text">视频播放功能</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E6%A8%A1%E5%9D%97"><span class="toc-text">6、统计分析模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE"><span class="toc-text">生成统计数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE%E5%9B%BE%E8%A1%A8%E6%98%BE%E7%A4%BA"><span class="toc-text">统计数据图表显示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%89%8D%E5%8F%B0%E7%94%A8%E6%88%B7%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="toc-text">三、前台用户系统功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%89%8D%E5%8F%B0%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA"><span class="toc-text">1、前台数据显示</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%BD%AE%E6%92%AD%E5%9B%BE"><span class="toc-text">显示轮播图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E7%83%AD%E9%97%A8%E8%AF%BE%E7%A8%8B"><span class="toc-text">显示热门课程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%90%8D%E5%B8%88"><span class="toc-text">显示名师</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E6%B3%A8%E5%86%8C"><span class="toc-text">2、注册</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="toc-text">获取手机验证码</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E7%99%BB%E5%BD%95"><span class="toc-text">3、登录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E7%99%BB%E5%BD%95"><span class="toc-text">普通登录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-text">微信扫码登录</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%90%8D%E5%B8%88%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD"><span class="toc-text">4、名师列表功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%90%8D%E5%B8%88%E8%AF%A6%E6%83%85%E5%8A%9F%E8%83%BD"><span class="toc-text">5、名师详情功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E8%AF%BE%E7%A8%8B%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD"><span class="toc-text">6、课程列表功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E8%AF%BE%E7%A8%8B%E8%AF%A6%E6%83%85%E9%A1%B5"><span class="toc-text">7、课程详情页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91%E5%9C%A8%E7%BA%BF%E6%92%AD%E6%94%BE"><span class="toc-text">8、课程视频在线播放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9%E3%80%81%E8%AF%BE%E7%A8%8B%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD-%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98"><span class="toc-text">9、课程支付功能(微信支付)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E6%B5%81%E7%A8%8B"><span class="toc-text">订单流程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="toc-text">微信支付实现流程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%A1%B9%E7%9B%AE%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-text">四、项目后端技术点总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="toc-text">1、微服务架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81SpringBoot"><span class="toc-text">2、SpringBoot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81SpringCloud"><span class="toc-text">3、SpringCloud</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81MyBatisPlus"><span class="toc-text">4、MyBatisPlus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81EasyExcel"><span class="toc-text">5、EasyExcel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81Spring-Security"><span class="toc-text">6、Spring Security</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81Redis"><span class="toc-text">7、Redis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81Nginx"><span class="toc-text">8、Nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9%E3%80%81OAuth2-Jwt"><span class="toc-text">9、OAuth2 + Jwt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10%E3%80%81HttpClient"><span class="toc-text">10、HttpClient</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11%E3%80%81Cookie"><span class="toc-text">11、Cookie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12%E3%80%81%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95"><span class="toc-text">12、微信登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13%E3%80%81%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98"><span class="toc-text">13、微信支付</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14%E3%80%81%E9%98%BF%E9%87%8C%E4%BA%91OSS"><span class="toc-text">14、阿里云OSS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15%E3%80%81%E9%98%BF%E9%87%8C%E4%BA%91%E8%A7%86%E9%A2%91%E7%82%B9%E6%92%AD%E6%9C%8D%E5%8A%A1"><span class="toc-text">15、阿里云视频点播服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16%E3%80%81%E9%98%BF%E9%87%8C%E4%BA%91%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1"><span class="toc-text">16、阿里云短信服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17%E3%80%81Git"><span class="toc-text">17、Git</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18%E3%80%81Docker"><span class="toc-text">18、Docker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93"><span class="toc-text">五、问题总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81MyBatis%E7%94%9F%E6%88%9019%E4%BD%8Did%E5%80%BC"><span class="toc-text">1、MyBatis生成19位id值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="toc-text">2、跨域问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81413%E9%97%AE%E9%A2%98"><span class="toc-text">3、413问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81Maven%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98"><span class="toc-text">4、Maven加载问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9FCAP%E5%8E%9F%E7%90%86"><span class="toc-text">5、分布式系统CAP原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CAP%E5%AE%9A%E7%90%86"><span class="toc-text">CAP定理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E9%80%89%E6%8B%A9%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-text">注册中心选择的原则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E5%89%8D%E7%AB%AF%E6%B8%B2%E6%9F%93%E5%92%8C%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">6、前端渲染和后端渲染有什么区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">7、系统架构图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-text">项目地址</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="在线教育-微服务项目总结";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1" target="_blank" class="codename">Volantis</a>
+        as theme
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2019-2021 Marlowe</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            swal({
+                title: '复制成功',
+                text: "代码已复制，请遵守相关授权协议。",
+                icon: 'success',
+                button: "我承诺遵守",
+            });
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "j60P94k1oxBXjVeNMHqSO4ny-gzGzoHsz",
+      appKey: "4AbQyRP2XQmS6K0dSMgSqPfo",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      recordIP: 'false',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2.6.4/js/search.js"></script>
+
+  
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+(function ($) {
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+})(jQuery);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://xmmarlowe.github.io' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+

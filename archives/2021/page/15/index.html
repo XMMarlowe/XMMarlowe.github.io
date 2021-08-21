@@ -414,21 +414,332 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/18/%E5%B9%B6%E5%8F%91/volatile-%E5%85%B3%E9%94%AE%E5%AD%97/">
-        volatile 关键字
+      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">
+        多线程和多进程及其应用场景
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>volatile 是Java虚拟机提供的轻量级同步机制，保证可见性，不保证原子性，禁止指令重排。</p>
+      
+        
+
+多进程多线程的区别
+进程是分配资源的基本单位；线程是系统调度和分派的基本单位。
+
+属于同一进程的线程，堆是共享的，栈是私有的。
+
+属于同一进程的所有线程都具有相同的地址空间。
+
+
+多进程的优点：①编程相对容易；通常不需要考虑锁和同步资源的问题。 ②更强的容错性：比起多线程的一个好处是一个进程崩溃了不会影响其他进程。 ③有内核保证的隔离：数据和错误隔离。 对于使用如C/C++这些语言编写的...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-18</time>
+        <time>2021-04-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
+        进程间的通信方式
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>进程间的7种通信方式概述…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/">
+        死锁产生的原因以及产生的必要条件
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+死锁产生的原因
+系统资源不足。
+进程运行推进的顺序不合适。
+资源分配不当。
+
+死锁产生的四个必要条件
+互斥条件：一个资源每次只能被一个进程使用。
+请求与保持条件：一个进程因请求资源而阻塞时，对已经获得的资源保持不放。
+不剥夺条件：进程已获得的资源，在未使用完之前，不能强行剥夺。
+循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。
+
+如何避免死锁？1. 避免嵌套锁如果您已经持有...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/01/%E9%A2%98%E8%A7%A3/%E7%A0%94%E5%8F%91%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/">
+        研发高频算法题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>牛客研发最爱考、剑指offer经典题目</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-01</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/01/%E9%A2%98%E8%A7%A3/%E7%A0%94%E5%8F%91%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/27/%E9%A2%98%E8%A7%A3/Leetcode-%E5%89%91%E6%8C%87offer-40-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0/">
+        Leetcode-剑指offer 40.最小的K个数
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。
+示例 1：
+输入：arr = [3,2,1], k = 2输出：[1,2] 或者 [2,1]示例 2：
+输入：arr = [0,1,2,1], k = 1输出：[0]
+ 
+限制：
+0 &lt;= k &lt;= arr.length &lt;= 10000...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-27</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/27/%E9%A2%98%E8%A7%A3/Leetcode-%E5%89%91%E6%8C%87offer-40-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/27/%E9%A2%98%E8%A7%A3/%E5%AF%8C%E9%80%94%E7%AC%94%E8%AF%95-%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E8%8A%82%E7%82%B9/">
+        富途笔试-找到搜索二叉树中两个错误的节点
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+题目描述一棵二叉树原本是搜索二叉树，但是其中有两个节点调换了位置，使得这棵二叉树不再是搜索二叉树，请按升序输出这两个错误节点的值。(每个节点的值各不相同)示例1输入{1,2,3}返回值[1,2]
+思路中序遍历可以得到搜索二叉树的升序遍历结果，题目描述其中两个节点交换了位置，因此只需在中序遍历中找到异常数据即可。
+
+中序遍历二叉树
+从前面往后找，发现当前数比后一个数大，则是异常数据，放在结...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-27</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/27/%E9%A2%98%E8%A7%A3/%E5%AF%8C%E9%80%94%E7%AC%94%E8%AF%95-%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E8%8A%82%E7%82%B9/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%88%9D%E8%AF%86CAS%E4%B8%8EABA%E9%97%AE%E9%A2%98/">
+        初识CAS与ABA问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+什么是CAS？CAS是英文单词CompareAndSwap的缩写，中文意思是：比较并替换。CAS需要有3个操作数：内存地址V，旧的预期值A，即将要更新的目标值B。 CAS指令执行时，当且仅当内存地址V的值与预期值A相等时，将内存地址V的值修改为B，否则就什么都不做。整个比较并替换的操作是一个原子操作。它体现的一种乐观锁的思想，比如多个线程要对一个共享的整型变量执行 +1 操作
+获取共享变量...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-25</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -436,7 +747,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/18/%E5%B9%B6%E5%8F%91/volatile-%E5%85%B3%E9%94%AE%E5%AD%97/'>
+          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%88%9D%E8%AF%86CAS%E4%B8%8EABA%E9%97%AE%E9%A2%98/'>
             Read More
           </a>
         </div>
@@ -458,28 +769,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
-        synchronized相关知识点
+      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/">
+        异步回调
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-1、synchronized 关键字
-1.1 synchronized 关键字简介synchronized 关键字解决的是多个线程之间访问资源的同步性，synchronized关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。
-另外，在 Java 早期版本中，synchronized 属于 重量级锁，效率低下。
-为什么呢？因为监视器锁（monitor）是依赖于底层的操作...
-      
+      <p>To be continue…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-17</time>
+        <time>2021-03-25</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -487,7 +791,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
+          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/'>
             Read More
           </a>
         </div>
@@ -509,157 +813,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
-        JDK动态代理和CGLIB动态代理
+      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/ForkJoin/">
+        ForkJoin
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-1、代理模式简介我们使用代理对象来代替对真实对象(real object)的访问，这样就可以在不修改原目标对象的前提下，提供额外的功能操作，扩展目标对象的功能。
-作用代理模式的主要作用是扩展目标对象的功能，比如说在目标对象的某个方法执行前后你可以增加一些自定义的操作。
-2、静态代理静态代理中，我们对目标对象的每个方法的增强都是手动完成的（后面会具体演示代码_），非常不灵活（_比如接口一旦...
-      
+      <p>ForkJoin 在JDK1.7， 并行执行任务！ 在大数据量下提高效率。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
-        代理模式之静态代理和动态代理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-15</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/11/Spring/Spring%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
-        Spring是什么？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>轻量级的开源的J2EE框架。它是一个容器框架，用来装JavaBean，也是一个中间层框架，可以起连接作用。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/11/Spring/Spring%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/">
-        线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-线程池中阻塞队列的作用?一般的队列只能保证作为一个有限长度的缓冲区,如果超出了缓冲长度,就无法保留当前的任务了,阻塞队列通过阻塞可以保留住当前想要继续入队的任务。阻塞队列可以保证任务队列中没有任务时阻塞获取任务的线程,使得线程进入wait状态,释放cpu资源。阻塞队列自带阻塞和唤醒的功能,不需要额外处理,无任务执行时,线程池利用阻塞队列的take方法挂起,从而维持核心线程的存活、不至于一直...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-11</time>
+        <time>2021-03-25</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -667,7 +835,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/'>
+          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/ForkJoin/'>
             Read More
           </a>
         </div>
@@ -689,175 +857,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/">
-        为什么用线程池？线程池参数解释
+      <a href="/2021/03/23/NoSQL/Redis-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+        Redis 相关知识点总结
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-为什么使用线程池?1、降低资源消耗;提高线程利用率,降低创建和销毁线程的消耗。
-2、提高响应速度;任务来了,直接有线程可用可执行,而不是先创建线程,再执行。
-3、提高线程的可管理性;线程是稀缺资源,使用线程池可以统一分配调优监控。
-corePoolsize代表核心线程数,也就是正常情况下创建工作的线程数,这些线程创建后并不会消除,而是一种常驻线程
-maxinumPoolsize代表的是最...
-      
+      <p>总结一些Redis常见知识点…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-11</time>
+        <time>2021-03-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/">
-        并发的三大特性
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-原子性定义：原子性是指在一个操作中cpu不可以在中途暂停然后再调度,即不被中断操作，要不全部执行完成，要不都不执行。就好比转账，从账户A向账户B转1000元，那么必然包括2个操作:从账户A减去1000元,往账户B加上1000元。2个操作必须全部完成。
-关键字：synchronized
-1234private long count = 0;public void calc()&#123; ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/10/%E5%B9%B6%E5%8F%91/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
-        ThreadLocal原理和使用场景
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>每一个Thread对象均含有一个ThreadLocalMap类型的成员变量threadLocals,它存储本线程中所有ThreadLocal对象及其对应的值。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/10/%E5%B9%B6%E5%8F%91/ThreadLocal%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/10/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/">
-        浅谈对守护线程的理解
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>为所有非守护线程提供服务的线程，也称后台线程，任何一个守护线程都是整个JVM中所有非守护线程的保姆。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/10/%E5%B9%B6%E5%8F%91/%E6%B5%85%E8%B0%88%E5%AF%B9%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/'>
+          <a class='readmore' href='/2021/03/23/NoSQL/Redis-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/'>
             Read More
           </a>
         </div>
@@ -884,7 +906,7 @@ maxinumPoolsize代表的是最...
           </a>
         
         <p class="current">
-          15 / 19
+          15 / 20
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/16/">
@@ -987,14 +1009,9 @@ maxinumPoolsize代表的是最...
             ><div class='name'>Docker</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
-            id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(45)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(48)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1014,7 +1031,7 @@ maxinumPoolsize代表的是最...
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(16)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1029,7 +1046,17 @@ maxinumPoolsize代表的是最...
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
+            id="categoriesE4B8ADE997B4E4BBB6"
+            ><div class='name'>中间件</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
+            id="categoriesE58886E5B883E5BC8F"
+            ><div class='name'>分布式</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1039,17 +1066,17 @@ maxinumPoolsize代表的是最...
           <li><a class="flat-box"
             title="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"
             id="categoriesE5B8B8E794A8E5B7A5E585B7"
-            ><div class='name'>常用工具</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>常用工具</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(42)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -1067,6 +1094,11 @@ maxinumPoolsize代表的是最...
             ><div class='name'>春招面试</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
+            id="categoriesE69D83E99990"
+            ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
             id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
             ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
@@ -1079,7 +1111,7 @@ maxinumPoolsize代表的是最...
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1136,7 +1168,7 @@ maxinumPoolsize代表的是最...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>254 篇</div>
+          <div>272 篇</div>
         </div>
       
 
@@ -1158,7 +1190,7 @@ maxinumPoolsize代表的是最...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>383.3k 字</div>
+          <div>427k 字</div>
         </div>
       
 
@@ -1184,8 +1216,8 @@ maxinumPoolsize代表的是最...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jul 21 2021 22:47:22 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-21 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 21 2021 16:54:48 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-21 日</div>
           
         </div>
         
@@ -1235,7 +1267,7 @@ maxinumPoolsize代表的是最...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-21 日';
           }
         </script>
         

@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>286 words</p>
+      <p>1.7k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>5 min</p>
     </a>
   </div>
 
@@ -488,8 +488,7 @@
   
   <a id="more"></a>
 
-<p><strong>Redis 提供 6 种数据淘汰策略：</strong></p>
-<ol>
+<h3 id="Redis-提供-6-种数据淘汰策略"><a href="#Redis-提供-6-种数据淘汰策略" class="headerlink" title="Redis 提供 6 种数据淘汰策略"></a>Redis 提供 6 种数据淘汰策略</h3><ol>
 <li><strong>volatile-lru（least recently used）：</strong> 从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li>
 <li><strong>volatile-ttl：</strong> 从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li>
 <li><strong>volatile-random：</strong> 从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li>
@@ -497,11 +496,80 @@
 <li><strong>allkeys-random：</strong> 从数据集（server.db[i].dict）中任意选择数据淘汰</li>
 <li><strong>no-eviction：</strong> 禁止驱逐数据，也就是说当内存不足以容纳新写入数据时，新写入操作会报错。这个应该没人使用吧！</li>
 </ol>
-<p><strong>4.0 版本后增加以下两种：</strong></p>
-<ol start="7">
+<h3 id="4-0-版本后增加以下两种"><a href="#4-0-版本后增加以下两种" class="headerlink" title="4.0 版本后增加以下两种"></a>4.0 版本后增加以下两种</h3><ol start="7">
 <li><strong>volatile-lfu（least frequently used）：</strong> 从已设置过期时间的数据集(server.db[i].expires)中挑选最不经常使用的数据淘汰</li>
 <li><strong>allkeys-lfu（least frequently used）：</strong> 当内存不足以容纳新写入数据时，在键空间中，移除最不经常使用的 key</li>
 </ol>
+<h3 id="淘汰策略详解"><a href="#淘汰策略详解" class="headerlink" title="淘汰策略详解"></a>淘汰策略详解</h3><h4 id="redis过期键的删除策略"><a href="#redis过期键的删除策略" class="headerlink" title="redis过期键的删除策略"></a>redis过期键的删除策略</h4><p>如果一个键是过期的，那它到了过期时间之后是不是马上就从内存中被被删除呢？</p>
+<p>如果回答yes，你自己走还是面试官送你？</p>
+<p>如果不是，那过期后到底什么时候被删除呢？？是个什么操作？</p>
+<h4 id="三种不同的删除策略"><a href="#三种不同的删除策略" class="headerlink" title="三种不同的删除策略"></a>三种不同的删除策略</h4><ul>
+<li>定时删除 - 总结：对CPU不友好，用处理器性能换取存储空间（拿时间换空间）</li>
+<li>惰性删除 - 总结：对memory不友好，用存储空间换取处理器性能（拿空间换时间）</li>
+<li>上面两种方案都走极端 - 定期删除 - 定期抽样key，判断是否过期（存在漏网之鱼）</li>
+</ul>
+<h4 id="定时删除"><a href="#定时删除" class="headerlink" title="定时删除"></a>定时删除</h4><p>Redis不可能时时刻刻遍历所有被设置了生存时间的key，来检测数据是否已经到达过期时间，然后对它进行删除。</p>
+<p>立即删除能保证内存中数据的最大新鲜度，因为它保证过期键值会在过期后马上被删除，其所占用的内存也会随之释放。但是立即删除对cpu是最不友好的。因为删除操作会占用cpu的时间，如果刚好碰上了cpu很忙的时候，比如正在做交集或排序等计算的时候，就会给cpu造成额外的压力，让CPU心累，时时需要删除，忙死。</p>
+<p>这会产生大量的性能消耗，同时也会影响数据的读取操作。</p>
+<h4 id="惰性删除"><a href="#惰性删除" class="headerlink" title="惰性删除"></a>惰性删除</h4><p>数据到达过期时间，不做处理。等下次访问该数据时，</p>
+<p>如果未过期，返回数据；</p>
+<p>发现已过期，删除，返回不存在。</p>
+<p>惰性删除策略的缺点是，它<strong>对内存是最不友好的。</strong></p>
+<p>如果一个键已经过期，而这个键又仍然保留在数据库中，那么只要这个过期键不被删除，它所占用的内存就不会释放。</p>
+<p>在使用惰性删除策略时，如果数据库中有非常多的过期键，<strong>而这些过期键又恰好没有被访问到的话</strong>，那么它们也许永远也不会被删除（除非用户手动执行FLUSHDB），我们甚至可以将这种情况看作是一种内存泄漏 – 无用的垃圾数据占用了大量的内存，而服务器却不会自己去释放它们，这对于运行状态非常依赖于内存的Redis服务器来说，肯定不是一个好消息。</p>
+<h4 id="定期删除"><a href="#定期删除" class="headerlink" title="定期删除"></a>定期删除</h4><p>定期删除策略是前两种策略的折中：</p>
+<p>定期删除策略每隔一段时间执行一次删除过期键操作，并通过限制删除操作执行的时长和频率来减少删除操作对CPU时间的影响。</p>
+<p>周期性轮询Redis库中的时效性数据，来用随机抽取的策略，利用过期数据占比的方式控制删除频度</p>
+<p>特点1：CPU性能占用设置有峰值，检测频度可自定义设置</p>
+<p>特点2：内存压力不是很大，长期占用内存的冷数据会被持续清理</p>
+<p>总结：周期性抽查存储空间（<strong>随机抽查，重点抽查</strong>）</p>
+<p>举例：</p>
+<p>redis默认每个100ms检查，是否有过期的key，有过期key则删除。<strong>注意</strong>：redis不是每隔100ms将所有的key检查一次而是随机抽取进行检查(如果每隔100ms，全部key进行检查，redis直接进去ICU)。因此，如果只采用定期删除策略，会导致很多key到时间没有删除。</p>
+<p>定期删除策略的难点是确定删除操作执行的时长和频率:如果删除操作执行得太频繁，或者执行的时间太长，定期删除策略就会退化成定时删除策略，以至于将CPU时间过多地消耗在删除过期键上面。如果删除操作执行得太少，或者执行的时间太短，定期删除策略又会和惰性删除束略一样，出现浪费内存的情况。因此，如果采用定期删除策略的话，服务器必须根据情况，合理地设置删除操作的<strong>执行时长和执行频率</strong>。</p>
+<p><strong>上述步骤都过堂了，还有漏洞吗？</strong></p>
+<ol>
+<li>定期删除时，从来没有被抽查到</li>
+<li>惰性删除时，也从来没有被点中使用过</li>
+</ol>
+<p>上述2步骤====&gt;大量过期的key堆积在内存中，导致redis内存空间紧张或者很快耗尽</p>
+<p><strong>必须要有一个更好的兜底方案</strong></p>
+<p>内存淘汰策略登场（Redis 6.0.8版本）</p>
+<ul>
+<li>noeviction：不会驱逐任何key</li>
+<li>volatile-lfu：对所有设置了过期时间的key使用LFU算法进行删除</li>
+<li>volatile-Iru：对所有设置了过期时间的key使用LRU算法进行删除</li>
+<li>volatile-random：对所有设置了过期时间的key随机删除</li>
+<li>volatile-ttl：删除马上要过期的key</li>
+<li>allkeys-lfu：对所有key使用LFU算法进行删除</li>
+<li>allkeys-Iru：对所有key使用LRU算法进行删除</li>
+<li>allkeys-random：对所有key随机删除</li>
+</ul>
+<p><strong>上面总结</strong></p>
+<ul>
+<li>2*4得8</li>
+<li>2个维度<ul>
+<li>过期键中筛选</li>
+<li>所有键中筛选</li>
+</ul>
+</li>
+<li>4个方面<ul>
+<li>LRU</li>
+<li>LFU</li>
+<li>random</li>
+<li>ttl（Time To Live）</li>
+</ul>
+</li>
+<li>8个选项</li>
+</ul>
+<p>如何配置，修改</p>
+<ul>
+<li>命令<ul>
+<li>config set maxmemory-policy noeviction</li>
+<li>config get maxmemory</li>
+</ul>
+</li>
+<li>配置文件 - 配置文件redis.conf的maxmemory-policy参数</li>
+</ul>
 
   
   
@@ -547,10 +615,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-17T22:58:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-20T23:49:53+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 17, 2021</p>
+    <p>更新于：Aug 20, 2021</p>
   </a>
 </div>
 
@@ -662,6 +730,20 @@ Redis为了达到最快的读写速度将数据都读到内存中，并通过异
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-%E6%8F%90%E4%BE%9B-6-%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">Redis 提供 6 种数据淘汰策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-0-%E7%89%88%E6%9C%AC%E5%90%8E%E5%A2%9E%E5%8A%A0%E4%BB%A5%E4%B8%8B%E4%B8%A4%E7%A7%8D"><span class="toc-text">4.0 版本后增加以下两种</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5%E8%AF%A6%E8%A7%A3"><span class="toc-text">淘汰策略详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#redis%E8%BF%87%E6%9C%9F%E9%94%AE%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5"><span class="toc-text">redis过期键的删除策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5"><span class="toc-text">三种不同的删除策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4"><span class="toc-text">定时删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4"><span class="toc-text">惰性删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%9C%9F%E5%88%A0%E9%99%A4"><span class="toc-text">定期删除</span></a></li></ol></li></ol>
+    </div>
+  </section>
 
 
   

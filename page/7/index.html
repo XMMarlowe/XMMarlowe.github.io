@@ -415,8 +415,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/09/Java/OOM%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%EF%BC%8CSOF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5/">
-        OOM有哪些情况，SOF有哪些情况
+      <a href="/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+        Spring Bean 相关问题
       </a>
     </h2>
   
@@ -425,10 +425,10 @@
       
         
 
-OOM(OutOfMemory)1、全称为OutOfMemoryError异常，如果虚拟机在扩展栈时无法申请足够的内存空间，抛出它；
-2、Java heap异常:java.lang.OutOfMemoryError:Java heap Space；
-3、虚拟机栈和本地方法溢出；
-4、运行时常量池溢出异常信息：java.lang.OutOfMemoryError:PermGen Space...
+Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经过四个阶段:实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁
+然后: 具体来说，Spring中Bean 经过了以下几个步骤:
+
+实例化: new xxx(); 两个时机: 1、当客户端向容器申请一 个Bean时，2、 当容器在初始化一 个Bean时发现还需要依赖另一个Bean。Bean...
       
     
   </div>
@@ -436,15 +436,15 @@ OOM(OutOfMemory)1、全称为OutOfMemoryError异常，如果虚拟机在扩展�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-09</time>
+        <time>2021-05-16</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/09/Java/OOM%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%EF%BC%8CSOF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5/'>
+          <a class='readmore' href='/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
             Read More
           </a>
         </div>
@@ -466,33 +466,29 @@ OOM(OutOfMemory)1、全称为OutOfMemoryError异常，如果虚拟机在扩展�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/Java/%E5%A6%82%E4%BD%95%E5%9C%A8List%E7%A7%8D%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
-        如何在List种移除元素
+      <a href="/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+        Spring中用到的设计模式
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-Itr对象源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667private class Itr implements Iterator&lt;E&gt; &#123;	    int c...
-      
+      <p>简单聊聊Spring中所用到的设计模式…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-16</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/java/">java</a>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/Java/%E5%A6%82%E4%BD%95%E5%9C%A8List%E7%A7%8D%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/'>
+          <a class='readmore' href='/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/'>
             Read More
           </a>
         </div>
@@ -514,8 +510,8 @@ Itr对象源码12345678910111213141516171819202122232425262728293031323334353637
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        Java 中 a = a+b和a += b 的区别
+      <a href="/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">
+        Spring事务实现方式
       </a>
     </h2>
   
@@ -524,15 +520,18 @@ Itr对象源码12345678910111213141516171819202122232425262728293031323334353637
       
         
 
-区别
-a += b执行实际过程实际是 是先计算出a的值，然后用一个temp对象存储，之后和b进行相加，然后将值赋值给a引用。
+Spring 管理事务的方式有几种？
+编程式事务，在代码中硬编码。(不推荐使用)
+声明式事务，在配置文件中配置（推荐使用）
 
-a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a引用的时候如果 引用a 有计算过程，则会再次计算。
+声明式事务又分为两种：
 
-+=如果两边的操作数的精度不一样时会自动向低转化，而a = a+b则不会自动转化，需要手动进行强制类型转化。
+基于XML的声明式事务
+基于注解的声明式事务
 
+Spring 事务中的隔离级别有哪几种?TransactionDefinition 接口中定义了五个表示隔离级别的常量：
 
-
+TransactionDefinition.ISOLATION_D...
       
     
   </div>
@@ -540,15 +539,15 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-15</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/'>
             Read More
           </a>
         </div>
@@ -570,8 +569,8 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/">
-        Java对象创建的4种方式
+      <a href="/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/">
+        Java限流-实现每秒n个请求
       </a>
     </h2>
   
@@ -581,8 +580,9 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
         
 
 
-使用 new 关键字创建对象这是常用的创建对象的方法，语法格式如下：类名 对象名=new 类名()；
-调用 java.lang.Class 或者 java.lang.reflect.Constuctor 类的 newlnstance() 实例方法在 Java 中，可以使用 java.lang.Class 或者 java.lang.reflect.Constuctor 类的 newlns...
+概要在大数据量高并发访问时，经常会出现服务或接口面对暴涨的请求而不可用的情况，甚至引发连锁反映导致整个系统崩溃。此时你需要使用的技术手段之一就是限流，当请求达到一定的并发数或速率，就进行等待、排队、降级、拒绝服务等。在限流时，常见的两种算法是漏桶和令牌桶算法算法。
+限流算法令牌桶(Token Bucket)、漏桶(leaky bucket)和计数器算法是最常用的三种限流的算法。
+1. ...
       
     
   </div>
@@ -590,15 +590,15 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-15</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/'>
+          <a class='readmore' href='/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/'>
             Read More
           </a>
         </div>
@@ -620,8 +620,8 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
-        hashCode()与 equals()相关问题
+      <a href="/2021/05/14/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/REST%E4%B8%8ERPC%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+        REST与RPC区别？
       </a>
     </h2>
   
@@ -630,7 +630,8 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
       
         
 
-hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode()定义在 JDK 的 Object 类中，这就意味着 Java 中的任何类都包含有 hashCode() 函数。另外需要注意的是： Object 的 hashcode 方法是本地方法，也就是用 c 语言或 c...
+REST与RPC概念什么是RESTREST是一种架构风格，指的是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是 RESTful。REST规范把所有内容都视为资源，网络上一切皆资源。
+REST并没有创造新的技术，组件或服务，只是使用Web的现有特征和能力。 可以完全通过HTTP协议实现，使用 HTTP 协议处理数据通信。REST架构对资源的操作包括获取、创建、修改和删除...
       
     
   </div>
@@ -638,15 +639,15 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-14</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
+          <a class='readmore' href='/2021/05/14/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/REST%E4%B8%8ERPC%E5%8C%BA%E5%88%AB%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -668,8 +669,8 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6/">
-        InnoDB崩溃恢复机制
+      <a href="/2021/05/14/Spring/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+        spring循环依赖
       </a>
     </h2>
   
@@ -678,9 +679,11 @@ hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；�
       
         
 
-概述数据库系统与文件系统大的区别在于数据库能保证操作的原子性，一个操作要么不做要么都做，即使在数据库宕机的情况下，也不会出现操作一半的情况，这个就需要数据库的日志和一套完善的崩溃恢复机制来保证。下面简单介绍一下InnoDB的崩溃恢复流程。
-相关概念
-lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值越大，说明数据库的更新越多，也可以理解为更新的时刻。此外，每个数据页上也有一...
+什么是循环依赖?循环依赖其实就是循环引用，也就是两个或则两个以上的bean互相持有对方，最终形成闭环。比如A依赖于B，B依赖于C，C又依赖于A。如下图：
+
+注意：这里不是函数的循环调用，是对象的相互依赖关系。循环调用其实就是一个死循环，除非有终结条件。
+Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属性的循环依赖。
+怎么检测是否存在循环依赖?检测循环依赖相对比较容易...
       
     
   </div>
@@ -688,7 +691,193 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-08</time>
+        <time>2021-05-14</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/14/Spring/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+        读写锁之ReadWriteLock源码分析
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁可以在没有写锁的时候被多个线程同时持有，写锁是独占的。所有读写锁的实现必须确保写操作对读操作的内存影响。换句话说，一个获得了读锁的线程必须能看到前一个释放的写锁所更新的内容。读写锁比互斥锁允许对于共享数据更大程度的并发。每次只能有一个写线程，但是同时可以有多个线程并发地读数据。ReadWriteLock适用于读多写少的...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A/">
+        Java四种引用-强软弱虚
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+        Fork/Join框架基本使用
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+1. 概述Java.util.concurrent.ForkJoinPool由Java大师Doug Lea主持编写，它可以将一个大的任务拆分成多个子任务进行并行处理，最后将子任务结果合并成最后的计算结果，并进行输出。本文中对Fork/Join框架的讲解，基于JDK1.8+中的Fork/Join框架实现，参考的Fork/Join框架主要源代码也基于JDK1.8+。
+这几篇文章将试图解释Fo...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/">
+        MySQL一些规范以及优化问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+如何选择索引列的顺序建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
+
+区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）
+尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）
+使用最频繁的列放到联合索引的左侧（这样可以比较少的建立...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
@@ -696,219 +885,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        信号与信号量的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-信号由用户、系统或者进程发送给目标进程的信息，以通知目标进程某个状态的改变或系统异常。
-信号量信号量是一个特殊的变量，它的本质是计数器，信号量里面记录了临界资源的数目，有多少数目，信号量的值就为多少，进程对其访问都是原子操作（pv操作，p：占用资源，v：释放资源）。它的作用就是，调协进程对共享资源的访问，让一个临界区同一时间只有一个进程在访问它。
-区别信号是通知进程产生了某个事件，信号...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/">
-        UDP如何实现可靠传输
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-概述UDP不属于连接协议，具有资源消耗少，处理速度快的优点，所以通常音频，视频和普通数据在传送时，使用UDP较多，因为即使丢失少量的包，也不会对接受结果产生较大的影响。
-传输层无法保证数据的可靠传输，只能通过应用层来实现了。实现的方式可以参照tcp可靠性传输的方式，只是实现不在传输层，实现转移到了应用层。
-最简单的方式是在应用层模仿传输层TCP的可靠性传输。下面不考虑拥塞处理，可靠UDP...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/UDP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/">
-        Redis过期数据删除策略
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-如果假设你设置了一批 key 只能存活 1 分钟，那么 1 分钟后，Redis 是怎么对这批 key 进行删除的呢？
-常用的过期数据的删除策略就两个（重要！自己造缓存轮子的时候需要格外考虑的东西）：
-
-惰性删除： 只会在取出 key 的时候才对数据进行过期检查。这样对 CPU 最友好，但是可能会造成太多过期 key 没有被删除。
-定期删除： 每隔一段时间抽取一批 key 执行删除过期 ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/NoSQL/Redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
-        Redis和memcached的区别和使用场景
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-共同点
-都是基于内存的数据库，一般都用来当做缓存使用。
-都有过期策略。
-两者的性能都非常高。
-
-区别
-Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等；
-
-Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，hash等数据结构的存储；
-
-虚拟内存–Redis当物理内存用完时，可以将一些很久...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/NoSQL/Redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+          <a class='readmore' href='/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/'>
             Read More
           </a>
         </div>
@@ -935,7 +912,7 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
           </a>
         
         <p class="current">
-          7 / 26
+          7 / 28
         </p>
         
           <a class="next" rel="next" href="/page/8/">
@@ -1037,14 +1014,9 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
             ><div class='name'>Docker</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/ElasticSearch/" href="/categories/ElasticSearch/"
-            id="categoriesElasticSearch"
-            ><div class='name'>ElasticSearch</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(45)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(48)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Java%E5%9F%BA%E7%A1%80/" href="/categories/Java%E5%9F%BA%E7%A1%80/"
@@ -1064,7 +1036,7 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(16)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1079,7 +1051,17 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
+            id="categoriesE4B8ADE997B4E4BBB6"
+            ><div class='name'>中间件</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
+            id="categoriesE58886E5B883E5BC8F"
+            ><div class='name'>分布式</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1089,17 +1071,17 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
           <li><a class="flat-box"
             title="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"
             id="categoriesE5B8B8E794A8E5B7A5E585B7"
-            ><div class='name'>常用工具</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>常用工具</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(42)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
@@ -1117,6 +1099,11 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
             ><div class='name'>春招面试</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
+            id="categoriesE69D83E99990"
+            ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
             id="categoriesE78EAFE5A283E9858DE7BDAEE4B98BE8B8A9E59D91"
             ><div class='name'>环境配置之踩坑</div><div class='badge'>(1)</div></a></li>
@@ -1129,7 +1116,7 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(11)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1186,7 +1173,7 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>254 篇</div>
+          <div>272 篇</div>
         </div>
       
 
@@ -1208,7 +1195,7 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>383.3k 字</div>
+          <div>427k 字</div>
         </div>
       
 
@@ -1234,8 +1221,8 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jul 21 2021 22:47:41 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-21 日</div>
+            <div id="last-update" style="display: none;">Sat Aug 21 2021 16:55:08 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-21 日</div>
           
         </div>
         
@@ -1285,7 +1272,7 @@ Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，ha
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-21 日';
           }
         </script>
         
