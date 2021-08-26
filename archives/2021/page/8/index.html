@@ -414,6 +414,147 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/17/Java/%E7%AE%80%E8%BF%B0ConcurrentLinkedQueue%E5%8E%9F%E7%90%86/">
+        简述ConcurrentLinkedQueue原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介在并发编程中我们有时候需要使用线程安全的队列。如果我们要实现一个线程安全的队列有两种实现方式一种是使用阻塞算法，另一种是使用非阻塞算法。使用阻塞算法的队列可以用一个锁（入队和出队用同一把锁）或两个锁（入队和出队用不同的锁）等方式来实现，而非阻塞的实现方式则可以使用循环CAS的方式来实现，下面我们一起来研究下Doug Lea是如何使用非阻塞的方式来实现线程安全队列ConcurrentL...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/17/Java/%E7%AE%80%E8%BF%B0ConcurrentLinkedQueue%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/17/Java/ConcurrentHashMap%E6%89%A9%E5%AE%B9%E5%8E%9F%E7%90%86/">
+        ConcurrentHashMap扩容原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>ConcurrentHashMap从名称是可以看出，它是一个HashMap而且是线程安全的。在多线程编程中使用非常广泛。<br>ConcurrentHashMap的实现方式，在jdk6,7,8中都不一样。本文只针对jdk8中的实现作一些说明。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/17/Java/ConcurrentHashMap%E6%89%A9%E5%AE%B9%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/16/%E5%B9%B6%E5%8F%91/Condition%E6%8E%A5%E5%8F%A3/">
+        Condition接口
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介wait()、notify()与synchronized配合可以实现等待通知，condition和Lock配合同样也可以实现等待通知，但是两者之前还是有区别的。
+Condition定义了等待/通知两种类型的方法，当前线程调用这些方法时，需要提前获取到Condition对象关联的锁，**Condition对象是由Lock对象创建出来的(Lock.newCondition)**，换句话说...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/%E5%B9%B6%E5%8F%91/Condition%E6%8E%A5%E5%8F%A3/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/16/%E5%B9%B6%E5%8F%91/%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%BE%AA%E7%8E%AF%E6%89%93%E5%8D%B0ABC%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/">
         三个线程循环打印ABC代码实现
       </a>
@@ -465,10 +606,7 @@
   
   <div class='md'>
     
-      <p>Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。</p>
-<p>本文采用的源码版本是 4.3.11.RELEASE，算是 5.0.x 前比较新的版本了。为了降低难度，本文所说的所有的内容都是基于 xml 的配置的方式，实际使用已经很少人这么做了，至少不是纯 xml 配置，不过从理解源码的角度来看用这种方式来说无疑是最合适的。</p>
-<p>阅读建议：读者至少需要知道怎么配置 Spring，了解 Spring 中的各种概念，少部分内容我还假设读者使用过 SpringMVC。本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean，如果读者觉得一次性看完本文压力有点大，那么可以按这个思路分两次消化。读者不一定对 Spring 容器的源码感兴趣，也许附录部分介绍的知识对读者有些许作用。</p>
-<p>希望通过本文可以让读者不惧怕阅读 Spring 源码，也希望大家能反馈表述错误或不合理的地方。</p>
+      <p>本文转载于<a target="_blank" rel="noopener" href="https://javadoop.com/post/spring-ioc">Spring IOC 容器源码分析</a></p>
     
   </div>
   
@@ -734,165 +872,6 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">
-        Spring事务实现方式
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Spring 管理事务的方式有几种？
-编程式事务，在代码中硬编码。(不推荐使用)
-声明式事务，在配置文件中配置（推荐使用）
-
-声明式事务又分为两种：
-
-基于XML的声明式事务
-基于注解的声明式事务
-
-Spring 事务中的隔离级别有哪几种?TransactionDefinition 接口中定义了五个表示隔离级别的常量：
-
-TransactionDefinition.ISOLATION_D...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/15/Spring/Spring%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/">
-        Java限流-实现每秒n个请求
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-概要在大数据量高并发访问时，经常会出现服务或接口面对暴涨的请求而不可用的情况，甚至引发连锁反映导致整个系统崩溃。此时你需要使用的技术手段之一就是限流，当请求达到一定的并发数或速率，就进行等待、排队、降级、拒绝服务等。在限流时，常见的两种算法是漏桶和令牌桶算法算法。
-限流算法令牌桶(Token Bucket)、漏桶(leaky bucket)和计数器算法是最常用的三种限流的算法。
-1. ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/14/%E5%88%86%E5%B8%83%E5%BC%8F/REST%E4%B8%8ERPC%E5%8C%BA%E5%88%AB%EF%BC%9F/">
-        REST与RPC区别？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-REST与RPC概念什么是RESTREST是一种架构风格，指的是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是 RESTful。REST规范把所有内容都视为资源，网络上一切皆资源。
-REST并没有创造新的技术，组件或服务，只是使用Web的现有特征和能力。 可以完全通过HTTP协议实现，使用 HTTP 协议处理数据通信。REST架构对资源的操作包括获取、创建、修改和删除...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-14</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/14/%E5%88%86%E5%B8%83%E5%BC%8F/REST%E4%B8%8ERPC%E5%8C%BA%E5%88%AB%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1027,7 +1006,7 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1082,7 +1061,7 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(26)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1093,6 +1072,11 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
             title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
             id="categoriesE69D83E99990"
             ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9E%B6%E6%9E%84/"
+            id="categoriesE69EB6E69E84"
+            ><div class='name'>架构</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
@@ -1164,7 +1148,7 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>287 篇</div>
+          <div>290 篇</div>
         </div>
       
 
@@ -1186,7 +1170,7 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>458.4k 字</div>
+          <div>470.3k 字</div>
         </div>
       
 
@@ -1212,7 +1196,7 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 26 2021 08:27:54 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Thu Aug 26 2021 18:10:05 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-26 日</div>
           
         </div>

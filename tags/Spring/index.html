@@ -672,10 +672,7 @@ Spring Boot 特性一：更快速的构建能力Spring 和 Spring Boot 有什么
   
   <div class='md'>
     
-      <p>Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。</p>
-<p>本文采用的源码版本是 4.3.11.RELEASE，算是 5.0.x 前比较新的版本了。为了降低难度，本文所说的所有的内容都是基于 xml 的配置的方式，实际使用已经很少人这么做了，至少不是纯 xml 配置，不过从理解源码的角度来看用这种方式来说无疑是最合适的。</p>
-<p>阅读建议：读者至少需要知道怎么配置 Spring，了解 Spring 中的各种概念，少部分内容我还假设读者使用过 SpringMVC。本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean，如果读者觉得一次性看完本文压力有点大，那么可以按这个思路分两次消化。读者不一定对 Spring 容器的源码感兴趣，也许附录部分介绍的知识对读者有些许作用。</p>
-<p>希望通过本文可以让读者不惧怕阅读 Spring 源码，也希望大家能反馈表述错误或不合理的地方。</p>
+      <p>本文转载于<a target="_blank" rel="noopener" href="https://javadoop.com/post/spring-ioc">Spring IOC 容器源码分析</a></p>
     
   </div>
   
@@ -1026,7 +1023,7 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1081,7 +1078,7 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(26)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1092,6 +1089,11 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
             title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
             id="categoriesE69D83E99990"
             ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9E%B6%E6%9E%84/"
+            id="categoriesE69EB6E69E84"
+            ><div class='name'>架构</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
@@ -1163,7 +1165,7 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>287 篇</div>
+          <div>290 篇</div>
         </div>
       
 
@@ -1185,7 +1187,7 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>458.4k 字</div>
+          <div>470.3k 字</div>
         </div>
       
 
@@ -1211,7 +1213,7 @@ Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 26 2021 08:28:40 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Thu Aug 26 2021 18:10:53 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-26 日</div>
           
         </div>

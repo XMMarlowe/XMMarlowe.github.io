@@ -498,21 +498,34 @@
 <h4 id="什么时候产生"><a href="#什么时候产生" class="headerlink" title="什么时候产生"></a>什么时候产生</h4><p>事务开始之后就产生redo log，redo log的落盘并不是随着事务的提交才写入的，而是在事务的执行过程中，便开始写入redo log文件中。</p>
 <h4 id="什么时候释放"><a href="#什么时候释放" class="headerlink" title="什么时候释放"></a>什么时候释放</h4><p>当对应事务的脏页写入到磁盘之后，redo log的使命也就完成了，重做日志占用的空间就可以重用（被覆盖）。</p>
 <h4 id="对应的物理文件"><a href="#对应的物理文件" class="headerlink" title="对应的物理文件"></a>对应的物理文件</h4><p>默认情况下，对应的物理文件位于数据库的data目录下的ib_logfile1&amp;ib_logfile2</p>
-<p>innodb_log_group_home_dir 指定日志文件组所在的路径，默认./ ，表示在数据库的数据目录下。</p>
-<p>innodb_log_files_in_group 指定重做日志文件组中文件的数量，默认2</p>
-<h4 id="关于文件的大小和数量，由以下两个参数配置"><a href="#关于文件的大小和数量，由以下两个参数配置" class="headerlink" title="关于文件的大小和数量，由以下两个参数配置"></a>关于文件的大小和数量，由以下两个参数配置</h4><p>innodb_log_file_size 重做日志文件的大小。</p>
-<p>innodb_mirrored_log_groups 指定了日志镜像文件组的数量，默认1</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>很重要一点，redo log是什么时候写盘的？前面说了是在事物开始之后逐步写盘的。</p>
+<ul>
+<li><p>innodb_log_group_home_dir 指定日志文件组所在的路径，默认./ ，表示在数据库的数据目录下。</p>
+</li>
+<li><p>innodb_log_files_in_group 指定重做日志文件组中文件的数量，默认2</p>
+</li>
+</ul>
+<h4 id="关于文件的大小和数量，由以下两个参数配置"><a href="#关于文件的大小和数量，由以下两个参数配置" class="headerlink" title="关于文件的大小和数量，由以下两个参数配置"></a>关于文件的大小和数量，由以下两个参数配置</h4><ul>
+<li><p>innodb_log_file_size 重做日志文件的大小。</p>
+</li>
+<li><p>innodb_mirrored_log_groups 指定了日志镜像文件组的数量，默认1</p>
+</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>很重要一点，redo log是什么时候写盘的？前面说了是在事务开始之后逐步写盘的。</p>
 <p>之所以说重做日志是在事务开始之后逐步写入重做日志文件，而不一定是事务提交才写入重做日志缓存，原因就是，重做日志有一个缓存区Innodb_log_buffer，Innodb_log_buffer的默认大小为8M(这里设置的16M),Innodb存储引擎先将重做日志写入innodb_log_buffer中。</p>
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429221216.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429221216.png" srcset="data:image/png;base64,666" alt="20210429221216"></p>
 <p><strong>然后会通过以下三种方式将innodb日志缓冲区的日志刷新到磁盘</strong></p>
-<p>Master Thread 每秒一次执行刷新Innodb_log_buffer到重做日志文件。<br>每个事务提交时会将重做日志刷新到重做日志文件。<br>当重做日志缓存可用空间 少于一半时，重做日志缓存被刷新到重做日志文件</p>
-<p>由此可以看出，重做日志通过不止一种方式写入到磁盘，尤其是对于第一种方式，Innodb_log_buffer到重做日志文件是Master Thread线程的定时任务。</p>
+<ol>
+<li>Master Thread 每秒一次执行刷新Innodb_log_buffer到重做日志文件。</li>
+<li>每个事务提交时会将重做日志刷新到重做日志文件。</li>
+<li>当重做日志缓存可用空间 少于一半时，重做日志缓存被刷新到重做日志文件</li>
+</ol>
+<p>由此可以看出，<strong>重做日志</strong>通过<strong>不止一种方式写入到磁盘</strong>，尤其是对于第一种方式，Innodb_log_buffer到重做日志文件是Master Thread线程的定时任务。</p>
 <p>因此重做日志的写盘，并不一定是随着事务的提交才写入重做日志文件的，而是随着事务的开始，逐步开始的。</p>
 <p>另外引用《MySQL技术内幕 Innodb 存储引擎》（page37）上的原话：</p>
-<p>即使某个事务还没有提交，Innodb存储引擎仍然每秒会将重做日志缓存刷新到重做日志文件。</p>
-<p>这一点是必须要知道的，因为这可以很好地解释再大的事务的提交（commit）的时间也是很短暂的。</p>
-<h3 id="回滚日志（undo-log）"><a href="#回滚日志（undo-log）" class="headerlink" title="回滚日志（undo log）"></a>回滚日志（undo log）</h3><h4 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h4><p>保存了事务发生之前的数据的一个版本，可以用于回滚，同时可以提供多版本并发控制下的读（MVCC），也即非锁定读</p>
+<p><strong>即使某个事务还没有提交，Innodb存储引擎仍然每秒会将重做日志缓存刷新到重做日志文件。</strong></p>
+<p><strong>这一点是必须要知道的，因为这可以很好地解释再大的事务的提交（commit）的时间也是很短暂的。</strong></p>
+<hr>
+<h3 id="回滚日志（undo-log）"><a href="#回滚日志（undo-log）" class="headerlink" title="回滚日志（undo log）"></a>回滚日志（undo log）</h3><h4 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h4><p>保存了事务发生之前的数据的一个版本，可以用于回滚，同时可以提供多版本并发控制下的读（MVCC），也即非锁定读。</p>
 <h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><p>逻辑格式的日志，在执行undo的时候，仅仅是将数据从逻辑上恢复至事务之前的状态，而不是从物理页面上操作实现的，这一点是不同于redo log的。</p>
 <h4 id="什么时候产生-1"><a href="#什么时候产生-1" class="headerlink" title="什么时候产生"></a>什么时候产生</h4><p>事务开始之前，将当前是的版本生成undo log，undo 也会产生 redo 来保证undo log的可靠性</p>
 <h4 id="什么时候释放-1"><a href="#什么时候释放-1" class="headerlink" title="什么时候释放"></a>什么时候释放</h4><p>当事务提交之后，undo log并不能立马被删除，而是放入待清理的链表，由purge线程判断是否由其他事务在使用undo段中表的上一个事务之前的版本信息，决定是否可以清理undo log的日志空间。</p>
@@ -529,6 +542,7 @@
 <p>默认情况下undo文件是保持在共享表空间的，也即ibdatafile文件中，当数据库中发生一些大的事务性操作的时候，要生成大量的undo信息，全部保存在共享表空间中的。</p>
 <p>因此共享表空间可能会变的很大，默认情况下，也就是undo 日志使用共享表空间的时候，被“撑大”的共享表空间是不会也不能自动收缩的。</p>
 <p>因此，mysql5.7之后的“独立undo 表空间”的配置就显得很有必要了。</p>
+<hr>
 <h3 id="二进制日志（binlog）"><a href="#二进制日志（binlog）" class="headerlink" title="二进制日志（binlog）"></a>二进制日志（binlog）</h3><h4 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h4><p>用于复制，在主从复制中，从库利用主库上的binlog进行重播，实现主从同步。<br>用于数据库的基于时间点的还原。</p>
 <h4 id="内容-2"><a href="#内容-2" class="headerlink" title="内容"></a>内容</h4><p>逻辑格式的日志，可以简单认为就是执行过的事务中的sql语句。</p>
 <p>但又不完全是sql语句这么简单，而是包括了执行的sql语句（增删改）反向的信息，也就意味着delete对应着delete本身和其反向的insert；update对应着update执行前后的版本的信息；insert对应着delete和insert本身的信息。</p>
@@ -542,16 +556,19 @@
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429221546.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429221546.png" srcset="data:image/png;base64,666" alt="20210429221546"></p>
 <h4 id="对应的物理文件-2"><a href="#对应的物理文件-2" class="headerlink" title="对应的物理文件"></a>对应的物理文件</h4><p>配置文件的路径为log_bin_basename，binlog日志文件按照指定大小，当日志文件达到指定的最大的大小之后，进行滚动更新，生成新的日志文件。</p>
 <p>对于每个binlog日志文件，通过一个统一的index文件来组织。<br><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429221606.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429221606.png" srcset="data:image/png;base64,666" alt="20210429221606"></p>
-<h4 id="其他-2"><a href="#其他-2" class="headerlink" title="其他"></a>其他</h4><p>二进制日志的作用之一是还原数据库的，这与redo log很类似，很多人混淆过，但是两者有本质的不同</p>
-<p>作用不同：redo log是保证事务的持久性的，是事务层面的，binlog作为还原的功能，是数据库层面的（当然也可以精确到事务层面的），虽然都有还原的意思，但是其保护数据的层次是不一样的。<br>内容不同：redo log是物理日志，是数据页面的修改之后的物理记录，binlog是逻辑日志，可以简单认为记录的就是sql语句<br>另外，两者日志产生的时间，可以释放的时间，在可释放的情况下清理机制，都是完全不同的。<br>恢复数据时候的效率，基于物理日志的redo log恢复数据的效率要高于语句逻辑日志的binlog</p>
-<p>关于事务提交时，redo log和binlog的写入顺序，为了保证主从复制时候的主从一致（当然也包括使用binlog进行基于时间点还原的情况），是要严格一致的，MySQL通过两阶段提交过程来完成事务的一致性的，也即redo log和binlog的一致性的，理论上是先写redo log，再写binlog，两个日志都提交成功（刷入磁盘），事务才算真正的完成。</p>
+<h4 id="其他-2"><a href="#其他-2" class="headerlink" title="其他"></a>其他</h4><p>二进制日志的作用之一是还原数据库的，这与redo log很类似，很多人混淆过，但是两者有本质的不同。</p>
+<p><strong>作用不同：</strong> redo log是保证事务的持久性的，是事务层面的，binlog作为还原的功能，是数据库层面的（当然也可以精确到事务层面的），虽然都有还原的意思，但是其保护数据的层次是不一样的。</p>
+<p><strong>内容不同：</strong> redo log是物理日志，是数据页面的修改之后的物理记录，binlog是逻辑日志，可以简单认为记录的就是sql语句</p>
+<p>另外，两者日志产生的时间，可以释放的时间，在可释放的情况下清理机制，都是完全不同的。</p>
+<p>恢复数据时候的效率，基于物理日志的redo log恢复数据的效率要高于语句逻辑日志的binlog。</p>
+<p><strong>关于事务提交时</strong>，redo log和binlog的写入顺序，为了保证主从复制时候的主从一致（当然也包括使用binlog进行基于时间点还原的情况），是要严格一致的，MySQL通过两阶段提交过程来完成事务的一致性的，也即redo log和binlog的一致性的，理论上是先写redo log，再写binlog，两个日志都提交成功（刷入磁盘），事务才算真正的完成。</p>
 <h3 id="redo-log日志模块"><a href="#redo-log日志模块" class="headerlink" title="redo log日志模块"></a>redo log日志模块</h3><p>redo log是InnoDB存储引擎层的日志，又称重做日志文件，用于记录事务操作的变化，记录的是数据修改之后的值，不管事务是否提交都会记录下来。在实例和介质失败（media failure）时，redo log文件就能派上用场，如数据库掉电，InnoDB存储引擎会使用redo log恢复到掉电前的时刻，以此来保证数据的完整性。</p>
 <p>在一条更新语句进行执行的时候，InnoDB引擎会把更新记录写到redo log日志中，然后更新内存，此时算是语句执行完了，然后在空闲的时候或者是按照设定的更新策略将redo log中的内容更新到磁盘中，这里涉及到WAL即Write Ahead logging技术，他的关键点是先写日志，再写磁盘。</p>
 <p>有了redo log日志，那么在数据库进行异常重启的时候，可以根据redo log日志进行恢复，也就达到了crash-safe。</p>
 <p>redo log日志的大小是固定的，即记录满了以后就从头循环写。</p>
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429220838.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210429220838.png" srcset="data:image/png;base64,666" alt="20210429220838"></p>
 <p>该图展示了一组4个文件的redo log日志，checkpoint之前表示擦除完了的，即可以进行写的，擦除之前会更新到磁盘中，write pos是指写的位置，当write pos和checkpoint相遇的时候表明redo log已经满了，这个时候数据库停止进行数据库更新语句的执行，转而进行redo log日志同步到磁盘中。</p>
-<h3 id="binlog日志模块"><a href="#binlog日志模块" class="headerlink" title="binlog日志模块"></a>binlog日志模块</h3><p>binlog是属于MySQL Server层面的，又称为归档日志，属于逻辑日志，是以二进制的形式记录的是这个语句的原始逻辑，依靠binlog是没有crash-safe能力的</p>
+<h3 id="bin-log日志模块"><a href="#bin-log日志模块" class="headerlink" title="bin log日志模块"></a>bin log日志模块</h3><p>bin log是属于MySQL Server层面的，又称为归档日志，属于逻辑日志，是以二进制的形式记录的是这个语句的原始逻辑，依靠bin log是没有crash-safe能力的</p>
 <h3 id="redo-log和binlog区别"><a href="#redo-log和binlog区别" class="headerlink" title="redo log和binlog区别"></a>redo log和binlog区别</h3><ul>
 <li>redo log是属于innoDB层面，binlog属于MySQL Server层面的，这样在数据库用别的存储引擎时可以达到一致性的要求。</li>
 <li>redo log是物理日志，记录该数据页更新的内容；binlog是逻辑日志，记录的是这个更新语句的原始逻辑</li>
@@ -605,10 +622,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-29T22:35:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T18:09:02+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 29, 2021</p>
+    <p>更新于：Aug 26, 2021</p>
   </a>
 </div>
 
@@ -735,7 +752,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84"><span class="toc-text">MySQL逻辑架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%81%9A%E6%97%A5%E5%BF%97%EF%BC%88redo-log%EF%BC%89"><span class="toc-text">重做日志（redo log）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-text">内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BA%A7%E7%94%9F"><span class="toc-text">什么时候产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%87%8A%E6%94%BE"><span class="toc-text">什么时候释放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%BA%94%E7%9A%84%E7%89%A9%E7%90%86%E6%96%87%E4%BB%B6"><span class="toc-text">对应的物理文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%95%B0%E9%87%8F%EF%BC%8C%E7%94%B1%E4%BB%A5%E4%B8%8B%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="toc-text">关于文件的大小和数量，由以下两个参数配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E6%97%A5%E5%BF%97%EF%BC%88undo-log%EF%BC%89"><span class="toc-text">回滚日志（undo log）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8-1"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AE%B9-1"><span class="toc-text">内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BA%A7%E7%94%9F-1"><span class="toc-text">什么时候产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%87%8A%E6%94%BE-1"><span class="toc-text">什么时候释放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%BA%94%E7%9A%84%E7%89%A9%E7%90%86%E6%96%87%E4%BB%B6-1"><span class="toc-text">对应的物理文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EMySQL5-7%E4%B9%8B%E5%90%8E%E7%9A%84%E7%8B%AC%E7%AB%8Bundo-%E8%A1%A8%E7%A9%BA%E9%97%B4%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B"><span class="toc-text">关于MySQL5.7之后的独立undo 表空间配置参数如下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96-1"><span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%EF%BC%88binlog%EF%BC%89"><span class="toc-text">二进制日志（binlog）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8-2"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AE%B9-2"><span class="toc-text">内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BA%A7%E7%94%9F-2"><span class="toc-text">什么时候产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%87%8A%E6%94%BE-2"><span class="toc-text">什么时候释放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%BA%94%E7%9A%84%E7%89%A9%E7%90%86%E6%96%87%E4%BB%B6-2"><span class="toc-text">对应的物理文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96-2"><span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redo-log%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97"><span class="toc-text">redo log日志模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#binlog%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97"><span class="toc-text">binlog日志模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redo-log%E5%92%8Cbinlog%E5%8C%BA%E5%88%AB"><span class="toc-text">redo log和binlog区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84"><span class="toc-text">MySQL逻辑架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%81%9A%E6%97%A5%E5%BF%97%EF%BC%88redo-log%EF%BC%89"><span class="toc-text">重做日志（redo log）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-text">内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BA%A7%E7%94%9F"><span class="toc-text">什么时候产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%87%8A%E6%94%BE"><span class="toc-text">什么时候释放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%BA%94%E7%9A%84%E7%89%A9%E7%90%86%E6%96%87%E4%BB%B6"><span class="toc-text">对应的物理文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%95%B0%E9%87%8F%EF%BC%8C%E7%94%B1%E4%BB%A5%E4%B8%8B%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="toc-text">关于文件的大小和数量，由以下两个参数配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E6%97%A5%E5%BF%97%EF%BC%88undo-log%EF%BC%89"><span class="toc-text">回滚日志（undo log）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8-1"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AE%B9-1"><span class="toc-text">内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BA%A7%E7%94%9F-1"><span class="toc-text">什么时候产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%87%8A%E6%94%BE-1"><span class="toc-text">什么时候释放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%BA%94%E7%9A%84%E7%89%A9%E7%90%86%E6%96%87%E4%BB%B6-1"><span class="toc-text">对应的物理文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EMySQL5-7%E4%B9%8B%E5%90%8E%E7%9A%84%E7%8B%AC%E7%AB%8Bundo-%E8%A1%A8%E7%A9%BA%E9%97%B4%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B"><span class="toc-text">关于MySQL5.7之后的独立undo 表空间配置参数如下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96-1"><span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%EF%BC%88binlog%EF%BC%89"><span class="toc-text">二进制日志（binlog）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8-2"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AE%B9-2"><span class="toc-text">内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BA%A7%E7%94%9F-2"><span class="toc-text">什么时候产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%87%8A%E6%94%BE-2"><span class="toc-text">什么时候释放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%BA%94%E7%9A%84%E7%89%A9%E7%90%86%E6%96%87%E4%BB%B6-2"><span class="toc-text">对应的物理文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96-2"><span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redo-log%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97"><span class="toc-text">redo log日志模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bin-log%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97"><span class="toc-text">bin log日志模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redo-log%E5%92%8Cbinlog%E5%8C%BA%E5%88%AB"><span class="toc-text">redo log和binlog区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

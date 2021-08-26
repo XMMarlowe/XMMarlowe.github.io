@@ -415,6 +415,148 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        ArrayList和LinkedList的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+Arraylist 与 LinkedList 区别?
+是否保证线程安全： ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
+底层数据结构： Arraylist 底层使用的是 Object 数组；LinkedList 底层使用的是 双向链表 数据结构（JDK1.6 之前为循环链表，JDK1.7 取消了循环。）
+插入和删除是否受元素位置的影响： ① Array...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">
+        ArrayList扩容机制
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+1234567891、添加元素时，首先进行判断是否大于默认容量102、如果，小于默认容量，直接在原来基础上+1，元素添加完毕3、如果，大于默认容量，则需要进行扩容，扩容核心是grow()方法   3.1 扩容之前，首先创建一个新的数组，且旧数组被复制到新的数组中       这样就得到了一个全新的副本，我们在操作时就不会影响原来数组了   3.2 然后通过位运算符将新的容量更新为旧容量的...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/">
+        HashMap是线程安全的吗？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p><code>HashMap</code>的线程不安全体现在会造成死循环、数据丢失、数据覆盖这些问题。其中死循环和数据丢失是在JDK1.7中出现的问题，在JDK1.8中已经得到解决，然而1.8中仍会有数据覆盖这样的问题。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
         HashMap底层原理
       </a>
@@ -875,7 +1017,7 @@ Exception 和 Error 二者都是 Java 异常处...
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -930,7 +1072,7 @@ Exception 和 Error 二者都是 Java 异常处...
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(26)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -941,6 +1083,11 @@ Exception 和 Error 二者都是 Java 异常处...
             title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
             id="categoriesE69D83E99990"
             ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9E%B6%E6%9E%84/"
+            id="categoriesE69EB6E69E84"
+            ><div class='name'>架构</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
@@ -1012,7 +1159,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>287 篇</div>
+          <div>290 篇</div>
         </div>
       
 
@@ -1034,7 +1181,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>458.4k 字</div>
+          <div>470.3k 字</div>
         </div>
       
 
@@ -1060,7 +1207,7 @@ Exception 和 Error 二者都是 Java 异常处...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 26 2021 08:28:23 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Thu Aug 26 2021 18:10:36 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-26 日</div>
           
         </div>

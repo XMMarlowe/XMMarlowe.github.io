@@ -26,7 +26,7 @@
   
 
   
-    <meta name="description" content="Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spr...">
+    <meta name="description" content="本文转载于Spring IOC 容器源码分析">
   
 
   <!-- feed -->
@@ -488,12 +488,13 @@
 
 
   
-  <p>Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。</p>
+  <p>本文转载于<a target="_blank" rel="noopener" href="https://javadoop.com/post/spring-ioc">Spring IOC 容器源码分析</a></p>
+<a id="more"></a>
+
+<p>Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。</p>
 <p>本文采用的源码版本是 4.3.11.RELEASE，算是 5.0.x 前比较新的版本了。为了降低难度，本文所说的所有的内容都是基于 xml 的配置的方式，实际使用已经很少人这么做了，至少不是纯 xml 配置，不过从理解源码的角度来看用这种方式来说无疑是最合适的。</p>
 <p>阅读建议：读者至少需要知道怎么配置 Spring，了解 Spring 中的各种概念，少部分内容我还假设读者使用过 SpringMVC。本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean，如果读者觉得一次性看完本文压力有点大，那么可以按这个思路分两次消化。读者不一定对 Spring 容器的源码感兴趣，也许附录部分介绍的知识对读者有些许作用。</p>
 <p>希望通过本文可以让读者不惧怕阅读 Spring 源码，也希望大家能反馈表述错误或不合理的地方。</p>
-<a id="more"></a>
-
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>先看下最基本的启动 Spring 容器的例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;classpath:applicationfile.xml&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以上代码就可以利用配置文件来启动一个 Spring 容器了，请使用 maven 的小伙伴直接在 dependencies 中加上以下依赖即可，个人比较反对那些不知道要添加什么依赖，然后把 Spring 的所有相关的东西都加进来的方式。</p>
@@ -869,7 +870,6 @@
 <p>在花了那么多时间后，这篇文章终于算是基本写完了，大家在惊叹 Spring 给我们做了那么多的事的时候，应该透过现象看本质，去理解 Spring 写得好的地方，去理解它的设计思想。</p>
 <p>本文的缺陷在于对 Spring 预初始化 singleton beans 的过程分析不够，主要是代码量真的比较大，分支旁路众多。同时，虽然附录条目不少，但是庞大的 Spring 真的引出了很多的概念，希望日后有精力可以慢慢补充一些。</p>
 <p>（全文完）</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>本文转载于<a target="_blank" rel="noopener" href="https://javadoop.com/post/spring-ioc">Spring IOC 容器源码分析</a></p>
 
   
   
@@ -915,10 +915,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-16T22:24:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T18:09:02+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 16, 2021</p>
+    <p>更新于：Aug 26, 2021</p>
   </a>
 </div>
 
@@ -932,10 +932,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring+IOC+%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&title=Spring IOC 容器源码分析 - Marlowe&summary=Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。
-本文采用的源码版本是 4.3.11.RELEASE，算是 5.0.x 前比较新的版本了。为了降低难度，本文所说的所有的内容都是基于 xml 的配置的方式，实际使用已经很少人这么做了，至少不是纯 xml 配置，不过从理解源码的角度来看用这种方式来说无疑是最合适的。
-阅读建议：读者至少需要知道怎么配置 Spring，了解 Spring 中的各种概念，少部分内容我还假设读者使用过 SpringMVC。本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean，如果读者觉得一次性看完本文压力有点大，那么可以按这个思路分两次消化。读者不一定对 Spring 容器的源码感兴趣，也许附录部分介绍的知识对读者有些许作用。
-希望通过本文可以让读者不惧怕阅读 Spring 源码，也希望大家能反馈表述错误或不合理的地方。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring+IOC+%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&title=Spring IOC 容器源码分析 - Marlowe&summary=本文转载于Spring IOC 容器源码分析"
           
           >
           
@@ -947,10 +944,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring+IOC+%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&title=Spring IOC 容器源码分析 - Marlowe&summary=Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。
-本文采用的源码版本是 4.3.11.RELEASE，算是 5.0.x 前比较新的版本了。为了降低难度，本文所说的所有的内容都是基于 xml 的配置的方式，实际使用已经很少人这么做了，至少不是纯 xml 配置，不过从理解源码的角度来看用这种方式来说无疑是最合适的。
-阅读建议：读者至少需要知道怎么配置 Spring，了解 Spring 中的各种概念，少部分内容我还假设读者使用过 SpringMVC。本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean，如果读者觉得一次性看完本文压力有点大，那么可以按这个思路分两次消化。读者不一定对 Spring 容器的源码感兴趣，也许附录部分介绍的知识对读者有些许作用。
-希望通过本文可以让读者不惧怕阅读 Spring 源码，也希望大家能反馈表述错误或不合理的地方。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring+IOC+%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&title=Spring IOC 容器源码分析 - Marlowe&summary=本文转载于Spring IOC 容器源码分析"
           
           >
           
@@ -962,10 +956,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring+IOC+%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&title=Spring IOC 容器源码分析 - Marlowe&summary=Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。
-本文采用的源码版本是 4.3.11.RELEASE，算是 5.0.x 前比较新的版本了。为了降低难度，本文所说的所有的内容都是基于 xml 的配置的方式，实际使用已经很少人这么做了，至少不是纯 xml 配置，不过从理解源码的角度来看用这种方式来说无疑是最合适的。
-阅读建议：读者至少需要知道怎么配置 Spring，了解 Spring 中的各种概念，少部分内容我还假设读者使用过 SpringMVC。本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean，如果读者觉得一次性看完本文压力有点大，那么可以按这个思路分两次消化。读者不一定对 Spring 容器的源码感兴趣，也许附录部分介绍的知识对读者有些许作用。
-希望通过本文可以让读者不惧怕阅读 Spring 源码，也希望大家能反馈表述错误或不合理的地方。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/05/16/Spring/Spring+IOC+%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&title=Spring IOC 容器源码分析 - Marlowe&summary=本文转载于Spring IOC 容器源码分析"
           
           >
           
@@ -1052,7 +1043,7 @@ AOP联盟将AOP体系分为三层，从三层结构可以看出，AOP实现方�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-%E7%AE%80%E4%BB%8B"><span class="toc-text">BeanFactory 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">启动过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Bean-%E5%AE%B9%E5%99%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">创建 Bean 容器前的准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Bean-%E5%AE%B9%E5%99%A8%EF%BC%8C%E5%8A%A0%E8%BD%BD%E5%B9%B6%E6%B3%A8%E5%86%8C-Bean"><span class="toc-text">创建 Bean 容器，加载并注册 Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BeanDefinition-%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89"><span class="toc-text">BeanDefinition 接口定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#customizeBeanFactory"><span class="toc-text">customizeBeanFactory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD-Bean-loadBeanDefinitions"><span class="toc-text">加载 Bean: loadBeanDefinitions</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#doRegisterBeanDefinitions%EF%BC%9A"><span class="toc-text">doRegisterBeanDefinitions：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#processBeanDefinition-%E8%A7%A3%E6%9E%90-bean-%E6%A0%87%E7%AD%BE"><span class="toc-text">processBeanDefinition 解析 bean 标签</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C-Bean"><span class="toc-text">注册 Bean</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean-%E5%AE%B9%E5%99%A8%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%AE%8C%E6%88%90%E5%90%8E"><span class="toc-text">Bean 容器实例化完成后</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87-Bean-%E5%AE%B9%E5%99%A8-prepareBeanFactory"><span class="toc-text">准备 Bean 容器: prepareBeanFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%89%80%E6%9C%89%E7%9A%84-singleton-beans"><span class="toc-text">初始化所有的 singleton beans</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#preInstantiateSingletons"><span class="toc-text">preInstantiateSingletons</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getBean"><span class="toc-text">getBean</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Bean"><span class="toc-text">创建 Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Bean-%E5%AE%9E%E4%BE%8B"><span class="toc-text">创建 Bean 实例</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#bean-%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="toc-text">bean 属性注入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#initializeBean"><span class="toc-text">initializeBean</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#id-%E5%92%8C-name"><span class="toc-text">id 和 name</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%98%AF%E5%90%A6%E5%85%81%E8%AE%B8-Bean-%E8%A6%86%E7%9B%96%E3%80%81%E6%98%AF%E5%90%A6%E5%85%81%E8%AE%B8%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-text">配置是否允许 Bean 覆盖、是否允许循环依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#profile"><span class="toc-text">profile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%94%9F%E6%88%90-Bean"><span class="toc-text">工厂模式生成 Bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FactoryBean"><span class="toc-text">FactoryBean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-Bean-%E7%9A%84%E5%9B%9E%E8%B0%83"><span class="toc-text">初始化 Bean 的回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%80%E6%AF%81-Bean-%E7%9A%84%E5%9B%9E%E8%B0%83"><span class="toc-text">销毁 Bean 的回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConversionService"><span class="toc-text">ConversionService</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean-%E7%BB%A7%E6%89%BF"><span class="toc-text">Bean 继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%B3%A8%E5%85%A5"><span class="toc-text">方法注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lookup-method"><span class="toc-text">lookup-method</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#replaced-method"><span class="toc-text">replaced-method</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanPostProcessor"><span class="toc-text">BeanPostProcessor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-%E7%AE%80%E4%BB%8B"><span class="toc-text">BeanFactory 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">启动过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Bean-%E5%AE%B9%E5%99%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">创建 Bean 容器前的准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Bean-%E5%AE%B9%E5%99%A8%EF%BC%8C%E5%8A%A0%E8%BD%BD%E5%B9%B6%E6%B3%A8%E5%86%8C-Bean"><span class="toc-text">创建 Bean 容器，加载并注册 Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BeanDefinition-%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89"><span class="toc-text">BeanDefinition 接口定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#customizeBeanFactory"><span class="toc-text">customizeBeanFactory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD-Bean-loadBeanDefinitions"><span class="toc-text">加载 Bean: loadBeanDefinitions</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#doRegisterBeanDefinitions%EF%BC%9A"><span class="toc-text">doRegisterBeanDefinitions：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#processBeanDefinition-%E8%A7%A3%E6%9E%90-bean-%E6%A0%87%E7%AD%BE"><span class="toc-text">processBeanDefinition 解析 bean 标签</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C-Bean"><span class="toc-text">注册 Bean</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean-%E5%AE%B9%E5%99%A8%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%AE%8C%E6%88%90%E5%90%8E"><span class="toc-text">Bean 容器实例化完成后</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87-Bean-%E5%AE%B9%E5%99%A8-prepareBeanFactory"><span class="toc-text">准备 Bean 容器: prepareBeanFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%89%80%E6%9C%89%E7%9A%84-singleton-beans"><span class="toc-text">初始化所有的 singleton beans</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#preInstantiateSingletons"><span class="toc-text">preInstantiateSingletons</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getBean"><span class="toc-text">getBean</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Bean"><span class="toc-text">创建 Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Bean-%E5%AE%9E%E4%BE%8B"><span class="toc-text">创建 Bean 实例</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#bean-%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="toc-text">bean 属性注入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#initializeBean"><span class="toc-text">initializeBean</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#id-%E5%92%8C-name"><span class="toc-text">id 和 name</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%98%AF%E5%90%A6%E5%85%81%E8%AE%B8-Bean-%E8%A6%86%E7%9B%96%E3%80%81%E6%98%AF%E5%90%A6%E5%85%81%E8%AE%B8%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-text">配置是否允许 Bean 覆盖、是否允许循环依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#profile"><span class="toc-text">profile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%94%9F%E6%88%90-Bean"><span class="toc-text">工厂模式生成 Bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FactoryBean"><span class="toc-text">FactoryBean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-Bean-%E7%9A%84%E5%9B%9E%E8%B0%83"><span class="toc-text">初始化 Bean 的回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%80%E6%AF%81-Bean-%E7%9A%84%E5%9B%9E%E8%B0%83"><span class="toc-text">销毁 Bean 的回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConversionService"><span class="toc-text">ConversionService</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean-%E7%BB%A7%E6%89%BF"><span class="toc-text">Bean 继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%B3%A8%E5%85%A5"><span class="toc-text">方法注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lookup-method"><span class="toc-text">lookup-method</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#replaced-method"><span class="toc-text">replaced-method</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanPostProcessor"><span class="toc-text">BeanPostProcessor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 

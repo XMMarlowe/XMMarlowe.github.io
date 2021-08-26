@@ -415,6 +415,144 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/">
+        LockSupport简单用法及原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介LockSupport是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
+作用接下面我来看看LockSupport有哪些常用的方法。主要有两类方法：park和unpark。
+12345678public static void park(Object blocker); // 暂停当前线程public static void pa...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/">
+        Java9-Java14新特性
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>待完善…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/">
+        InnoDB引擎 - 行记录存储 - Compact 行格式
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>待完善…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
         局部性原理和工作原理
       </a>
@@ -757,155 +895,6 @@ a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
-        hashCode()与 equals()相关问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode()定义在 JDK 的 Object 类中，这就意味着 Java 中的任何类都包含有 hashCode() 函数。另外需要注意的是： Object 的 hashcode 方法是本地方法，也就是用 c 语言或 c...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6/">
-        InnoDB崩溃恢复机制
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-概述数据库系统与文件系统大的区别在于数据库能保证操作的原子性，一个操作要么不做要么都做，即使在数据库宕机的情况下，也不会出现操作一半的情况，这个就需要数据库的日志和一套完善的崩溃恢复机制来保证。下面简单介绍一下InnoDB的崩溃恢复流程。
-相关概念
-lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值越大，说明数据库的更新越多，也可以理解为更新的时刻。此外，每个数据页上也有一...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        信号与信号量的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-信号由用户、系统或者进程发送给目标进程的信息，以通知目标进程某个状态的改变或系统异常。
-信号量信号量是一个特殊的变量，它的本质是计数器，信号量里面记录了临界资源的数目，有多少数目，信号量的值就为多少，进程对其访问都是原子操作（pv操作，p：占用资源，v：释放资源）。它的作用就是，调协进程对共享资源的访问，让一个临界区同一时间只有一个进程在访问它。
-区别信号是通知进程产生了某个事件，信号...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1039,7 +1028,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1094,7 +1083,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(26)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1105,6 +1094,11 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
             title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
             id="categoriesE69D83E99990"
             ><div class='name'>权限</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9E%B6%E6%9E%84/"
+            id="categoriesE69EB6E69E84"
+            ><div class='name'>架构</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%B8%A9%E5%9D%91/"
@@ -1176,7 +1170,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>287 篇</div>
+          <div>290 篇</div>
         </div>
       
 
@@ -1198,7 +1192,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>458.4k 字</div>
+          <div>470.3k 字</div>
         </div>
       
 
@@ -1224,7 +1218,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 26 2021 08:28:18 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Thu Aug 26 2021 18:10:31 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-26 日</div>
           
         </div>

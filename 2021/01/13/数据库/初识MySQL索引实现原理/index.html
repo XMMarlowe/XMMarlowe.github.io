@@ -469,13 +469,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.4k words</p>
+      <p>2k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>4 min</p>
+      <p>7 min</p>
     </a>
   </div>
 
@@ -493,27 +493,35 @@
 
 <p>目前大部分数据库系统及文件系统都采用B-Tree(B树)或其变种B+Tree(B+树)作为索引结构。B+Tree是数据库系统实现索引的首选数据结构。在MySQL中,索引属于存储引擎级别的概念,不同存储引擎对索引的实现方式是不同的,本文主要讨论MyISAM和InnoDB两个存储引擎的索引实现方式。</p>
 <p>在 MySQL 中,索引属于存储引擎级别的概念,不同存储引擎对索引的实现方式是不同的,本文主要讨论 MyISAM 和 InnoDB 两个存储引擎的索引实现方式。</p>
-<h3 id="MyISAM-索引实现"><a href="#MyISAM-索引实现" class="headerlink" title="MyISAM 索引实现"></a>MyISAM 索引实现</h3><p><strong>MyISAM 引擎使用 B+Tree 作为索引结构,叶节点的 data 域存放的是数据记录的地址。</strong> 下图是 MyISAM 索引的原理图:</p>
+<h3 id="MyISAM-索引实现"><a href="#MyISAM-索引实现" class="headerlink" title="MyISAM 索引实现"></a>MyISAM 索引实现</h3><h4 id="1-主键索引"><a href="#1-主键索引" class="headerlink" title="1. 主键索引"></a>1. 主键索引</h4><p><strong>MyISAM 引擎使用 B+Tree 作为索引结构,叶节点的 data 域存放的是数据记录的地址。</strong> 下图是 MyISAM 索引的原理图:</p>
 <p><img src="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/4ab4988a2c158a128c8ec2406d71402a.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" class="lazyload" data-srcset="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/4ab4988a2c158a128c8ec2406d71402a.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" srcset="data:image/png;base64,666" alt="MyISAM 索引实现 "></p>
 <p>这里设表一共有三列,假设我们以 Col1 为主键,则图 8 是一个 MyISAM 表的主索引(Primary key)示意。可以看出 MyISAM 的索引文件仅仅保存数据记录的地址。</p>
-<p><strong>辅助索引</strong></p>
-<p>在 MyISAM 中,主索引和辅助索引(Secondary key)在结构上没有任何区别,只是主索引要求 key 是唯一的,而辅助索引的 key 可以重复。如果我们在 Col2 上建立一个辅助索引,则此索引的结构如下图所示：</p>
+<h4 id="2-辅助索引"><a href="#2-辅助索引" class="headerlink" title="2. 辅助索引"></a>2. 辅助索引</h4><p>在 MyISAM 中,主索引和辅助索引(Secondary key)在结构上没有任何区别,只是主索引要求 key 是唯一的,而辅助索引的 key 可以重复。如果我们在 Col2 上建立一个辅助索引,则此索引的结构如下图所示：</p>
 <p><img src="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/8a27a81cde5d0f565d336d8b2501811b.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" class="lazyload" data-srcset="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/8a27a81cde5d0f565d336d8b2501811b.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" srcset="data:image/png;base64,666" alt="辅助索引"></p>
 <p>同样也是一颗 B+Tree,data 域保存数据记录的地址。因此,MyISAM 中索引检索的算法为首先按照 B+Tree 搜索算法搜索索引,如果指定的 Key 存在,则取出其data 域的值,然后以 data 域的值为地址,读取相应数据记录。</p>
 <p><strong>MyISAM 的索引方式也叫做“非聚集索引”,</strong> 之所以这么称呼是为了与 InnoDB的聚集索引区分。</p>
 <h3 id="InnoDB-索引实现"><a href="#InnoDB-索引实现" class="headerlink" title="InnoDB 索引实现"></a>InnoDB 索引实现</h3><p>虽然 InnoDB 也使用 B+Tree 作为索引结构,但具体实现方式却与 MyISAM 截然不同。</p>
-<p>1.<strong>第一个重大区别是 InnoDB 的数据文件本身就是索引文件。从上文知道,MyISAM 索引文件和数据文件是分离的,索引文件仅保存数据记录的地址。</strong></p>
+<h4 id="1-主键索引-1"><a href="#1-主键索引-1" class="headerlink" title="1. 主键索引"></a>1. 主键索引</h4><p>1.<strong>第一个重大区别是 InnoDB 的数据文件本身就是索引文件。从上文知道,MyISAM 索引文件和数据文件是分离的,索引文件仅保存数据记录的地址。</strong></p>
 <p>而在InnoDB 中,表数据文件本身就是按 B+Tree 组织的一个索引结构,这棵树的叶点data 域保存了完整的数据记录。这个索引的 key 是数据表的主键,因此 <strong>InnoDB 表数据文件本身就是主索引。</strong></p>
 <p><img src="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/a1f0dd22be4459abf8b984c832ade3c0.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" class="lazyload" data-srcset="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/a1f0dd22be4459abf8b984c832ade3c0.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" srcset="data:image/png;base64,666" alt="主索引"></p>
-<p>上图是 InnoDB 主索引(同时也是数据文件)的示意图,可以看到叶节点包含了完整的数据记录。这种索引叫做聚集索引。因为 InnoDB 的数据文件本身要按主键聚集。</p>
-<p>1.<strong>InnoDB 要求表必须有主键(MyISAM 可以没有)</strong>,如果没有显式指定,则 MySQL系统会自动选择一个可以唯一标识数据记录的列作为主键,如果不存在这种列,则MySQL 自动为 InnoDB 表生成一个隐含字段作为主键,类型为长整形。</p>
+<p>上图是 InnoDB 主索引(同时也是数据文件)的示意图,可以看到叶节点包含了完整的数据记录。这种索引叫做聚集索引。因为 InnoDB 的数据文件本身要按主键聚集，<strong>InnoDB 要求表必须有主键(MyISAM 可以没有)</strong>,如果<strong>没有显式指定</strong>，则MySQL系统会自动选择一个可以唯一标识数据记录的列作为主键，如果不存在这种列，则MySQL自动为InnoDB表生成一个隐含字段作为主键，这个字段长度为<strong>6个字节</strong>，类型为<strong>长整形</strong>。</p>
 <p>同时,<strong>请尽量在 InnoDB 上采用自增字段做表的主键。</strong>因为 InnoDB 数据文件本身是一棵B+Tree,非单调的主键会造成在插入新记录时数据文件为了维持 B+Tree 的特性而<strong>频繁的分裂调整</strong>,十分低效,而使用自增字段作为主键则是一个很好的选择。如果表使用自增主键,那么每次插入新的记录,记录就会顺序添加到当前索引节点的后续位置,当一页写满,就会自动开辟一个新的页。如下图所示:</p>
 <p><img src="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/eb34cbdbd601d2b3a6d658cafbe2a08b.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" class="lazyload" data-srcset="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/eb34cbdbd601d2b3a6d658cafbe2a08b.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" srcset="data:image/png;base64,666" alt="分裂"></p>
 <p>这样就会形成一个紧凑的索引结构,近似顺序填满。由于每次插入时也不需要移动已有数据,因此效率很高,也不会增加很多开销在维护索引上。</p>
-<p>2.第二个与 MyISAM 索引的不同是 InnoDB 的<strong>辅助索引 data 域存储相应记录主键的值而不是地址。</strong> 换句话说,InnoDB 的所有辅助索引都引用主键作为 data 域。<br>例如,下图为定义在 Col3 上的一个辅助索引:</p>
-<p><img src="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/78d019a47b6498aa770934ec102521a1.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" class="lazyload" data-srcset="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/78d019a47b6498aa770934ec102521a1.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" srcset="data:image/png;base64,666" alt="辅助索引"><br><strong>聚集索引这种实现方式使得按主键的搜索十分高效,但是辅助索引搜索需要检索两遍索引:首先检索辅助索引获得主键,然后用主键到主索引中检索获得记录。</strong></p>
+<h4 id="2-辅助索引-1"><a href="#2-辅助索引-1" class="headerlink" title="2. 辅助索引"></a>2. 辅助索引</h4><p>第二个与 MyISAM 索引的不同是 InnoDB 的<strong>辅助索引 data 域存储相应记录主键的值而不是地址。</strong> 换句话说,<strong>InnoDB 的所有辅助索引都引用主键作为 data 域。</strong></p>
+<p>例如,下图为定义在 Col3 上的一个辅助索引:</p>
+<p><img src="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/78d019a47b6498aa770934ec102521a1.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" class="lazyload" data-srcset="http://aliyunzixunbucket.oss-cn-beijing.aliyuncs.com/jpg/78d019a47b6498aa770934ec102521a1.jpg?x-oss-process=image/resize,p_100/auto-orient,1/quality,q_90/format,jpg/watermark,image_eXVuY2VzaGk=,t_100,g_se,x_0,y_0" srcset="data:image/png;base64,666" alt="辅助索引"></p>
+<p><strong>聚集索引这种实现方式使得按主键的搜索十分高效,但是辅助索引搜索需要检索两遍索引:首先检索辅助索引获得主键,然后用主键到主索引中检索获得记录。</strong></p>
+<blockquote>
+<p>拓展点: 这个重新根据主键id去查询行数据的行为被称为回表查询。所以知道为啥叫辅助了,辅助就是先找到大哥(主键),再根据主键去查到最终想要的数据。(不准抢人头)。</p>
+</blockquote>
+<p><strong>说到这里可以再点一下题</strong>，上面这样分的原因。方便大家记住，innodb下主键索引和非主键索引的主要区别就在于这里，主键索引直接可以拿到行数据,而<strong>非主键索引都需要回表</strong>,所以会增加Io次数,这就说明了为什么主键索引的速度最快。</p>
 <p><strong>引申:为什么不建议使用过长的字段作为主键?</strong></p>
-<p>因为所有辅助索引都引用主索引,过长的主索引会令辅助索引变得过大。</p>
+<p><strong>因为所有辅助索引都引用主索引，过长的主索引会令辅助索引变得过大。</strong> 再例如，<strong>用非单调的字段作为主键在InnoDB中不是个好主意，因为InnoDB数据文件本身是一颗B+Tree，非单调的主键会造成在插入新记录时数据文件为了维持B+Tree的特性而频繁的分裂调整，十分低效，</strong> 而使用自增字段作为主键则是一个很好的选择。</p>
+<h3 id="InnoDB索引和MyISAM索引的区别"><a href="#InnoDB索引和MyISAM索引的区别" class="headerlink" title="InnoDB索引和MyISAM索引的区别"></a>InnoDB索引和MyISAM索引的区别</h3><ul>
+<li>主索引的区别，InnoDB的数据文件本身就是索引文件，而MyISAM的索引和数据是分开的。</li>
+<li>辅助索引的区别，InnoDB的辅助索引data域存储相应记录主键的值而不是地址。而MyISAM的辅助索引和主索引没有多大区别。</li>
+</ul>
 <h3 id="联合索引及最左原则"><a href="#联合索引及最左原则" class="headerlink" title="联合索引及最左原则"></a>联合索引及最左原则</h3><p>联合索引存储数据结构图：<br><img src="https://img-blog.csdnimg.cn/20190109134515235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDg0OTA=,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190109134515235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDg0OTA=,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,666" alt="联合索引"></p>
 <p><strong>最左原则：</strong></p>
 <p>例如联合索引有三个索引字段（A,B,C）</p>
@@ -524,7 +532,11 @@
 <p>（，B，C）—不会使用索引</p>
 <p>（，，C）—不会使用索引</p>
 <p><strong>什么时候会走索引？</strong><br>一句话，当查询的数据是有序的时候，比如对一个对象数组进行排序后，他会默认从第一个字段到最后一个字段按照顺序排序，如果在上述例子中查询（，B，C），那么B这个属性不一定是有序的，B有序的前提是A有序的情况下，因此不会走索引。</p>
+<p><strong>注意：</strong></p>
+<p><strong>但是你说我a、b换下位置可不可以</strong>,比如select * from table where a=xx and b=xx或者select * from table where b=xx and a=xx,这样是可以的,mysql没这么傻这样就认不出来了,<strong>查询优化器会帮你把位置调整过来的</strong>.</p>
+<h3 id="mysql假设一行数据大小为1k，则一颗层高为3的b-树可以存放多少条数据？"><a href="#mysql假设一行数据大小为1k，则一颗层高为3的b-树可以存放多少条数据？" class="headerlink" title="mysql假设一行数据大小为1k，则一颗层高为3的b+树可以存放多少条数据？"></a>mysql假设一行数据大小为1k，则一颗层高为3的b+树可以存放多少条数据？</h3><p>mysql页默认大小16k，如果数据行大小1k，叶子节点存放的完整数据，则叶子节点一页可以放16条数据；非叶子节点页面存放的是主键和指针，所以主要看主键是啥类型，假设是integer，则长度8字节，指针大小在innodb是6字节，一共14字节，所以非叶子节点每页可以存16384/14=1170个主键数据（1170个分叉），则三层b+树数据可以存1170<em>1170</em>16=21902400条数据。（千万级别）</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013308490/article/details/83001060">MySQL索引实现原理分析</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fuzhongmin05/article/details/94396340">MyISAM与InnoDB两类存储引擎的索引实现</a></p>
 
   
   
@@ -570,10 +582,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:24:30+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T18:09:02+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：Aug 26, 2021</p>
   </a>
 </div>
 
@@ -699,7 +711,7 @@ left join顾名思义，就是“左连接”，表1左连接表2，以左为主
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MyISAM-%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">MyISAM 索引实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InnoDB-%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">InnoDB 索引实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E5%8F%8A%E6%9C%80%E5%B7%A6%E5%8E%9F%E5%88%99"><span class="toc-text">联合索引及最左原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MyISAM-%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">MyISAM 索引实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95"><span class="toc-text">1. 主键索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%BE%85%E5%8A%A9%E7%B4%A2%E5%BC%95"><span class="toc-text">2. 辅助索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InnoDB-%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">InnoDB 索引实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95-1"><span class="toc-text">1. 主键索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%BE%85%E5%8A%A9%E7%B4%A2%E5%BC%95-1"><span class="toc-text">2. 辅助索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InnoDB%E7%B4%A2%E5%BC%95%E5%92%8CMyISAM%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">InnoDB索引和MyISAM索引的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E5%8F%8A%E6%9C%80%E5%B7%A6%E5%8E%9F%E5%88%99"><span class="toc-text">联合索引及最左原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql%E5%81%87%E8%AE%BE%E4%B8%80%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F%E4%B8%BA1k%EF%BC%8C%E5%88%99%E4%B8%80%E9%A2%97%E5%B1%82%E9%AB%98%E4%B8%BA3%E7%9A%84b-%E6%A0%91%E5%8F%AF%E4%BB%A5%E5%AD%98%E6%94%BE%E5%A4%9A%E5%B0%91%E6%9D%A1%E6%95%B0%E6%8D%AE%EF%BC%9F"><span class="toc-text">mysql假设一行数据大小为1k，则一颗层高为3的b+树可以存放多少条数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

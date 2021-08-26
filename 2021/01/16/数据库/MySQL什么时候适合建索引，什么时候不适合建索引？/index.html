@@ -495,7 +495,7 @@
 <li><p>通过索引对数据进行排序，降低数据排序的成本，降低了CPU的消耗</p>
 </li>
 </ol>
-<h3 id="3、劣势"><a href="#3、劣势" class="headerlink" title="3、劣势"></a>3、劣势</h3><p>　　降低更新表的速度，如对表进行update 、delete、insert等操作时，MySQL不急要保存数据，还要保存一下索引文件每次添加了索引列的字段，都会调整因为更新带来的键值变化后的索引信息。</p>
+<h3 id="3、劣势"><a href="#3、劣势" class="headerlink" title="3、劣势"></a>3、劣势</h3><p>　　降低更新表的速度，如对表进行update 、delete、insert等操作时，MySQL不仅要保存数据，还要保存一下索引文件每次添加了索引列的字段，都会调整因为更新带来的键值变化后的索引信息。</p>
 <h3 id="4、适合创建索引条件"><a href="#4、适合创建索引条件" class="headerlink" title="4、适合创建索引条件"></a>4、适合创建索引条件</h3><ol>
 <li>主键自动建立唯一索引</li>
 <li>频繁作为查询条件的字段应该建立索引</li>
@@ -555,10 +555,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:24:58+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T18:09:02+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：Aug 26, 2021</p>
   </a>
 </div>
 
