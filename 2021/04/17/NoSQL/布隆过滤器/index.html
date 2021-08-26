@@ -501,7 +501,7 @@
 <p>位数组中的元素初始值都是 0 ，所有哈希函数可以把输入的数据均匀低散列。图例如下：</p>
 <center>
 
-<p><img src="http://cmsblogs.com/wp-content/resources/image.cmsblogs/sike-java/sike-redis/redis-202002181002.png" class="lazyload" data-srcset="http://cmsblogs.com/wp-content/resources/image.cmsblogs/sike-java/sike-redis/redis-202002181002.png" srcset="data:image/png;base64,666" alt="布隆过滤器"></p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210826182739.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210826182739.png" srcset="data:image/png;base64,666" alt="20210826182739"></p>
 </center>
 
 <p>当要插入一个元素时，将其输入 K 个哈希函数，产生 K 个哈希值，同时以这些哈希值作为位数组的下标，将这些下标对应的比特值设置为 1。</p>
@@ -509,13 +509,13 @@
 <p>加入我们有一个布隆过滤器长度为 10，有 3 个哈希函数。这时我们我们将 ”死“插入到布隆过滤器中，经过三个哈希函数得到的哈希值为 3、6、9，则如下：</p>
 <center>
 
-<p><img src="http://cmsblogs.com/wp-content/resources/image.cmsblogs/sike-java/sike-redis/redis-202002181003.png" class="lazyload" data-srcset="http://cmsblogs.com/wp-content/resources/image.cmsblogs/sike-java/sike-redis/redis-202002181003.png" srcset="data:image/png;base64,666" alt="布隆过滤器"></p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210826182751.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210826182751.png" srcset="data:image/png;base64,666" alt="20210826182751"></p>
 </center>
 
 <p>现在我们再存一个值：”磕“，假设得到的哈希值为 1 6 8，如下：</p>
 <center>
 
-<p><img src="http://cmsblogs.com/wp-content/resources/image.cmsblogs/sike-java/sike-redis/redis-202002181004.png" class="lazyload" data-srcset="http://cmsblogs.com/wp-content/resources/image.cmsblogs/sike-java/sike-redis/redis-202002181004.png" srcset="data:image/png;base64,666" alt="布隆过滤器"></p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210826182803.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210826182803.png" srcset="data:image/png;base64,666" alt="20210826182803"></p>
 </center>
 我们再查下 ”Redis“，假设返回的哈希值为 1 5 7，得到的比特值为 1 0 0 ，所以我们可以很确切地说”Redis“这个值一定不存在，如果查询 “Java” 得到的哈希值为 1 6 9，比特值为 1 1 1，那么我们是否可以说一定存在呢？答案是不可以，只能说 “Java” 这个值有可能存在。因为随着数据的增多，越来越多位置的比特值被设置为 1，有可能存在某个值从来没有被存储，但是哈希函数返回的位值都为 1 。
 
@@ -586,10 +586,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-29T22:01:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T18:28:05+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 29, 2021</p>
+    <p>更新于：Aug 26, 2021</p>
   </a>
 </div>
 

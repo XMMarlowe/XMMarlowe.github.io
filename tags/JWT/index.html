@@ -22,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: Jwt - Marlowe</title>
+  <title>Tag: JWT - Marlowe</title>
   
 
   
@@ -409,12 +409,6 @@
         
           
         
-          
-        
-          
-        
-          
-        
       
     
     
@@ -428,168 +422,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3web%E6%97%A0%E7%8A%B6%E6%80%81%E4%BC%9A%E8%AF%9Dtoken%E6%8A%80%E6%9C%AFJWT/">
-        一文了解web无状态会话token技术JWT
+      <a href="/2021/03/02/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JWTUtils/">
+        JWTUtils
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>目前web开发前后端已经算非常的普及了。前后端分离要求我们对用户会话状态要进行一个无状态处理。我们都知道通常管理用户会话是session。用户每次从服务器认证成功后，服务器会发送一个sessionid给用户，session是保存在服务端 的，服务器通过session辨别用户，然后做权限认证等。那如何才知道用户的session是哪个？这时候cookie就出场了，浏览器第一次与服务器建立连接的时候，服务器会生成一个sessionid返回浏览器，浏览器把这个sessionid存储到cookie当中，以后每次发起请求都会在请求头cookie中带上这个sessionid信息，所以服务器就是根据这个sessionid作为索引获取到具体session。</p>
+      <p>Jwt 学习</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-24</time>
+        <time>2021-03-02</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+          <a class="category-link" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/">自定义工具类</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3web%E6%97%A0%E7%8A%B6%E6%80%81%E4%BC%9A%E8%AF%9Dtoken%E6%8A%80%E6%9C%AFJWT/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E6%9C%89%E7%8A%B6%E6%80%81%EF%BC%88SESSION%EF%BC%89%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%EF%BC%88JWT%EF%BC%89%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81/">
-        有状态（SESSION）和无状态（JWT）登录验证
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>简单对比Session和Jwt的优缺点</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-24</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E6%9C%89%E7%8A%B6%E6%80%81%EF%BC%88SESSION%EF%BC%89%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%EF%BC%88JWT%EF%BC%89%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/">
-        登录业务技术选型
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-单点登录三种常见方式一、session广播机制简单来说，就是session复制
-二、cookie + redis
-在项目任何一个模块进行登录，登录之后，把数据放到两个地方（1）redis：key：生成唯一随机值（ip、用户id等），value：用户数据。（2）cookie：把redis中生成的key值放到cookie里面
-访问项目其他模块，发送请求带着cookie发送，获取cookie值...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-03</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/06/12/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88Shiro+Jwt/">
-        SpringBoot整合Shiro+Jwt
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>RBAC项目中用到的Shiro、Jwt相关配置以及工具类</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-06-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/06/12/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88Shiro+Jwt/'>
+          <a class='readmore' href='/2021/03/02/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JWTUtils/'>
             Read More
           </a>
         </div>
@@ -906,7 +761,7 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 26 2021 18:24:20 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Thu Aug 26 2021 18:30:35 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-26 日</div>
           
         </div>
@@ -1688,6 +1543,160 @@ function listennSidebarTOC() {
         let scrollHeight = document.documentElement.scrollHeight + 100;
         if (scrollHeight > marginTop) {
           observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+
+e.disconnect();
           createIntersectionObserver(scrollHeight);
           return;
         }
