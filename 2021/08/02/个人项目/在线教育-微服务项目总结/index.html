@@ -551,7 +551,7 @@
 <li>根据等级选出前4为名师</li>
 </ul>
 <h4 id="2、注册"><a href="#2、注册" class="headerlink" title="2、注册"></a>2、注册</h4><h5 id="获取手机验证码"><a href="#获取手机验证码" class="headerlink" title="获取手机验证码"></a>获取手机验证码</h5><ul>
-<li><p>用户填写完个人信息后，点击注册按钮，将手机号和验证码发送者kafka，直接返回，短信模块从kafka里面消费消息，给指定手机号发送短信验证码，验证码验证成功，将用户数据存入数据库。</p>
+<li><p>用户填写完个人信息后，点击注册按钮，将手机号和验证码发送给kafka，直接返回，短信模块从kafka里面消费消息，给指定手机号发送短信验证码，验证码验证成功，将用户数据存入数据库。</p>
 </li>
 <li><p>阿里云短信服务，首先直接从redis中根据电话号码拿验证码，如果拿到了，直接返回，提示验证码已存在，请稍后再发送，如果redis中没有验证码，生成4位随机短信验证码，放入redis中，5分钟后过期。</p>
 </li>
@@ -757,10 +757,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-21T11:29:42+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-24T23:19:39+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 21, 2021</p>
+    <p>更新于：Aug 24, 2021</p>
   </a>
 </div>
 

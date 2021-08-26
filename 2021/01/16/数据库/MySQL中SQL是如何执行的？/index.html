@@ -500,11 +500,14 @@
 <li><strong>优化器</strong>： 按照 MySQL 认为最优的方案去执行。</li>
 <li><strong>执行器</strong>: 执行语句，然后从存储引擎返回数据。</li>
 </ul>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/23/169a8bc60a083849?w=950&h=1062&f=jpeg&s=38189" class="lazyload" data-srcset="https://user-gold-cdn.xitu.io/2019/3/23/169a8bc60a083849?w=950&h=1062&f=jpeg&s=38189" srcset="data:image/png;base64,666" alt="sql执行过程"></p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210825230820.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210825230820.png" srcset="data:image/png;base64,666" alt="20210825230820"></p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210825230941.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210825230941.png" srcset="data:image/png;base64,666" alt="20210825230941"></p>
 <p>简单来说 MySQL 主要分为 Server 层和存储引擎层：</p>
 <ul>
-<li><strong>Server</strong> 层：主要包括连接器、查询缓存、分析器、优化器、执行器等，所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图，函数等，还有一个通用的日志模块 binglog 日志模块。</li>
-<li><strong>存储引擎</strong>： 主要负责数据的存储和读取，采用可以替换的插件式架构，支持 InnoDB、MyISAM、Memory 等多个存储引擎，其中 InnoDB 引擎有自有的日志模块 redolog 模块。现在最常用的存储引擎是 InnoDB，它从 MySQL 5.5.5 版本开始就被当做默认存储引擎了。</li>
+<li><p><strong>Server</strong> 层：主要包括连接器、查询缓存、分析器、优化器、执行器等，所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图，函数等，还有一个通用的日志模块 binglog 日志模块。</p>
+</li>
+<li><p><strong>存储引擎</strong>： 主要负责数据的存储和读取，采用可以替换的插件式架构，支持 InnoDB、MyISAM、Memory 等多个存储引擎，其中 InnoDB 引擎有自有的日志模块 redolog 模块。现在最常用的存储引擎是 InnoDB，它从 MySQL 5.5.5 版本开始就被当做默认存储引擎了。</p>
+</li>
 </ul>
 <h4 id="Server-层基本组件介绍"><a href="#Server-层基本组件介绍" class="headerlink" title="Server 层基本组件介绍"></a>Server 层基本组件介绍</h4><h5 id="1-连接器"><a href="#1-连接器" class="headerlink" title="1) 连接器"></a>1) 连接器</h5><p>连接器主要和身份认证和权限相关的功能相关，就好比一个级别很高的门卫一样。</p>
 <p>主要负责用户登录数据库，进行用户的身份认证，包括校验账户密码，权限等操作，如果用户账户密码已通过，连接器会到权限表中查询该用户的所有权限，之后在这个连接里的权限逻辑判断都是会依赖此时读取到的权限数据，也就是说，后续只要这个连接不断开，即时管理员修改了该用户的权限，该用户也是不受影响的。</p>
@@ -608,10 +611,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:25:13+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T23:09:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：Aug 25, 2021</p>
   </a>
 </div>
 

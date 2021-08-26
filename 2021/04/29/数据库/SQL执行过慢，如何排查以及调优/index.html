@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.2k words</p>
+      <p>3.4k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>4 min</p>
+      <p>12 min</p>
     </a>
   </div>
 
@@ -518,28 +518,49 @@
 </ol>
 <p>解析：</p>
 <p><strong>(1)、explain出来的各种item的意义</strong></p>
-<p><strong>id:</strong> 每个被独立执行的操作的标志，表示对象被操作的顺序。一般来说， id 值大，先被执行；如果 id 值相同，则顺序从上到下。<br><strong>select_type：</strong> 查询中每个 select 子句的类型。<br><strong>table:</strong> 名字，被操作的对象名称，通常的表名(或者别名)，但是也有其他格式。<br><strong>partitions:</strong> 匹配的分区信息。<br><strong>type:</strong> join 类型。<br><strong>possible_keys：</strong> 列出可能会用到的索引。<br><strong>key:</strong> 实际用到的索引。<br><strong>key_len:</strong> 用到的索引键的平均长度，单位为字节。<br><strong>ref:</strong> 表示本行被操作的对象的参照对象，可能是一个常量用 const 表示，也可能是其他表的<br>key 指向的对象，比如说驱动表的连接列。<br><strong>rows:</strong> 估计每次需要扫描的行数。<br><strong>filtered:</strong> rows*filtered/100 表示该步骤最后得到的行数(估计值)。<br><strong>extra:</strong> 重要的补充信息。</p>
+<p><strong>id:</strong> 每个被独立执行的操作的标志，表示对象被操作的顺序。一般来说， id 值大，先被执行；如果 id 值相同，则顺序从上到下。</p>
+<p><strong>select_type：</strong> 查询中每个 select 子句的类型。</p>
+<p>A：simple：表示不需要union操作或者不包含子查询的简单select查询。有连接查询时，外层的查询为simple，且只有一个<br>B：primary：一个需要union操作或者含有子查询的select，位于最外层的单位查询的select_type即为primary。且只有一个<br>C：union：union连接的两个select查询，第一个查询是dervied派生表，除了第一个表外，第二个以后的表select_type都是union<br>D：dependent union：与union一样，出现在union 或union all语句中，但是这个查询要受到外部查询的影响<br>E：union result：包含union的结果集，在union和union all语句中,因为它不需要参与查询，所以id字段为null<br>F：subquery：除了from字句中包含的子查询外，其他地方出现的子查询都可能是subquery<br>G：dependent subquery：与dependent union类似，表示这个subquery的查询要受到外部表查询的影响<br>H：derived：from字句中出现的子查询，也叫做派生表，其他数据库中可能叫做内联视图或嵌套select</p>
+<p><strong>table:</strong> 名字，被操作的对象名称，通常的表名(或者别名)，但是也有其他格式。</p>
+<p>显示的查询表名，如果查询使用了别名，那么这里显示的是别名，如果不涉及对数据表的操作，那么这显示为null，如果显示为尖括号括起来的<code>&lt;derived N&gt;</code>就表示这个是临时表，后边的N就是执行计划中的id，表示结果来自于这个查询产生。如果是尖括号括起来的<code>&lt;union M,N&gt;</code>，与<code>&lt;derived N&gt;</code>类似，也是一个临时表，表示这个结果来自于union查询的id为M,N的结果集。</p>
+<p><strong>partitions:</strong> 匹配的分区信息。</p>
+<p><strong>type:</strong> join 类型。</p>
+<p>依次从好到差：system，const，eq_ref，ref，fulltext，ref_or_null，unique_subquery，index_subquery，range，index_merge，index，ALL，除了all之外，其他的type都可以使用到索引，除了index_merge之外，其他的type只可以用到一个索引<br>A：system：表中只有一行数据或者是空表，且只能用于myisam和memory表。如果是Innodb引擎表，type列在这个情况通常都是all或者index<br>B：const：使用唯一索引或者主键，返回记录一定是1行记录的等值where条件时，通常type是const。其他数据库也叫做唯一索引扫描<br>C：eq_ref：出现在要连接过个表的查询计划中，驱动表只返回一行数据，且这行数据是第二个表的主键或者唯一索引，且必须为not null，唯一索引和主键是多列时，只有所有的列都用作比较时才会出现eq_ref<br>D：ref：不像eq_ref那样要求连接顺序，也没有主键和唯一索引的要求，只要使用相等条件检索时就可能出现，常见与辅助索引的等值查找。或者多列主键、唯一索引中，使用第一个列之外的列作为等值查找也会出现，总之，返回数据不唯一的等值查找就可能出现。<br>E：fulltext：全文索引检索，要注意，全文索引的优先级很高，若全文索引和普通索引同时存在时，mysql不管代价，优先选择使用全文索引<br>F：ref_or_null：与ref方法类似，只是增加了null值的比较。实际用的不多。<br>G：unique_subquery：用于where中的in形式子查询，子查询返回不重复值唯一值<br>H：index_subquery：用于in形式子查询使用到了辅助索引或者in常数列表，子查询可能返回重复值，可以使用索引将子查询去重。<br>I：range：索引范围扫描，常见于使用&gt;,&lt;,is null,between ,in ,like等运算符的查询中。<br>J：index_merge：表示查询使用了两个以上的索引，最后取交集或者并集，常见and ，or的条件使用了不同的索引，官方排序这个在ref_or_null之后，但是实际上由于要读取所个索引，性能可能大部分时间都不如range<br>K：index：索引全表扫描，把索引从头到尾扫一遍，常见于使用索引列就可以处理不需要读取数据文件的查询、可以使用索引排序或者分组的查询。<br>L：all：这个就是全表扫描数据文件，然后再在server层进行过滤返回符合要求的记录。</p>
+<p><strong>possible_keys：</strong> 列出可能会用到的索引。</p>
+<p><strong>key:</strong> 实际用到的索引。</p>
+<p>查询真正使用到的索引，select_type为index_merge时，这里可能出现两个以上的索引，其他的select_type这里只会出现一个。</p>
+<p><strong>key_len:</strong> 用到的索引键的平均长度，单位为字节。</p>
+<p>用于处理查询的索引长度，如果是单列索引，那就整个索引长度算进去，如果是多列索引，那么查询不一定都能使用到所有的列，具体使用到了多少个列的索引，这里就会计算进去，没有使用到的列，这里不会计算进去。留意下这个列的值，算一下你的多列索引总长度就知道有没有使用到所有的列了。要注意，mysql的ICP特性使用到的索引不会计入其中。另外，key_len只计算where条件用到的索引长度，而排序和分组就算用到了索引，也不会计算到key_len中。</p>
+<p><strong>ref:</strong> 表示本行被操作的对象的参照对象，可能是一个常量用 const 表示，也可能是其他表的<br>key 指向的对象，比如说驱动表的连接列。</p>
+<p>如果是使用的常数等值查询，这里会显示const，如果是连接查询，被驱动表的执行计划这里会显示驱动表的关联字段，如果是条件使用了表达式或者函数，或者条件列发生了内部隐式转换，这里可能显示为func</p>
+<p><strong>rows:</strong> 估计每次需要扫描的行数。</p>
+<p>这里是执行计划中估算的扫描行数，不是精确值</p>
+<p><strong>filtered:</strong> rows*filtered/100 表示该步骤最后得到的行数(估计值)。</p>
+<p>使用explain extended时会出现这个列，5.7之后的版本默认就有这个字段，不需要使用explain extended了。这个字段表示存储引擎返回的数据在server层过滤后，剩下多少满足查询的记录数量的比例，注意是百分比，不是具体记录数。</p>
+<p><strong>extra:</strong> 重要的补充信息。</p>
+<p>这个列可以显示的信息非常多，有几十种，常用的有<br>A：distinct：在select部分使用了distinc关键字<br>B：no tables used：不带from字句的查询或者From dual查询<br>C：使用not in()形式子查询或not exists运算符的连接查询，这种叫做反连接。即，一般连接查询是先查询内表，再查询外表，反连接就是先查询外表，再查询内表。<br>D：using filesort：排序时无法使用到索引时，就会出现这个。常见于order by和group by语句中<br>E：using index：查询时不需要回表查询，直接通过索引就可以获取查询的数据。<br>F：using join buffer（block nested loop），using join buffer（batched key accss）：5.6.x之后的版本优化关联查询的BNL，BKA特性。主要是减少内表的循环数量以及比较顺序地扫描查询。<br>G：using sort_union，using_union，using intersect，using sort_intersection：<br>using intersect：表示使用and的各个索引的条件时，该信息表示是从处理结果获取交集<br>using union：表示使用or连接各个使用索引的条件时，该信息表示从处理结果获取并集<br>using sort_union和using sort_intersection：与前面两个对应的类似，只是他们是出现在用and和or查询信息量大时，先查询主键，然后进行排序合并后，才能读取记录并返回。<br>H：using temporary：表示使用了临时表存储中间结果。临时表可以是内存临时表和磁盘临时表，执行计划中看不出来，需要查看status变量，used_tmp_table，used_tmp_disk_table才能看出来。<br>I：using where：表示存储引擎返回的记录并不是所有的都满足查询条件，需要在server层进行过滤。查询条件中分为限制条件和检查条件，5.6之前，存储引擎只能根据限制条件扫描数据并返回，然后server层根据检查条件进行过滤再返回真正符合查询的数据。5.6.x之后支持ICP特性，可以把检查条件也下推到存储引擎层，不符合检查条件和限制条件的数据，直接不读取，这样就大大减少了存储引擎扫描的记录数量。extra列显示using index condition<br>J：firstmatch(tb_name)：5.6.x开始引入的优化子查询的新特性之一，常见于where字句含有in()类型的子查询。如果内表的数据量比较大，就可能出现这个<br>K：loosescan(m..n)：5.6.x之后引入的优化子查询的新特性之一，在in()类型的子查询中，子查询返回的可能有重复记录时，就可能出现这个。</p>
+<p>除了这些之外，还有很多查询数据字典库，执行计划过程中就发现不可能存在结果的一些提示信息。</p>
 <p><strong>(2)、profile的意义以及使用场景</strong></p>
 <p>Profile 用来分析 sql 性能的消耗分布情况。当用 explain 无法解决慢 SQL 的时候，需要用profile 来对 sql 进行更细致的分析，找出 sql 所花的时间大部分消耗在哪个部分，确认 sql的性能瓶颈。</p>
 <p><strong>(3)、explain 中的索引问题</strong></p>
 <p>Explain 结果中，一般来说，要看到尽量用 index(type 为 const、 ref 等， key 列有值)，避免使用全表扫描(type 显式为 ALL)。比如说有 where 条件且选择性不错的列，需要建立索引。<br>被驱动表的连接列，也需要建立索引。被驱动表的连接列也可能会跟 where 条件列一起建立联合索引。当有排序或者 group by 的需求时，也可以考虑建立索引来达到直接排序和汇总的需求。</p>
-<h3 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h3><ol>
-<li><p>查看sql是否涉及多表的联表或者子查询，如果有，看是否能进行业务拆分，相关字段冗余或者合并成临时表（业务和算法的优化）</p>
+<h3 id="如何进行sql调优"><a href="#如何进行sql调优" class="headerlink" title="如何进行sql调优"></a>如何进行sql调优</h3><ol>
+<li><p>查看sql是否涉及多表的联表或者子查询，如果有，看是否能进行业务拆分，相关字段冗余或者合并成临时表（业务和算法的优化）。</p>
 </li>
-<li><p>涉及链表的查询，是否能进行分表查询，单表查询之后的结果进行字段整合</p>
+<li><p>涉及连表的查询，是否能<strong>进行分表查询</strong>，单表查询之后的结果进行字段整合。</p>
 </li>
-<li><p>如果以上两种都不能操作，非要链表查询，那么考虑对相对应的查询条件做索引。加快查询速度</p>
+<li><p>如果以上两种都不能操作，非要链表查询，那么考虑对相对应的查询条件做索引。加快查询速度。</p>
 </li>
-<li><p>针对数量大的表进行历史表分离（如交易流水表）</p>
+<li><p>针对数量大的表进行历史表分离（如交易流水表）。</p>
 </li>
-<li><p>数据库主从分离，读写分离，降低读写针对同一表同时的压力，至于主从同步，mysql有自带的binlog实现 主从同步</p>
+<li><p>数据库主从分离，读写分离，降低读写针对同一表同时的压力，至于主从同步，mysql有自带的binlog实现 主从同步。</p>
 </li>
-<li><p>explain分析sql语句，查看执行计划，分析索引是否用上，分析扫描行数等等</p>
+<li><p>explain分析sql语句，查看执行计划，分析索引是否用上，分析扫描行数等等。</p>
 </li>
-<li><p>查看mysql执行日志，看看是否有其他方面的问题</p>
+<li><p>查看mysql执行日志，看看是否有其他方面的问题。</p>
 </li>
 </ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从根本上来说，查询慢是占用sql内存比较多，那么可以从这方面去酌手考虑。</p>
+<h3 id="SQL调优思路"><a href="#SQL调优思路" class="headerlink" title="SQL调优思路"></a>SQL调优思路</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从根本上来说，查询慢是占用sql内存比较多，那么可以从这方面去酌手考虑。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zfx2013/article/details/90736670">sql执行慢的原因有哪些，如何进行sql优化？</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wyf0518/p/11461830.html">SQL优化 | sql执行过长的时间，如何优化?</a></p>
 
@@ -587,10 +608,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-29T22:35:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T08:26:11+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 29, 2021</p>
+    <p>更新于：Aug 26, 2021</p>
   </a>
 </div>
 
@@ -709,7 +730,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E8%87%B4SQL%E6%89%A7%E8%A1%8C%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">导致SQL执行慢的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%8E%9F%E5%9B%A0%E6%97%B6%EF%BC%8C%E4%B8%80%E5%AE%9A%E8%A6%81%E6%89%BE%E5%88%87%E5%85%A5%E7%82%B9"><span class="toc-text">分析原因时，一定要找切入点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96"><span class="toc-text">如何优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E8%87%B4SQL%E6%89%A7%E8%A1%8C%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">导致SQL执行慢的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%8E%9F%E5%9B%A0%E6%97%B6%EF%BC%8C%E4%B8%80%E5%AE%9A%E8%A6%81%E6%89%BE%E5%88%87%E5%85%A5%E7%82%B9"><span class="toc-text">分析原因时，一定要找切入点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8Csql%E8%B0%83%E4%BC%98"><span class="toc-text">如何进行sql调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E8%B0%83%E4%BC%98%E6%80%9D%E8%B7%AF"><span class="toc-text">SQL调优思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

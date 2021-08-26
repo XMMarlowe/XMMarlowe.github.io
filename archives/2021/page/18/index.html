@@ -414,27 +414,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/09/%E5%B9%B6%E5%8F%91/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        sleep(),wait(),join(),yield()的区别
+      <a href="/2021/03/19/%E5%B9%B6%E5%8F%91/Atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB/">
+        Atomic 原子类
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-sleepwaitjoinyield
-锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就绪队列进行等待cpu资源分配。
-等待池当我们调用wait()方法后，线程会放到等待池当中，等待池的线程是不会去竞争同步锁。只有调用了notify()或notify...
-      
+      <p>Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-09</time>
+        <time>2021-03-19</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -442,7 +436,7 @@ sleepwaitjoinyield
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/09/%E5%B9%B6%E5%8F%91/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/03/19/%E5%B9%B6%E5%8F%91/Atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB/'>
             Read More
           </a>
         </div>
@@ -464,21 +458,26 @@ sleepwaitjoinyield
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/09/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/">
-        线程的生命周期包括哪几个阶段
+      <a href="/2021/03/19/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+        线程池原理分析
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。</p>
+      
+        
+
+execute方法源码：
+12345678910111213141516171819202122232425262728293031323334353637383940// 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)private final AtomicInteger ctl = new AtomicInteger(ctlOf(RU...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-09</time>
+        <time>2021-03-19</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -486,7 +485,7 @@ sleepwaitjoinyield
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/09/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/'>
+          <a class='readmore' href='/2021/03/19/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/'>
             Read More
           </a>
         </div>
@@ -508,21 +507,249 @@ sleepwaitjoinyield
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
-        什么是字节码？采用字节码的好处是什么？
+      <a href="/2021/03/18/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+        线程池
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>字节码：在Java中，供虚拟机理解的代码叫做字节码(也就是Java代码编译后的.class文件),他不面向任何特定的处理器，只面向虚拟机。</p>
+      <p>池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。<br>三大创建方法、七大参数、四种拒绝策略…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-09</time>
+        <time>2021-03-18</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/18/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/18/%E5%B9%B6%E5%8F%91/volatile-%E5%85%B3%E9%94%AE%E5%AD%97/">
+        volatile 关键字
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>volatile 是Java虚拟机提供的轻量级同步机制，保证可见性，不保证原子性，禁止指令重排。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-18</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/18/%E5%B9%B6%E5%8F%91/volatile-%E5%85%B3%E9%94%AE%E5%AD%97/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        synchronized相关知识点
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+1、synchronized 关键字
+1.1 synchronized 关键字简介synchronized 关键字解决的是多个线程之间访问资源的同步性，synchronized关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。
+另外，在 Java 早期版本中，synchronized 属于 重量级锁，效率低下。
+为什么呢？因为监视器锁（monitor）是依赖于底层的操作...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
+        JDK动态代理和CGLIB动态代理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+1、代理模式简介我们使用代理对象来代替对真实对象(real object)的访问，这样就可以在不修改原目标对象的前提下，提供额外的功能操作，扩展目标对象的功能。
+作用代理模式的主要作用是扩展目标对象的功能，比如说在目标对象的某个方法执行前后你可以增加一些自定义的操作。
+2、静态代理静态代理中，我们对目标对象的每个方法的增强都是手动完成的（后面会具体演示代码_），非常不灵活（_比如接口一旦...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
+        代理模式之静态代理和动态代理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-15</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/15/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/11/Spring/Spring%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+        Spring是什么？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>轻量级的开源的J2EE框架。它是一个容器框架，用来装JavaBean，也是一个中间层框架，可以起连接作用。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-11</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
@@ -530,7 +757,7 @@ sleepwaitjoinyield
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/09/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E9%87%87%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
+          <a class='readmore' href='/2021/03/11/Spring/Spring%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -552,29 +779,32 @@ sleepwaitjoinyield
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/02/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JWTUtils/">
-        JWTUtils
+      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/">
+        线程池中阻塞队列的作用?为什么是先添加列队而不是先创建最大线程?线程池中线程复用原理
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Jwt 学习</p>
+      
+        
+线程池中阻塞队列的作用?一般的队列只能保证作为一个有限长度的缓冲区,如果超出了缓冲长度,就无法保留当前的任务了,阻塞队列通过阻塞可以保留住当前想要继续入队的任务。阻塞队列可以保证任务队列中没有任务时阻塞获取任务的线程,使得线程进入wait状态,释放cpu资源。阻塞队列自带阻塞和唤醒的功能,不需要额外处理,无任务执行时,线程池利用阻塞队列的take方法挂起,从而维持核心线程的存活、不至于一直...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-02</time>
+        <time>2021-03-11</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/">自定义工具类</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/02/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JWTUtils/'>
+          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E5%88%97%E9%98%9F%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -596,8 +826,8 @@ sleepwaitjoinyield
   
     
     <h2 class="article-title" >
-      <a href="/2021/02/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E8%B0%88DNS%E5%8D%8F%E8%AE%AE/">
-        浅谈DNS协议
+      <a href="/2021/03/11/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/">
+        为什么用线程池？线程池参数解释
       </a>
     </h2>
   
@@ -606,8 +836,11 @@ sleepwaitjoinyield
       
         
 
-简介DNS（Domain Name System，域名系统），万维网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去记住IP。通过域名，最终得到该域名对应的IP地址的过程叫做域名解析（或主机名解析）。
-DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53。大多数情况下 DNS 使用 UDP 进行传输，这就要求域名解析器和域名服务器...
+为什么使用线程池?1、降低资源消耗;提高线程利用率,降低创建和销毁线程的消耗。
+2、提高响应速度;任务来了,直接有线程可用可执行,而不是先创建线程,再执行。
+3、提高线程的可管理性;线程是稀缺资源,使用线程池可以统一分配调优监控。
+corePoolsize代表核心线程数,也就是正常情况下创建工作的线程数,这些线程创建后并不会消除,而是一种常驻线程
+maxinumPoolsize代表的是最...
       
     
   </div>
@@ -615,270 +848,15 @@ DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53。大
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-02-23</time>
+        <time>2021-03-11</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/02/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E8%B0%88DNS%E5%8D%8F%E8%AE%AE/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E3%80%81%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/">
-        TCP流量控制、拥塞控制
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-一、流量控制什么是流量控制？流量控制的目的？如果发送者发送数据过快，接收者来不及接收，那么就会有分组丢失。为了避免分组丢失，控制发送者的发送速度，使得接收者来得及接收，这就是流量控制。流量控制根本目的是防止分组丢失，它是构成TCP可靠性的一方面。
-如何实现流量控制？由滑动窗口协议（连续ARQ协议）实现。滑动窗口协议既保证了分组无差错、有序接收，也实现了流量控制。主要的方式就是接收方返回的...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-23</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E3%80%81%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP-%E5%92%8C-HTTPS-/">
-        HTTP 和 HTTPS
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-什么是HTTP？超文本传输协议，是一个基于请求与响应，无状态的，应用层的协议，常基于TCP/IP协议传输数据，互联网上应用最为广泛的一种网络协议,所有的WWW文件都必须遵守这个标准。设计HTTP的初衷是为了提供一种发布和接收HTML页面的方法。
-HTTP的特点
-无状态： 协议对客户端没有状态存储，对事物处理没有“记忆”能力，比如访问一个网站需要反复进行登录操作。
-无连接： HTTP/1....
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP-%E5%92%8C-HTTPS-/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E3%80%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
-        TCP三次握手、四次挥手
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-三次握手三次握手过程客户端和服务端通信前要进行连接，“3次握手”的作用就是双方都能明确自己和对方的收、发能力是正常的。
-第一次握手：客户端发送网络包，服务端收到了。这样服务端就能得出结论：客户端的发送能力、服务端的接收能力是正常的。
-第二次握手：服务端发包，客户端收到了。这样客户端就能得出结论：服务端的接收、发送能力，客户端的接收、发送能力是正常的。 从客户端的视角来看，我接到了服务端发送...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E3%80%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C5%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8C7%E5%B1%82%E6%A8%A1%E5%9E%8B/">
-        网络5层模型和7层模型
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-体系结构图
-七层OSI
-物理层(Physical Laye)主要功能： 利用传输介质为数据链路层提供物理连接，实现比特流的透明传输。作用： 实现相邻计算机节点之间比特流的透明传送，尽可能屏蔽掉具体传输介质和物理设备的差异。使其上面的数据链路层不必考虑网络的具体传输介质是什么。“透明传送比特流”表示经实际电路传送后的比特流没有发生变化，对传送的比特流来说，这个电路好像是看不见的。
-数据链路...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C5%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8C7%E5%B1%82%E6%A8%A1%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Ping%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90/">
-        Ping过程解析
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Ping过程解析
-A电脑（192.168.2.135）发起ping请求，ping 192.168.2.179
-
-A电脑广播发起ARP请求，查询 192.168.2.179的MAC地址。
-
-B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MAC地址为90:A4:DE:C2:DF:FE
-
-知道了MAC地址后，开始进行真正的ping请求，由于B电脑可以根据A电脑发送的请求知道源MA...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Ping%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90/'>
+          <a class='readmore' href='/2021/03/11/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/'>
             Read More
           </a>
         </div>
@@ -905,7 +883,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           </a>
         
         <p class="current">
-          18 / 21
+          18 / 22
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/19/">
@@ -1030,7 +1008,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -1045,17 +1023,17 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
             id="categoriesE58886E5B883E5BC8F"
-            ><div class='name'>分布式</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>分布式</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1080,17 +1058,12 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(24)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>数据结构</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(26)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
             id="categoriesE698A5E68B9BE99DA2E8AF95"
-            ><div class='name'>春招面试</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>春招面试</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%9D%83%E9%99%90/" href="/categories/%E6%9D%83%E9%99%90/"
@@ -1110,7 +1083,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
             id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>算法与数据结构</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
@@ -1130,7 +1103,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(7)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1167,7 +1140,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>273 篇</div>
+          <div>287 篇</div>
         </div>
       
 
@@ -1189,7 +1162,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>429k 字</div>
+          <div>458.4k 字</div>
         </div>
       
 
@@ -1215,8 +1188,8 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Aug 21 2021 17:42:24 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-21 日</div>
+            <div id="last-update" style="display: none;">Thu Aug 26 2021 08:27:56 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-26 日</div>
           
         </div>
         
@@ -1266,7 +1239,7 @@ B电脑应答ARP请求，向A电脑发起单向应答，告诉A电脑自己的MA
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-21 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-26 日';
           }
         </script>
         

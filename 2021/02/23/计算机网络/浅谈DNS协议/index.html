@@ -496,11 +496,15 @@
 </ul>
 <h3 id="DNS查找过程"><a href="#DNS查找过程" class="headerlink" title="DNS查找过程"></a>DNS查找过程</h3><p>DNS解析是一个递归查询的过程。</p>
 <ol>
-<li>浏览器查找域名的IP地址(DNS查找过程：浏览器缓存、路由器缓存、DNS缓存)</li>
-<li>浏览器向web服务器发送一个HTTP请求(cookies会随着请求发送给服务器)</li>
-<li>服务器处理请求(请求 处理请求 &amp; 它的参数、cookie、生成一个HTML相应)</li>
-<li>服务器发回一个HTML响应</li>
-<li>浏览器开始显示HTML</li>
+<li>浏览器访问 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></li>
+<li>查找浏览器缓存</li>
+<li>查找dns解析器缓存host</li>
+<li>查找本地dns服务器缓存</li>
+<li>查找根dns服务器缓存，找到了返回对应后缀的dns服务器地址ip（比如com DNS服务器）</li>
+<li>查找com dns服务器，返回baidu.com的dns服务器ip</li>
+<li>查找baidu.com dns服务器ip</li>
+<li>得到baidu.com服务器ip，写入缓存。</li>
+<li>浏览器拿到ip进行访问。</li>
 </ol>
 <p><strong>查找<a target="_blank" rel="noopener" href="http://www.google.com的ip地址过程/">www.google.com的IP地址过程</a></strong></p>
 <p>首先在本地域名服务器中查询IP地址，如果没有找到的情况下，本地域名服务器会向根域名服务器发送一个请求，如果根域名服务器也不存在该域名时，本地域名会向com顶级域名服务器发送一个请求，依次类推下去。直到最后本地域名服务器得到google的IP地址并把它缓存到本地，供下次查询使用。从上述过程中，可以看出网址的解析是一个从右向左的过程: com -&gt; google.com -&gt; <a href="http://www.google.com。但是你是否发现少了点什么，根域名服务器的解析过程呢？事实上，真正的网址是">www.google.com。但是你是否发现少了点什么，根域名服务器的解析过程呢？事实上，真正的网址是</a> <a target="_blank" rel="noopener" href="http://www.google.com.,并不是我多打了一个.,这个.对应的就是根域名服务器,默认情况下所有的网址的最后一位都是.,既然是默认情况下,为了方便用户,通常都会省略,浏览器在请求dns的时候会自动加上,所有网址真正的解析过程为/">www.google.com.，并不是我多打了一个.，这个.对应的就是根域名服务器，默认情况下所有的网址的最后一位都是.，既然是默认情况下，为了方便用户，通常都会省略，浏览器在请求DNS的时候会自动加上，所有网址真正的解析过程为</a>: . -&gt; .com -&gt; google.com. -&gt; <a target="_blank" rel="noopener" href="http://www.google.com../">www.google.com.。</a></p>
@@ -567,10 +571,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T16:27:40+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T08:10:58+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 6, 2021</p>
+    <p>更新于：Aug 25, 2021</p>
   </a>
 </div>
 
