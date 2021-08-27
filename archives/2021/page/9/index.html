@@ -414,6 +414,101 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+        Spring Bean 相关问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Spring 中 bean 的创建过程首先: 简单来说，Spring框架中的Bean经过四个阶段:实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁
+然后: 具体来说，Spring中Bean 经过了以下几个步骤:
+
+实例化: new xxx(); 两个时机: 1、当客户端向容器申请一 个Bean时，2、 当容器在初始化一 个Bean时发现还需要依赖另一个Bean。Bean...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring-Bean-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/SpringBoot%20%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
+        SpringBoot 自动装配
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>转载于<a target="_blank" rel="noopener" href="https://www.cnblogs.com/javaguide/p/springboot-auto-config.html">淘宝一面：“说一下 Spring Boot 自动装配原理呗？”</a></p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/SpringBoot%20%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/16/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
         Spring中用到的设计模式
       </a>
@@ -468,18 +563,9 @@
       
         
 
-Spring 管理事务的方式有几种？
-编程式事务，在代码中硬编码。(不推荐使用)
-声明式事务，在配置文件中配置（推荐使用）
-
-声明式事务又分为两种：
-
-基于XML的声明式事务
-基于注解的声明式事务
-
-Spring 事务中的隔离级别有哪几种?TransactionDefinition 接口中定义了五个表示隔离级别的常量：
-
-TransactionDefinition.ISOLATION_D...
+1. 什么是事务？事务是逻辑上的一组操作，要么都执行，要么都不执行。
+我们系统的每个业务方法可能包括了多个原子性的数据库操作，比如下面的 savePerson() 方法中就有两个原子性的数据库操作。这些原子性的数据库操作是有依赖的，它们要么都执行，要不就都不执行。
+1234public void savePerson() &#123;    personDao.save(person);...
       
     
   </div>
@@ -796,107 +882,6 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/">
-        MySQL一些规范以及优化问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-如何选择索引列的顺序建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
-
-区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）
-尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）
-使用最频繁的列放到联合索引的左侧（这样可以比较少的建立...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
-        Java浮点数精度问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-一、精度丢失的原因1234567891011121314151617181920212223首先我们要搞清楚下面两个问题：(1) 十进制整数如何转化为二进制数           算法很简单。举个例子，11表示成二进制数：                     11/2=5 余   1                     5/2=2   余   1                 ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -911,7 +896,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           </a>
         
         <p class="current">
-          9 / 22
+          9 / 23
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/10/">
@@ -1031,7 +1016,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
@@ -1051,7 +1036,12 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
+            id="categoriesE5A4A7E695B0E68DAE"
+            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1163,7 +1153,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>291 篇</div>
+          <div>293 篇</div>
         </div>
       
 
@@ -1185,7 +1175,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>471.2k 字</div>
+          <div>479.5k 字</div>
         </div>
       
 
@@ -1211,7 +1201,7 @@ ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 08:19:45 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:04:55 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-27 日</div>
           
         </div>

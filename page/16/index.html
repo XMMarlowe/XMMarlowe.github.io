@@ -415,6 +415,109 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/">
+        Redis内存淘汰机制
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Redis 提供 6 种数据淘汰策略
+volatile-lru（least recently used）： 从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
+volatile-ttl： 从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰
+volatile-random： 从已设置过期时间的数据集（s...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/16/Java/Java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        Java反射相关知识点
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+什么是反射？反射是在运行状态中，对于任意一个类， 都能够知道这个类的所有属性和方法；对于任意一个对象， 都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为 Java 语言的反射机制。
+哪里用到反射机制？
+JDBC中，利用反射 (Class.forName(xxx)) 动态加载了数据库驱动程序。
+Web服务器中利用反射调用了Sevlet的服务方法。
+Ecl...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/16/Java/Java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/15/NoSQL/Redis-%E5%AF%B9%E6%AF%94-MySQL%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%98%AF%E5%BF%AB%E7%9A%84%EF%BC%9F/">
         Redis 对比 MySQL，为什么 redis 是快的？
       </a>
@@ -794,120 +897,6 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD%E5%8F%8A%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/">
-        缺页中断及页面置换算法
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-缺页中断在请求分页系统中，可以通过查询页表中的状态位来确定所要访问的页面是否存在于内存中。每当所要访问的页面不在内存时，会产生一次缺页中断，此时操作系统会根据页表中的外存地址在外存中找到所缺的一页，将其调入内存。
-
-缺页本身是一种中断，与一般的中断一样，需要经过4个处理步骤：    
-
-保护CPU现场  
-分析中断原因
-转入缺页中断处理程序进行处理
-恢复CPU现场，继续执行
-
-但是缺页...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD%E5%8F%8A%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">
-        多线程和多进程及其应用场景
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-多进程多线程的区别
-进程是分配资源的基本单位；线程是系统调度和分派的基本单位。
-
-属于同一进程的线程，堆是共享的，栈是私有的。
-
-属于同一进程的所有线程都具有相同的地址空间。
-
-
-多进程的优点：①编程相对容易；通常不需要考虑锁和同步资源的问题。 ②更强的容错性：比起多线程的一个好处是一个进程崩溃了不会影响其他进程。 ③有内核保证的隔离：数据和错误隔离。 对于使用如C/C++这些语言编写的...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1041,7 +1030,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
@@ -1061,7 +1050,12 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
+            id="categoriesE5A4A7E695B0E68DAE"
+            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1173,7 +1167,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>291 篇</div>
+          <div>293 篇</div>
         </div>
       
 
@@ -1195,7 +1189,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>471.2k 字</div>
+          <div>479.5k 字</div>
         </div>
       
 
@@ -1221,7 +1215,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 08:20:12 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:05:08 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-27 日</div>
           
         </div>

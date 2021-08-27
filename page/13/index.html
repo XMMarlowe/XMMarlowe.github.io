@@ -415,6 +415,102 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/">
+        如何设计一个分布式锁？如何对锁的性能进行优化？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+分布式锁的本质就是在所有进程都能访问到的一个地方，设置一一个锁资源， 让这些进程都来竞争锁资源。数据库、zookeeper, Redis。
+通常对于分布式锁，会要求响应快、性能高、与业务无关。
+Redis实现分布式锁
+SETNX key value: 当key不存在时，就将key设置为value,并返回1。如果key存在，就返回0。
+EXPIRE key locktime: 设置key的...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-04</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-redo-log%E3%80%81binlog%E3%80%81undo-log-%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/">
+        MySQL redo log、binlog、undo log 区别与作用
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>日志系统主要有redo log(重做日志)和binlog(归档日志)。redo log是InnoDB存储引擎层的日志，binlog是MySQL Server层记录的日志， 两者都是记录了某些操作的日志(不是所有)自然有些重复（但两者记录的格式不同）。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-29</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-redo-log%E3%80%81binlog%E3%80%81undo-log-%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/">
         SQL执行过慢，如何排查以及调优
       </a>
@@ -806,114 +902,6 @@ JVM提供的锁...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/">
-        聊聊对关系型数据库和非关系型数据库的理解
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-关系型数据库关系型数据库最典型的数据结构是表，由二维表及其之间的联系所组成的一个数据组织
-优点
-易于维护：都是使用表结构，格式一致；
-使用方便：SQL语言通用，可用于复杂查询；
-复杂操作：支持SQL，可用于一个表以及多个表之间非常复杂的查询。
-
-缺点
-读写性能比较差，尤其是海量数据的高效率读写；
-固定的表结构，灵活度稍欠；
-高并发读写需求，传统关系型数据库来说，硬盘I/O是一个很大的瓶颈...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/">
-        同一线程组下的线程，一个线程的异常会影响其他线程运行么？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-当一个线程抛出OOM异常后，它所占据的内存资源会全部被释放掉，从而不会影响其他线程的运行！
-一个线程溢出后，进程里的其他线程还能照常运行。
-同一线程组下的线程，一个线程出现异常不会影响其他线程的运行。
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-23</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1047,7 +1035,7 @@ JVM提供的锁...
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
             id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(19)</div></a></li>
+            ><div class='name'>Spring</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
@@ -1067,7 +1055,12 @@ JVM提供的锁...
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
+            id="categoriesE5A4A7E695B0E68DAE"
+            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1179,7 +1172,7 @@ JVM提供的锁...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>291 篇</div>
+          <div>293 篇</div>
         </div>
       
 
@@ -1201,7 +1194,7 @@ JVM提供的锁...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>471.2k 字</div>
+          <div>479.5k 字</div>
         </div>
       
 
@@ -1227,7 +1220,7 @@ JVM提供的锁...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 08:20:11 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:05:07 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2021-08-27 日</div>
           
         </div>
