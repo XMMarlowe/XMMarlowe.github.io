@@ -414,6 +414,56 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E6%80%8E%E4%B9%88%E8%AE%A9%E5%B7%A6%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F/">
+        MySQL怎么让左模糊查询走索引？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+需要做模糊匹配，又要用到索引，索引的最左匹配原则更是不能被打破，这时候可以增加一个字段，这个字段的内容等于USER_NAME字段内容的反转，同时加上这个字段的相关索引，如下：
+
+此时如果是要模糊搜索出用户名后几位有杰这个词的所有用户信息，可以对REVERSE_USER_NAME字段做右模糊查询，效果其实就是和对USER_NAME字段做左模糊查询是一样的，因为二者的内容是相反的，结果如下：...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E6%80%8E%E4%B9%88%E8%AE%A9%E5%B7%A6%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93/left-join%E3%80%81right-join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/">
         left join、right join和join的区别
       </a>
@@ -919,9 +969,9 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
             ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
-            id="categoriesE58886E5B883E5BC8F"
-            ><div class='name'>分布式</div><div class='badge'>(4)</div></a></li>
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
+            id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
+            ><div class='name'>分布式&微服务</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1033,7 +1083,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>290 篇</div>
+          <div>291 篇</div>
         </div>
       
 
@@ -1055,7 +1105,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>470.3k 字</div>
+          <div>471.2k 字</div>
         </div>
       
 
@@ -1081,8 +1131,8 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 26 2021 23:39:43 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-26 日</div>
+            <div id="last-update" style="display: none;">Fri Aug 27 2021 08:19:48 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-27 日</div>
           
         </div>
         
@@ -1132,7 +1182,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-26 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
           }
         </script>
         

@@ -20,13 +20,14 @@
 
   <!-- 页面元数据 -->
   
-  <title>分布式系统唯一ID生成方案 - Marlowe</title>
+  <title>Leaf——美团点评分布式ID生成系统 - Marlowe</title>
   
-    <meta name="keywords" content="ID,分布式">
+    <meta name="keywords" content="美团,ID">
   
 
   
-    <meta name="description" content="在互联网的业务系统中，涉及到各种各样的ID，如在支付系统中就会有支付ID、退款ID等。那一般生成ID都有哪些解决方案呢？特别是在复杂的分布式系统业务场景中，我们应该采用哪种适合自己的解决方案是十分重要的。下面我们一一来列举一下，不一定全部适合，这些解决方案仅供你参考，或许对你有用。">
+    <meta name="description" content="转载于美团技术团队，原文链接Leaf——美团点评分布式ID生成系统
+">
   
 
   <!-- feed -->
@@ -411,7 +412,7 @@
     
     
       <h1 class="title">
-        分布式系统唯一ID生成方案
+        Leaf——美团点评分布式ID生成系统
       </h1>
       <div class='new-meta-box'>
         
@@ -431,7 +432,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+      <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
     </a>
   </div>
 
@@ -442,7 +443,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 5, 2021</p>
+    <p>发布于：Aug 21, 2021</p>
   </a>
 </div>
 
@@ -453,7 +454,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="分布式系统唯一ID生成方案" data-path="/2021/08/05/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/">
+      <div id="lc-pv" data-title="Leaf——美团点评分布式ID生成系统" data-path="/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -469,13 +470,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.3k words</p>
+      <p>26 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>9 min</p>
+      <p>1 min</p>
     </a>
   </div>
 
@@ -488,74 +489,11 @@
 
 
   
-  <p>在互联网的业务系统中，涉及到各种各样的ID，如在支付系统中就会有支付ID、退款ID等。那一般生成ID都有哪些解决方案呢？特别是在复杂的分布式系统业务场景中，我们应该采用哪种适合自己的解决方案是十分重要的。下面我们一一来列举一下，不一定全部适合，这些解决方案仅供你参考，或许对你有用。</p>
+  <p>转载于美团技术团队，原文链接<a target="_blank" rel="noopener" href="https://tech.meituan.com/2017/04/21/mt-leaf.html">Leaf——美团点评分布式ID生成系统
+</a></p>
 <a id="more"></a>
 
-<h3 id="分布式ID的特性"><a href="#分布式ID的特性" class="headerlink" title="分布式ID的特性"></a>分布式ID的特性</h3><ul>
-<li>唯一性：确保生成的ID是全网唯一的。</li>
-<li>有序递增性：确保生成的ID是对于某个用户或者业务是按一定的数字有序递增的。</li>
-<li>高可用性：确保任何时候都能正确的生成ID。</li>
-<li>带时间：ID里面包含时间，一眼扫过去就知道哪天的交易。</li>
-</ul>
-<h3 id="分布式ID的生成方案"><a href="#分布式ID的生成方案" class="headerlink" title="分布式ID的生成方案"></a>分布式ID的生成方案</h3><h4 id="1-UUID"><a href="#1-UUID" class="headerlink" title="1. UUID"></a>1. UUID</h4><p>核心思想：结合机器的网卡（基于名字空间/名字的散列值MD5/SHA1）、当地时间（基于时间戳&amp;时钟序列）、一个随记数来生成UUID。</p>
-<p>其结构如下：<br>aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee（即包含32个16进制数字，以连字号-分为五段，最终形成“8-4-4-4-12”的36个字符的字符串，即32个英数字母+4个连字号）。例如：550e8400-e29b-41d4-a716-446655440000</p>
-<p>优点：<br>① 本地生成，没有网络消耗，生成简单，没有高可用风险。</p>
-<p>缺点：<br>① 不易于存储：UUID太长，16字节128位，通常以36长度的字符串表示，很多场景不适用。<br>② 信息不安全：基于MAC地址生成UUID的算法可能会造成MAC地址泄露，这个漏洞曾被用于寻找梅丽莎病毒的制作者位置。<br>③ 无序查询效率低：由于生成的UUID是无序不可读的字符串，所以其查询效率低。</p>
-<h4 id="2-数据库自增ID"><a href="#2-数据库自增ID" class="headerlink" title="2. 数据库自增ID"></a>2. 数据库自增ID</h4><p>核心思想：使用数据库的id自增策略（如: Mysql的auto_increment）。</p>
-<p>优点：<br>① 简单，天然有序。</p>
-<p>缺点：<br>① 并发性不好。<br>② 数据库写压力大。<br>③ 数据库故障后不可使用。<br>④ 存在数量泄露风险。</p>
-<p>针对以上缺点，有以下几种优化方案： </p>
-<ol>
-<li>数据库水平拆分，设置不同的初始值和相同的自增步长</li>
-<li>核心思想：将数据库进行水平拆分，每个数据库设置不同的初始值和相同的自增步长。</li>
-</ol>
-<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210821114754.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210821114754.png" srcset="data:image/png;base64,666" alt="20210821114754"></p>
-<p>如图所示，可保证每台数据库生成的ID是不冲突的，但这种固定步长的方式也会带来扩容的问题，很容易想到当扩容时会出现无ID初始值可分的窘境，解决方案有：<br>① 根据扩容考虑决定步长。<br>② 增加其他位标记区分扩容。<br>这其实都是在需求与方案间的权衡，根据需求来选择最适合的方式。</p>
-<h4 id="3-批量缓存自增ID"><a href="#3-批量缓存自增ID" class="headerlink" title="3. 批量缓存自增ID"></a>3. 批量缓存自增ID</h4><p>核心思想：如果使用单台机器做ID生成，可以避免固定步长带来的扩容问题（方案1的缺点）。<br>具体做法是：每次批量生成一批ID给不同的机器去慢慢消费，这样数据库的压力也会减小到N分之一，且故障后可坚持一段时间。</p>
-<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210821114852.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210821114852.png" srcset="data:image/png;base64,666" alt="20210821114852"></p>
-<p>如图所示，但这种做法的缺点是服务器重启、单点故障会造成ID不连续。</p>
-<h4 id="4-Redis生成ID"><a href="#4-Redis生成ID" class="headerlink" title="4. Redis生成ID"></a>4. Redis生成ID</h4><p>Redis的所有命令操作都是单线程的，本身提供像 incr 和 increby 这样的自增原子命令，所以能保证生成的 ID 肯定是唯一有序的。</p>
-<ul>
-<li><p>优点：不依赖于数据库，灵活方便，且性能优于数据库；数字ID天然排序，对分页或者需要排序的结果很有帮助。</p>
-</li>
-<li><p>缺点：如果系统中没有Redis，还需要引入新的组件，增加系统复杂度；需要编码和配置的工作量比较大。</p>
-</li>
-</ul>
-<p>考虑到单节点的性能瓶颈，可以使用 Redis 集群来获取更高的吞吐量。假如一个集群中有5台 Redis。可以初始化每台 Redis 的值分别是1, 2, 3, 4, 5，然后步长都是 5。各个 Redis 生成的 ID 为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A：1, 6, 11, 16, 21</span><br><span class="line">B：2, 7, 12, 17, 22</span><br><span class="line">C：3, 8, 13, 18, 23</span><br><span class="line">D：4, 9, 14, 19, 24</span><br><span class="line">E：5, 10, 15, 20, 25</span><br></pre></td></tr></table></figure>
-<p>随便负载到哪个机确定好，未来很难做修改。步长和初始值一定需要事先确定。使用 Redis 集群也可以方式单点故障的问题。</p>
-<p>另外，比较适合使用 Redis 来生成每天从0开始的流水号。比如订单号 = 日期 + 当日自增长号。可以每天在 Redis 中生成一个 Key ，使用 INCR 进行累加。</p>
-<h4 id="5-Twitter的snowflake算法"><a href="#5-Twitter的snowflake算法" class="headerlink" title="5. Twitter的snowflake算法"></a>5. Twitter的snowflake算法</h4><p>Twitter 利用 zookeeper 实现了一个全局ID生成的服务 Snowflake：<a target="_blank" rel="noopener" href="https://github.com/twitter/snowflake">https://github.com/twitter/snowflake</a></p>
-<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210821113844.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210821113844.png" srcset="data:image/png;base64,666" alt="20210821113844"></p>
-<p>如上图的所示，Twitter 的 Snowflake 算法由下面几部分组成：</p>
-<ul>
-<li>1位符号位：</li>
-</ul>
-<p>由于 long 类型在 java 中带符号的，最高位为符号位，正数为 0，负数为 1，且实际系统中所使用的ID一般都是正数，所以最高位为 0。</p>
-<ul>
-<li>41位时间戳（毫秒级）：</li>
-</ul>
-<p>需要注意的是此处的 41 位时间戳并非存储当前时间的时间戳，而是存储时间戳的差值（当前时间戳 - 起始时间戳），这里的起始时间戳一般是ID生成器开始使用的时间戳，由程序来指定，所以41位毫秒时间戳最多可以使用 (1 &lt;&lt; 41) / (1000x60x60x24x365) = 69年。</p>
-<ul>
-<li>10位数据机器位：</li>
-</ul>
-<p>包括5位数据标识位和5位机器标识位，这10位决定了分布式系统中最多可以部署 1 &lt;&lt; 10 = 1024 s个节点。超过这个数量，生成的ID就有可能会冲突。</p>
-<ul>
-<li>12位毫秒内的序列：</li>
-</ul>
-<p>这 12 位计数支持每个节点每毫秒（同一台机器，同一时刻）最多生成 1 &lt;&lt; 12 = 4096个ID</p>
-<p>加起来刚好64位，为一个Long型。</p>
-<ul>
-<li>优点：高性能，低延迟，按时间有序，一般不会造成ID碰撞</li>
-<li>缺点：需要独立的开发和部署，依赖于机器的时钟</li>
-</ul>
-<p><strong>简单实现</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdWorker</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 起始时间戳 2017-04-01</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> epoch = <span class="number">1491004800000L</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 机器ID所占的位数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据标识ID所占的位数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> dataCenterIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 支持的最大机器ID,结果是31</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> maxWorkerId = ~(-<span class="number">1L</span> &lt;&lt; workerIdBits);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 支持的最大数据标识ID,结果是31</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> maxDataCenterId = ~(-<span class="number">1</span> &lt;&lt; dataCenterIdBits);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 毫秒内序列在id中所占的位数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 机器ID向左移12位</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据标识ID向左移17(12+5)位</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> dataCenterIdShift = sequenceBits + workerIdBits;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 时间戳向左移22(12+5+5)位</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> timestampShift = sequenceBits + workerIdBits + dataCenterIdBits;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成序列的掩码，这里为4095 (0b111111111111=0xfff=4095)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> sequenceMask = ~(-<span class="number">1L</span> &lt;&lt; sequenceBits);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据标识ID（0～31）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> dataCenterId;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 机器ID（0～31）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 毫秒内序列（0～4095）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 上次生成ID的时间戳</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IdWorker</span><span class="params">(<span class="keyword">long</span> dataCenterId, <span class="keyword">long</span> workerId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (dataCenterId &gt; maxDataCenterId || dataCenterId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">&quot;dataCenterId can&#x27;t be greater than %d or less than 0&quot;</span>, maxDataCenterId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">&quot;worker Id can&#x27;t be greater than %d or less than 0&quot;</span>, maxWorkerId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.dataCenterId = dataCenterId;</span><br><span class="line">        <span class="keyword">this</span>.workerId = workerId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得下一个ID (该方法是线程安全的)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> snowflakeId</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="comment">//如果当前时间小于上一次ID生成的时间戳,说明系统时钟回退过,这个时候应当抛出异常</span></span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(<span class="string">&quot;Clock moved backwards.  Refusing to generate id for %d milliseconds&quot;</span>, lastTimestamp - timestamp));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果是同一时间生成的，则进行毫秒内序列</span></span><br><span class="line">        <span class="keyword">if</span> (timestamp == lastTimestamp) &#123;</span><br><span class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</span><br><span class="line">            <span class="comment">//毫秒内序列溢出</span></span><br><span class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//阻塞到下一个毫秒,获得新的时间戳</span></span><br><span class="line">                timestamp = nextMillis(lastTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;<span class="comment">//时间戳改变，毫秒内序列重置</span></span><br><span class="line">            sequence = <span class="number">0L</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        lastTimestamp = timestamp;</span><br><span class="line">        <span class="comment">//移位并通过按位或运算拼到一起组成64位的ID</span></span><br><span class="line">        <span class="keyword">return</span> ((timestamp - epoch) &lt;&lt; timestampShift) |</span><br><span class="line">                (dataCenterId &lt;&lt; dataCenterIdShift) |</span><br><span class="line">                (workerId &lt;&lt; workerIdShift) |</span><br><span class="line">                sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回以毫秒为单位的当前时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 当前时间(毫秒)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 阻塞到下一个毫秒，直到获得新的时间戳</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lastTimestamp 上次生成ID的时间截</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 当前时间戳</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">nextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</span><br><span class="line">            timestamp = lastTimestamp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timestamp;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="6-百度UidGenerator"><a href="#6-百度UidGenerator" class="headerlink" title="6. 百度UidGenerator"></a>6. 百度UidGenerator</h4><p>UidGenerator是百度开源的分布式ID生成器，基于于snowflake算法的实现，看起来感觉还行。不过，国内开源的项目维护性真是担忧。</p>
-<p>具体可以参考官网说明：<a target="_blank" rel="noopener" href="https://github.com/baidu/uid-generator/blob/master/README.zh_cn.md">https://github.com/baidu/uid-generator/blob/master/README.zh_cn.md</a></p>
-<h4 id="7-美团Leaf"><a href="#7-美团Leaf" class="headerlink" title="7. 美团Leaf"></a>7. 美团Leaf</h4><p>Leaf 是美团开源的分布式ID生成器，能保证全局唯一性、趋势递增、单调递增、信息安全，里面也提到了几种分布式方案的对比，但也需要依赖关系数据库、Zookeeper等中间件。</p>
-<p>具体可以参考官网说明：<a target="_blank" rel="noopener" href="https://tech.meituan.com/MT_Leaf.html">https://tech.meituan.com/MT_Leaf.html</a></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2017/04/21/mt-leaf.html">Leaf——美团点评分布式ID生成系统</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903631137800200#heading-6">分布式唯一ID的几种生成方案</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107939861">一口气说出9种分布式ID生成方式，面试官有点懵了</a></p>
+
 
   
   
@@ -573,7 +511,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/08/05/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/>https://xmmarlowe.github.io/2021/08/05/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/>https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/</a></p>
               
             
           </blockquote>
@@ -601,10 +539,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-21T11:49:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-27T08:14:04+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 21, 2021</p>
+    <p>更新于：Aug 27, 2021</p>
   </a>
 </div>
 
@@ -618,7 +556,8 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/05/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/&title=分布式系统唯一ID生成方案 - Marlowe&summary=在互联网的业务系统中，涉及到各种各样的ID，如在支付系统中就会有支付ID、退款ID等。那一般生成ID都有哪些解决方案呢？特别是在复杂的分布式系统业务场景中，我们应该采用哪种适合自己的解决方案是十分重要的。下面我们一一来列举一下，不一定全部适合，这些解决方案仅供你参考，或许对你有用。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/&title=Leaf——美团点评分布式ID生成系统 - Marlowe&summary=转载于美团技术团队，原文链接Leaf——美团点评分布式ID生成系统
+"
           
           >
           
@@ -630,7 +569,8 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/05/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/&title=分布式系统唯一ID生成方案 - Marlowe&summary=在互联网的业务系统中，涉及到各种各样的ID，如在支付系统中就会有支付ID、退款ID等。那一般生成ID都有哪些解决方案呢？特别是在复杂的分布式系统业务场景中，我们应该采用哪种适合自己的解决方案是十分重要的。下面我们一一来列举一下，不一定全部适合，这些解决方案仅供你参考，或许对你有用。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/&title=Leaf——美团点评分布式ID生成系统 - Marlowe&summary=转载于美团技术团队，原文链接Leaf——美团点评分布式ID生成系统
+"
           
           >
           
@@ -642,7 +582,8 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/05/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/&title=分布式系统唯一ID生成方案 - Marlowe&summary=在互联网的业务系统中，涉及到各种各样的ID，如在支付系统中就会有支付ID、退款ID等。那一般生成ID都有哪些解决方案呢？特别是在复杂的分布式系统业务场景中，我们应该采用哪种适合自己的解决方案是十分重要的。下面我们一一来列举一下，不一定全部适合，这些解决方案仅供你参考，或许对你有用。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/&title=Leaf——美团点评分布式ID生成系统 - Marlowe&summary=转载于美团技术团队，原文链接Leaf——美团点评分布式ID生成系统
+"
           
           >
           
@@ -672,22 +613,23 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/08/06/Spring/Spring%20Gateway%E3%80%81Zuul%E3%80%81Nginx%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Spring Gateway、Zuul、Nginx的区别</p>
-          <p class='content'>Spring Cloud GateWay学习之微服务网关Zuul、Gateway、nginx的区别。
+        <a class='prev' href='/2021/08/21/Java/JVM%E8%B0%83%E4%BC%98(%E4%BA%8C)/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>JVM调优(二)</p>
+          <p class='content'>JVM调优相关步骤
 
 
-Spring Cloud GateWay 是什么网关，Spring Cloud Gate...</p>
+1、调优原则JVM调优听起来很高大上，但是要认识到，JVM调优应该是Java性能优化的最后一颗子弹。
+
+比较认可廖雪峰老师的观点，要认识到JVM调优不是常规手段，性能问题...</p>
         </a>
       
       
-        <a class='next' href='/2021/08/05/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/'>
-          <p class='title'>SpringBoot整合微信支付<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>//TODO
+        <a class='next' href='/2021/08/20/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99LRU%E7%AE%97%E6%B3%95/'>
+          <p class='title'>手写LRU算法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
 
-
-
-</p>
+题目描述146. LRU 缓存机制
+12345678910111213141516171819202122232425262728293031323334353637运用你所掌握的数据结构，...</p>
         </a>
       
     </div>
@@ -720,20 +662,6 @@ Spring Cloud GateWay 是什么网关，Spring Cloud Gate...</p>
 
 
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
-    
-  <header>
-    
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8FID%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-text">分布式ID的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8FID%E7%9A%84%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88"><span class="toc-text">分布式ID的生成方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-UUID"><span class="toc-text">1. UUID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%A2%9EID"><span class="toc-text">2. 数据库自增ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%89%B9%E9%87%8F%E7%BC%93%E5%AD%98%E8%87%AA%E5%A2%9EID"><span class="toc-text">3. 批量缓存自增ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Redis%E7%94%9F%E6%88%90ID"><span class="toc-text">4. Redis生成ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Twitter%E7%9A%84snowflake%E7%AE%97%E6%B3%95"><span class="toc-text">5. Twitter的snowflake算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E7%99%BE%E5%BA%A6UidGenerator"><span class="toc-text">6. 百度UidGenerator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E7%BE%8E%E5%9B%A2Leaf"><span class="toc-text">7. 美团Leaf</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
-    </div>
-  </section>
-
 
   
 
@@ -750,7 +678,7 @@ Spring Cloud GateWay 是什么网关，Spring Cloud Gate...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="分布式系统唯一ID生成方案";
+  pdata.postTitle="Leaf——美团点评分布式ID生成系统";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

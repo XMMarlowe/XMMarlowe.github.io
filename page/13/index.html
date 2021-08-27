@@ -415,6 +415,63 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/">
+        SQL执行过慢，如何排查以及调优
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+导致SQL执行慢的原因
+硬件问题。如网络速度慢，内存不足，I/O吞吐量小，磁盘空间满了等。
+
+没有索引或者索引失效。（一般在互联网公司，DBA会在半夜把表锁了，重新建立一遍索引，因为当你删除某个数据的时候，索引的树结构就不完整了。所以互联网公司的数据做的是假删除，一是为了做数据分析,二是为了不破坏索引 ）
+
+数据过多（分库分表）
+
+服务器调优及各个参数设置（调整my.cnf）
+
+查询出的...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-29</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%88%9D%E8%AF%86HTTP2-0/">
         初识HTTP2.0
       </a>
@@ -857,56 +914,6 @@ JVM提供的锁...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/">
-        线程崩溃必会使进程崩溃吗？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-结论：线程崩溃不一定导致进程崩溃。
-线程崩溃的本质就是内存出错。而内存出错有时不会引起其他线程出错的，因为崩溃的线程，也就是出错的内存有时侯没有被其他线程访问，也就不会产生问题，但有时候会打乱其他线程的内存。
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-23</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -921,7 +928,7 @@ JVM提供的锁...
           </a>
         
         <p class="current">
-          13 / 29
+          13 / 30
         </p>
         
           <a class="next" rel="next" href="/page/14/">
@@ -1058,9 +1065,9 @@ JVM提供的锁...
             ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
-            id="categoriesE58886E5B883E5BC8F"
-            ><div class='name'>分布式</div><div class='badge'>(4)</div></a></li>
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
+            id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
+            ><div class='name'>分布式&微服务</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1172,7 +1179,7 @@ JVM提供的锁...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>290 篇</div>
+          <div>291 篇</div>
         </div>
       
 
@@ -1194,7 +1201,7 @@ JVM提供的锁...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>470.3k 字</div>
+          <div>471.2k 字</div>
         </div>
       
 
@@ -1220,8 +1227,8 @@ JVM提供的锁...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 26 2021 23:40:07 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-26 日</div>
+            <div id="last-update" style="display: none;">Fri Aug 27 2021 08:20:11 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-27 日</div>
           
         </div>
         
@@ -1271,7 +1278,7 @@ JVM提供的锁...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-26 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
           }
         </script>
         

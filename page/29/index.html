@@ -415,6 +415,57 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        HashMap 和 Hashtable 的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+线程是否安全： HashMap 是非线程安全的，HashTable 是线程安全的,因为 HashTable 内部的方法基本都经过synchronized 修饰。（如果你要保证线程安全的话就使用 ConcurrentHashMap 吧！）；
+效率： 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它；
+对 N...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-03-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/">
         ArrayList和LinkedList的区别
       </a>
@@ -846,50 +897,6 @@ Exception 和 Error 二者都是 Java 异常处...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/">
-        Java类加载机制和类加载器概述
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>当程序主动使用某个类时，如果该类还未被加载到内存中，则JVM会通过加载、连接、初始化3个步骤来对该类进行初始化。如果没有意外，JVM将会连续完成3个步骤，所以有时候也把这3个步骤统称为类加载或类初始化。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-03-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/03/09/Java/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%92%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%A6%82%E8%BF%B0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -904,8 +911,14 @@ Exception 和 Error 二者都是 Java 异常处...
           </a>
         
         <p class="current">
-          29 / 29
+          29 / 30
         </p>
+        
+          <a class="next" rel="next" href="/page/30/">
+            <section class="post next white-box shadow">
+              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </section>
+          </a>
         
       </div>
     
@@ -1035,9 +1048,9 @@ Exception 和 Error 二者都是 Java 异常处...
             ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
-            id="categoriesE58886E5B883E5BC8F"
-            ><div class='name'>分布式</div><div class='badge'>(4)</div></a></li>
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
+            id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
+            ><div class='name'>分布式&微服务</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1149,7 +1162,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>290 篇</div>
+          <div>291 篇</div>
         </div>
       
 
@@ -1171,7 +1184,7 @@ Exception 和 Error 二者都是 Java 异常处...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>470.3k 字</div>
+          <div>471.2k 字</div>
         </div>
       
 
@@ -1197,8 +1210,8 @@ Exception 和 Error 二者都是 Java 异常处...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Aug 26 2021 23:40:12 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-26 日</div>
+            <div id="last-update" style="display: none;">Fri Aug 27 2021 08:20:16 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-08-27 日</div>
           
         </div>
         
@@ -1248,7 +1261,7 @@ Exception 和 Error 二者都是 Java 异常处...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-26 日';
+            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
           }
         </script>
         

@@ -20,14 +20,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>Leaf——美团点评分布式ID生成系统 - Marlowe</title>
+  <title>分布式和微服务是什么关系? - Marlowe</title>
   
-    <meta name="keywords" content="美团,ID">
+    <meta name="keywords" content="分布式,微服务">
   
 
   
-    <meta name="description" content="转载于美团技术团队，原文链接Leaf——美团点评分布式ID生成系统
-">
+    <meta name="description" content="分布式和微服务是什么关系？简单来说，分布式和微服务的概念比较相似，分布式属于微服务。但是分布式和微服务在架构、作用和粒度上有所区别。因此，两者的关系是既相互联系又相互区别。">
   
 
   <!-- feed -->
@@ -412,7 +411,7 @@
     
     
       <h1 class="title">
-        Leaf——美团点评分布式ID生成系统
+        分布式和微服务是什么关系?
       </h1>
       <div class='new-meta-box'>
         
@@ -432,7 +431,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+      <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
     </a>
   </div>
 
@@ -443,7 +442,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 21, 2021</p>
+    <p>发布于：Aug 27, 2021</p>
   </a>
 </div>
 
@@ -454,7 +453,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Leaf——美团点评分布式ID生成系统" data-path="/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/">
+      <div id="lc-pv" data-title="分布式和微服务是什么关系?" data-path="/2021/08/27/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E5%92%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -470,13 +469,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>26 words</p>
+      <p>859 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>2 min</p>
     </a>
   </div>
 
@@ -489,11 +488,14 @@
 
 
   
-  <p>转载于美团技术团队，原文链接<a target="_blank" rel="noopener" href="https://tech.meituan.com/2017/04/21/mt-leaf.html">Leaf——美团点评分布式ID生成系统
-</a></p>
+  <p>分布式和微服务是什么关系？简单来说，分布式和微服务的概念比较相似，分布式属于微服务。但是分布式和微服务在架构、作用和粒度上有所区别。因此，两者的关系是既相互联系又相互区别。</p>
 <a id="more"></a>
 
-
+<h3 id="1、微服务"><a href="#1、微服务" class="headerlink" title="1、微服务"></a>1、微服务</h3><p>微服务的意思也就是将模块拆分成一个独立的服务单元通过接口来实现数据的交互。简单来说微服务就是很小的服务，小到一个服务只对应一个单一的功能，只做一件事。这个服务可以单独部署运行，服务之间可以通过RPC来相互交互，每个微服务都是由独立的小团队开发，测试，部署，上线，负责它的整个生命周期。</p>
+<h3 id="2、分布式"><a href="#2、分布式" class="headerlink" title="2、分布式"></a>2、分布式</h3><p>分布式服务顾名思义服务是分散部署在不同的机器上的，一个服务可能负责几个功能，是一种面向SOA架构的，服务之间也是通过rpc来交互或者是webservice来交互的。逻辑架构设计完后就该做物理架构设计，系统应用部署在超过一台服务器或虚拟机上，且各分开部署的部分彼此通过各种通讯协议交互信息，就可算作分布式部署，生产环境下的微服务肯定是分布式部署的，分布式部署的应用不一定是微服务架构的，比如集群部署，它是把相同应用复制到不同服务器上，但是逻辑功能上还是单体应用。</p>
+<h3 id="3、关系"><a href="#3、关系" class="headerlink" title="3、关系"></a>3、关系</h3><p>联系：分布式只是一种手段，把不同的机器分散在不同的地方，然后这些机器间相互协助完成业务。微服务是一种特殊的分布式，换句话说，微服务架构是分布式服务架构的子集。微服务架构通过更细粒度的服务切分，使得整个系统的迭代速度并行程度更高，但是运维的复杂度和性能会随着服务的粒度更细而增加。微服务重在解耦合，使每个模块都独立。分布式重在资源共享与加快计算机计算速度。</p>
+<h3 id="4、区别"><a href="#4、区别" class="headerlink" title="4、区别"></a>4、区别</h3><p>（1）架构不同：微服务的设计是为了不因为某个模块的升级和BUG影响现有的系统业务。微服务与分布式的细微差别是，微服务的应用不一定是分散在多个服务器上，他也可以是同一个服务器。<br>　　<br>（2）作用不同：分布式：不同模块部署在不同服务器上，分布式主要解决的是网站高并发带来问题。微服务：各服务可独立应用，组合服务也可系统应用。<br>　　<br>（3）粒度不同：微服务相比分布式服务来说，它的粒度更小，服务之间耦合度更低，由于每个微服务都由独立的小团队负责，因此它敏捷性更高，分布式服务最后都会向微服务架构演化，这是一种趋势， 不过服务微服务化后带来的挑战也是显而易见的，例如服务粒度小，数量大，后期运维将会很难。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.boxuegu.com/news/1882.html">分布式和微服务是什么关系？</a></p>
 
   
   
@@ -511,7 +513,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/>https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/08/27/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E5%92%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/>https://xmmarlowe.github.io/2021/08/27/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E5%92%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/</a></p>
               
             
           </blockquote>
@@ -539,10 +541,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-21T11:32:12+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-27T08:18:06+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 21, 2021</p>
+    <p>更新于：Aug 27, 2021</p>
   </a>
 </div>
 
@@ -556,8 +558,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/&title=Leaf——美团点评分布式ID生成系统 - Marlowe&summary=转载于美团技术团队，原文链接Leaf——美团点评分布式ID生成系统
-"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/27/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E5%92%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/&title=分布式和微服务是什么关系? - Marlowe&summary=分布式和微服务是什么关系？简单来说，分布式和微服务的概念比较相似，分布式属于微服务。但是分布式和微服务在架构、作用和粒度上有所区别。因此，两者的关系是既相互联系又相互区别。"
           
           >
           
@@ -569,8 +570,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/&title=Leaf——美团点评分布式ID生成系统 - Marlowe&summary=转载于美团技术团队，原文链接Leaf——美团点评分布式ID生成系统
-"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/27/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E5%92%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/&title=分布式和微服务是什么关系? - Marlowe&summary=分布式和微服务是什么关系？简单来说，分布式和微服务的概念比较相似，分布式属于微服务。但是分布式和微服务在架构、作用和粒度上有所区别。因此，两者的关系是既相互联系又相互区别。"
           
           >
           
@@ -582,8 +582,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/21/%E5%88%86%E5%B8%83%E5%BC%8F/Leaf%E2%80%94%E2%80%94%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F/&title=Leaf——美团点评分布式ID生成系统 - Marlowe&summary=转载于美团技术团队，原文链接Leaf——美团点评分布式ID生成系统
-"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/27/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E5%92%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/&title=分布式和微服务是什么关系? - Marlowe&summary=分布式和微服务是什么关系？简单来说，分布式和微服务的概念比较相似，分布式属于微服务。但是分布式和微服务在架构、作用和粒度上有所区别。因此，两者的关系是既相互联系又相互区别。"
           
           >
           
@@ -613,23 +612,13 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/08/21/Java/JVM%E8%B0%83%E4%BC%98(%E4%BA%8C)/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>JVM调优(二)</p>
-          <p class='content'>JVM调优相关步骤
-
-
-1、调优原则JVM调优听起来很高大上，但是要认识到，JVM调优应该是Java性能优化的最后一颗子弹。
-
-比较认可廖雪峰老师的观点，要认识到JVM调优不是常规手段，性能问题...</p>
-        </a>
       
-      
-        <a class='next' href='/2021/08/20/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99LRU%E7%AE%97%E6%B3%95/'>
-          <p class='title'>手写LRU算法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
+        <a class='next' href='/2021/08/26/NoSQL/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3Redis%E4%B8%ADBigKey%E3%80%81HotKey%E7%9A%84%E5%8F%91%E7%8E%B0%E4%B8%8E%E5%A4%84%E7%90%86/'>
+          <p class='title'>一文详解Redis中BigKey、HotKey的发现与处理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>转载与阿里技术公众号：一文详解Redis中BigKey、HotKey的发现与处理
 
-题目描述146. LRU 缓存机制
-12345678910111213141516171819202122232425262728293031323334353637运用你所掌握的数据结构，...</p>
+
+一  前言在Redis的使用过程中，我们经常会遇到BigKey（下文将其称为“大key”）及HotKey（下...</p>
         </a>
       
     </div>
@@ -662,6 +651,20 @@
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-text">1、微服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">2、分布式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%85%B3%E7%B3%BB"><span class="toc-text">3、关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%8C%BA%E5%88%AB"><span class="toc-text">4、区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -678,7 +681,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Leaf——美团点评分布式ID生成系统";
+  pdata.postTitle="分布式和微服务是什么关系?";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

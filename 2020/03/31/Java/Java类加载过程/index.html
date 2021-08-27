@@ -521,7 +521,8 @@
 <ol start="2">
 <li>使用 java.lang.reflect 包的方法对类进行反射调用时如Class.forname(“…”),newInstance()等等。 ，如果类没初始化，需要触发其初始化。</li>
 <li>初始化一个类，如果其父类还未初始化，则先触发该父类的初始化。</li>
-<li>当虚拟机启动时，用户需要定义一个要执行的主类 (包含 main 方法的那个类)，虚拟机会先初始化这个类。<br>M5. ethodHandle和VarHandle可以看作是轻量级的反射调用机制，而要想使用这2个调用， 就必须先使用findStaticVarHandle来初始化要调用的类。</li>
+<li>当虚拟机启动时，用户需要定义一个要执行的主类 (包含 main 方法的那个类)，虚拟机会先初始化这个类。</li>
+<li>MethodHandle和VarHandle可以看作是轻量级的反射调用机制，而要想使用这2个调用， 就必须先使用findStaticVarHandle来初始化要调用的类。</li>
 <li>「补充」 当一个接口中定义了JDK8新加入的默认方法（被default关键字修饰的接口方法）时，如果有这个接口的实现类发生了初始化，那该接口要在其之前被初始化。</li>
 </ol>
 <h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><p>卸载类即该类的Class对象被GC。</p>
@@ -586,10 +587,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-03T21:35:14+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-27T00:16:35+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 3, 2021</p>
+    <p>更新于：Aug 27, 2021</p>
   </a>
 </div>
 
