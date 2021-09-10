@@ -415,8 +415,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/">
-        Redis内存淘汰机制
+      <a href="/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+        Linux常用命令总结
       </a>
     </h2>
   
@@ -425,10 +425,17 @@
       
         
 
-Redis 提供 6 种数据淘汰策略
-volatile-lru（least recently used）： 从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
-volatile-ttl： 从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰
-volatile-random： 从已设置过期时间的数据集（s...
+目录切换命令
+cd usr： 切换到该目录下 usr 目录
+cd ..（或cd../）： 切换到上一层目录
+cd /： 切换到系统根目录
+cd ~： 切换到用户主目录
+cd -： 切换到上一个操作所在目录
+
+目录的操作命令(增删改查)
+mkdir 目录名称： 增加目录。
+ ls/ll（ll 是 ls -l 的别名，ll 命令可以看到该目录下的所有目录和文件的详细信息）：查看目录信息。
+f...
       
     
   </div>
@@ -436,7 +443,111 @@ volatile-random： 从已设置过期时间的数据集（s...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-16</time>
+        <time>2021-05-06</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E4%B8%8E%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E3%80%81%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/">
+        进程状态与僵尸进程、孤儿进程
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+进程状态一个进程的生命周期可以划分为一组状态，这些状态刻画了整个进程。进程状态即体现一个进程的生命状态
+一般来说，进程有五种状态：
+
+创建状态： 进程在创建时需要申请一个空白PCB，向其中填写控制和管理进程的信息，完成资源分配。如果创建工作无法完成，比如资源无法满足，就无法被调度运行，把此时进程所处状态称为创建状态
+就绪状态： 进程已经准备好，已分配到所需资源，只要分配到CPU就能够立即...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-06</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E4%B8%8E%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E3%80%81%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/06/NoSQL/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+        Redis分布式锁
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+问题描述随着业务发展的需要，原单体单机部署的系统被演化成分布式集群系统后，由于分布式系统多线程、多进程并且分布在不同机器上，这将使原单机部署情况下的并发控制锁策略失效，单纯的Java API并不能提供分布式锁的能力。为了解决这个问题就需要一种跨JVM的互斥机制来控制共享资源的访问，这就是分布式锁要解决的问题！
+分布式锁主流的实现方案
+基于数据库实现分布式锁
+基于缓存（Redis等）
+基于...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-06</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
@@ -444,7 +555,7 @@ volatile-random： 从已设置过期时间的数据集（s...
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/16/NoSQL/Redis%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/'>
+          <a class='readmore' href='/2021/05/06/NoSQL/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/'>
             Read More
           </a>
         </div>
@@ -466,8 +577,8 @@ volatile-random： 从已设置过期时间的数据集（s...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/16/Java/Java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
-        Java反射相关知识点
+      <a href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/">
+        URI和URL的区别是什么?
       </a>
     </h2>
   
@@ -476,11 +587,11 @@ volatile-random： 从已设置过期时间的数据集（s...
       
         
 
-什么是反射？反射是在运行状态中，对于任意一个类， 都能够知道这个类的所有属性和方法；对于任意一个对象， 都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为 Java 语言的反射机制。
-哪里用到反射机制？
-JDBC中，利用反射 (Class.forName(xxx)) 动态加载了数据库驱动程序。
-Web服务器中利用反射调用了Sevlet的服务方法。
-Ecl...
+
+URI(Uniform Resource Identifier) 是统一资源标志符，可以唯一标识一个资源。
+URL(Uniform Resource Location) 是统一资源定位符，可以提供该资源的路径。它是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何 locate 这个资源。
+
+URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL是一种具体...
       
     
   </div>
@@ -488,15 +599,15 @@ Ecl...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-16</time>
+        <time>2021-05-06</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/16/Java/Java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
+          <a class='readmore' href='/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/'>
             Read More
           </a>
         </div>
@@ -518,8 +629,52 @@ Ecl...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/15/NoSQL/Redis-%E5%AF%B9%E6%AF%94-MySQL%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%98%AF%E5%BF%AB%E7%9A%84%EF%BC%9F/">
-        Redis 对比 MySQL，为什么 redis 是快的？
+      <a href="/2021/05/05/%E9%9A%8F%E7%AC%94/Java%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D/">
+        Java学习推荐书籍
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>列举一些接下来要读的书单…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-05</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/05/%E9%9A%8F%E7%AC%94/Java%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/04/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/">
+        海量数据下，如何快速查找一条记录？
       </a>
     </h2>
   
@@ -528,10 +683,10 @@ Ecl...
       
         
 
-
-1.Redis是基于内存存储的，MySQL是基于磁盘存储的
-2.Redis存储的是k-v格式的数据。时间复杂度是O(1),常数阶，而MySQL引擎的底层实现是B+Tree，时间复杂度是O(logn)，对数阶。Redis会比MySQL快一点点。
-3.MySQL数据存储是存储在表中，查找数据时要先对表进行全局扫描或者根据索引查找，这涉及到磁盘的查找，磁盘查找如果是按条点查找可能会快点，但是...
+1、使用布隆过滤器，快速过滤不存在的记录。
+使用Redis的bitmap结构来实现布隆过滤器。
+2、在Redis中建立数据缓存。将我们对Redis使用场景的理解尽量表达出来。
+以普通字符串的形式来存储，(userld -&gt; user.json)。 以一个hash来存储一条记录(userld key-&gt; username field-&gt; ，userAge-&gt;)。以一...
       
     
   </div>
@@ -539,7 +694,63 @@ Ecl...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-15</time>
+        <time>2021-05-04</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/04/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/04/NoSQL/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+        Redis 如何配置Key的过期时间？他的实现原理是什么？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Redis设置key的过期时间
+EXPIRE
+SETEX
+
+实现原理定期删除每隔一段时间， 执行一次删除过期key的操作。
+懒汉式删除当使用get、getset等指令 去获取数据时，判断key是否过期。 过期后，就先把key删除，再执行后面的操作。
+Redis是将两种方式结合来使用。
+定期删除：平衡执行频率和执行时长。
+定期删除时会遍历每个datapase(默认16个),检查当前库中指定...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-04</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
@@ -547,7 +758,7 @@ Ecl...
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/15/NoSQL/Redis-%E5%AF%B9%E6%AF%94-MySQL%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%98%AF%E5%BF%AB%E7%9A%84%EF%BC%9F/'>
+          <a class='readmore' href='/2021/05/04/NoSQL/Redis-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%9F%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -569,29 +780,37 @@ Ecl...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8/">
-        设计模式-装饰器
+      <a href="/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/">
+        如何设计一个分布式锁？如何对锁的性能进行优化？
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</p>
+      
+        
+
+分布式锁的本质就是在所有进程都能访问到的一个地方，设置一一个锁资源， 让这些进程都来竞争锁资源。数据库、zookeeper, Redis。
+通常对于分布式锁，会要求响应快、性能高、与业务无关。
+Redis实现分布式锁
+SETNX key value: 当key不存在时，就将key设置为value,并返回1。如果key存在，就返回0。
+EXPIRE key locktime: 设置key的...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-15</time>
+        <time>2021-05-04</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8/'>
+          <a class='readmore' href='/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -613,34 +832,29 @@ Ecl...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/">
-        线程上下文切换
+      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-redo-log%E3%80%81binlog%E3%80%81undo-log-%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/">
+        MySQL redo log、binlog、undo log 区别与作用
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-简介多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。
-概括来说就是： 当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再...
-      
+      <p>日志系统主要有redo log(重做日志)和binlog(归档日志)。redo log是InnoDB存储引擎层的日志，binlog是MySQL Server层记录的日志， 两者都是记录了某些操作的日志(不是所有)自然有些重复（但两者记录的格式不同）。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-14</time>
+        <time>2021-04-29</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/'>
+          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-redo-log%E3%80%81binlog%E3%80%81undo-log-%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/'>
             Read More
           </a>
         </div>
@@ -662,52 +876,8 @@ Ecl...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/">
-        操作系统IO模型
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>IO模型的分类：主要有同步IO、异步IO、阻塞IO、非阻塞IO…</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FIO%E6%A8%A1%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/11/Spring/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
-        SpringMVC执行流程及工作原理
+      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/">
+        SQL执行过慢，如何排查以及调优
       </a>
     </h2>
   
@@ -716,16 +886,16 @@ Ecl...
       
         
 
+导致SQL执行慢的原因
+硬件问题。如网络速度慢，内存不足，I/O吞吐量小，磁盘空间满了等。
 
-图解SpringMVC执行流程:
+没有索引或者索引失效。（一般在互联网公司，DBA会在半夜把表锁了，重新建立一遍索引，因为当你删除某个数据的时候，索引的树结构就不完整了。所以互联网公司的数据做的是假删除，一是为了做数据分析,二是为了不破坏索引 ）
 
-SpringMVC执行流程
+数据过多（分库分表）
 
+服务器调优及各个参数设置（调整my.cnf）
 
-SpringMVC执行流程:
-用户发送请求至前端控制器DispatcherServlet
-DispatcherServlet收到请求调用处理器映射器HandlerMapping。
-处理器映射器根据请求url找到具体的处理器，生成处理器执行链HandlerExecutionChain(包括处理器对象和处理器拦截器)一并返...
+查询出的...
       
     
   </div>
@@ -733,158 +903,15 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-11</time>
+        <time>2021-04-29</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/11/Spring/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E5%92%8C%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/">
-        虚拟内存和局部性原理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-什么是虚拟内存(Virtual Memory)?这个在我们平时使用电脑特别是 Windows 系统的时候太常见了。很多时候我们使用点开了很多占内存的软件，这些软件占用的内存可能已经远远超出了我们电脑本身具有的物理内存。为什么可以这样呢？ 正是因为 虚拟内存 的存在，通过 虚拟内存 可以让程序可以拥有超过系统物理内存大小的可用内存空间。另外，虚拟内存为每个进程提供了一个一致的、私有的地址空...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E5%92%8C%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">
-        IO多路复用
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-举例现实场景来理解我们试想一下这样的现实场景:
-一个餐厅同时有100位客人到店，当然到店后第一件要做的事情就是点菜。但是问题来了，餐厅老板为了节约人力成本目前只有一位大堂服务员拿着唯一的一本菜单等待客人进行服务。
-
-方法A 无论有多少客人等待点餐，服务员都把仅有的一份菜单递给其中一位客人，然后站在客人身旁等待这个客人完成点菜过程。在记录客人点菜内容后，把点菜记录交给后堂厨师。然后是第二位...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/RESTful%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/">
-        RESTful相关面试题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>RESTful也可以称为“面向资源编程”。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/">春招面试</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/10/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/RESTful%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/'>
+          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/'>
             Read More
           </a>
         </div>
@@ -911,7 +938,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           </a>
         
         <p class="current">
-          16 / 30
+          16 / 34
         </p>
         
           <a class="next" rel="next" href="/page/17/">
@@ -1015,7 +1042,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1025,7 +1052,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1040,22 +1067,22 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1070,17 +1097,17 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1125,12 +1152,12 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1167,7 +1194,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1189,7 +1216,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1215,8 +1242,8 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:46 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:44 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1266,7 +1293,7 @@ DispatcherServlet收到请求调用处理器映射器HandlerMapping。
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>729 words</p>
+      <p>875 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>2 min</p>
+      <p>3 min</p>
     </a>
   </div>
 
@@ -504,6 +504,12 @@
 <p>join() 执行后线程进入阻塞状态，例如在线程B中调用线程A的join()，则线程B会进入到阻塞队列，直到线程A结束或中断线程。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">&quot;222222&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        t1.start();</span><br><span class="line">        t1.join();</span><br><span class="line">        <span class="comment">// 这行代码需等t1线程执行结束才会继续执行</span></span><br><span class="line">        System.out.println(<span class="string">&quot;11111&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">结果：</span><br><span class="line"><span class="number">222222</span></span><br><span class="line"><span class="number">11111</span></span><br></pre></td></tr></table></figure>
+<h3 id="说说-sleep-方法和-wait-方法区别和共同点"><a href="#说说-sleep-方法和-wait-方法区别和共同点" class="headerlink" title="说说 sleep() 方法和 wait() 方法区别和共同点?"></a>说说 sleep() 方法和 wait() 方法区别和共同点?</h3><ul>
+<li>两者最主要的区别在于：<strong>sleep() 方法没有释放锁，而 wait() 方法释放了锁</strong> 。</li>
+<li>两者都可以暂停线程的执行。</li>
+<li>wait() 通常被用于线程间交互/通信，sleep() 通常被用于暂停执行。</li>
+<li>wait() 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 notify() 或者 notifyAll() 方法。sleep() 方法执行完成后，线程会自动苏醒。或者可以使用 wait(long timeout) 超时后线程会自动苏醒。</li>
+</ul>
 
   
   
@@ -549,10 +555,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-20T22:24:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-27T18:13:07+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 20, 2021</p>
+    <p>更新于：Aug 27, 2021</p>
   </a>
 </div>
 
@@ -628,16 +634,11 @@
         </a>
       
       
-        <a class='next' href='/2021/03/09/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8C%85%E6%8B%AC%E5%93%AA%E5%87%A0%E4%B8%AA%E9%98%B6%E6%AE%B5/'>
-          <p class='title'>线程的生命周期包括哪几个阶段<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>线程的生命周期包含5个阶段，包括：新建、就绪、运行、阻塞、销毁。
+        <a class='next' href='/2021/03/09/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%B0%83%E7%94%A8%20start()%20%E6%96%B9%E6%B3%95%E6%97%B6%E4%BC%9A%E6%89%A7%E8%A1%8C%20run()%20%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8%20run()%20%E6%96%B9%E6%B3%95%EF%BC%9F/'>
+          <p class='title'>为什么调用 start() 方法时会执行 run() 方法，为什么不能直接调用 run() 方法？<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
 
-
-
-
-新建（New）：就是刚使用new方法，new出来的线程。
-
-就绪（Runnable）：就是调用的线程的start()方法...</p>
+new 一个 Thread，线程进入了新建状态。调用 start()方法，会启动一个线程并使线程进入了就绪状态，当分配到时间片后就可以开始运行了。 start() 会执行线程的相应准备工作，...</p>
         </a>
       
     </div>
@@ -680,7 +681,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#sleep"><span class="toc-text">sleep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wait"><span class="toc-text">wait</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join"><span class="toc-text">join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield"><span class="toc-text">yield</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#sleep"><span class="toc-text">sleep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wait"><span class="toc-text">wait</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join"><span class="toc-text">join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield"><span class="toc-text">yield</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E8%AF%B4-sleep-%E6%96%B9%E6%B3%95%E5%92%8C-wait-%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB%E5%92%8C%E5%85%B1%E5%90%8C%E7%82%B9"><span class="toc-text">说说 sleep() 方法和 wait() 方法区别和共同点?</span></a></li></ol>
     </div>
   </section>
 

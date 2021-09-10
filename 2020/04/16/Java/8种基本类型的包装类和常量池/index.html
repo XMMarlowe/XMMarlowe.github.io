@@ -467,7 +467,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>594 words</p>
+      <p>625 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -487,6 +487,15 @@
 
   
   <a id="more"></a>
+
+<h3 id="八种基本数据类型的默认值"><a href="#八种基本数据类型的默认值" class="headerlink" title="八种基本数据类型的默认值"></a>八种基本数据类型的默认值</h3><ul>
+<li>整型 byte short int long</li>
+<li>浮点型 float double</li>
+<li>逻辑型 boolean</li>
+<li>字符型 char</li>
+</ul>
+<p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210901154403.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210901154403.png" srcset="data:image/png;base64,666" alt="20210901154403"></p>
+<hr>
 <p>Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,Short,Integer,Long,Character,Boolean；前面 4 种包装类默认创建了数值[-128，127] 的相应类型的缓存数据，Character创建了数值在[0,127]范围的缓存数据，Boolean 直接返回True Or False。如果超出对应范围仍然会去创建新的对象。</p>
 <p><strong>为啥把缓存设置为[-128，127]区间？</strong><br>（参见issue/461）性能和资源之间的权衡。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">valueOf</span><span class="params">(<span class="keyword">boolean</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (b ? TRUE : FALSE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -553,10 +562,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-23T22:20:50+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-01T19:31:02+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 23, 2021</p>
+    <p>更新于：Sep 1, 2021</p>
   </a>
 </div>
 
@@ -678,7 +687,7 @@ String 对象的两种创建方式：
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-text">八种基本数据类型的默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

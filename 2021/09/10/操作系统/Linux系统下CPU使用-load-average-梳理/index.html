@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1'>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>Linux系统下CPU使用(load average)梳理 - Marlowe</title>
+  
+    <meta name="keywords" content="CPU,Linux">
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+            <i class='https://marlowe.oss-cn-beijing.aliyuncs.com/img/bitbug_favicon.ico'></i>
+          
+          
+            Marlowe
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/"
+              
+              
+              id="https:githubcomvolantis-xhexo-theme-volantis">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Linux系统下CPU使用(load average)梳理
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Sep 10, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Linux系统下CPU使用(load average)梳理" data-path="/2021/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8BCPU%E4%BD%BF%E7%94%A8-load-average-%E6%A2%B3%E7%90%86/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>5.6k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>21 min</p>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <a id="more"></a>
+
+<p>在平时的运维工作中，当一台服务器的性能出现问题时，通常会去看当前的CPU使用情况，尤其是看下CPU的负载情况(load average)。对一般的系统来说，根据cpu数量去判断。比如有2颗cup的机器。如果平均负载始终在1.2以下，那么基本不会出现cpu不够用的情况。也就是Load平均要小于Cpu的数量。</p>
+<h3 id="cpu负载的理解"><a href="#cpu负载的理解" class="headerlink" title="cpu负载的理解"></a>cpu负载的理解</h3><p>对于cpu负载的理解，首先需要搞清楚下面几个问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line">1）系统load高不一定是性能有问题。</span><br><span class="line">因为Load高也许是因为在进行cpu密集型的计算</span><br><span class="line">  </span><br><span class="line">2）系统Load高不一定是CPU能力问题或数量不够。</span><br><span class="line">因为Load高只是代表需要运行的队列累计过多了。但队列中的任务实际可能是耗Cpu的，也可能是耗i/0或者其他因素的。</span><br><span class="line">  </span><br><span class="line">3）系统长期Load高，解决办法不是一味地首先增加CPU</span><br><span class="line">因为Load只是表象，不是实质。增加CPU个别情况下会临时看到Load下降，但治标不治本。</span><br><span class="line">  </span><br><span class="line">4）在Load average 高的情况下需要鉴别系统瓶颈到底是CPU不足，还是io不够快造成或是内存不足造成的。</span><br><span class="line">  </span><br><span class="line">===============================================================================================================</span><br><span class="line">要想获得服务器的CPU负载情况，有下面几种命令：</span><br><span class="line">1）w命令</span><br><span class="line">[root@localhost ~]<span class="comment"># w</span></span><br><span class="line"> 12:12:41 up 167 days, 20:46,  2 users,  load average: 0.00, 0.01, 0.05</span><br><span class="line">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span><br><span class="line">root     pts/0    192.168.1.5      10:01    1.00s  0.11s  0.00s w</span><br><span class="line">root     pts/2    192.168.1.5      10:19    1:47m  0.04s  0.04s -bash</span><br><span class="line">   </span><br><span class="line">2）uptime命令（一般首先会根据最后那个15分钟的load负载为准）</span><br><span class="line">[root@localhost ~]<span class="comment"># uptime</span></span><br><span class="line"> 12:12:55 up 167 days, 20:46,  2 users,  load average: 0.00, 0.01, 0.05</span><br><span class="line">   </span><br><span class="line">3）top命令</span><br><span class="line">[root@localhost ~]<span class="comment"># top</span></span><br><span class="line">top - 12:13:22 up 167 days, 20:47,  2 users,  load average: 0.00, 0.01, 0.05</span><br><span class="line">Tasks: 272 total,   1 running, 271 sleeping,   0 stopped,   0 zombie</span><br><span class="line">%Cpu(s):  0.0 us,  0.1 sy,  0.0 ni, 99.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">KiB Mem : 65759080 total, 58842616 free,   547908 used,  6368556 buff/cache</span><br><span class="line">KiB Swap:  2097148 total,  2097148 free,        0 used. 64264884 avail Mem</span><br><span class="line">................</span><br><span class="line">  </span><br><span class="line">对上面第三行的解释：</span><br><span class="line">us（user cpu time）：用户态使用的cpu时间比。该值较高时，说明用户进程消耗的 CPU 时间比较多，比如，如果该值长期超过 50%，则需要对程序算法或代码等进行优化。</span><br><span class="line">sy（system cpu time）：系统态使用的cpu时间比。</span><br><span class="line">ni（user nice cpu time）：用做nice加权的进程分配的用户态cpu时间比</span><br><span class="line">id（idle cpu time）：空闲的cpu时间比。如果该值持续为0，同时sy是us的两倍，则通常说明系统则面临着 CPU 资源的短缺。</span><br><span class="line">wa（io <span class="built_in">wait</span> cpu time）：cpu等待磁盘写入完成时间。该值较高时，说明IO等待比较严重，这可能磁盘大量作随机访问造成的，也可能是磁盘性能出现了瓶颈。</span><br><span class="line">hi（hardware irq）：硬中断消耗时间</span><br><span class="line">si（software irq）：软中断消耗时间</span><br><span class="line">st（steal time）：虚拟机偷取时间</span><br><span class="line">  </span><br><span class="line">以上解释的这些参数的值加起来是100%。</span><br><span class="line">  </span><br><span class="line">4）vmstat</span><br><span class="line">[root@localhost ~]<span class="comment"># vmstat</span></span><br><span class="line">procs -----------memory---------------------swap-------io---------system--------cpu-----</span><br><span class="line">r  b      swpd   free    buff   cache    si   so    bi    bo     <span class="keyword">in</span>   cs     us sy id wa st</span><br><span class="line">3  0      0      1639792 724280 4854236  0    0     4     34     4    0      19 45 35  0  0</span><br><span class="line">  </span><br><span class="line">解释说明：</span><br><span class="line">-----------------------------</span><br><span class="line">procs部分的解释</span><br><span class="line">r 列表示运行和等待cpu时间片的进程数，如果长期大于1，说明cpu不足，需要增加cpu。</span><br><span class="line">b 列表示在等待资源的进程数，比如正在等待I/O、或者内存交换等。</span><br><span class="line">-----------------------------</span><br><span class="line">cpu部分的解释</span><br><span class="line">us 列显示了用户方式下所花费 CPU 时间的百分比。us的值比较高时，说明用户进程消耗的cpu时间多，但是如果长期大于50%，需要考虑优化用户的程序。</span><br><span class="line">sy 列显示了内核进程所花费的cpu时间的百分比。这里us + sy的参考值为80%，如果us+sy 大于 80%说明可能存在CPU不足。</span><br><span class="line">wa 列显示了IO等待所占用的CPU时间的百分比。这里wa的参考值为30%，如果wa超过30%，说明IO等待严重，这可能是磁盘大量随机访问造成的，也可能磁盘或者</span><br><span class="line">   磁盘访问控制器的带宽瓶颈造成的(主要是块操作)。</span><br><span class="line">id 列显示了cpu处在空闲状态的时间百分比</span><br><span class="line">-----------------------------</span><br><span class="line">system部分的解释</span><br><span class="line"><span class="keyword">in</span> 列表示在某一时间间隔中观测到的每秒设备中断数。</span><br><span class="line">cs列表示每秒产生的上下文切换次数，如当 cs 比磁盘 I/O 和网络信息包速率高得多，都应进行进一步调查。</span><br><span class="line">-----------------------------</span><br><span class="line">memory部分的解释</span><br><span class="line">swpd 切换到内存交换区的内存数量(k表示)。如果swpd的值不为0，或者比较大，比如超过了100m，只要si、so的值长期为0，系统性能还是正常</span><br><span class="line">free 当前的空闲页面列表中内存数量(k表示)</span><br><span class="line">buff 作为buffer cache的内存数量，一般对块设备的读写才需要缓冲。</span><br><span class="line">cache: 作为page cache的内存数量，一般作为文件系统的cache，如果cache较大，说明用到cache的文件较多，如果此时IO中bi比较小，说明文件系统效率比较好。</span><br><span class="line">-----------------------------</span><br><span class="line">swap部分的解释</span><br><span class="line">si 由内存进入内存交换区数量。</span><br><span class="line">so由内存交换区进入内存数量。</span><br><span class="line">-----------------------------</span><br><span class="line">IO部分的解释</span><br><span class="line">bi 从块设备读入数据的总量（读磁盘）（每秒kb）。</span><br><span class="line">bo 块设备写入数据的总量（写磁盘）（每秒kb）</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">5）也可以使用dstat命令查看cpu信息</span><br><span class="line">[root@localhost ~]<span class="comment"># dstat</span></span><br><span class="line">----total-cpu-usage---- -dsk/total- -net/total- ---paging-- ---system--</span><br><span class="line">usr sys idl wai hiq siq| <span class="built_in">read</span>  writ| recv  send|  <span class="keyword">in</span>   out | int   csw</span><br><span class="line"> 19  45  35   0   0   0|  30k  265k|   0     0 |   0     0 |9025    12k</span><br><span class="line">  9  18  73   0   0   0|   0   144k|2578k   65k|   0     0 |3956  4343</span><br><span class="line">  </span><br><span class="line">6）可以使用iostat查看IO负载</span><br><span class="line">[root@localhost ~]<span class="comment"># iostat 1 1</span></span><br><span class="line">Linux 2.6.32-696.16.1.el6.x86_64 (nc-ftp01.kevin.cn)    2017年12月29日     _x86_64_    (4 CPU)</span><br><span class="line">  </span><br><span class="line">avg-cpu:  %user   %nice %system %iowait  %steal   %idle</span><br><span class="line">          19.32    0.00   45.44    0.06    0.26   34.93</span><br><span class="line">  </span><br><span class="line">Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn</span><br><span class="line">xvda             14.17        29.94       265.17   63120486  558975100</span><br><span class="line"> </span><br><span class="line">解释说明：</span><br><span class="line">avg-cpu: 总体cpu使用情况统计信息，对于多核cpu，这里为所有cpu的平均值</span><br><span class="line">%user: 在用户级别运行所使用的CPU的百分比.</span><br><span class="line">%nice: nice操作所使用的CPU的百分比.</span><br><span class="line">%sys: 在系统级别(kernel)运行所使用CPU的百分比.</span><br><span class="line">%iowait: CPU等待硬件I/O时,所占用CPU百分比.</span><br><span class="line">%idle: CPU空闲时间的百分比.</span><br><span class="line"> </span><br><span class="line">Device段:各磁盘设备的IO统计信息</span><br><span class="line">tps: 每秒钟发送到的I/O请求数.</span><br><span class="line">Blk_read /s: 每秒读取的block数.</span><br><span class="line">Blk_wrtn/s: 每秒写入的block数.</span><br><span class="line">Blk_read:   读入的block总数.</span><br><span class="line">Blk_wrtn:  写入的block总数.</span><br><span class="line"> </span><br><span class="line">[root@localhost ~]<span class="comment"># iostat -x -k -d 1</span></span><br><span class="line">Linux 2.6.32-696.el6.x86_64 (centos6-vm02)  01/04/2018  _x86_64_    (4 CPU)</span><br><span class="line"> </span><br><span class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</span><br><span class="line">scd0              0.00     0.00    0.00    0.00     0.00     0.00     8.00     0.00    0.36    0.36    0.00   0.36   0.00</span><br><span class="line">vda               0.01     0.13    0.04    0.13     0.60     0.89    18.12     0.00    2.78    0.19    3.53   2.55   0.04</span><br><span class="line">dm-0              0.00     0.00    0.04    0.22     0.58     0.88    11.25     0.00    3.27    0.25    3.82   1.61   0.04</span><br><span class="line">dm-1              0.00     0.00    0.00    0.00     0.00     0.00     8.00     0.00    0.13    0.13    0.00   0.04   0.00</span><br><span class="line">dm-2              0.00     0.00    0.00    0.00     0.00     0.00     7.91     0.00    0.19    0.10    5.00   0.16   0.00</span><br><span class="line"> </span><br><span class="line">解释说明：</span><br><span class="line">rrqm/s: 每秒对该设备的读请求被合并次数，文件系统会对读取同块(block)的请求进行合并</span><br><span class="line">wrqm/s: 每秒对该设备的写请求被合并次数</span><br><span class="line">r/s: 每秒完成的读次数</span><br><span class="line">w/s: 每秒完成的写次数</span><br><span class="line">rkB/s: 每秒读数据量(kB为单位)</span><br><span class="line">wkB/s: 每秒写数据量(kB为单位)</span><br><span class="line">avgrq-sz:平均每次IO操作的数据量(扇区数为单位)</span><br><span class="line">avgqu-sz: 平均等待处理的IO请求队列长度</span><br><span class="line">await: 平均每次IO请求等待时间(包括等待时间和处理时间，毫秒为单位)</span><br><span class="line">svctm: 平均每次IO请求的处理时间(毫秒为单位)</span><br><span class="line">%util: 采用周期内用于IO操作的时间比率，即IO队列非空的时间比率</span><br><span class="line"> </span><br><span class="line">如果 %util 接近 100%，说明产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。</span><br><span class="line">idle小于70% IO压力就较大了,一般读取速度有较多的<span class="built_in">wait</span>。</span><br><span class="line">同时可以结合vmstat 查看查看b参数(等待资源的进程数)和wa参数(IO等待所占用的CPU时间的百分比,高过30%时IO压力高)</span><br></pre></td></tr></table></figure>
+<h3 id="CPU负载和CPU利用率的区别"><a href="#CPU负载和CPU利用率的区别" class="headerlink" title="CPU负载和CPU利用率的区别"></a>CPU负载和CPU利用率的区别</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">0）load average：系统平均负载是CPU的Load，它所包含的信息不是CPU的使用率状况，而是在一段时间内CPU正在处理以及等待CPU处理的进程数之和的统计信息，</span><br><span class="line">   也就是CPU使用队列的长度的统计信息，这个数字越小越好。</span><br><span class="line"> </span><br><span class="line">1）CPU使用率：显示的是程序在运行期间实时占用的CPU百分比。</span><br><span class="line"> </span><br><span class="line">2）CPU负载：显示的是一段时间内正在使用和等待使用CPU的平均任务数。CPU使用率高，并不意味着负载就一定大。</span><br><span class="line">举例来说：如果我有一个程序它需要一直使用CPU的运算功能，那么此时CPU的使用率可能达到100%，但是CPU的工作负载则是趋近于<span class="string">&quot;1&quot;</span>，因为CPU仅负责一个工作啊。</span><br><span class="line">如果同时执行这样的程序两个呢？CPU的使用率还是100%，但是工作负载则变成2了。所以也就是说，当CPU的工作负载越大，代表CPU必须要在不同的工作之间进行频繁</span><br><span class="line">的工作切换。</span><br><span class="line"> </span><br><span class="line">  </span><br><span class="line">3）CPU利用率高，并不意味着负载就一定大。</span><br><span class="line">举例来说：</span><br><span class="line">如果有一个程序它需要一直使用CPU的运算功能，那么此时CPU的使用率可能达到100%，但是CPU的工作负载则是趋近于<span class="string">&quot;1&quot;</span>，因为CPU仅负责一个工作！</span><br><span class="line">如果同时执行这样的程序两个呢？CPU的使用率还是100%，但是工作负载则变成2了。所以也就是说，当CPU的工作负载越大，代表CPU必须要在不同的工作之间</span><br><span class="line">进行频繁的工作切换。</span><br><span class="line">   </span><br><span class="line">------------------------下面通过一个电话亭打电话的比喻来说明这两者之间的区别------------------------</span><br><span class="line">某公用电话亭，有一个人在打电话，四个人在等待，每人限定使用电话一分钟，若有人一分钟之内没有打完电话，只能挂掉电话去排队，等待下一轮。</span><br><span class="line">电话在这里就相当于CPU，而正在或等待打电话的人就相当于任务数。</span><br><span class="line">   </span><br><span class="line">在电话亭使用过程中，肯定会有人打完电话走掉，有人没有打完电话而选择重新排队，更会有新增的人在这儿排队，这个人数的变化就相当于任务数的增减。</span><br><span class="line">为了统计平均负载情况，我们5分钟统计一次人数，并在第1、5、15分钟的时候对统计情况取平均值，从而形成第1、5、15分钟的平均负载。</span><br><span class="line">   </span><br><span class="line">有的人拿起电话就打，一直打完1分钟，而有的人可能前三十秒在找电话号码，或者在犹豫要不要打，后三十秒才真正在打电话。如果把电话看作CPU，人数看</span><br><span class="line">作任务，我们就说前一个人（任务）的CPU利用率高，后一个人（任务）的CPU利用率低。当然， CPU并不会在前三十秒工作，后三十秒歇着，只是说，有的程</span><br><span class="line">序涉及到大量的计算，所以CPU利用率就高，而有的程序牵涉到计算的部分很少，CPU利用率自然就低。但无论CPU的利用率是高是低，跟后面有多少任务在排队</span><br><span class="line">没有必然关系。</span><br></pre></td></tr></table></figure>
+<h3 id="正确理解-iowait和CPU使用率"><a href="#正确理解-iowait和CPU使用率" class="headerlink" title="正确理解%iowait和CPU使用率"></a>正确理解%iowait和CPU使用率</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">1）%steal</span><br><span class="line">一般是在虚拟机中才能看到数值，比如CPU overcommitment很严重的VPS，而%guest和%nice一般都很低,所以也可以</span><br><span class="line">根据/proc/<span class="built_in">stat</span>或者top可得，user + nice + system + idle + iowait + irq + softirq + steal = 100</span><br><span class="line"> </span><br><span class="line">2）Linux进程状态</span><br><span class="line">运行状态（TASK_RUNNING）：</span><br><span class="line">　　是运行态和就绪态的合并，表示进程正在运行或准备运行，Linux 中使用TASK_RUNNING 宏表示此状态</span><br><span class="line">可中断睡眠状态（浅度睡眠）（TASK_INTERRUPTIBLE）：</span><br><span class="line">　　进程正在睡眠（被阻塞），等待资源到来是唤醒，也可以通过其他进程信号或时钟中断唤醒，进入运行队列。Linux 使用TASK_INTERRUPTIBLE 宏表示此状态。</span><br><span class="line">不可中断睡眠状态（深度睡眠状态）（TASK_UNINTERRUPTIBLE）：</span><br><span class="line">　　其和浅度睡眠基本类似，但有一点就是不可被其他进程信号或时钟中断唤醒。Linux 使用TASK_UNINTERRUPTIBLE 宏表示此状态。</span><br><span class="line">暂停状态（TASK_STOPPED）：</span><br><span class="line">　　进程暂停执行接受某种处理。如正在接受调试的进程处于这种状态，Linux 使用TASK_STOPPED 宏表示此状态。</span><br><span class="line">僵死状态（TASK_ZOMBIE）：</span><br><span class="line">　　进程已经结束但未释放PCB，Linux 使用TASK_ZOMBIE 宏表示此状态。</span><br><span class="line"> </span><br><span class="line">3）%iowait 的正确认知</span><br><span class="line">%iowait 表示在一个采样周期内有百分之几的时间属于以下情况：CPU空闲、并且有仍未完成的I/O请求。</span><br><span class="line"> </span><br><span class="line">对 %iowait 常见的误解有两个：</span><br><span class="line">　　一是误以为 %iowait 表示CPU不能工作的时间，</span><br><span class="line">　　二是误以为 %iowait 表示I/O有瓶颈。</span><br><span class="line"> </span><br><span class="line">首先 %iowait 升高并不能证明等待I/O的进程数量增多了，也不能证明等待I/O的总时间增加了。</span><br><span class="line">例如：</span><br><span class="line">在CPU繁忙期间发生的I/O，无论IO是多还是少，%iowait都不会变；</span><br><span class="line">当CPU繁忙程度下降时，有一部分IO落入CPU空闲时间段内，导致%iowait升高。</span><br><span class="line">再比如：IO的并发度低，%iowait就高；IO的并发度高，%iowait可能就比较低。</span><br><span class="line"> </span><br><span class="line">可见%iowait是一个非常模糊的指标，如果看到 %iowait 升高，还需检查I/O量有没有明显增加，</span><br><span class="line">avserv/avwait/avque等指标有没有明显增大，应用有没有感觉变慢，如果都没有，就没什么好担心的。</span><br><span class="line"> </span><br><span class="line">4）查看CPU使用率，推荐如下Linux命令：</span><br><span class="line"><span class="comment"># top</span></span><br><span class="line"><span class="comment"># sar -u 1 5</span></span><br><span class="line"><span class="comment"># vmstat -n 1 5</span></span><br><span class="line"><span class="comment"># mpstat -P ALL 1 5</span></span><br><span class="line"> </span><br><span class="line">查看Load的值，推荐如下Linux命令：</span><br><span class="line"><span class="comment"># top</span></span><br><span class="line"><span class="comment"># uptime</span></span><br><span class="line"><span class="comment"># sar -q 1 5</span></span><br></pre></td></tr></table></figure>
+<p>load average相关梳理（一分钟，五分钟，十五分钟的平均CPU负载，最重要的指标是最后一个数字，即前15分钟的平均CPU负载，这个数字越小越好。所谓CPU负载指的是一段时间内任务队列的长度，通俗的讲，就是一段时间内一共有多少任务在使用或等待使用CPU。（当前的”负载值除以cpu核数”就是cpu的利用率））</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">load average表示的是系统的平均负荷，即CPU的Load。</span><br><span class="line">它所包含的信息不是CPU的使用率状况，而是在一段时间内CPU正在处理以及等待CPU处理的进程数之和的统计信息，也就是CPU使用队列的长度的统计信息。</span><br><span class="line">它包括3个数字，分别表示系统在1、5、15分钟内进程队列中的平均进程数量（即处理的进程情况），</span><br><span class="line">原则上来说这3个数字越小越好，数字越小表示服务器的工作量越小，系统负荷比较轻</span><br><span class="line">  </span><br><span class="line">当CPU完全空闲的时候，平均负荷为0（即load average的值为0）；当CPU工作量饱和的时候，平均负荷为1。</span><br><span class="line">  </span><br><span class="line">这里需要注意的是：</span><br><span class="line">load average这个输出值，这三个值的大小一般不能大于系统逻辑CPU的个数</span><br><span class="line">比如一台服务器有4个逻辑CPU，如果load average的三个值长期大于4时，说明CPU很繁忙，负载很高，可能会影响系统性能；</span><br><span class="line">但是偶尔大于4时，倒不用担心，一般不会影响系统性能。</span><br><span class="line">相反，如果load average的输出值小于CPU的个数，则表示CPU还有空闲，比如本例中的输出，CPU是比较空闲的。</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">-------------load average举例理解---------------</span><br><span class="line">判断系统负荷是否过重，必须理解load average的真正含义。假设当前我的一台服务器只有一个CPU，所有的运算都必须由这个CPU来完成。</span><br><span class="line">不妨把这个CPU想象成一座大桥，桥上只有一根车道，所有车辆都必须从这根车道上通过（很显然，这座桥只能单向通行）。</span><br><span class="line">1）系统负荷为0，意味着大桥上一辆车也没有。</span><br><span class="line">2）系统负荷为0.5，意味着大桥一半的路段有车。</span><br><span class="line">3）系统负荷为1.0，意味着大桥的所有路段都有车，也就是说大桥已经<span class="string">&quot;满&quot;</span>了。但是必须注意的是，直到此时大桥还是能顺畅通行的。</span><br><span class="line">4）系统负荷为1.7，意味着车辆太多了，大桥已经被占满了（100%），后面等着上桥的车辆为桥面车辆的70%。</span><br><span class="line">   以此类推，系统负荷2.0，意味着等待上桥的车辆与桥面的车辆一样多；</span><br><span class="line">   系统负荷3.0，意味着等待上桥的车辆是桥面车辆的2倍。</span><br><span class="line">   总之，当系统负荷大于1，后面的车辆就必须等待了；系统负荷越大，过桥就必须等得越久。</span><br><span class="line">  </span><br><span class="line">CPU的系统负荷，基本上等同于上面的类比。大桥的通行能力，就是CPU的最大工作量；桥梁上的车辆，就是一个个等待CPU处理的进程（process）。</span><br><span class="line">如果CPU每分钟最多处理100个进程，那么：</span><br><span class="line">系统负荷0.2，意味着CPU在这1分钟里只处理20个进程；</span><br><span class="line">系统负荷1.0，意味着CPU在这1分钟 里正好处理100个进程；</span><br><span class="line">系统负荷1.7，意味着除了CPU正在处理的100个进程以外，还有70个进程正排队等着CPU处理。</span><br><span class="line">  </span><br><span class="line">为了服务器顺畅运行，系统负荷最好不要超过1.0，这样就没有进程需要等待了，所有进程都能第一时间得到处理。</span><br><span class="line">很显然，1.0是一个关键值，超过这个值，系统就不在最佳状态了，就需要动手干预了。</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">--------1.0是系统负荷的理想值吗？-----------</span><br><span class="line">不一定，系统管理员往往会留一点余地，当这个值达到0.7，就应当引起注意了。</span><br><span class="line">以往经验是这样的：</span><br><span class="line">当系统负荷持续大于0.7，必须开始调查了，问题出在哪里，防止情况恶化。</span><br><span class="line">当系统负荷持续大于1.0，必须动手寻找解决办法，把这个值降下来。</span><br><span class="line">当系统负荷达到5.0，就表明系统有很严重的问题，长时间没有响应，或者接近死机了。觉不能让系统达到这个值。</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">上面，假设我的这台服务器只有1个CPU。如果它装了2个CPU，就意味着服务器的处理能力翻了一倍，能够同时处理的进程数量也翻了一倍。</span><br><span class="line">还是用大桥来类比，两个CPU就意味着大桥有两根车道了，通车能力翻倍了。</span><br><span class="line">所以，2个CPU表明系统负荷可以达到2.0，此时每个CPU都达到100%的工作量。推广开来，n个CPU的服务器，可接受的系统负荷最大为n.0。</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">---------至于load average是多少才算理想，这个有争议，各有各的说法---------</span><br><span class="line">个人比较赞同CPU负载小于等于<span class="string">&quot;内核数乘以0.5-0.7&quot;</span>算是一种理想状态。</span><br><span class="line">比如4核CPU的服务器，理想负载是小于等于2，最好不要超过2.8，否则性能多少会受影响。</span><br><span class="line">  </span><br><span class="line">不管某个CPU的性能有多好，1秒钟能处理多少任务，可以认为它无关紧要，虽然事实并非如此。</span><br><span class="line">在评估CPU负载时，只以5分钟为单位做统计任务队列长度。如果每隔5分钟统计的时候，发现任务队列长度都是1，那么CPU负载就为1。</span><br><span class="line">  </span><br><span class="line">假如现在某台服务器只有一个单核的CPU，负载一直为1，意味着没有任务在排队，还不错。</span><br><span class="line">但是这台服务器是双核CPU，等于是有4个内核，每个内核的负载为1的话，总负载为4。这就是说，如果这台服务器的CPU负载长期保持在4左右，还可以接受。</span><br><span class="line">但是每个内核的负载为1，并不能算是一种理想状态！这意味着服务器的CPU一直很忙，不得清闲。</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">-----------load average返回三个平均值应该参考哪个值？------------</span><br><span class="line">如果只有1分钟的系统负荷大于1.0，其他两个时间段都小于1.0，这表明只是暂时现象，问题不大。</span><br><span class="line">如果15分钟内，平均系统负荷大于1.0（调整CPU核心数之后），表明问题持续存在，不是暂时现象。</span><br><span class="line">所以应该主要观察<span class="string">&quot;15分钟系统负荷&quot;</span>，将它作为服务器正常运行的指标。</span><br><span class="line">  </span><br><span class="line">----------如何来降低服务器的CPU负载？--------------</span><br><span class="line">最简单办法的是更换性能更好的服务器，不要想着仅仅提高CPU的性能，那没有用，CPU要发挥出它最好的性能还需要其它软硬件的配合。</span><br><span class="line">在服务器其它方面配置合理的情况下，CPU数量和CPU核心数（即内核数）都会影响到CPU负载，因为任务最终是要分配到CPU核心去处理的。两块CPU要比一块</span><br><span class="line">CPU好，双核要比单核好。因此，需要记住的是：除去CPU性能上的差异，CPU负载是基于内核数来计算的。有一个说法是<span class="string">&quot;有多少内核，即有多少负载&quot;</span>。</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43164571/article/details/113887394">Linux系统下CPU使用(load average)梳理</a></p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8BCPU%E4%BD%BF%E7%94%A8-load-average-%E6%A2%B3%E7%90%86/>https://xmmarlowe.github.io/2021/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8BCPU%E4%BD%BF%E7%94%A8-load-average-%E6%A2%B3%E7%90%86/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+        
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-10T21:09:46+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Sep 10, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8BCPU%E4%BD%BF%E7%94%A8-load-average-%E6%A2%B3%E7%90%86/&title=Linux系统下CPU使用(load average)梳理 - Marlowe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8BCPU%E4%BD%BF%E7%94%A8-load-average-%E6%A2%B3%E7%90%86/&title=Linux系统下CPU使用(load average)梳理 - Marlowe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8BCPU%E4%BD%BF%E7%94%A8-load-average-%E6%A2%B3%E7%90%86/&title=Linux系统下CPU使用(load average)梳理 - Marlowe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/09/10/Java/Java%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Java不可变类型</p>
+          <p class='content'>
+
+一、不可变类简介不可变类：所谓的不可变类是指这个类的实例一旦创建完成后，就不能改变其成员变量值。如JDK内部自带的很多不可变类：Interger、Long和String等。
+可变类：相对于不...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/top-%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/'>
+          <p class='title'>top 命令详解<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+
+top linux下的任务管理器top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。top是一个动态显示过程,即可以通过用...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cpu%E8%B4%9F%E8%BD%BD%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">cpu负载的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E8%B4%9F%E8%BD%BD%E5%92%8CCPU%E5%88%A9%E7%94%A8%E7%8E%87%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">CPU负载和CPU利用率的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E7%90%86%E8%A7%A3-iowait%E5%92%8CCPU%E4%BD%BF%E7%94%A8%E7%8E%87"><span class="toc-text">正确理解%iowait和CPU使用率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Linux系统下CPU使用(load average)梳理";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1" target="_blank" class="codename">Volantis</a>
+        as theme
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2019-2021 Marlowe</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            swal({
+                title: '复制成功',
+                text: "代码已复制，请遵守相关授权协议。",
+                icon: 'success',
+                button: "我承诺遵守",
+            });
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "j60P94k1oxBXjVeNMHqSO4ny-gzGzoHsz",
+      appKey: "4AbQyRP2XQmS6K0dSMgSqPfo",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      recordIP: 'false',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2.6.4/js/search.js"></script>
+
+  
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+(function ($) {
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+})(jQuery);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'j60P94k1oxBXjVeNMHqSO4ny-gzGzoHsz',
+    app_key: '4AbQyRP2XQmS6K0dSMgSqPfo',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://xmmarlowe.github.io' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+

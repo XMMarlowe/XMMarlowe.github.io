@@ -469,13 +469,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>4.5k words</p>
+      <p>4.9k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>15 min</p>
+      <p>17 min</p>
     </a>
   </div>
 
@@ -558,8 +558,8 @@
 <h5 id="5-MySQL-5-5支持半同步复制"><a href="#5-MySQL-5-5支持半同步复制" class="headerlink" title="5.MySQL-5.5支持半同步复制"></a>5.MySQL-5.5支持半同步复制</h5><p>早前的MySQL复制只能是基于异步来实现，从MySQL-5.5开始，支持半自动复制。在以前的异步（asynchronous）复制中，主库在执行完一些事务后，是不会管备库的进度的。如果备库处于落后，而更不幸的是主库此时又出现Crash（例如宕机），这时备库中的数据就是不完整的。简而言之，在主库发生故障的时候，我们无法使用备库来继续提供数据一致的服务了。Semisynchronous Replication(半同步复制)则一定程度上保证提交的事务已经传给了至少一个备库。Semi synchronous中，仅仅保证事务的已经传递到备库上，但是并不确保已经在备库上执行完成了。</p>
 <p>此外，还有一种情况会导致主备数据不一致。在某个session中，主库上提交一个事务后，会等待事务传递给至少一个备库，如果在这个等待过程中主库Crash，那么也可能备库和主库不一致，这是很致命的。如果主备网络故障或者备库挂了，主库在事务提交后等待10秒（rpl_semi_sync_master_timeout的默认值）后，就会继续。这时，主库就会变回原来的异步状态。</p>
 <p>MySQL在加载并开启Semi-sync插件后，每一个事务需等待备库接收日志后才返回给客户端。如果做的是小事务，两台主机的延迟又较小，则Semi-sync可以实现在性能很小损失的情况下的零数据丢失。</p>
-<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>主服务器处理写操作以及实时性要求比较高的读操作，而从服务器处理读操作。 </p>
-<p>读写分离能提高性能的原因在于: </p>
+<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>主服务器<strong>处理写操作</strong>以及<strong>实时性要求比较高的读操作</strong>，而从服务器处理<strong>读操作</strong>。 </p>
+<p><strong>读写分离能提高性能的原因在于:</strong></p>
 <ul>
 <li>主从服务器负责各自的读和写，极大程度缓解了锁的争用； </li>
 <li>从服务器可以使用 MyISAM，提升查询性能以及节约系统开销； </li>
@@ -567,6 +567,18 @@
 </ul>
 <p>读写分离常用代理方式来实现，代理服务器接收应用层传来的读写请求，然后决定转发到哪个服务器。</p>
 <p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210826171320.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210826171320.png" srcset="data:image/png;base64,666" alt="20210826171320"></p>
+<h3 id="MySQL-主从同步延时问题（精华）"><a href="#MySQL-主从同步延时问题（精华）" class="headerlink" title="MySQL 主从同步延时问题（精华）"></a>MySQL 主从同步延时问题（精华）</h3><p>以前线上确实处理过因为主从同步延时问题而导致的线上的 bug，属于小型的生产事故。</p>
+<p>是这个么场景。有个同学是这样写代码逻辑的。先插入一条数据，再把它查出来，然后更新这条数据。在生产环境高峰期，写并发达到了 2000/s，这个时候，主从复制延时大概是在小几十毫秒。线上会发现，每天总有那么一些数据，我们期望更新一些重要的数据状态，但在高峰期时候却没更新。用户跟客服反馈，而客服就会反馈给我们。</p>
+<p>我们通过 MySQL 命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> slave status</span><br></pre></td></tr></table></figure>
+<p>查看 Seconds_Behind_Master ，可以看到从库复制主库的数据落后了几 ms。</p>
+<p>一般来说，如果主从延迟较为严重，有以下解决方案：</p>
+<ul>
+<li>分库，将一个主库拆分为多个主库，每个主库的写并发就减少了几倍，此时主从延迟可以忽略不计。</li>
+<li>打开 MySQL 支持的并行复制，多个库并行复制。如果说某个库的写入并发就是特别高，单库写并发达到了 2000/s，并行复制还是没意义。</li>
+<li>重写代码，写代码的同学，要慎重，插入数据时立马查询可能查不到。</li>
+<li>如果确实是存在必须先插入，立马要求就查询到，然后立马就要反过来执行一些操作，对这个查询<strong>设置直连主库</strong>。<strong>不推荐</strong>这种方法，你要是这么搞，读写分离的意义就丧失了。</li>
+</ul>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/db/sql-mysql/sql-mysql-slave.html">MySQL - 主从复制与读写分离</a></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008942618">MySql 主从复制及配置实现</a></p>
 
@@ -614,10 +626,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T18:09:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-31T22:29:37+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 26, 2021</p>
+    <p>更新于：Aug 31, 2021</p>
   </a>
 </div>
 
@@ -742,7 +754,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="toc-text">主从复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">二、主从复制的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%9F%BA%E4%BA%8E%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%A4%8D%E5%88%B6%EF%BC%9A"><span class="toc-text">1.基于语句的复制：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8E%E8%A1%8C%E7%9A%84%E5%A4%8D%E5%88%B6%EF%BC%9A"><span class="toc-text">2.基于行的复制：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%B7%B7%E5%90%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%8D%E5%88%B6%EF%BC%9A"><span class="toc-text">3.混合类型的复制：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">三、主从复制的工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-text">四、主从复制的过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE"><span class="toc-text">五、主从复制的具体配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3MySQL%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE"><span class="toc-text">六、深入了解MySQL主从配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E"><span class="toc-text">1. 一主多从</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%B8%BB%E4%B8%BB%E5%A4%8D%E5%88%B6"><span class="toc-text">2. 主主复制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E4%B8%BB%E5%8A%A8%E2%80%94%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8F%E7%9A%84Master-Master-Master-Master-in-Active-Passive-Mode"><span class="toc-text">3.主动—被动模式的Master-Master(Master-Master in Active-Passive Mode)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%B8%A6%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84Master-Master%E7%BB%93%E6%9E%84-Master-Master-with-Slaves"><span class="toc-text">4.带从服务器的Master-Master结构(Master-Master with Slaves)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-MySQL-5-5%E6%94%AF%E6%8C%81%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6"><span class="toc-text">5.MySQL-5.5支持半同步复制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB"><span class="toc-text">读写分离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="toc-text">主从复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">二、主从复制的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%9F%BA%E4%BA%8E%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%A4%8D%E5%88%B6%EF%BC%9A"><span class="toc-text">1.基于语句的复制：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8E%E8%A1%8C%E7%9A%84%E5%A4%8D%E5%88%B6%EF%BC%9A"><span class="toc-text">2.基于行的复制：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%B7%B7%E5%90%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%8D%E5%88%B6%EF%BC%9A"><span class="toc-text">3.混合类型的复制：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">三、主从复制的工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-text">四、主从复制的过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE"><span class="toc-text">五、主从复制的具体配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3MySQL%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE"><span class="toc-text">六、深入了解MySQL主从配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E"><span class="toc-text">1. 一主多从</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%B8%BB%E4%B8%BB%E5%A4%8D%E5%88%B6"><span class="toc-text">2. 主主复制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E4%B8%BB%E5%8A%A8%E2%80%94%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8F%E7%9A%84Master-Master-Master-Master-in-Active-Passive-Mode"><span class="toc-text">3.主动—被动模式的Master-Master(Master-Master in Active-Passive Mode)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%B8%A6%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84Master-Master%E7%BB%93%E6%9E%84-Master-Master-with-Slaves"><span class="toc-text">4.带从服务器的Master-Master结构(Master-Master with Slaves)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-MySQL-5-5%E6%94%AF%E6%8C%81%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6"><span class="toc-text">5.MySQL-5.5支持半同步复制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB"><span class="toc-text">读写分离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL-%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BB%B6%E6%97%B6%E9%97%AE%E9%A2%98%EF%BC%88%E7%B2%BE%E5%8D%8E%EF%BC%89"><span class="toc-text">MySQL 主从同步延时问题（精华）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

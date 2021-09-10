@@ -489,7 +489,7 @@
   <a id="more"></a>
 
 
-<h3 id="如何选择索引列的顺序"><a href="#如何选择索引列的顺序" class="headerlink" title="如何选择索引列的顺序"></a>如何选择索引列的顺序</h3><p>建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。</p>
+<h3 id="如何选择索引列的顺序？"><a href="#如何选择索引列的顺序？" class="headerlink" title="如何选择索引列的顺序？"></a>如何选择索引列的顺序？</h3><p>建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。</p>
 <ul>
 <li>区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）</li>
 <li>尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）</li>
@@ -570,10 +570,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-10T22:43:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-27T18:56:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 10, 2021</p>
+    <p>更新于：Aug 27, 2021</p>
   </a>
 </div>
 
@@ -696,7 +696,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%B4%A2%E5%BC%95%E5%88%97%E7%9A%84%E9%A1%BA%E5%BA%8F"><span class="toc-text">如何选择索引列的顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%BB%BA%E7%AB%8B%E5%86%97%E4%BD%99%E7%B4%A2%E5%BC%95%E5%92%8C%E9%87%8D%E5%A4%8D%E7%B4%A2%E5%BC%95%EF%BC%88%E5%A2%9E%E5%8A%A0%E4%BA%86%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E5%99%A8%E7%94%9F%E6%88%90%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E7%9A%84%E6%97%B6%E9%97%B4%EF%BC%89"><span class="toc-text">避免建立冗余索引和重复索引（增加了查询优化器生成执行计划的时间）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E9%A2%91%E7%B9%81%E7%9A%84%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%85%88%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95"><span class="toc-text">对于频繁的查询优先考虑使用覆盖索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E5%AD%90%E6%9F%A5%E8%AF%A2%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%8A%8A%E5%AD%90%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E4%B8%BA-join-%E6%93%8D%E4%BD%9C"><span class="toc-text">避免使用子查询，可以把子查询优化为 join 操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E6%98%8E%E6%98%BE%E4%B8%8D%E4%BC%9A%E6%9C%89%E9%87%8D%E5%A4%8D%E5%80%BC%E6%97%B6%E4%BD%BF%E7%94%A8-UNION-ALL-%E8%80%8C%E4%B8%8D%E6%98%AF-UNION"><span class="toc-text">在明显不会有重复值时使用 UNION ALL 而不是 UNION</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%86%E5%88%86%E5%A4%8D%E6%9D%82%E7%9A%84%E5%A4%A7-SQL-%E4%B8%BA%E5%A4%9A%E4%B8%AA%E5%B0%8F-SQL"><span class="toc-text">拆分复杂的大 SQL 为多个小 SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85100-%E4%B8%87%E8%A1%8C%E7%9A%84%E6%89%B9%E9%87%8F%E5%86%99-UPDATE-DELETE-INSERT-%E6%93%8D%E4%BD%9C-%E8%A6%81%E5%88%86%E6%89%B9%E5%A4%9A%E6%AC%A1%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-text">超100 万行的批量写 (UPDATE,DELETE,INSERT) 操作,要分批多次进行操作</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%B4%A2%E5%BC%95%E5%88%97%E7%9A%84%E9%A1%BA%E5%BA%8F%EF%BC%9F"><span class="toc-text">如何选择索引列的顺序？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%BB%BA%E7%AB%8B%E5%86%97%E4%BD%99%E7%B4%A2%E5%BC%95%E5%92%8C%E9%87%8D%E5%A4%8D%E7%B4%A2%E5%BC%95%EF%BC%88%E5%A2%9E%E5%8A%A0%E4%BA%86%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E5%99%A8%E7%94%9F%E6%88%90%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E7%9A%84%E6%97%B6%E9%97%B4%EF%BC%89"><span class="toc-text">避免建立冗余索引和重复索引（增加了查询优化器生成执行计划的时间）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E9%A2%91%E7%B9%81%E7%9A%84%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%85%88%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95"><span class="toc-text">对于频繁的查询优先考虑使用覆盖索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E5%AD%90%E6%9F%A5%E8%AF%A2%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%8A%8A%E5%AD%90%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E4%B8%BA-join-%E6%93%8D%E4%BD%9C"><span class="toc-text">避免使用子查询，可以把子查询优化为 join 操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E6%98%8E%E6%98%BE%E4%B8%8D%E4%BC%9A%E6%9C%89%E9%87%8D%E5%A4%8D%E5%80%BC%E6%97%B6%E4%BD%BF%E7%94%A8-UNION-ALL-%E8%80%8C%E4%B8%8D%E6%98%AF-UNION"><span class="toc-text">在明显不会有重复值时使用 UNION ALL 而不是 UNION</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%86%E5%88%86%E5%A4%8D%E6%9D%82%E7%9A%84%E5%A4%A7-SQL-%E4%B8%BA%E5%A4%9A%E4%B8%AA%E5%B0%8F-SQL"><span class="toc-text">拆分复杂的大 SQL 为多个小 SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85100-%E4%B8%87%E8%A1%8C%E7%9A%84%E6%89%B9%E9%87%8F%E5%86%99-UPDATE-DELETE-INSERT-%E6%93%8D%E4%BD%9C-%E8%A6%81%E5%88%86%E6%89%B9%E5%A4%9A%E6%AC%A1%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-text">超100 万行的批量写 (UPDATE,DELETE,INSERT) 操作,要分批多次进行操作</span></a></li></ol>
     </div>
   </section>
 

@@ -629,16 +629,12 @@
 <ul>
 <li>kill -9 进程的pid： 杀死进程（-9 表示强制终止。）<br>先用 ps 查找进程，然后用 kill 杀掉</li>
 </ul>
-<ul>
-<li><p><strong>网络通信命令：</strong></p>
-<ul>
+<h4 id="网络通信命令"><a href="#网络通信命令" class="headerlink" title="网络通信命令"></a>网络通信命令</h4><ul>
 <li>查看当前系统的网卡信息：ifconfig</li>
 <li>查看与某台机器的连接情况：ping</li>
 <li>查看当前系统的端口使用：netstat -an</li>
 </ul>
-</li>
-<li><p><strong>查看磁盘信息命令：</strong></p>
-<ul>
+<h4 id="查看磁盘信息命令"><a href="#查看磁盘信息命令" class="headerlink" title="查看磁盘信息命令"></a>查看磁盘信息命令</h4><ul>
 <li><p>df -hl：查看磁盘剩余空间</p>
 </li>
 <li><p>df -h：查看每个根路径的分区大小</p>
@@ -649,8 +645,6 @@
 </li>
 <li><p>du -h [目录名]：查看指定文件夹下的所有文件大小（包含子文件夹）</p>
 <p><strong>du(disk usage)</strong><br><strong>df 以磁盘分区为单位查看文件系统，可以获取硬盘被占用了多少空间，目前还剩下多少空间等信息。</strong></p>
-</li>
-</ul>
 </li>
 </ul>
 <ul>
@@ -707,10 +701,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-01T17:01:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-10T21:09:46+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jun 1, 2021</p>
+    <p>更新于：Sep 10, 2021</p>
   </a>
 </div>
 
@@ -837,7 +831,7 @@ Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E5%88%87%E6%8D%A2%E5%91%BD%E4%BB%A4"><span class="toc-text">目录切换命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">目录的操作命令(增删改查)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">文件的操作命令(增删改查)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">压缩文件的操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="toc-text">打包并压缩文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="toc-text">解压压缩包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%9A%84%E6%9D%83%E9%99%90%E5%91%BD%E4%BB%A4"><span class="toc-text">Linux 的权限命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 系统用户组的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">其他常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E5%88%87%E6%8D%A2%E5%91%BD%E4%BB%A4"><span class="toc-text">目录切换命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">目录的操作命令(增删改查)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">文件的操作命令(增删改查)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">压缩文件的操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="toc-text">打包并压缩文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="toc-text">解压压缩包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%9A%84%E6%9D%83%E9%99%90%E5%91%BD%E4%BB%A4"><span class="toc-text">Linux 的权限命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 系统用户组的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">其他常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%91%BD%E4%BB%A4"><span class="toc-text">网络通信命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E4%BF%A1%E6%81%AF%E5%91%BD%E4%BB%A4"><span class="toc-text">查看磁盘信息命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

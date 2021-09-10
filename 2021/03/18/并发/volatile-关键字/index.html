@@ -578,7 +578,7 @@
 <li>对于一个volatile变量的写操作先行发生于后面对这个变量的读操作。</li>
 <li>因此当线程1执行了vlt=5；写操作是必然先发生2线程读操作。即线程2从主内存读到的数据一定是线程1写过的数据那就是5。所以volatile主要利用了先行发生原则保证线程之间的可见性。</li>
 </ol>
-<h4 id="volatile如何避免指令重排？"><a href="#volatile如何避免指令重排？" class="headerlink" title="volatile如何避免指令重排？"></a>volatile如何避免指令重排？</h4><p><strong>内存屏障</strong>，是一个CPU指令。 作用：</p>
+<h4 id="volatile如何避免指令重排？（底层实现）"><a href="#volatile如何避免指令重排？（底层实现）" class="headerlink" title="volatile如何避免指令重排？（底层实现）"></a>volatile如何避免指令重排？（底层实现）</h4><p><strong>内存屏障</strong>，是一个CPU指令。 作用：</p>
 <ol>
 <li>保证特定操作的执行顺序。</li>
 <li>可以保证某些变量的内存可见性（利用这些特性，volatile实现了可见性）。</li>
@@ -643,10 +643,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-14T17:07:19+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-28T11:10:16+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 14, 2021</p>
+    <p>更新于：Aug 28, 2021</p>
   </a>
 </div>
 
@@ -771,7 +771,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81CPU%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">1、CPU缓存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%B2%E4%B8%80%E4%B8%8B-JMM-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">2、讲一下 JMM(Java 内存模型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81volatile"><span class="toc-text">3、volatile</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%9F"><span class="toc-text">volatile如何保证可见性？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%EF%BC%9F"><span class="toc-text">volatile如何避免指令重排？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7"><span class="toc-text">4、并发编程的三个重要特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%AF%B4%E8%AF%B4-synchronized-%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C-volatile-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">5、说说 synchronized 关键字和 volatile 关键字的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%8F%82%E8%80%83"><span class="toc-text">5、参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81CPU%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">1、CPU缓存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%B2%E4%B8%80%E4%B8%8B-JMM-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">2、讲一下 JMM(Java 内存模型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81volatile"><span class="toc-text">3、volatile</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%9F"><span class="toc-text">volatile如何保证可见性？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%EF%BC%9F%EF%BC%88%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-text">volatile如何避免指令重排？（底层实现）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7"><span class="toc-text">4、并发编程的三个重要特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%AF%B4%E8%AF%B4-synchronized-%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C-volatile-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">5、说说 synchronized 关键字和 volatile 关键字的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%8F%82%E8%80%83"><span class="toc-text">5、参考</span></a></li></ol>
     </div>
   </section>
 

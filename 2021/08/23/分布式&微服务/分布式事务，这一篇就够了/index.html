@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1'>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>分布式事务，这一篇就够了 - Marlowe</title>
+  
+    <meta name="keywords" content="事务,分布式">
+  
+
+  
+    <meta name="description" content="转载于小米信息部技术团队：分布式事务，这一篇就够了">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+            <i class='https://marlowe.oss-cn-beijing.aliyuncs.com/img/bitbug_favicon.ico'></i>
+          
+          
+            Marlowe
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/"
+              
+              
+              id="https:githubcomvolantis-xhexo-theme-volantis">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        分布式事务，这一篇就够了
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 23, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="分布式事务，这一篇就够了" data-path="/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>4.7k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>16 min</p>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <p>转载于小米信息部技术团队：<a target="_blank" rel="noopener" href="https://xiaomi-info.github.io/2020/01/02/distributed-transaction/">分布式事务，这一篇就够了</a></p>
+<a id="more"></a>
+
+<h3 id="基础理论"><a href="#基础理论" class="headerlink" title="基础理论"></a>基础理论</h3><p>在讲解具体方案之前，我们有必要了解一些分布式事务所涉及到的基础理论知识。</p>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p>事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。事务应该具有 4 个属性：原子性、一致性、隔离性、持久性。这四个属性通常称为 ACID 特性。</p>
+<h4 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h4><p>分布式事务是指事务的参与者、支持事务的服务器、资源服务器以及事务管理器分别位于不同的分布式系统的不同节点之上。例如在大型电商系统中，下单接口通常会扣减库存、减去优惠、生成订单 id, 而订单服务与库存、优惠、订单 id 都是不同的服务，下单接口的成功与否，不仅取决于本地的 db 操作，而且依赖第三方系统的结果，这时候分布式事务就保证这些操作要么全部成功，要么全部失败。本质上来说，分布式事务就是为了保证不同数据库的数据一致性。</p>
+<h4 id="强一致性、弱一致性、最终一致性"><a href="#强一致性、弱一致性、最终一致性" class="headerlink" title="强一致性、弱一致性、最终一致性"></a>强一致性、弱一致性、最终一致性</h4><h5 id="强一致性"><a href="#强一致性" class="headerlink" title="强一致性"></a>强一致性</h5><p>任何一次读都能读到某个数据的最近一次写的数据。系统中的所有进程，看到的操作顺序，都和全局时钟下的顺序一致。简言之，在任意时刻，所有节点中的数据是一样的。</p>
+<h5 id="弱一致性"><a href="#弱一致性" class="headerlink" title="弱一致性"></a>弱一致性</h5><p>数据更新后，如果能容忍后续的访问只能访问到部分或者全部访问不到，则是弱一致性。</p>
+<h5 id="最终一致性"><a href="#最终一致性" class="headerlink" title="最终一致性"></a>最终一致性</h5><p>不保证在任意时刻任意节点上的同一份数据都是相同的，但是随着时间的迁移，不同节点上的同一份数据总是在向趋同的方向变化。简单说，就是在一段时间后，节点间的数据会最终达到一致状态。</p>
+<h4 id="CAP-原则"><a href="#CAP-原则" class="headerlink" title="CAP 原则"></a>CAP 原则</h4><blockquote>
+<p>CAP 原则又称 CAP 定理，指的是在一个分布式系统中， Consistency（一致性）、 Availability（可用性）、Partition tolerance（分区容错性），三者不可得兼。</p>
+</blockquote>
+<p>一致性（C）：</p>
+<blockquote>
+<p>在分布式系统中的所有数据备份，在同一时刻是否同样的值。（等同于所有节点访问同一份最新的数据副本）</p>
+</blockquote>
+<p>可用性（A）：</p>
+<blockquote>
+<p>在集群中一部分节点故障后，集群整体是否还能响应客户端的读写请求。（对数据更新具备高可用性）</p>
+</blockquote>
+<p>分区容错性（P）：</p>
+<blockquote>
+<p>以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在 C 和 A 之间做出选择。</p>
+</blockquote>
+<p>CAP 原则的精髓就是要么 AP，要么 CP，要么 AC，但是不存在 CAP。如果在某个分布式系统中数据无副本， 那么系统必然满足强一致性条件， 因为只有独一数据，不会出现数据不一致的情况，此时 C 和 P 两要素具备，但是如果系统发生了网络分区状况或者宕机，必然导致某些数据不可以访问，此时可用性条件就不能被满足，即在此情况下获得了 CP 系统，但是 CAP 不可同时满足。</p>
+<h4 id="BASE-理论"><a href="#BASE-理论" class="headerlink" title="BASE 理论"></a>BASE 理论</h4><p>BASE 理论指的是基本可用 Basically Available，软状态 Soft State，最终一致性 Eventual Consistency，核心思想是即便无法做到强一致性，但应该采用适合的方式保证最终一致性。</p>
+<p>BASE，Basically Available Soft State Eventual Consistency 的简写：<br>BA：Basically Available 基本可用，分布式系统在出现故障的时候，允许损失部分可用性，即保证核心可用。<br>S：Soft State 软状态，允许系统存在中间状态，而该中间状态不会影响系统整体可用性。<br>E：Consistency 最终一致性，系统中的所有数据副本经过一定时间后，最终能够达到一致的状态。<br>BASE 理论本质上是对 CAP 理论的延伸，是对 CAP 中 AP 方案的一个补充。</p>
+<h4 id="柔性事务"><a href="#柔性事务" class="headerlink" title="柔性事务"></a>柔性事务</h4><p>不同于 ACID 的刚性事务，在分布式场景下基于 BASE 理论，就出现了柔性事务的概念。要想通过柔性事务来达到最终的一致性，就需要依赖于一些特性，这些特性在具体的方案中不一定都要满足，因为不同的方案要求不一样；但是都不满足的话，是不可能做柔性事务的。</p>
+<h4 id="幂等操作"><a href="#幂等操作" class="headerlink" title="幂等操作"></a>幂等操作</h4><p>在编程中一个幂等操作的特点是其任意多次执行所产生的影响均与一次执行的影响相同。幂等函数，或幂等方法，是指可以使用相同参数重复执行，并能获得相同结果的函数。这些函数不会影响系统状态，也不用担心重复执行会对系统造成改变。例如，支付流程中第三方支付系统告知系统中某个订单支付成功，接收该支付回调接口在网络正常的情况下无论操作多少次都应该返回成功。</p>
+<h3 id="分布式事务使用场景"><a href="#分布式事务使用场景" class="headerlink" title="分布式事务使用场景"></a>分布式事务使用场景</h3><h4 id="转账"><a href="#转账" class="headerlink" title="转账"></a>转账</h4><p>转账是最经典那的分布式事务场景，假设用户 A 使用银行 app 发起一笔跨行转账给用户 B，银行系统首先扣掉用户 A 的钱，然后增加用户 B 账户中的余额。此时就会出现 2 种异常情况：1. 用户 A 的账户扣款成功，用户 B 账户余额增加失败 2. 用户 A 账户扣款失败，用户 B 账户余额增加成功。对于银行系统来说，以上 2 种情况都是不允许发生，此时就需要分布式事务来保证转账操作的成功。</p>
+<h4 id="下单扣库存"><a href="#下单扣库存" class="headerlink" title="下单扣库存"></a>下单扣库存</h4><p>在电商系统中，下单是用户最常见操作。在下单接口中必定会涉及生成订单 id, 扣减库存等操作，对于微服务架构系统，订单 id 与库存服务一般都是独立的服务，此时就需要分布式事务来保证整个下单接口的成功。</p>
+<h4 id="同步超时"><a href="#同步超时" class="headerlink" title="同步超时"></a>同步超时</h4><p>继续以电商系统为例，在微服务体系架构下，我们的支付与订单都是作为单独的系统存在。订单的支付状态依赖支付系统的通知，假设一个场景：我们的支付系统收到来自第三方支付的通知，告知某个订单支付成功，接收通知接口需要同步调用订单服务变更订单状态接口，更新订单状态为成功。流程图如下，从图中可以看出有两次调用，第三方支付调用支付服务，以及支付服务调用订单服务，这两步调用都可能出现调用超时的情况，此处如果没有分布式事务的保证，就会出现用户订单实际支付情况与最终用户看到的订单支付情况不一致的情况。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828011252.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828011252.png" srcset="data:image/png;base64,666" alt="20210828011252"></p>
+<h3 id="分布式事务的解决方案"><a href="#分布式事务的解决方案" class="headerlink" title="分布式事务的解决方案"></a>分布式事务的解决方案</h3><h4 id="两阶段提交-XA"><a href="#两阶段提交-XA" class="headerlink" title="两阶段提交/XA"></a>两阶段提交/XA</h4><p>两阶段提交，顾名思义就是要分两步提交。存在一个负责协调各个本地资源管理器的事务管理器，本地资源管理器一般是由数据库实现，事务管理器在第一阶段的时候询问各个资源管理器是否都就绪？如果收到每个资源的回复都是 yes，则在第二阶段提交事务，如果其中任意一个资源的回复是 no, 则回滚事务。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828011549.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828011549.png" srcset="data:image/png;base64,666" alt="20210828011549"></p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828011503.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828011503.png" srcset="data:image/png;base64,666" alt="20210828011503"></p>
+<p>大致的流程：</p>
+<p>第一阶段（prepare）：事务管理器向所有本地资源管理器发起请求，询问是否是 ready 状态，所有参与者都将本事务能否成功的信息反馈发给协调者；</p>
+<p>第二阶段 (commit/rollback)：事务管理器根据所有本地资源管理器的反馈，通知所有本地资源管理器，步调一致地在所有分支上提交或者回滚。</p>
+<p>存在的问题：</p>
+<blockquote>
+<p>同步阻塞：当参与事务者存在占用公共资源的情况，其中一个占用了资源，其他事务参与者就只能阻塞等待资源释放，处于阻塞状态。</p>
+</blockquote>
+<blockquote>
+<p>单点故障：一旦事务管理器出现故障，整个系统不可用</p>
+</blockquote>
+<blockquote>
+<p>数据不一致：在阶段二，如果事务管理器只发送了部分 commit 消息，此时网络发生异常，那么只有部分参与者接收到 commit 消息，也就是说只有部分参与者提交了事务，使得系统数据不一致。</p>
+</blockquote>
+<blockquote>
+<p>不确定性：当协事务管理器发送 commit 之后，并且此时只有一个参与者收到了 commit，那么当该参与者与事务管理器同时宕机之后，重新选举的事务管理器无法确定该条消息是否提交成功。</p>
+</blockquote>
+<h4 id="TCC"><a href="#TCC" class="headerlink" title="TCC"></a>TCC</h4><p>关于 TCC（Try-Confirm-Cancel）的概念，最早是由 Pat Helland 于 2007 年发表的一篇名为《Life beyond Distributed Transactions:an Apostate’s Opinion》的论文提出。 TCC 事务机制相比于上面介绍的 XA，解决了其几个缺点：</p>
+<ol>
+<li>解决了协调者单点，由主业务方发起并完成这个业务活动。业务活动管理器也变成多点，引入集群。</li>
+<li>同步阻塞：引入超时，超时后进行补偿，并且不会锁定整个资源，将资源转换为业务逻辑形式，粒度变小。</li>
+<li>数据一致性，有了补偿机制之后，由业务活动管理器控制一致性</li>
+</ol>
+<p><strong>TCC(Try Confirm Cancel)</strong></p>
+<p><strong>Try 阶段：</strong> 尝试执行，完成所有业务检查（一致性）, 预留必须业务资源（准隔离性）<br><strong>Confirm 阶段：</strong> 确认执行真正执行业务，不作任何业务检查，只使用 Try 阶段预留的业务资源，Confirm 操作满足幂等性。要求具备幂等设计，Confirm 失败后需要进行重试。<br><strong>Cancel 阶段：</strong> 取消执行，释放 Try 阶段预留的业务资源 Cancel 操作满足幂等性 Cancel 阶段的异常和 Confirm 阶段异常处理方案基本上一致。</p>
+<p>在 Try 阶段，是对业务系统进行检查及资源预览，比如订单和存储操作，需要检查库存剩余数量是否够用，并进行预留，预留操作的话就是新建一个可用库存数量字段，Try 阶段操作是对这个可用库存数量进行操作。</p>
+<p>基于 TCC 实现分布式事务，会将原来只需要一个接口就可以实现的逻辑拆分为 Try、Confirm、Cancel 三个接口，所以代码实现复杂度相对较高。</p>
+<h4 id="本地消息表"><a href="#本地消息表" class="headerlink" title="本地消息表"></a>本地消息表</h4><p>本地消息表这个方案最初是 ebay 架构师 Dan Pritchett 在 2008 年发表给 ACM 的文章。该方案中会有消息生产者与消费者两个角色，假设系统 A 是消息生产者，系统 B 是消息消费者，其大致流程如下：</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012238.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012238.png" srcset="data:image/png;base64,666" alt="20210828012238"></p>
+<ol>
+<li>当系统 A 被其他系统调用发生数据库表更操作，首先会更新数据库的业务表，其次会往相同数据库的消息表中插入一条数据，两个操作发生在同一个事务中</li>
+<li>系统 A 的脚本定期轮询本地消息往 mq 中写入一条消息，如果消息发送失败会进行重试</li>
+<li>系统 B 消费 mq 中的消息，并处理业务逻辑。如果本地事务处理失败，会在继续消费 mq 中的消息进行重试，如果业务上的失败，可以通知系统 A 进行回滚操作</li>
+</ol>
+<p>本地消息表实现的条件：</p>
+<ol>
+<li>消费者与生成者的接口都要支持幂等</li>
+<li>生产者需要额外的创建消息表</li>
+<li>需要提供补偿逻辑，如果消费者业务失败，需要生产者支持回滚操作</li>
+</ol>
+<p>容错机制：</p>
+<ol>
+<li>步骤 1 失败时，事务直接回滚</li>
+<li>步骤 2、3 写 mq 与消费 mq 失败会进行重试</li>
+<li>步骤 3 业务失败系统 B 向系统 A 发起事务回滚操作</li>
+</ol>
+<p>此方案的核心是将需要分布式处理的任务通过消息日志的方式来异步执行。消息日志可以存储到本地文本、数据库或消息队列，再通过业务规则自动或人工发起重试。人工重试更多的是应用于支付场景，通过对账系统对事后问题的处理。</p>
+<h4 id="可靠消息最终一致性"><a href="#可靠消息最终一致性" class="headerlink" title="可靠消息最终一致性"></a>可靠消息最终一致性</h4><p>大致流程如下：</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012540.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012540.png" srcset="data:image/png;base64,666" alt="20210828012540"></p>
+<ol>
+<li>A 系统先向 mq 发送一条 prepare 消息，如果 prepare 消息发送失败，则直接取消操作</li>
+<li>如果消息发送成功，则执行本地事务</li>
+<li>如果本地事务执行成功，则想 mq 发送一条 confirm 消息，如果发送失败，则发送回滚消息</li>
+<li>B 系统定期消费 mq 中的 confirm 消息，执行本地事务，并发送 ack 消息。如果 B 系统中的本地事务失败，会一直不断重试，如果是业务失败，会向 A 系统发起回滚请求</li>
+<li>mq 会定期轮询所有 prepared 消息调用系统 A 提供的接口查询消息的处理情况，如果该 prepare 消息本地事务处理成功，则重新发送 confirm 消息，否则直接回滚该消息。</li>
+</ol>
+<p>该方案与本地消息最大的不同是去掉了本地消息表，其次本地消息表依赖消息表重试写入 mq 这一步由本方案中的轮询 prepare 消息状态来重试或者回滚该消息替代。其实现条件与余容错方案基本一致。目前市面上实现该方案的只有阿里的 RocketMq。</p>
+<h4 id="尽最大努力通知"><a href="#尽最大努力通知" class="headerlink" title="尽最大努力通知"></a>尽最大努力通知</h4><p>最大努力通知是最简单的一种柔性事务，适用于一些最终一致性时间敏感度低的业务，且被动方处理结果 不影响主动方的处理结果。</p>
+<p>这个方案的大致意思就是：</p>
+<ol>
+<li>系统 A 本地事务执行完之后，发送个消息到 MQ；</li>
+<li>这里会有个专门消费 MQ 的服务，这个服务会消费 MQ 并调用系统 B 的接口；</li>
+<li>要是系统 B 执行成功就 ok 了；要是系统 B 执行失败了，那么最大努力通知服务就定时尝试重新调用系统 B, 反复 N 次，最后还是不行就放弃。</li>
+</ol>
+<h3 id="分布式事务实战"><a href="#分布式事务实战" class="headerlink" title="分布式事务实战"></a>分布式事务实战</h3><h4 id="两阶段提交-XA-1"><a href="#两阶段提交-XA-1" class="headerlink" title="两阶段提交/XA"></a>两阶段提交/XA</h4><p>目前支付宝使用两阶段提交思想实现了分布式事务服务 (Distributed Transaction Service, DTS) ，它是一个分布式事务框架，用来保障在大规模分布式环境下事务的最终一致性。具体可参考支付宝官方文档：<a target="_blank" rel="noopener" href="https://tech.antfin.com/docs/2/46887">https://tech.antfin.com/docs/2/46887</a></p>
+<h4 id="TCC-1"><a href="#TCC-1" class="headerlink" title="TCC"></a>TCC</h4><p>TCC 需要事务接口提供 try, confirm, cancel 三个接口，提高了编程的复杂性。依赖于业务方来配合提供这样的接口，推行难度大，所以一般不推荐使用这种方式。</p>
+<h4 id="可靠消息最终一致性-1"><a href="#可靠消息最终一致性-1" class="headerlink" title="可靠消息最终一致性"></a>可靠消息最终一致性</h4><p>目前市面上支持该方案的 mq 只有阿里的 rocketmq, 该方案应用场景也比较多，比如用户注册成功后发送邮件、电商系统给用户发送优惠券等需要保证最终一致性的场景</p>
+<h4 id="本地消息表-1"><a href="#本地消息表-1" class="headerlink" title="本地消息表"></a>本地消息表</h4><p>跨行转账可通过该方案实现。<br>用户 A 向用户 B 发起转账，首先系统会扣掉用户 A 账户中的金额，将该转账消息写入消息表中，如果事务执行失败则转账失败，如果转账成功，系统中会有定时轮询消息表，往 mq 中写入转账消息，失败重试。mq 消息会被实时消费并往用户 B 中账户增加转账金额，执行失败会不断重试。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012847.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012847.png" srcset="data:image/png;base64,666" alt="20210828012847"></p>
+<p>小米海外商城用户订单数据状态变更，会将变更状态记录消息表中，脚本将订单状态消息写入 mq，最终消费 mq 给用户发送邮件、短信、push 等。</p>
+<h4 id="最大努力通知"><a href="#最大努力通知" class="headerlink" title="最大努力通知"></a>最大努力通知</h4><p>最大努力通知最常见的场景就是支付回调，支付服务收到第三方服务支付成功通知后，先更新自己库中订单支付状态，然后同步通知订单服务支付成功。如果此次同步通知失败，会通过异步脚步不断重试地调用订单服务的接口。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012935.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012935.png" srcset="data:image/png;base64,666" alt="20210828012935"></p>
+<p>小米海外商城目前除了支付回调外，最常用的场景是订单数据同步。例如系统 A、B 进行数据同步，当系统 A 发生订单数据变更，先将数据变更消息写入小米 notify 系统（作用等同 mq），然后 notify 系统异步处理该消息来调用系统 B 提供的接口并进行重试到最大次数。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012959.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828012959.png" srcset="data:image/png;base64,666" alt="20210828012959"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文介绍了分布式事务的一些基础理论，并对常用的分布式事务方案进行了讲解，在文章的后半部分主要给出了各种方案的常用场景。分布式事务本身就是一个技术难题，业务中具体使用哪种方案还是需要根据自身业务特点自行选择，每种方案在实际执行过程中需要考虑的点都非常多，复杂度较大，所以在非必要的情况下，分布式事务能不用就尽量不用。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><p>“分布式服务化系统一致性的“最佳实干” <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/khAwfJvWcwgbAYbBHbU8aQ">https://mp.weixin.qq.com/s/khAwfJvWcwgbAYbBHbU8aQ</a></p>
+</li>
+<li><p>“常用的分布式事务解决方案” <a target="_blank" rel="noopener" href="https://blog.csdn.net/u010425776/article/details/79516298?tt_from=weixin&amp;utm_source=weixin&amp;utm_medium=toutiao_ios&amp;utm_campaign=client_share&amp;wxshare_count=1">https://blog.csdn.net/u010425776/article/details/79516298?tt_from=weixin&amp;utm_source=weixin&amp;utm_medium=toutiao_ios&amp;utm_campaign=client_share&amp;wxshare_count=1</a></p>
+</li>
+<li><p>“深入分布式事务” <a target="_blank" rel="noopener" href="http://www.codeceo.com/article/distributed-transaction.html">http://www.codeceo.com/article/distributed-transaction.html</a></p>
+</li>
+<li><p>CAP 原则 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/CAP%E5%8E%9F%E5%88%99">https://baike.baidu.com/item/CAP%E5%8E%9F%E5%88%99</a></p>
+</li>
+<li><p>事务 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8B%E5%8A%A1/5945882">https://baike.baidu.com/item/%E4%BA%8B%E5%8A%A1/5945882</a></p>
+</li>
+<li><p>分布式事务 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1">https://baike.baidu.com/item/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1</a></p>
+</li>
+<li><p>《Atomic Distributed Transactions: a RESTful Design》</p>
+</li>
+</ol>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/>https://xmmarlowe.github.io/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+        
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-28T18:24:06+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Aug 28, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/&title=分布式事务，这一篇就够了 - Marlowe&summary=转载于小米信息部技术团队：分布式事务，这一篇就够了"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/&title=分布式事务，这一篇就够了 - Marlowe&summary=转载于小米信息部技术团队：分布式事务，这一篇就够了"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/&title=分布式事务，这一篇就够了 - Marlowe&summary=转载于小米信息部技术团队：分布式事务，这一篇就够了"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/08/23/%E4%B8%AD%E9%97%B4%E4%BB%B6/Kafka-%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Kafka 数据丢失和数据重复的原因和解决办法</p>
+          <p class='content'>Kafka的一些问题以及解决方法
+
+
+数据丢失的原因Kafka 消息发送分同步 (sync)、异步 (async) 两种方式，默认使用同步方式，可通过 producer.type 属性进行配置；...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/08/22/NoSQL/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89/'>
+          <p class='title'>Redis分布式锁（二）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+
+Redis分布式锁01JVM层面的加锁，单机版的锁
+
+synchronized
+ReentraLock
+
+123456789101112131415161718192021222324252...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA"><span class="toc-text">基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-text">事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-text">分布式事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E3%80%81%E5%BC%B1%E4%B8%80%E8%87%B4%E6%80%A7%E3%80%81%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">强一致性、弱一致性、最终一致性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">强一致性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%B1%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">弱一致性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">最终一致性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CAP-%E5%8E%9F%E5%88%99"><span class="toc-text">CAP 原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BASE-%E7%90%86%E8%AE%BA"><span class="toc-text">BASE 理论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%94%E6%80%A7%E4%BA%8B%E5%8A%A1"><span class="toc-text">柔性事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%82%E7%AD%89%E6%93%8D%E4%BD%9C"><span class="toc-text">幂等操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">分布式事务使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E8%B4%A6"><span class="toc-text">转账</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E5%8D%95%E6%89%A3%E5%BA%93%E5%AD%98"><span class="toc-text">下单扣库存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E8%B6%85%E6%97%B6"><span class="toc-text">同步超时</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">分布式事务的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4-XA"><span class="toc-text">两阶段提交&#x2F;XA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCC"><span class="toc-text">TCC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8"><span class="toc-text">本地消息表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">可靠消息最终一致性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BD%E6%9C%80%E5%A4%A7%E5%8A%AA%E5%8A%9B%E9%80%9A%E7%9F%A5"><span class="toc-text">尽最大努力通知</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%AE%9E%E6%88%98"><span class="toc-text">分布式事务实战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4-XA-1"><span class="toc-text">两阶段提交&#x2F;XA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCC-1"><span class="toc-text">TCC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7-1"><span class="toc-text">可靠消息最终一致性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8-1"><span class="toc-text">本地消息表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%8A%AA%E5%8A%9B%E9%80%9A%E7%9F%A5"><span class="toc-text">最大努力通知</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="分布式事务，这一篇就够了";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1" target="_blank" class="codename">Volantis</a>
+        as theme
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2019-2021 Marlowe</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            swal({
+                title: '复制成功',
+                text: "代码已复制，请遵守相关授权协议。",
+                icon: 'success',
+                button: "我承诺遵守",
+            });
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "j60P94k1oxBXjVeNMHqSO4ny-gzGzoHsz",
+      appKey: "4AbQyRP2XQmS6K0dSMgSqPfo",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      recordIP: 'false',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2.6.4/js/search.js"></script>
+
+  
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+(function ($) {
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+})(jQuery);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'j60P94k1oxBXjVeNMHqSO4ny-gzGzoHsz',
+    app_key: '4AbQyRP2XQmS6K0dSMgSqPfo',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://xmmarlowe.github.io' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+

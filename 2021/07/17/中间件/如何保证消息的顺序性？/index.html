@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>12 words</p>
+      <p>756 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>2 min</p>
     </a>
   </div>
 
@@ -488,7 +488,25 @@
   
   <a id="more"></a>
 
-
+<h3 id="剖析"><a href="#剖析" class="headerlink" title="剖析"></a>剖析</h3><p>我举个例子，我们以前做过一个 mysql binlog 同步的系统，压力还是非常大的，日同步数据要达到上亿，就是说数据从一个 mysql 库原封不动地同步到另一个 mysql 库里面去（mysql -&gt; mysql）。常见的一点在于说比如大数据 team，就需要同步一个 mysql 库过来，对公司的业务系统的数据做各种复杂的操作。</p>
+<p>你在 mysql 里增删改一条数据，对应出来了增删改 3 条 binlog 日志，接着这三条 binlog 发送到 MQ 里面，再消费出来依次执行，起码得保证人家是按照顺序来的吧？不然本来是：增加、修改、删除；你愣是换了顺序给执行成删除、修改、增加，不全错了么。</p>
+<p>本来这个数据同步过来，应该最后这个数据被删除了；结果你搞错了这个顺序，最后这个数据保留下来了，数据同步就出错了。</p>
+<p>先看看顺序会错乱的俩场景：</p>
+<ul>
+<li><strong>RabbitMQ</strong>：一个 queue，多个 consumer。比如，生产者向 RabbitMQ 里发送了三条数据，顺序依次是 data1/data2/data3，压入的是 RabbitMQ 的一个内存队列。有三个消费者分别从 MQ 中消费这三条数据中的一条，结果消费者 2 先执行完操作，把 data2 存入数据库，然后是 data1/data3。这不明显乱了。</li>
+</ul>
+<p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210903161816.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210903161816.png" srcset="data:image/png;base64,666" alt="20210903161816"></p>
+<ul>
+<li><strong>Kafka</strong>：比如说我们建了一个 topic，有三个 partition。生产者在写的时候，其实可以指定一个 key，比如说我们指定了某个订单 id 作为 key，那么这个订单相关的数据，一定会被分发到同一个 partition 中去，而且这个 partition 中的数据一定是有顺序的。<br>消费者从 partition 中取出来数据的时候，也一定是有顺序的。到这里，顺序还是 ok 的，没有错乱。接着，我们在消费者里可能会搞<strong>多个线程来并发处理消息</strong>。因为如果消费者是单线程消费处理，而处理比较耗时的话，比如处理一条消息耗时几十 ms，那么 1 秒钟只能处理几十条消息，这吞吐量太低了。而多个线程并发跑的话，顺序可能就乱掉了。</li>
+</ul>
+<p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210903161911.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210903161911.png" srcset="data:image/png;base64,666" alt="20210903161911"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h4><p>拆分多个 queue，每个 queue 一个 consumer，就是多一些 queue 而已，确实是麻烦点；或者就一个 queue 但是对应一个 consumer，然后这个 consumer 内部用内存队列做排队，然后分发给底层不同的 worker 来处理。</p>
+<p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210903161943.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210903161943.png" srcset="data:image/png;base64,666" alt="20210903161943"></p>
+<h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><ul>
+<li>一个 topic，一个 partition，一个 consumer，内部单线程消费，单线程吞吐量太低，一般不会用这个。</li>
+<li>写 N 个内存 queue，具有相同 key 的数据都到同一个内存 queue；然后对于 N 个线程，每个线程分别消费一个内存 queue 即可，这样就能保证顺序性。</li>
+</ul>
+<p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210903162009.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210903162009.png" srcset="data:image/png;base64,666" alt="20210903162009"></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://doocs.gitee.io/advanced-java/#/./docs/high-concurrency/how-to-ensure-the-order-of-messages">如何保证消息的顺序性？</a></p>
 
   
@@ -535,10 +553,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T23:38:43+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-03T18:47:27+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 25, 2021</p>
+    <p>更新于：Sep 3, 2021</p>
   </a>
 </div>
 
@@ -610,8 +628,8 @@
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>如何解决消息队列的延时以及过期失效问题？</p>
           <p class='content'>
 
-参考如何解决消息队列的延时以及过期失效问题？
-</p>
+剖析关于这个事儿，我们一个一个来梳理吧，先假设一个场景，我们现在消费端出故障了，然后大量消息在 mq 里积压，现在出事故了，慌了。
+大量消息在 mq 里积压了几个小时了还没解决几千万条数据在...</p>
         </a>
       
       
@@ -663,7 +681,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%96%E6%9E%90"><span class="toc-text">剖析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RabbitMQ"><span class="toc-text">RabbitMQ</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka"><span class="toc-text">Kafka</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

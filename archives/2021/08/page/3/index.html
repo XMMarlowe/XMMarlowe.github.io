@@ -414,35 +414,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E6%8C%89%E9%A1%BA%E5%BA%8F%E8%B0%83%E7%94%A8%EF%BC%8C%E5%AE%9E%E7%8E%B0-A-B-C-%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%90%AF%E5%8A%A8-AA%E6%89%93%E5%8D%B05%E6%AC%A1%EF%BC%8CBB%E6%89%93%E5%8D%B010%E6%AC%A1%EF%BC%8CCC%E6%89%93%E5%8D%B015%E6%AC%A1/">
-        多线程之间按顺序调用，实现 A-> B -> C 三个线程启动,AA打印5次，BB打印10次，CC打印15次
+      <a href="/2021/08/26/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A4%A7%E5%8E%82%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%B0%83%E4%BC%98%E7%9A%84%EF%BC%9F/">
+        大厂都是怎么调优的？
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-实现场景多线程之间按顺序调用，实现 A-&gt; B -&gt; C 三个线程启动，要求如下：AA打印5次，BB打印10次，CC打印15次紧接着AA打印5次，BB打印10次，CC打印15次…来10轮
-代码如下：
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849...
-      
+      <p>转载与<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000038177522">大厂都是怎么SQL调优的？</a>  – 敖丙</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-17</time>
+        <time>2021-08-26</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E6%8C%89%E9%A1%BA%E5%BA%8F%E8%B0%83%E7%94%A8%EF%BC%8C%E5%AE%9E%E7%8E%B0-A-B-C-%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%90%AF%E5%8A%A8-AA%E6%89%93%E5%8D%B05%E6%AC%A1%EF%BC%8CBB%E6%89%93%E5%8D%B010%E6%AC%A1%EF%BC%8CCC%E6%89%93%E5%8D%B015%E6%AC%A1/'>
+          <a class='readmore' href='/2021/08/26/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A4%A7%E5%8E%82%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%B0%83%E4%BC%98%E7%9A%84%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -464,153 +458,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/">
-        CPU占用过高定位分析思路
+      <a href="/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3web%E6%97%A0%E7%8A%B6%E6%80%81%E4%BC%9A%E8%AF%9Dtoken%E6%8A%80%E6%9C%AFJWT/">
+        一文了解web无状态会话token技术JWT
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>CPU占用过高分析思路</p>
+      <p>目前web开发前后端已经算非常的普及了。前后端分离要求我们对用户会话状态要进行一个无状态处理。我们都知道通常管理用户会话是session。用户每次从服务器认证成功后，服务器会发送一个sessionid给用户，session是保存在服务端 的，服务器通过session辨别用户，然后做权限认证等。那如何才知道用户的session是哪个？这时候cookie就出场了，浏览器第一次与服务器建立连接的时候，服务器会生成一个sessionid返回浏览器，浏览器把这个sessionid存储到cookie当中，以后每次发起请求都会在请求头cookie中带上这个sessionid信息，所以服务器就是根据这个sessionid作为索引获取到具体session。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/16/Java/JVM%E8%B0%83%E4%BC%98(%E4%B8%80)/">
-        JVM调优(一)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>JVM调优相关步骤</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/16/Java/JVM%E8%B0%83%E4%BC%98(%E4%B8%80)/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/15/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/GitHub%E6%90%9C%E7%B4%A2%E6%96%B0%E4%BD%93%E9%AA%8C/">
-        GitHub搜索新体验
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>简单介绍GitHub一些常用操作</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/15/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/GitHub%E6%90%9C%E7%B4%A2%E6%96%B0%E4%BD%93%E9%AA%8C/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/06/Spring/Spring%20Gateway%E3%80%81Zuul%E3%80%81Nginx%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        Spring Gateway、Zuul、Nginx的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Spring Cloud GateWay学习之微服务网关Zuul、Gateway、nginx的区别。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-06</time>
+        <time>2021-08-24</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
@@ -618,7 +480,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/06/Spring/Spring%20Gateway%E3%80%81Zuul%E3%80%81Nginx%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3web%E6%97%A0%E7%8A%B6%E6%80%81%E4%BC%9A%E8%AF%9Dtoken%E6%8A%80%E6%9C%AFJWT/'>
             Read More
           </a>
         </div>
@@ -640,21 +502,109 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/05/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/">
-        分布式系统唯一ID生成方案
+      <a href="/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E6%9C%89%E7%8A%B6%E6%80%81%EF%BC%88SESSION%EF%BC%89%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%EF%BC%88JWT%EF%BC%89%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81/">
+        有状态（SESSION）和无状态（JWT）登录验证
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>在互联网的业务系统中，涉及到各种各样的ID，如在支付系统中就会有支付ID、退款ID等。那一般生成ID都有哪些解决方案呢？特别是在复杂的分布式系统业务场景中，我们应该采用哪种适合自己的解决方案是十分重要的。下面我们一一来列举一下，不一定全部适合，这些解决方案仅供你参考，或许对你有用。</p>
+      <p>简单对比Session和Jwt的优缺点</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-05</time>
+        <time>2021-08-24</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E6%9C%89%E7%8A%B6%E6%80%81%EF%BC%88SESSION%EF%BC%89%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%EF%BC%88JWT%EF%BC%89%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/Springboot%E6%95%B4%E5%90%88Shiro%EF%BC%9A%E5%AE%9E%E7%8E%B0Redis%E7%BC%93%E5%AD%98/">
+        Springboot整合Shiro：实现Redis缓存
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>项目整合Shiro后，在没有配置缓存的时候，会存在这样的问题。每发起一个请求，就会调用一次授权方法。用户基数大请求多的时候，会对数据库造成很大的压力。所以我们需要配置缓存，将用户信息放在缓存里，从而减小数据库压力。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-24</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/Springboot%E6%95%B4%E5%90%88Shiro%EF%BC%9A%E5%AE%9E%E7%8E%B0Redis%E7%BC%93%E5%AD%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud%20%E5%92%8C%20Dubbo%20%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+        Spring Cloud 和 Dubbo 有哪些区别？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>SpringCloud和Dubbo都是当下流行的RPC框架，各自都集成了服务发现和治理组件。SpringCloud用Eureka，Dubbo用Zookeeper，这篇博客就将将这两个组件在各自系统中的作用机制的区别。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
@@ -662,7 +612,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/05/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/'>
+          <a class='readmore' href='/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud%20%E5%92%8C%20Dubbo%20%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -684,29 +634,33 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/05/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/">
-        SpringBoot整合微信支付
+      <a href="/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86RPC%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/">
+        初识RPC及其基本原理
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>//TODO</p>
+      
+        
+
+什么是 RPC?RPC原理是什么?什么是 RPC？RPC（Remote Procedure Call）—远程过程调用，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。比如两个不同的服务 A、B 部署在两台不同的机器上，那么服务 A 如果想要调用服务 B 中的某个方法该怎么办呢？使用 HTTP请求 当然可以，但是可能会比较慢而且一些优化做的并不好。 RPC 的出...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-05</time>
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+          <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/05/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/'>
+          <a class='readmore' href='/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86RPC%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -728,29 +682,38 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/05/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88%E5%BE%AE%E4%BF%A1%E7%99%BB%E9%99%86/">
-        SpringBoot整合微信登陆
+      <a href="/2021/08/23/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%90%88%E8%BE%91/">
+        海量数据处理合辑
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>//TODO</p>
+      
+        
+
+如何从大量的 URL 中找出相同的 URL？题目描述给定 a、b 两个文件，各存放 50 亿个 URL，每个 URL 各占 64B，内存限制是 4G。请找出 a、b 两个文件共同的 URL。
+解答思路1. 分治策略每个 URL 占 64B，那么 50 亿个 URL 占用的空间大小约为 320GB。
+
+5, 000, 000, 000 _ 64B ≈ 5GB _ 64 = 320GB
+
+由...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-05</time>
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+          <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/05/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88%E5%BE%AE%E4%BF%A1%E7%99%BB%E9%99%86/'>
+          <a class='readmore' href='/2021/08/23/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%90%88%E8%BE%91/'>
             Read More
           </a>
         </div>
@@ -772,29 +735,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/03/%E6%9D%83%E9%99%90/Shiro%E5%8E%9F%E7%90%86%E5%8F%8A%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
-        Shiro原理及执行流程
+      <a href="/2021/08/23/%E4%B8%AD%E9%97%B4%E4%BB%B6/Kafka-%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
+        Kafka 数据丢失和数据重复的原因和解决办法
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Shiro 是一个功能强大且易于使用的Java安全框架，它执行身份验证、授权、加密和会话管理。使用Shiro易于理解的API，您可以快速轻松地保护任何应用程序—从最小的移动应用程序到最大的web和企业应用程序。</p>
+      <p>Kafka的一些问题以及解决方法</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-03</time>
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%9D%83%E9%99%90/">权限</a>
+          <a class="category-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/03/%E6%9D%83%E9%99%90/Shiro%E5%8E%9F%E7%90%86%E5%8F%8A%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/'>
+          <a class='readmore' href='/2021/08/23/%E4%B8%AD%E9%97%B4%E4%BB%B6/Kafka-%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/'>
             Read More
           </a>
         </div>
@@ -816,8 +779,52 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/">
-        登录业务技术选型
+      <a href="/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/">
+        分布式事务，这一篇就够了
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>转载于小米信息部技术团队：<a target="_blank" rel="noopener" href="https://xiaomi-info.github.io/2020/01/02/distributed-transaction/">分布式事务，这一篇就够了</a></p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/22/NoSQL/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89/">
+        Redis分布式锁（二）
       </a>
     </h2>
   
@@ -826,10 +833,12 @@
       
         
 
-单点登录三种常见方式一、session广播机制简单来说，就是session复制
-二、cookie + redis
-在项目任何一个模块进行登录，登录之后，把数据放到两个地方（1）redis：key：生成唯一随机值（ip、用户id等），value：用户数据。（2）cookie：把redis中生成的key值放到cookie里面
-访问项目其他模块，发送请求带着cookie发送，获取cookie值...
+Redis分布式锁01JVM层面的加锁，单机版的锁
+
+synchronized
+ReentraLock
+
+123456789101112131415161718192021222324252627class X &#123;    private final ReentrantLock lock = new ReentrantLock();    // ...    public voi...
       
     
   </div>
@@ -837,15 +846,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-03</time>
+        <time>2021-08-22</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/03/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/'>
+          <a class='readmore' href='/2021/08/22/NoSQL/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89/'>
             Read More
           </a>
         </div>
@@ -872,7 +881,7 @@
           </a>
         
         <p class="current">
-          3 / 4
+          3 / 6
         </p>
         
           <a class="next" rel="next" href="/archives/2021/08/page/4/">
@@ -977,7 +986,7 @@
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -987,7 +996,7 @@
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1002,22 +1011,22 @@
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1032,17 +1041,17 @@
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1087,12 +1096,12 @@
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1129,7 +1138,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1151,7 +1160,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1177,8 +1186,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:33 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:24 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1228,7 +1237,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

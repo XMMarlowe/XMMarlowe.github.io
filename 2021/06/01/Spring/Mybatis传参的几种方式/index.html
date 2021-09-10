@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.1k words</p>
+      <p>1.7k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>5 min</p>
+      <p>8 min</p>
     </a>
   </div>
 
@@ -572,6 +572,35 @@
 <p>mapper.xml：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--查询--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserInfo&quot;</span>   <span class="attr">resultType</span>=<span class="string">&quot;com.demo.elegant.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    select userId</span><br><span class="line">    from users</span><br><span class="line">    where sex=$&#123;sex&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>多个参数，那也就是使用注解@Param取名字解决即可。</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><h4 id="区别1-最终执行的SQL不同"><a href="#区别1-最终执行的SQL不同" class="headerlink" title="区别1:最终执行的SQL不同"></a>区别1:最终执行的SQL不同</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name = #&#123;name&#125;</span><br></pre></td></tr></table></figure>
+<p>最终执行的SQL为:select * from user where name = ‘123’</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name = $&#123;name&#125;</span><br></pre></td></tr></table></figure>
+<p>最终执行的SQL为:select * from user where name =123,</p>
+<p>这个SQL在执行的时候会报错的,为了避免报错,需要修改为:name=’KaTeX parse error: Expected ‘EOF’, got ‘#’ at position 25: …要加上单引号才可以 看到了吗,#̲{name}解析之后的SQL中…{name}最终解析的SQL中的参数name=123,没有单引号。</p>
+<h4 id="区别2-动态SQL解析阶段解析的不同"><a href="#区别2-动态SQL解析阶段解析的不同" class="headerlink" title="区别2:动态SQL解析阶段解析的不同"></a>区别2:动态SQL解析阶段解析的不同</h4><p>(1)MyBatis的强大特性:动态 SQL，也是它优于其他 ORM 框架的一个重要原因。</p>
+<p>(2)mybatis 在对 sql 语句进行预编译之前，会对 sql 进行动态解析，解析为一个 BoundSql 对象，也是在此处对动态 SQL 进行处理的。在动态 SQL 解析阶段， #{ } 和 ${ } 会有不同的表现</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name = #&#123;name&#125;; </span><br></pre></td></tr></table></figure>
+<p> #{}在动态解析的时候， 会解析成一个参数标记符。就是解析之后的语句是</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> name <span class="operator">=</span> ?; </span><br></pre></td></tr></table></figure>
+<p>那么我们使用 ${}的时候</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name = $&#123;name&#125;; </span><br></pre></td></tr></table></figure>
+<p>${}在动态解析的时候，会将我们传入的参数当做String字符串填充到我们的语句中，就会变成下面的语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> name <span class="operator">=</span> dato; </span><br></pre></td></tr></table></figure>
+<p>预编译之前的 SQL 语句已经不包含变量了，完全已经是常量数据了。相当于我们普通没有变量的sql了。</p>
+<p><strong>综上所得</strong></p>
+<p>${ } 变量的替换阶段是在动态 SQL 解析阶段，而 #{ }变量的替换是在 DBMS 中。</p>
+<h4 id="区别3"><a href="#区别3" class="headerlink" title="区别3:"></a>区别3:</h4><p> #方式能够很大程度防止sql注入(使用占位符,最终的参数会有单引号)。<br>$方式无法防止Sql注入(直接解析了,没有单引号,这样的话可以直接写SQL呀,比如select * from ${tableName},当tableName的值为:‘user;delete from user’,这样最终解析的SQL为:select * from user;delete from user,这个就会有SQL注入的问题)。</p>
+<h3 id="Mybatis中何时使用jdbcType"><a href="#Mybatis中何时使用jdbcType" class="headerlink" title="Mybatis中何时使用jdbcType?"></a>Mybatis中何时使用jdbcType?</h3><p>(1)这个SQL有时候这样写:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name = #&#123;name&#125;,</span><br></pre></td></tr></table></figure>
+<p>有时候可以这样写:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name = #&#123;name,jdbcType=VARCHAR&#125;,</span><br></pre></td></tr></table></figure>
+<p>到底什么时候使用jdbcType呢,什么时候不使用呢???</p>
+<p>(2)当传入的参数name的值为空的时候,这个需要带上jdbcType=VARCHAR这个,其他不为空的情况下就不用带jdbcType=VARCHAR</p>
+<p>(3)如果参入的参数name的值为空,而没有加上jdbcType这个来限定类型的话,执行的SQL会报异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error querying database.  Cause: org.postgresql.util.PSQLException: ERROR: could not determine data type of parameter $1</span><br></pre></td></tr></table></figure>
+
+
+
 
   
   
@@ -617,10 +646,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-01T23:14:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-04T17:27:00+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jun 1, 2021</p>
+    <p>更新于：Sep 4, 2021</p>
   </a>
 </div>
 
@@ -700,8 +729,7 @@
           <p class='title'>Spring-Boot-的优点、启动流程、与Spring的区别<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>
 
-Spring Boot 特性一：更快速的构建能力Spring 和 Spring Boot 有什么区别？Spring Boot 的优点有哪些？
-作为 Java 开发人员对 Spring 框架都...</p>
+Spring Boot 特性一：更快速的构建能力Spring 和 Spring Boot 有什么区别？Spring Boot 的优点有哪些？作为 Java 开发人员对 Spring 框架都很...</p>
         </a>
       
     </div>
@@ -744,7 +772,7 @@ Spring Boot 特性一：更快速的构建能力Spring 和 Spring Boot 有什么
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BD%9B%EF%BD%9D"><span class="toc-text">#｛｝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%8D%95%E4%B8%AA%E5%8F%82%E6%95%B0-userId"><span class="toc-text">第一种情形，传入单个参数  userId</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0-userId-sex-%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E5%AF%B9%E5%BA%94%E5%80%BC"><span class="toc-text">第二种情况，传入多个参数  userId,sex  使用索引对应值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0-userId-sex-%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3-Param"><span class="toc-text">第三种情形，传入多个参数  userId,sex 使用注解@Param</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0-%E4%BD%BF%E7%94%A8User%E5%AE%9E%E4%BD%93%E7%B1%BB%E4%BC%A0%E5%85%A5"><span class="toc-text">第四种情形，传入多个参数   使用User实体类传入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%8C-%E4%BD%BF%E7%94%A8Map%E7%B1%BB%E4%BC%A0%E5%85%A5"><span class="toc-text">第五种情形，传入多个参数， 使用Map类传入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%EF%BC%8C%E4%BD%BF%E7%94%A8-map%E5%B0%81%E8%A3%85%E5%AE%9E%E4%BD%93%E7%B1%BB%E4%BC%A0%E5%85%A5"><span class="toc-text">第六种情形，传入多个参，使用 map封装实体类传入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E5%8D%B3%E9%9C%80%E8%A6%81%E4%BC%A0%E5%85%A5%E5%AE%9E%E4%BD%93%E7%B1%BB%EF%BC%8C%E5%8F%88%E9%9C%80%E8%A6%81%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8D%95%E7%8B%AC%E5%8F%82%EF%BC%8C%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3-Param"><span class="toc-text">第七种情形，即需要传入实体类，又需要传入多个单独参，使用注解@Param</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List%E4%BC%A0%E5%8F%82"><span class="toc-text">List传参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E4%BC%A0%E5%8F%82"><span class="toc-text">数组传参</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BD%9B%EF%BD%9D-1"><span class="toc-text">$｛｝</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BD%9B%EF%BD%9D"><span class="toc-text">#｛｝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%8D%95%E4%B8%AA%E5%8F%82%E6%95%B0-userId"><span class="toc-text">第一种情形，传入单个参数  userId</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0-userId-sex-%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E5%AF%B9%E5%BA%94%E5%80%BC"><span class="toc-text">第二种情况，传入多个参数  userId,sex  使用索引对应值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0-userId-sex-%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3-Param"><span class="toc-text">第三种情形，传入多个参数  userId,sex 使用注解@Param</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0-%E4%BD%BF%E7%94%A8User%E5%AE%9E%E4%BD%93%E7%B1%BB%E4%BC%A0%E5%85%A5"><span class="toc-text">第四种情形，传入多个参数   使用User实体类传入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%8C-%E4%BD%BF%E7%94%A8Map%E7%B1%BB%E4%BC%A0%E5%85%A5"><span class="toc-text">第五种情形，传入多个参数， 使用Map类传入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%EF%BC%8C%E4%BD%BF%E7%94%A8-map%E5%B0%81%E8%A3%85%E5%AE%9E%E4%BD%93%E7%B1%BB%E4%BC%A0%E5%85%A5"><span class="toc-text">第六种情形，传入多个参，使用 map封装实体类传入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%A7%8D%E6%83%85%E5%BD%A2%EF%BC%8C%E5%8D%B3%E9%9C%80%E8%A6%81%E4%BC%A0%E5%85%A5%E5%AE%9E%E4%BD%93%E7%B1%BB%EF%BC%8C%E5%8F%88%E9%9C%80%E8%A6%81%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8D%95%E7%8B%AC%E5%8F%82%EF%BC%8C%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3-Param"><span class="toc-text">第七种情形，即需要传入实体类，又需要传入多个单独参，使用注解@Param</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List%E4%BC%A0%E5%8F%82"><span class="toc-text">List传参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E4%BC%A0%E5%8F%82"><span class="toc-text">数组传参</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BD%9B%EF%BD%9D-1"><span class="toc-text">$｛｝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB1-%E6%9C%80%E7%BB%88%E6%89%A7%E8%A1%8C%E7%9A%84SQL%E4%B8%8D%E5%90%8C"><span class="toc-text">区别1:最终执行的SQL不同</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB2-%E5%8A%A8%E6%80%81SQL%E8%A7%A3%E6%9E%90%E9%98%B6%E6%AE%B5%E8%A7%A3%E6%9E%90%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="toc-text">区别2:动态SQL解析阶段解析的不同</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB3"><span class="toc-text">区别3:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mybatis%E4%B8%AD%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8jdbcType"><span class="toc-text">Mybatis中何时使用jdbcType?</span></a></li></ol>
     </div>
   </section>
 

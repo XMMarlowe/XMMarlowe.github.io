@@ -467,7 +467,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.5k words</p>
+      <p>2.6k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -531,6 +531,9 @@
 <li><p>在执行 monitorexit 指令后，将锁计数器设为 0，表明锁被释放。如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。</p>
 </li>
 </ul>
+<p><strong>问题：</strong></p>
+<p><strong>为什么有两个monitorexit？</strong></p>
+<p>为了保证抛异常的情况下也能释放锁，所以javac为同步代码块添加了一个隐式的try-finally，在finally中会调用monitorexit命令释放锁。</p>
 <h5 id="2-1-2-synchronized-修饰方法的的情况"><a href="#2-1-2-synchronized-修饰方法的的情况" class="headerlink" title="2.1.2 synchronized 修饰方法的的情况"></a>2.1.2 synchronized 修饰方法的的情况</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchronizedDemo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;synchronized 方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210318144653.png" class="lazyload" data-srcset="http://marlowe.oss-cn-beijing.aliyuncs.com/img/20210318144653.png" srcset="data:image/png;base64,666" alt="20210318144653"><br>synchronized 修饰的方法并没有 monitorenter 指令和 monitorexit 指令，取得代之的确实是 ACC_SYNCHRONIZED 标识，该标识指明了该方法是一个同步方法。JVM 通过该 ACC_SYNCHRONIZED 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。</p>
 <h5 id="2-1-3-总结"><a href="#2-1-3-总结" class="headerlink" title="2.1.3 总结"></a>2.1.3 总结</h5><p>synchronized 同步语句块的实现使用的是 monitorenter 和 monitorexit 指令，其中 monitorenter 指令指向同步代码块的开始位置，monitorexit 指令则指明同步代码块的结束位置。</p>
@@ -598,10 +601,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-28T14:10:10+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-28T11:13:37+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 28, 2021</p>
+    <p>更新于：Aug 28, 2021</p>
   </a>
 </div>
 

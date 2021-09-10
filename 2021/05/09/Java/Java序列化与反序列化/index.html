@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>3.6k words</p>
+      <p>5k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>13 min</p>
+      <p>18 min</p>
     </a>
   </div>
 
@@ -488,11 +488,39 @@
   
   <a id="more"></a>
 
-<h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><h4 id="Java序列化，反序列化"><a href="#Java序列化，反序列化" class="headerlink" title="Java序列化，反序列化"></a>Java序列化，反序列化</h4><p>Java<strong>序列化</strong>指将Java对象转换为字节序列的过程，<strong>反序列</strong>化指将字节序列转换为目标对象的过程；</p>
+<h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><h4 id="Java序列化，反序列化"><a href="#Java序列化，反序列化" class="headerlink" title="Java序列化，反序列化"></a>Java序列化，反序列化</h4><p><strong>序列化</strong>指将Java对象转换为字节序列的过程。</p>
+<p><strong>反序列</strong>化指将字节序列转换为目标对象的过程；</p>
+<h4 id="为什么要序列化"><a href="#为什么要序列化" class="headerlink" title="为什么要序列化?"></a>为什么要序列化?</h4><p>其实序列化最终的目的是为了对象可以<strong>跨平台存储，和进行网络传输</strong>。而我们进行跨平台存储和网络传输的方式就是IO，而我们的IO支持的数据格式就是字节数组。</p>
+<p>因为我们单方面的只把对象转成字节数组还不行，因为没有规则的字节数组我们是没办法把对象的本来面目还原回来的，所以我们必须在把对象转成字节数组的时候就制定一种规则 <strong>（序列化）</strong> ，那么我们从IO流里面读出数据的时候再以这种规则把对象还原回来 <strong>（反序列化）</strong>。</p>
+<p>如果我们要把一栋房子从一个地方运输到另一个地方去，<strong>序列化</strong>就是我把房子拆成一个个的砖块放到车子里，然后留下一张房子原来结构的图纸，<strong>反序列化</strong>就是我们把房子运输到了目的地以后，根据图纸把一块块砖头还原成房子原来面目的过程。</p>
 <h4 id="什么情况下需要序列化？"><a href="#什么情况下需要序列化？" class="headerlink" title="什么情况下需要序列化？"></a>什么情况下需要序列化？</h4><p>当Java对象需要网络传输或者持久化到磁盘上时；</p>
-<h4 id="序列化的实现？"><a href="#序列化的实现？" class="headerlink" title="序列化的实现？"></a>序列化的实现？</h4><p>让类实现Serializable接口，标注该类对象可以被序列化；</p>
+<p>通过上面我想你已经知道了凡是需要进行 <strong>“跨平台存储”和”网络传输”</strong> 的数据，都需要进行序列化。</p>
+<p>本质上存储和网络传输 都需要经过 把一个对象状态保存成一种跨平台识别的字节格式，然后其他的平台才可以通过字节信息解析还原对象信息。</p>
+<h4 id="序列化的实现方式？"><a href="#序列化的实现方式？" class="headerlink" title="序列化的实现方式？"></a>序列化的实现方式？</h4><h5 id="1-Serializable-接口"><a href="#1-Serializable-接口" class="headerlink" title="1.Serializable 接口"></a>1.Serializable 接口</h5><p>一个对象想要被序列化，那么它的类就要实现此接口或者它的子接口。</p>
+<p>这个对象的所有属性（包括private属性、包括其引用的对象）都可以被序列化和反序列化来保存、传递。不想序列化的字段可以使用transient修饰。</p>
+<p>由于Serializable对象完全以它存储的二进制位为基础来构造，因此并不会调用任何构造函数，因此Serializable类无需默认构造函数，但是当Serializable类的父类没有实现Serializable接口时，反序列化过程会调用父类的默认构造函数，因此该父类必需有默认构造函数，否则会抛异常。</p>
+<p>使用transient关键字阻止序列化虽然简单方便，但被它修饰的属性被完全隔离在序列化机制之外，导致了在反序列化时无法获取该属性的值，而通过在需要序列化的对象的Java类里加入writeObject()方法与readObject()方法可以控制如何序列化各属性，甚至完全不序列化某些属性或者加密序列化某些属性。</p>
+<h5 id="2-Externalizable-接口"><a href="#2-Externalizable-接口" class="headerlink" title="2.Externalizable 接口"></a>2.Externalizable 接口</h5><p>它是Serializable接口的子类，用户要实现的writeExternal()和readExternal() 方法，用来决定如何序列化和反序列化。</p>
+<p>因为序列化和反序列化方法需要自己实现，因此可以指定序列化哪些属性，而transient在这里无效。</p>
+<p>对Externalizable对象反序列化时，会先调用类的无参构造方法，这是有别于默认反序列方式的。如果把类的不带参数的构造方法删除，或者把该构造方法的访问权限设置为private、默认或protected级别，会抛出java.io.InvalidException: no valid constructor异常，因此Externalizable对象必须有默认构造函数，而且必需是public的。</p>
+<p><strong>对比</strong></p>
+<p>使用时，你只想隐藏一个属性，比如用户对象user的密码pwd，如果使用Externalizable，并除了pwd之外的每个属性都写在writeExternal()方法里，这样显得麻烦，可以使用Serializable接口，并在要隐藏的属性pwd前面加上transient就可以实现了。如果要定义很多的特殊处理，就可以使用Externalizable。</p>
+<p>当然这里我们有一些疑惑，Serializable 中的writeObject()方法与readObject()方法科可以实现自定义序列化，而Externalizable 中的writeExternal()和readExternal() 方法也可以，他们有什么异同呢？</p>
+<ul>
+<li>readExternal(),writeExternal()两个方法，这两个方法除了方法签名和readObject(),writeObject()两个方法的方法签名不同之外，其方法体完全一样。</li>
+<li>需要指出的是，当使用Externalizable机制反序列化该对象时，程序会使用public的无参构造器创建实例，然后才执行readExternal()方法进行反序列化，因此实现Externalizable的序列化类必须提供public的无参构造。</li>
+<li>虽然实现Externalizable接口能带来一定的性能提升，但由于实现ExternaLizable接口导致了编程复杂度的增加，所以大部分时候都是采用实现Serializable接口方式来实现序列化。</li>
+</ul>
+<h5 id="3-各种序列化方式的对比"><a href="#3-各种序列化方式的对比" class="headerlink" title="3.各种序列化方式的对比"></a>3.各种序列化方式的对比</h5><p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210831163703.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210831163703.png" srcset="data:image/png;base64,666" alt="20210831163703"></p>
 <h4 id="Java-序列化中如果有些字段不想进行序列化，怎么办？"><a href="#Java-序列化中如果有些字段不想进行序列化，怎么办？" class="headerlink" title="Java 序列化中如果有些字段不想进行序列化，怎么办？"></a>Java 序列化中如果有些字段不想进行序列化，怎么办？</h4><p>对于不想进行序列化的变量，<strong>使用 transient 关键字修饰。</strong></p>
 <p>transient 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。transient 只能修饰变量，不能修饰类和方法。</p>
+<h4 id="序列化技术选型的几个关键点"><a href="#序列化技术选型的几个关键点" class="headerlink" title="序列化技术选型的几个关键点"></a>序列化技术选型的几个关键点</h4><p>序列化协议各有千秋，不能简单的说一种序列化协议是最好的，只能从你的当时环境下去选择最适合你们的序列化协议，如果你要为你的公司项目进行序列化技术的选型，那么主要从以下几个因素。</p>
+<p><strong>协议是否支持跨平台</strong></p>
+<p>如果你们公司有好多种语言进行混合开发，那么就肯定不适合用有语言局限性的序列化协议，要不然你JDK序列化出来的格式，其他语言并没法支持。</p>
+<p><strong>序列化的速度</strong></p>
+<p>如果序列化的频率非常高，那么选择序列化速度快的协议会为你的系统性能提升不少。</p>
+<p><strong>序列化出来的大小</strong></p>
+<p>如果频繁的在网络中传输的数据那就需要数据越小越好，小的数据传输快，也不占带宽，也能整体提升系统的性能。</p>
 <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>将 Java 对象序列化为二进制文件的 Java 序列化技术是 Java 系列技术中一个较为重要的技术点，在大部分情况下，开发人员只需要了解被序列化的类需要实现 Serializable 接口，使用 ObjectInputStream 和 ObjectOutputStream 进行对象的读写。然而在有些情况下，光知道这些还远远不够，文章列举了笔者遇到的一些真实情境，它们与 Java 序列化相关，通过分析情境出现的原因，使读者轻松牢记 Java 序列化中的一些高级认识。</p>
 <h3 id="1-序列化-ID-问题"><a href="#1-序列化-ID-问题" class="headerlink" title="1. 序列化 ID 问题"></a>1. 序列化 ID 问题</h3><p><strong>情境：</strong> 两个客户端 A 和 B 试图通过网络传递对象数据，A 端将对象 C 序列化为二进制数据再传给 B，B 反序列化得到 C。</p>
 <p><strong>问题：</strong> C 对象的全类路径假设为 com.inout.Test，在 A 和 B 端都有这么一个类文件，功能代码完全一致。也都实现了 Serializable 接口，但是反序列化时总是提示不成功。</p>
@@ -600,10 +628,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T18:58:13+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-03T18:47:27+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 26, 2021</p>
+    <p>更新于：Sep 3, 2021</p>
   </a>
 </div>
 
@@ -671,13 +699,11 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ThreadLocal专题学习</p>
-          <p class='content'>通过ThreadLocal源码和相关问题专题学习…
+        <a class='prev' href='/2021/05/09/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>序列化与反序列化</p>
+          <p class='content'>转载于美团技术团队序列化与反序列化
 
-
-ThreadLocal代码演示我们先看下ThreadLocal使用示例：
-12345678910111213141516171819202...</p>
+</p>
         </a>
       
       
@@ -729,7 +755,7 @@ OOM(OutOfMemory)1、全称为OutOfMemoryError异常，如果虚拟机在扩展�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">Java序列化，反序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%9C%80%E8%A6%81%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%9F"><span class="toc-text">什么情况下需要序列化？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%9F"><span class="toc-text">序列化的实现？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java-%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%A6%82%E6%9E%9C%E6%9C%89%E4%BA%9B%E5%AD%97%E6%AE%B5%E4%B8%8D%E6%83%B3%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%8C%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-text">Java 序列化中如果有些字段不想进行序列化，怎么办？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BA%8F%E5%88%97%E5%8C%96-ID-%E9%97%AE%E9%A2%98"><span class="toc-text">1. 序列化 ID 问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">2. 静态变量序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%88%B6%E7%B1%BB%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E-Transient-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">3. 父类的序列化与 Transient 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AF%B9%E6%95%8F%E6%84%9F%E5%AD%97%E6%AE%B5%E5%8A%A0%E5%AF%86"><span class="toc-text">4. 对敏感字段加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%98%E5%82%A8%E8%A7%84%E5%88%99"><span class="toc-text">5. 序列化存储规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">Java序列化，反序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">为什么要序列化?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%9C%80%E8%A6%81%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%9F"><span class="toc-text">什么情况下需要序列化？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="toc-text">序列化的实现方式？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Serializable-%E6%8E%A5%E5%8F%A3"><span class="toc-text">1.Serializable 接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Externalizable-%E6%8E%A5%E5%8F%A3"><span class="toc-text">2.Externalizable 接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%90%84%E7%A7%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">3.各种序列化方式的对比</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java-%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%A6%82%E6%9E%9C%E6%9C%89%E4%BA%9B%E5%AD%97%E6%AE%B5%E4%B8%8D%E6%83%B3%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%8C%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-text">Java 序列化中如果有些字段不想进行序列化，怎么办？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E7%9A%84%E5%87%A0%E4%B8%AA%E5%85%B3%E9%94%AE%E7%82%B9"><span class="toc-text">序列化技术选型的几个关键点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BA%8F%E5%88%97%E5%8C%96-ID-%E9%97%AE%E9%A2%98"><span class="toc-text">1. 序列化 ID 问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">2. 静态变量序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%88%B6%E7%B1%BB%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E-Transient-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">3. 父类的序列化与 Transient 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AF%B9%E6%95%8F%E6%84%9F%E5%AD%97%E6%AE%B5%E5%8A%A0%E5%AF%86"><span class="toc-text">4. 对敏感字段加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%98%E5%82%A8%E8%A7%84%E5%88%99"><span class="toc-text">5. 序列化存储规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 

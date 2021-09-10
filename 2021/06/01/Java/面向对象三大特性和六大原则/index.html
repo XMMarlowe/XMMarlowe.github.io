@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>4.9k words</p>
+      <p>5.3k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>16 min</p>
+      <p>17 min</p>
     </a>
   </div>
 
@@ -568,7 +568,15 @@
 <p>比如写一个方法，参数要求传递List类型，你就可以用List list = new ArrayList()中的list传递，但是你写成ArrayList list = new ArrayList()是传递不进去的。尽管方法处理时都一样。另外，方法还可以根据你传递的不同list（ArrayList或者LinkList）进行不同处理。</p>
 <h3 id="六大原则"><a href="#六大原则" class="headerlink" title="六大原则"></a>六大原则</h3><p>面向对象的三大特性是”封装、”多态”、”继承”，五大原则是”单一职责原则”、”开放封闭原则”、”里氏替换原则”、”依赖倒置原则”、”接口分离原则”、”迪米特原则（高内聚低耦合）”。</p>
 <h4 id="单一职责原则SRP-Single-Responsibility-Principle"><a href="#单一职责原则SRP-Single-Responsibility-Principle" class="headerlink" title="单一职责原则SRP(Single Responsibility Principle)"></a>单一职责原则SRP(Single Responsibility Principle)</h4><p>是<strong>指一个类的功能要单一，不能包罗万象</strong>。如同一个人一样，分配的工作不能太多，否则一天到晚虽然忙忙碌碌的，但效率却高不起来。</p>
-<h4 id="开放封闭原则OCP-Open－Close-Principle"><a href="#开放封闭原则OCP-Open－Close-Principle" class="headerlink" title="开放封闭原则OCP(Open－Close Principle)"></a>开放封闭原则OCP(Open－Close Principle)</h4><p><strong>一个模块在扩展性方面应该是开放的而在更改性方面应该是封闭的</strong>。比如：一个网络模块，原来只服务端功能，而现在要加入客户端功能，那么应当在不用修改服务端功能代码的前提下，就能够增加客户端功能的实现代码，这要求在设计之初，<strong>就应当将服务端和客户端分开，公共部分抽象出来</strong>。</p>
+<h4 id="开放封闭原则OCP-Open－Close-Principle"><a href="#开放封闭原则OCP-Open－Close-Principle" class="headerlink" title="开放封闭原则OCP(Open－Close Principle)"></a>开放封闭原则OCP(Open－Close Principle)</h4><p><strong>什么意思呢？</strong></p>
+<p>所谓开放封闭原则就是软件实体应该对扩展开放，而对修改封闭。开放封闭原则是所有面向对象原则的核心。软件设计本身所追求的目标就是封装变化，<strong>降低耦合，而开放封闭原则正是对这一目标的最直接体现。</strong></p>
+<p><strong>开放封闭原则主要体现在两个方面：</strong></p>
+<p><strong>对扩展开放</strong>，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。</p>
+<p><strong>对修改封闭</strong>，意味着类一旦设计完成，就可以独立其工作，而不要对类尽任何修改。</p>
+<p><strong>如何做到对扩展开放，对修改封闭呢？</strong></p>
+<p>实现开放封闭的核心思想就是<strong>对抽象编程</strong>，而<strong>不对具体编程</strong>，<strong>因为抽象相对稳定</strong>。<strong>让类依赖于固定的抽象，所以对修改就是封闭的</strong>；而<strong>通过面向对象的继承和多态机制，可以实现对抽象体的继承，通过覆写其方法来改变固有行为，实现新的扩展方法，所以对于扩展就是开放的。</strong></p>
+<p>对于违反这一原则的类，必须通过重构来进行改善。常用于实现的设计模式主要有Template Method模式和Strategy 模式。而封装变化，是实现这一原则的重要手段，将经常变化的状态封装为一个类。</p>
+<p><strong>一个模块在扩展性方面应该是开放的而在更改性方面应该是封闭的</strong>。比如：一个网络模块，原来只服务端功能，而现在要加入客户端功能，那么应当在不用修改服务端功能代码的前提下，就能够增加客户端功能的实现代码，这要求在设计之初，<strong>就应当将服务端和客户端分开，公共部分抽象出来</strong>。</p>
 <h4 id="里式替换原则LSP-the-Liskov-Substitution-Principle-LSP"><a href="#里式替换原则LSP-the-Liskov-Substitution-Principle-LSP" class="headerlink" title="里式替换原则LSP(the Liskov Substitution Principle LSP)"></a>里式替换原则LSP(the Liskov Substitution Principle LSP)</h4><p><strong>子类应当可以替换父类并出现在父类能够出现的任何地方</strong>。（比如父类public，子类一定是public）比如：公司搞年度晚会，所有员工可以参加抽奖，那么不管是老员工还是新员工，也不管是总部员工还是外派员工，都应当可以参加抽奖，否则这公司就不和谐了。</p>
 <h4 id="依赖倒置原则DIP-the-Dependency-Inversion-Principle-DIP"><a href="#依赖倒置原则DIP-the-Dependency-Inversion-Principle-DIP" class="headerlink" title="依赖倒置原则DIP(the Dependency Inversion Principle DIP)"></a>依赖倒置原则DIP(the Dependency Inversion Principle DIP)</h4><p>A.<strong>高层次的模块不应该依赖于低层次的模块，他们都应该依赖于抽象</strong>。</p>
 <p>B.抽象不应该依赖于具体实现，<strong>具体实现应该依赖于抽象</strong>。</p>
@@ -671,10 +679,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-01T23:14:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-09T19:47:04+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jun 1, 2021</p>
+    <p>更新于：Sep 9, 2021</p>
   </a>
 </div>
 

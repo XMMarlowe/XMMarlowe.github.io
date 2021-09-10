@@ -620,12 +620,11 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/03/09/%E5%B9%B6%E5%8F%91/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>sleep(),wait(),join(),yield()的区别</p>
+        <a class='prev' href='/2021/03/09/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%B0%83%E7%94%A8%20start()%20%E6%96%B9%E6%B3%95%E6%97%B6%E4%BC%9A%E6%89%A7%E8%A1%8C%20run()%20%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8%20run()%20%E6%96%B9%E6%B3%95%EF%BC%9F/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>为什么调用 start() 方法时会执行 run() 方法，为什么不能直接调用 run() 方法？</p>
           <p class='content'>
 
-sleepwaitjoinyield
-锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程...</p>
+new 一个 Thread，线程进入了新建状态。调用 start()方法，会启动一个线程并使线程进入了就绪状态，当分配到时间片后就可以开始运行了。 start() 会执行线程的相应准备工作，...</p>
         </a>
       
       

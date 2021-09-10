@@ -554,7 +554,7 @@
 <ul>
 <li><strong>等待可中断：</strong> 是指当持有锁的线程长期不释放锁的时候，正在等待的线程可以选择放弃等待，改为处理其他事情 可中断特性对处理执行时间非常长的同步块很有帮助</li>
 <li><strong>公平锁：</strong> 是指多个线程在等待同一个锁时，必须按照申请锁的时间顺序来依次获得锁；而非公平锁则不保证这一点，在锁被释放时，任何－个等待锁的线程都有机会获得锁 synchronized 中的锁是非公平的， ReentrantLock 默认情况下也是非公平<br>的，但可以通过带布尔值的构造函数要求使用公平锁 不过一旦使用了公平锁，将会导致 ReentrantLock 的性能急剧下降，会明显 吞吐量</li>
-<li><strong>锁绑定多个条件：</strong> 是指一个 ReentrantLock 象可以同时绑定多个 Condition 对象synchronized 中，锁对象的 wait() 跟的 notify()或者 notifyAll ()方法配合可以实现一个隐含的条件，如果要和多于一个的条件关联的时候，就不得不额外添加一个锁；而 ReentrantLock 则无须这样做，多次调用 newCondition（）方法即可</li>
+<li><strong>锁绑定多个条件：</strong> 是指一个 ReentrantLock 象可以同时绑定多个 Condition 对象synchronized 中，锁对象的 wait() 跟的 notify()或者 notifyAll ()方法配合可以实现一个隐含的条件，如果要和多于一个的条件关联的时候，就不得不额外添加一个锁；而 ReentrantLock 则无须这样做，多次调用 newCondition（）方法即可。</li>
 </ul>
 <h3 id="Synchronized-和-ReentrantLock-的对比"><a href="#Synchronized-和-ReentrantLock-的对比" class="headerlink" title="Synchronized 和 ReentrantLock 的对比"></a>Synchronized 和 ReentrantLock 的对比</h3><p><strong>① 两者都是可重入锁</strong></p>
 <p>两者都是可重入锁。“可重入锁”概念是：自己可以再次获取自己的内部锁。比如一个线程获得了某个对象的锁，此时这个对象锁还没有释放，当其再次想要获取这个对象的锁的时候还是可以获取的，如果不可锁重入的话，就会造成死锁。同一个线程每次获取锁，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。</p>
@@ -618,10 +618,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-27T00:14:16+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-28T00:36:49+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 27, 2021</p>
+    <p>更新于：Aug 28, 2021</p>
   </a>
 </div>
 

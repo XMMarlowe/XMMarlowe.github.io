@@ -523,7 +523,7 @@
 <h5 id="4-优化器"><a href="#4-优化器" class="headerlink" title="4) 优化器"></a>4) 优化器</h5><p>优化器的作用就是它认为的最优的执行方案去执行（有时候可能也不是最优，这篇文章涉及对这部分知识的深入讲解），比如多个索引的时候该如何选择索引，多表查询的时候如何选择关联顺序等。</p>
 <p>可以说，经过了优化器之后可以说这个语句具体该如何执行就已经定下来。</p>
 <h5 id="5-执行器"><a href="#5-执行器" class="headerlink" title="5) 执行器"></a>5) 执行器</h5><p>当选择了执行方案后，MySQL 就准备开始执行了，首先执行前会校验该用户有没有权限，如果没有权限，就会返回错误信息，如果有权限，就会去调用引擎的接口，返回接口执行的结果。</p>
-<h3 id="二、语句分析"><a href="#二、语句分析" class="headerlink" title="二、语句分析"></a>二、语句分析</h3><h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><p>说了以上这么多，那么究竟一条 sql 语句是如何执行的呢？其实我们的 sql 可以分为两种，一种是查询，一种是更新（增加，更新，删除）。我们先分析下查询语句，语句如下：</p>
+<h3 id="二、语句分析"><a href="#二、语句分析" class="headerlink" title="二、语句分析"></a>二、语句分析</h3><h4 id="1-查询语句"><a href="#1-查询语句" class="headerlink" title="1. 查询语句"></a>1. 查询语句</h4><p>说了以上这么多，那么究竟一条 sql 语句是如何执行的呢？其实我们的 sql 可以分为两种，一种是查询，一种是更新（增加，更新，删除）。我们先分析下查询语句，语句如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tb_student  A <span class="keyword">where</span> A.age<span class="operator">=</span><span class="string">&#x27;18&#x27;</span> <span class="keyword">and</span> A.name<span class="operator">=</span><span class="string">&#x27; 张三 &#x27;</span>;</span><br></pre></td></tr></table></figure>
 <p>结合上面的说明，我们分析下这个语句的执行流程：</p>
 <ul>
@@ -538,7 +538,7 @@
 <li><p>进行权限校验，如果没有权限就会返回错误信息，如果有权限就会调用数据库引擎接口，返回引擎的执行结果。</p>
 </li>
 </ul>
-<h3 id="更新语句"><a href="#更新语句" class="headerlink" title="更新语句"></a>更新语句</h3><p>以上就是一条查询 sql 的执行流程，那么接下来我们看看一条更新语句如何执行的呢？sql 语句如下：</p>
+<h4 id="2-更新语句"><a href="#2-更新语句" class="headerlink" title="2. 更新语句"></a>2. 更新语句</h4><p>以上就是一条查询 sql 的执行流程，那么接下来我们看看一条更新语句如何执行的呢？sql 语句如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> tb_student A <span class="keyword">set</span> A.age<span class="operator">=</span><span class="string">&#x27;19&#x27;</span> <span class="keyword">where</span> A.name<span class="operator">=</span><span class="string">&#x27; 张三 &#x27;</span>;</span><br></pre></td></tr></table></figure>
 <p>我们来给张三修改下年龄，在实际数据库肯定不会设置年龄这个字段的，不然要被技术负责人打的。其实条语句也基本上会沿着上一个查询的流程走，只不过执行更新的时候肯定要记录日志啦，这就会引入日志模块了，MySQL 自带的日志模块式<strong>binlog（归档日志）</strong>  ，所有的存储引擎都可以使用，我们常用的 InnoDB 引擎还自带了一个日志模块 <strong>redo log（重做日志）</strong>，我们就以 InnoDB 模式下来探讨这个语句的执行流程。流程如下：</p>
 <ul>
@@ -611,10 +611,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T23:09:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-31T17:31:10+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 25, 2021</p>
+    <p>更新于：Aug 31, 2021</p>
   </a>
 </div>
 
@@ -743,7 +743,7 @@ Buffer Pool是什么?
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81MySQL-%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-text">一、MySQL 基础架构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL-%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-text">MySQL 基本架构概览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Server-%E5%B1%82%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="toc-text">Server 层基本组件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E8%BF%9E%E6%8E%A5%E5%99%A8"><span class="toc-text">1) 连接器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98-MySQL-8-0-%E7%89%88%E6%9C%AC%E5%90%8E%E7%A7%BB%E9%99%A4"><span class="toc-text">2) 查询缓存(MySQL 8.0 版本后移除)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E5%99%A8"><span class="toc-text">3) 分析器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-text">4) 优化器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%89%A7%E8%A1%8C%E5%99%A8"><span class="toc-text">5) 执行器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AF%AD%E5%8F%A5%E5%88%86%E6%9E%90"><span class="toc-text">二、语句分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5"><span class="toc-text">查询语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5"><span class="toc-text">更新语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">三、总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81MySQL-%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-text">一、MySQL 基础架构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL-%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-text">MySQL 基本架构概览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Server-%E5%B1%82%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="toc-text">Server 层基本组件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E8%BF%9E%E6%8E%A5%E5%99%A8"><span class="toc-text">1) 连接器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98-MySQL-8-0-%E7%89%88%E6%9C%AC%E5%90%8E%E7%A7%BB%E9%99%A4"><span class="toc-text">2) 查询缓存(MySQL 8.0 版本后移除)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E5%99%A8"><span class="toc-text">3) 分析器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-text">4) 优化器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%89%A7%E8%A1%8C%E5%99%A8"><span class="toc-text">5) 执行器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AF%AD%E5%8F%A5%E5%88%86%E6%9E%90"><span class="toc-text">二、语句分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5"><span class="toc-text">1. 查询语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5"><span class="toc-text">2. 更新语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">三、总结</span></a></li></ol>
     </div>
   </section>
 

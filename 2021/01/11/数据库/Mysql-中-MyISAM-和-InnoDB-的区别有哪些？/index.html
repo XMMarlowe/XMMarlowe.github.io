@@ -491,8 +491,8 @@
 <h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol>
 <li>InnoDB <strong>支持事务</strong>，MyISAM <strong>不支持事务</strong>。这是 MySQL 将<strong>默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一</strong>；</li>
 <li>InnoDB <strong>支持外键</strong>，而 MyISAM <strong>不支持</strong>。对一个包含外键的 InnoDB 表转为 MYISAM 会失败；  </li>
-<li>InnoDB 是<strong>聚集索引</strong>，MyISAM 是<strong>非聚集索引</strong>。聚簇索引的文件存放在主键索引的叶子节点上，因此 InnoDB 必须要有主键，通过主键索引效率很高。但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此，主键不应该过大，因为主键太大，其他索引也都会很大。而 MyISAM 是非聚集索引，数据文件是分离的，索引保存的是数据文件的指针。主键索引和辅助索引是独立的。 </li>
-<li>InnoDB 不保存表的具体行数，执行 select count(*) from table 时需要全表扫描。而MyISAM 用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快；    </li>
+<li>InnoDB 是<strong>聚集索引</strong>，MyISAM 是<strong>非聚集索引</strong>。聚簇索引的文件存放在主键索引的叶子节点上，因此 <strong>InnoDB 必须要有主键</strong>，通过主键索引效率很高。<strong>但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据</strong>。因此，<strong>主键不应该过大</strong>，因为主键太大，其他索引也都会很大。而 <strong>MyISAM 是非聚集索引，数据文件是分离的</strong>，索引保存的是数据文件的指针。主键索引和辅助索引是独立的。 </li>
+<li>*<em>InnoDB 不保存表的具体行数，执行 select count(</em>) from table 时需要全表扫描。而MyISAM 用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快；**   </li>
 <li>InnoDB 最小的锁粒度是行锁，MyISAM 最小的锁粒度是表锁。一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一；</li>
 </ol>
 <h3 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h3><ol>
@@ -547,10 +547,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T18:09:02+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-30T18:08:16+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 26, 2021</p>
+    <p>更新于：Aug 30, 2021</p>
   </a>
 </div>
 
@@ -620,11 +620,8 @@
       
         <a class='prev' href='/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%8E-InnoDB-%E9%94%81%E7%AE%97%E6%B3%95/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>锁机制与 InnoDB 锁算法</p>
-          <p class='content'>
-
-MyISAM 和 InnoDB 存储引擎使用的锁
-MyISAM 采用表级锁(table-level locking)。
-InnoDB 支持行级锁(row-level locking)和表级锁...</p>
+          <p class='content'>Next-Key Locks 是 MySQL 的 InnoDB 存储引擎的一种锁实现。
+MVCC 不能解决幻影读问题，Next-Key Locks 就是为了解决这个问题而存在的。在可重复读（RE...</p>
         </a>
       
       

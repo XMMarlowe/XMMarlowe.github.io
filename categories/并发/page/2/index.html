@@ -416,6 +416,248 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/">
+        Java限流-实现每秒n个请求
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+
+概要在大数据量高并发访问时，经常会出现服务或接口面对暴涨的请求而不可用的情况，甚至引发连锁反映导致整个系统崩溃。此时你需要使用的技术手段之一就是限流，当请求达到一定的并发数或速率，就进行等待、排队、降级、拒绝服务等。在限流时，常见的两种算法是漏桶和令牌桶算法算法。
+限流算法令牌桶(Token Bucket)、漏桶(leaky bucket)和计数器算法是最常用的三种限流的算法。
+1. ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/15/%E5%B9%B6%E5%8F%91/Java%E9%99%90%E6%B5%81-%E5%AE%9E%E7%8E%B0%E6%AF%8F%E7%A7%92n%E4%B8%AA%E8%AF%B7%E6%B1%82/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+        读写锁之ReadWriteLock源码分析
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁可以在没有写锁的时候被多个线程同时持有，写锁是独占的。所有读写锁的实现必须确保写操作对读操作的内存影响。换句话说，一个获得了读锁的线程必须能看到前一个释放的写锁所更新的内容。读写锁比互斥锁允许对于共享数据更大程度的并发。每次只能有一个写线程，但是同时可以有多个线程并发地读数据。ReadWriteLock适用于读多写少的...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+        Fork/Join框架基本使用
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+1. 概述Java.util.concurrent.ForkJoinPool由Java大师Doug Lea主持编写，它可以将一个大的任务拆分成多个子任务进行并行处理，最后将子任务结果合并成最后的计算结果，并进行输出。本文中对Fork/Join框架的讲解，基于JDK1.8+中的Fork/Join框架实现，参考的Fork/Join框架主要源代码也基于JDK1.8+。
+这几篇文章将试图解释Fo...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/">
+        LockSupport简单用法及原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+简介LockSupport是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
+作用接下面我来看看LockSupport有哪些常用的方法。主要有两类方法：park和unpark。
+12345678public static void park(Object blocker); // 暂停当前线程public static void pa...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">
+        ThreadLocal专题学习
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>通过ThreadLocal源码和相关问题专题学习…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/">
         如何设计一个分布式锁？如何对锁的性能进行优化？
       </a>
@@ -648,266 +890,6 @@ CAS 操作包含三个操作数：
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">
-        Java如何开启线程?怎么保证线程安全?
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-线程和进程的区别进程是操作系统进行资源分配的最小单元。线程是操作系统进行任务调度分配的最小单元，线程隶属于进程。
-如何开启线程？
-继承Thread类,重写run方法。
-实现Runnable接口， 实现run方法。
-实现Callable接口， 实现call方法。通过FutureTask创建一个线程，获取到线程执行的返回值。
-通过线程池来开启线程。
-
-怎么保证线程安全？加锁
-
-JVM提供的锁...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/">
-        Java并发之Unsafe类
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级别、不安全操作的方法，如直接访问系统内存资源、自主管理内存资源等，这些方法在提升Java运行效率、增强Java语言底层资源操作能力方面起到了很大的作用。但由于Unsafe类使Java语言拥有了类似C语言指针一样操作内存空间的能力，这无疑也增加了程序发生相关指针问题的风险。在程序中过度、不正确使用Unsafe类会使得程...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-21</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/19/%E5%B9%B6%E5%8F%91/%E7%BB%A7%E6%89%BFThread%E5%92%8C%E5%AE%9E%E7%8E%B0Runnable%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        继承Thread和实现Runnable的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-
-
-当使用继承的时候，主要是为了不必重新开发，并且在不必了解实现细节的情况下拥有了父类我所需要的特征。它也有一个很大的缺点，那就是如果我们的类已经从一个类继承（如小程序必须继承自 Applet 类），则无法再继承 Thread 类，
-Java只能单继承，因此如果是采用继承Thread的方法，那么在以后进行代码重构的时候可能会遇到问题，因为你无法继承别的类了，在其他的方面，两者之间并没什么...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-19</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/19/%E5%B9%B6%E5%8F%91/%E7%BB%A7%E6%89%BFThread%E5%92%8C%E5%AE%9E%E7%8E%B0Runnable%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/">
-        多线程Future的用法
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-在并发编程时，一般使用runnable，然后扔给线程池完事，这种情况下不需要线程的结果。
-所以run的返回值是void类型。
-如果是一个多线程协作程序，比如斐波那契数列，1，1，2，3，5，8…使用多线程来计算。但后者需要前者的结果，就需要用callable接口了。callable用法和runnable一样，只不过调用的是call方法，该方法有一个泛型返回值类型，你可以任意指定。
-线程是...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/16/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E9%97%AE%E9%A2%98/">
-        线程间通信问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-wait/notify/notifyAll
-wait()、notify/notifyAll() 方法是Object的本地final方法，无法被重写。
-
-wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchronized 关键字使用，即，一般在synchronized 同步代码块里使用 wait()、notify/notifyAll() 方法。
-
-由于 wait()、not...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/16/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E9%97%AE%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1028,7 +1010,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1038,7 +1020,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1053,22 +1035,22 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1083,17 +1065,17 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1138,12 +1120,12 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1180,7 +1162,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1202,7 +1184,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1228,8 +1210,8 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:38 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:33 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1279,7 +1261,7 @@ wait()使当前线程阻塞，前提是 必须先获得锁，一般配合synchro
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

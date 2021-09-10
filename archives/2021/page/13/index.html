@@ -414,8 +414,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/">
-        如何设计一个分布式锁？如何对锁的性能进行优化？
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+        读写锁之ReadWriteLock源码分析
       </a>
     </h2>
   
@@ -424,11 +424,7 @@
       
         
 
-分布式锁的本质就是在所有进程都能访问到的一个地方，设置一一个锁资源， 让这些进程都来竞争锁资源。数据库、zookeeper, Redis。
-通常对于分布式锁，会要求响应快、性能高、与业务无关。
-Redis实现分布式锁
-SETNX key value: 当key不存在时，就将key设置为value,并返回1。如果key存在，就返回0。
-EXPIRE key locktime: 设置key的...
+ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁可以在没有写锁的时候被多个线程同时持有，写锁是独占的。所有读写锁的实现必须确保写操作对读操作的内存影响。换句话说，一个获得了读锁的线程必须能看到前一个释放的写锁所更新的内容。读写锁比互斥锁允许对于共享数据更大程度的并发。每次只能有一个写线程，但是同时可以有多个线程并发地读数据。ReadWriteLock适用于读多写少的...
       
     
   </div>
@@ -436,7 +432,7 @@ EXPIRE key locktime: 设置key的...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-05-04</time>
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -444,7 +440,7 @@ EXPIRE key locktime: 设置key的...
       </div>
       
         <div>
-          <a class='readmore' href='/2021/05/04/%E5%B9%B6%E5%8F%91/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E7%9A%84%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F/'>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/%E8%AF%BB%E5%86%99%E9%94%81%E4%B9%8BReadWriteLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/'>
             Read More
           </a>
         </div>
@@ -466,29 +462,24 @@ EXPIRE key locktime: 设置key的...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-redo-log%E3%80%81binlog%E3%80%81undo-log-%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/">
-        MySQL redo log、binlog、undo log 区别与作用
+      <a href="/2021/05/10/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A/">
+        Java四种引用-强软弱虚
       </a>
     </h2>
   
   <div class='md'>
-    
-      <p>日志系统主要有redo log(重做日志)和binlog(归档日志)。redo log是InnoDB存储引擎层的日志，binlog是MySQL Server层记录的日志， 两者都是记录了某些操作的日志(不是所有)自然有些重复（但两者记录的格式不同）。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-29</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        <time>2021-05-10</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-redo-log%E3%80%81binlog%E3%80%81undo-log-%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/'>
+          <a class='readmore' href='/2021/05/10/Java/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8-%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A/'>
             Read More
           </a>
         </div>
@@ -510,8 +501,8 @@ EXPIRE key locktime: 设置key的...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/">
-        SQL执行过慢，如何排查以及调优
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+        Fork/Join框架基本使用
       </a>
     </h2>
   
@@ -520,16 +511,8 @@ EXPIRE key locktime: 设置key的...
       
         
 
-导致SQL执行慢的原因
-硬件问题。如网络速度慢，内存不足，I/O吞吐量小，磁盘空间满了等。
-
-没有索引或者索引失效。（一般在互联网公司，DBA会在半夜把表锁了，重新建立一遍索引，因为当你删除某个数据的时候，索引的树结构就不完整了。所以互联网公司的数据做的是假删除，一是为了做数据分析,二是为了不破坏索引 ）
-
-数据过多（分库分表）
-
-服务器调优及各个参数设置（调整my.cnf）
-
-查询出的...
+1. 概述Java.util.concurrent.ForkJoinPool由Java大师Doug Lea主持编写，它可以将一个大的任务拆分成多个子任务进行并行处理，最后将子任务结果合并成最后的计算结果，并进行输出。本文中对Fork/Join框架的讲解，基于JDK1.8+中的Fork/Join框架实现，参考的Fork/Join框架主要源代码也基于JDK1.8+。
+这几篇文章将试图解释Fo...
       
     
   </div>
@@ -537,95 +520,7 @@ EXPIRE key locktime: 设置key的...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-29</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%88%9D%E8%AF%86HTTP2-0/">
-        初识HTTP2.0
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>HTTP/2是HTTP协议自1999年HTTP 1.1发布后的首个更新，主要基于SPDY协议。由互联网<br>工程任务组(IETF) 的Hypertext Transfer Protocol Bis (httpbis) 工作小组进行开发。该组织于2014年12月将HTTP/2标准提议递交至IESG进行讨论，于2015年2月17日被批准。HTTP/2标准于2015年5月以RFC 7540正式发表。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-29</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%88%9D%E8%AF%86HTTP2-0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/as-if-serial%E8%A7%84%E5%88%99%E5%92%8Chappens-before%E8%A7%84%E5%88%99/">
-        as-if-serial规则和happens-before规则
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>我们知道为了提高并行度，优化程序性能，编译器和处理器会对代码进行指令重排序。但为了不改变程序的执行结果，尽可能地提高程序执行的并行度，我们需要了解as-if-serial规则和happens-before规则。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-28</time>
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -633,7 +528,7 @@ EXPIRE key locktime: 设置key的...
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/as-if-serial%E8%A7%84%E5%88%99%E5%92%8Chappens-before%E8%A7%84%E5%88%99/'>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/Fork-Join%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/'>
             Read More
           </a>
         </div>
@@ -655,8 +550,8 @@ EXPIRE key locktime: 设置key的...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/28/Java/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/">
-        对象在内存中的内存布局
+      <a href="/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/">
+        MySQL一些规范以及优化问题
       </a>
     </h2>
   
@@ -665,12 +560,12 @@ EXPIRE key locktime: 设置key的...
       
         
 
-对象的内存布局HotSpot虚拟机中，对象在内存中存储的布局可以分为三块区域：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。
 
-从上面的这张图里面可以看出，对象在内存中的结构主要包含以下几个部分：
+如何选择索引列的顺序？建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
 
-Mark Word(标记字段)：对象的Mark Word部分占4个字节，其内容是一系列的标记位，比如轻量级锁的标记位，偏向锁标记位等等。
-Kla...
+区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）
+尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）
+使用最频繁的列放到联合索引的左侧（这样可以比较少的建...
       
     
   </div>
@@ -678,7 +573,55 @@ Kla...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-28</time>
+        <time>2021-05-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%80%E4%BA%9B%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
+        Java浮点数精度问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+一、精度丢失的原因1234567891011121314151617181920212223首先我们要搞清楚下面两个问题：(1) 十进制整数如何转化为二进制数           算法很简单。举个例子，11表示成二进制数：                     11/2=5 余   1                     5/2=2   余   1                 ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -686,7 +629,7 @@ Kla...
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/28/Java/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/'>
+          <a class='readmore' href='/2021/05/10/Java/Java%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/'>
             Read More
           </a>
         </div>
@@ -708,8 +651,8 @@ Kla...
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88AQS%E5%BA%95%E5%B1%82%E6%98%AFCAS-volatile/">
-        为什么AQS底层是CAS + volatile
+      <a href="/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/">
+        获取class对象六种方法
       </a>
     </h2>
   
@@ -718,14 +661,8 @@ Kla...
       
         
 
-CAS操作和volatile简述CAS操作CAS是什么？CAS是compare and swap的缩写，从字面上理解就是比较并更新；主要是通过 处理器的指令 来保证操作的原子性 。
-CAS 操作包含三个操作数：
-
-内存位置（V）
-预期原值（A）
-更新值(B)
-
-简单来说： 从内存位置V上取到存储的值，将值和预期值A进行比较，如果值和预期值A的结果相等，那么我们就把新值B更新到内存位置V上...
+简述Class类是Java反射机制的入口，封装了一个类或接口的运行时信息，通过调用Class类的方法可以获取这些信息。Class类有如下特点：1、该类在java.lang包中，不需要引包2、该类被final修饰，不可被继承3、该类实现了Serializable接口4、该类的构造方法被private修饰，不能通过关键字new创建该类的对象
+获取对应class类对象1、（建议）通过Class...
       
     
   </div>
@@ -733,15 +670,15 @@ CAS 操作包含三个操作数：
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-28</time>
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88AQS%E5%BA%95%E5%B1%82%E6%98%AFCAS-volatile/'>
+          <a class='readmore' href='/2021/05/10/Java/%E8%8E%B7%E5%8F%96class%E5%AF%B9%E8%B1%A1%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95/'>
             Read More
           </a>
         </div>
@@ -763,21 +700,27 @@ CAS 操作包含三个操作数：
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/Synchronized%E4%B8%8EReentrantLock/">
-        Synchronized与ReentrantLock
+      <a href="/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/">
+        LockSupport简单用法及原理
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Java 里面，最基本的互斥同步手段就是 synchronized 关键字，这是一种块结构( Block Structured ）的同步语法。还有就是 Java 类库中新提供了 java. util.concurrent 包，其中的 java.util.concurrent.locks.Lock 接口便成了 Java 另一 全新的互斥 同步手段。</p>
+      
+        
+
+简介LockSupport是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
+作用接下面我来看看LockSupport有哪些常用的方法。主要有两类方法：park和unpark。
+12345678public static void park(Object blocker); // 暂停当前线程public static void pa...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-28</time>
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -785,7 +728,7 @@ CAS 操作包含三个操作数：
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/Synchronized%E4%B8%8EReentrantLock/'>
+          <a class='readmore' href='/2021/05/10/%E5%B9%B6%E5%8F%91/LockSupport%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95%E5%8F%8A%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -807,31 +750,29 @@ CAS 操作包含三个操作数：
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%A4%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E6%AF%8D/">
-        两个线程交替打印数字和字母
+      <a href="/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/">
+        Java9-Java14新特性
       </a>
     </h2>
   
   <div class='md'>
     
-      <ol>
-<li>使用<code>LockSupport</code>的 <code>park()</code> 和 <code>unpark()</code> 方法</li>
-<li>使用<code>wait()</code>和<code>notify()</code>方法
+      <p>待完善…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-28</time>
+        <time>2021-05-10</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%A4%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E6%AF%8D/'>
+          <a class='readmore' href='/2021/05/10/Java/Java9-Java14%E6%96%B0%E7%89%B9%E6%80%A7/'>
             Read More
           </a>
         </div>
@@ -853,42 +794,73 @@ CAS 操作包含三个操作数：
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">
-        Java如何开启线程?怎么保证线程安全?
+      <a href="/2021/05/09/Java/%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        数组和链表的区别
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-线程和进程的区别进程是操作系统进行资源分配的最小单元。线程是操作系统进行任务调度分配的最小单元，线程隶属于进程。
-如何开启线程？
-继承Thread类,重写run方法。
-实现Runnable接口， 实现run方法。
-实现Callable接口， 实现call方法。通过FutureTask创建一个线程，获取到线程执行的返回值。
-通过线程池来开启线程。
-
-怎么保证线程安全？加锁
-
-JVM提供的锁...
-      
+      <p>数组和链表是两种基本的数据结构，他们在内存存储上的表现不一样，所以也有各自的特点。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-26</time>
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/'>
+          <a class='readmore' href='/2021/05/09/Java/%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/">
+        InnoDB引擎 - 行记录存储 - Compact 行格式
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>待完善…</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E-%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8-Compact-%E8%A1%8C%E6%A0%BC%E5%BC%8F/'>
             Read More
           </a>
         </div>
@@ -915,7 +887,7 @@ JVM提供的锁...
           </a>
         
         <p class="current">
-          13 / 23
+          13 / 27
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/14/">
@@ -1020,7 +992,7 @@ JVM提供的锁...
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1030,7 +1002,7 @@ JVM提供的锁...
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1045,22 +1017,22 @@ JVM提供的锁...
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1075,17 +1047,17 @@ JVM提供的锁...
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1130,12 +1102,12 @@ JVM提供的锁...
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1172,7 +1144,7 @@ JVM提供的锁...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1194,7 +1166,7 @@ JVM提供的锁...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1220,8 +1192,8 @@ JVM提供的锁...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:25 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:12 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1271,7 +1243,7 @@ JVM提供的锁...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

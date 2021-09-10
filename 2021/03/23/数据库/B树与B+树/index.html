@@ -22,7 +22,7 @@
   
   <title>B树与B+树 - Marlowe</title>
   
-    <meta name="keywords" content="BTree,B+Tree">
+    <meta name="keywords" content="B+Tree,BTree">
   
 
   
@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.3k words</p>
+      <p>2.8k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>4 min</p>
+      <p>9 min</p>
     </a>
   </div>
 
@@ -498,20 +498,20 @@
 <p><img src="https://img-blog.csdnimg.cn/20190729213909356.gif" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190729213909356.gif" srcset="data:image/png;base64,666" alt="B树"></p>
 <h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p><strong>简介</strong></p>
 <ol>
-<li>有n棵子树的非叶子结点中含有n个关键字（b树是n-1个），这些关键字不保存数据，只用来索引，所有数据都保存在叶子节点（b树是每个关键字都保存数据）。</li>
+<li>有n棵子树的非叶子结点中含有n个关键字（b树是n-1个），这些关键字不保存数据，<strong>只用来索引</strong>，所有数据都保存在叶子节点（b树是每个关键字都保存数据）。</li>
 <li>所有的叶子结点中包含了全部关键字的信息，及指向含这些关键字记录的指针，且叶子结点本身依关键字的大小自小而大顺序链接（叶子节点组成一个链表）。</li>
-<li>所有的非叶子结点可以看成是索引部分，结点中仅含其子树中的最大（或最小）关键字。</li>
+<li>所有的<strong>非叶子结点可以看成是索引部分</strong>，结点中<strong>仅含其子树中的最大（或最小）关键字。</strong></li>
 <li>通常在b+树上有两个头指针，一个指向根结点，一个指向关键字最小的叶子结点。</li>
-<li>同一个数字会在不同节点中重复出现，根节点的最大元素就是b+树的最大元素。</li>
+<li>同一个数字会在不同节点中重复出现，<strong>根节点的最大元素就是b+树的最大元素。</strong></li>
 </ol>
 <h3 id="B树与B-树的区别"><a href="#B树与B-树的区别" class="headerlink" title="B树与B+树的区别"></a>B树与B+树的区别</h3><ul>
-<li><p>B树每个节点都存储数据，所有节点组成这棵树。B+树只有叶子节点存储数据（B+数中有两个头指针：一个指向根节点，另一个指向关键字最小的叶节点），叶子节点包含了这棵树的所有数据，所有的叶子结点使用链表相连，便于区间查找和遍历，所有非叶节点起到索引作用。</p>
+<li><p>B树<strong>每个节点都存储数据</strong>，所有节点组成这棵树。B+树<strong>只有叶子节点存储数据</strong>（B+数中有两个头指针：一个指向根节点，另一个指向关键字最小的叶节点），<strong>叶子节点包含了这棵树的所有数据</strong>，所有的叶子结点使用链表相连，便于区间查找和遍历，所有<strong>非叶节点起到索引作用。</strong></p>
 </li>
-<li><p>B树中叶节点包含的关键字和其他节点包含的关键字是不重复的，B+树的索引项只包含对应子树的最大关键字和指向该子树的指针，不含有该关键字对应记录的存储地址。</p>
+<li><p>B树中<strong>叶节点包含的关键字和其他节点包含的关键字是不重复的</strong>，B+树的<strong>索引项只包含对应子树的最大关键字和指向该子树的指针</strong>，<strong>不含有该关键字对应记录的存储地址</strong>。</p>
 </li>
-<li><p>B树中每个节点（非根节点）关键字个数的范围为<a href="%E6%A0%B9%E8%8A%82%E7%82%B9%E4%B8%BA%5B1,m-1%5D">m/2(向上取整)-1,m-1</a>，并且具有n个关键字的节点包含（n+1）棵子树。B+树中每个节点（非根节点）关键字个数的范围为<a href="%E6%A0%B9%E8%8A%82%E7%82%B9%E4%B8%BA%5B1,m%5D">m/2(向上取整),m</a>，具有n个关键字的节点包含（n）棵子树。</p>
+<li><p>B树中每个节点（非根节点）关键字个数的范围为<code>[m/2(向上取整)-1,m-1](根节点为[1,m-1])</code>，并且具有n个关键字的节点包含（n+1）棵子树。B+树中每个节点（非根节点）关键字个数的范围为<code>[m/2(向上取整),m](根节点为[1,m])</code>，具有n个关键字的节点包含（n）棵子树。</p>
 </li>
-<li><p>B+树中查找，无论查找是否成功，每次都是一条从根节点到叶节点的路径。</p>
+<li><p><strong>B+树中查找，无论查找是否成功，每次都是一条从根节点到叶节点的路径。</strong></p>
 </li>
 </ul>
 <h3 id="B树的优点"><a href="#B树的优点" class="headerlink" title="B树的优点"></a>B树的优点</h3><p>B树的每一个节点都包含key和value，因此经常访问的元素可能离根节点更近，因此访问也更迅速。</p>
@@ -529,7 +529,38 @@
 <ol start="3">
 <li>B+树的查询效率更加稳定<br>由于非终结点并不是最终指向文件内容的结点，而只是叶子结点中关键字的索引。所以任何关键字的查找必须走一条从根结点到叶子结点的路。所有关键字查询的路径长度相同，导致每一个数据的查询效率相当。</li>
 </ol>
-<h3 id="为什么-MySQL-的索引要使用-B-树而不是其它树形结构？"><a href="#为什么-MySQL-的索引要使用-B-树而不是其它树形结构？" class="headerlink" title="为什么 MySQL 的索引要使用 B+ 树而不是其它树形结构？"></a>为什么 MySQL 的索引要使用 B+ 树而不是其它树形结构？</h3><p><strong>因为 B 树不管叶子节点还是非叶子节点，都会保存数据，</strong> 这样导致在非叶子节点中能保存的指针数量变少（有些资料也称为扇出），指针少的情况下要保存大量数据，只能增加树的高度，导致 IO 操作变多，查询性能变低。</p>
+<h3 id="为什么-MySQL-的索引要使用-B-树而不是其它树形结构？"><a href="#为什么-MySQL-的索引要使用-B-树而不是其它树形结构？" class="headerlink" title="为什么 MySQL 的索引要使用 B+ 树而不是其它树形结构？"></a>为什么 MySQL 的索引要使用 B+ 树而不是其它树形结构？</h3><p>数据库<strong>访问数据要通过页</strong>，<strong>一个页就是一个B+树节点，访问一个节点相当于一次I/O操作</strong>，所以越快能找到节点，查找性能越好。<br>B+树的特点就是<strong>够矮够胖</strong>，能有效地减少访问节点次数从而提高性能。</p>
+<p>下面，我们来对比一个二叉树、多叉树、B树和B+树。</p>
+<h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908141608.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908141608.png" srcset="data:image/png;base64,666" alt="20210908141608"></p>
+<p>二叉树是一种二分查找树，有很好的查找性能，相当于二分查找。<br>但是当N比较大的时候，树的深度比较高。数据查询的时间主要依赖于磁盘IO的次数，二叉树深度越大，查找的次数越多，性能越差。</p>
+<p>最坏的情况是退化成了链表，如下图：</p>
+<p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908141705.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908141705.png" srcset="data:image/png;base64,666" alt="20210908141705"></p>
+<p>为了让二叉树不至于退化成链表，人们发明了AVL树（平衡二叉搜索树）：任何结点的左子树和右子树高度最多相差1。</p>
+<h4 id="多叉树"><a href="#多叉树" class="headerlink" title="多叉树"></a>多叉树</h4><p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908141741.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908141741.png" srcset="data:image/png;base64,666" alt="20210908141741"></p>
+<p>多叉树就是节点可以是M个，能有效地减少高度，高度变小后，节点变少I/O自然少，性能比二叉树好了。</p>
+<h4 id="B树-1"><a href="#B树-1" class="headerlink" title="B树"></a>B树</h4><p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908141808.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908141808.png" srcset="data:image/png;base64,666" alt="20210908141808"></p>
+<p>B树<strong>简单地说就是多叉树</strong>，<strong>每个叶子会存储数据</strong>，<strong>和指向下一个节点的指针</strong>。</p>
+<p>例如要查找9，步骤如下</p>
+<ol>
+<li>我们与根节点的关键字 (17，35）进行比较，9 小于 17 那么得到指针 P1；</li>
+<li>按照指针 P1 找到磁盘块 2，关键字为（8，12），因为 9 在 8 和 12 之间，所以我们得到指针 P2；</li>
+<li>按照指针 P2 找到磁盘块 6，关键字为（9，10），然后我们找到了关键字 9。</li>
+</ol>
+<h4 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h4><p><img src="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908142014.png" class="lazyload" data-srcset="https://aishu-marlowe.oss-cn-beijing.aliyuncs.com/20210908142014.png" srcset="data:image/png;base64,666" alt="20210908142014"></p>
+<p>B+树是B树的改进，简单地说是：<strong>只有叶子节点才存数据</strong>，<strong>非叶子节点是存储的指针</strong>；所有叶子节点<strong>构成一个有序链表</strong>。</p>
+<p>B+树的<strong>内部节点并没有指向关键字具体信息的指针</strong>，因此其内部节点<strong>相对B树更小</strong>，<strong>如果把所有同一内部节点的关键字存放在同一盘块中，那么盘块所能容纳的关键字数量也越多</strong>，一次性读入内存的需要查找的关键字也就越多，相对IO读写次数就降低了。</p>
+<p>例如要查找关键字16，步骤如下：</p>
+<p>与根节点的关键字 (1，18，35) 进行比较，16 在 1 和 18 之间，得到指针 P1（指向磁盘块 2）<br>找到磁盘块 2，关键字为（1，8，14），因为 16 大于 14，所以得到指针 P3（指向磁盘块 7）<br>找到磁盘块 7，关键字为（14，16，17），然后我们找到了关键字 16，所以可以找到关键字 16 所对应的数据。</p>
+<h4 id="B-树与B树的不同"><a href="#B-树与B树的不同" class="headerlink" title="B+树与B树的不同"></a>B+树与B树的不同</h4><ol>
+<li>B+树非叶子节点不存在数据只存索引，B树非叶子节点存储数据。</li>
+<li>B+树<strong>查询效率更高</strong>。B+树使用<strong>双向链表</strong>串连所有叶子节点，<strong>区间查询效率更高</strong>（因为所有数据都在B+树的叶子节点，<strong>扫描数据库 只需扫一遍叶子结点就行了</strong>），但是B树则需要通过中序遍历才能完成查询范围的查找。</li>
+<li>B+树<strong>查询效率更稳定</strong>。B+树每次都必须查询到叶子节点才能找到数据，而B树查询的数据可能不在叶子节点，也可能在，这样就会造成查询的效率的不稳定。</li>
+<li><strong>B+树的磁盘读写代价更小</strong>。B+树的内部节点并没有指向关键字具体信息的指针，因此其内部节点相对B树更小，<strong>通常B+树矮更胖，高度小查询产生的I/O更少</strong>。</li>
+</ol>
+<h4 id="为什么用B-树做索引而不用红黑树？"><a href="#为什么用B-树做索引而不用红黑树？" class="headerlink" title="为什么用B+树做索引而不用红黑树？"></a>为什么用B+树做索引而不用红黑树？</h4><p>AVL 树（平衡二叉树）和红黑树（二叉查找树）基本都是存储在内存中才会使用的数据结构。在大规模数据存储的时候，红黑树往往出现由于<strong>树的深度过大而造成磁盘IO读写过于频繁</strong>，进而<strong>导致效率低下</strong>的情况。<strong>为什么会出现这样的情况</strong>，要获取磁盘上数据，必须先通过磁盘移动臂移动到数据所在的柱面，然后找到指定盘面，接着旋转盘面找到数据所在的磁道，<strong>最后对数据进行读写</strong>。磁盘IO<strong>代价主要花费在查找所需的柱面上</strong>，<strong>树的深度过大会造成磁盘IO频繁读写</strong>。<strong>根据磁盘查找存取的次数往往由树的高度所决定</strong>，所以，只要我们通过某种较好的树结构减少树的结构尽量减少树的高度，<strong>B+树可以有多个子女，从几十到上千，可以降低树的高度</strong>。</p>
+<p>数据库系统的设计者巧妙利用<strong>了磁盘预读原理</strong>，将<strong>一个节点的大小设为等于一个页</strong>，这样<strong>每个节点只需要一次I/O就可以完全载入</strong>。为了达到这个目的，在实际实现B-Tree还需要使用如下技巧：<strong>每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个node只需一次I/O。</strong></p>
+<h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><h4 id="MySQL中存储索引用到的数据结构是B-树，B-树的查询时间跟树的高度有关，是log-n-，如果用hash存储，那么查询时间是O-1-。既然hash比B-树更快，为什么mysql用B-树来存储索引呢？"><a href="#MySQL中存储索引用到的数据结构是B-树，B-树的查询时间跟树的高度有关，是log-n-，如果用hash存储，那么查询时间是O-1-。既然hash比B-树更快，为什么mysql用B-树来存储索引呢？" class="headerlink" title="MySQL中存储索引用到的数据结构是B+树，B+树的查询时间跟树的高度有关，是log(n)，如果用hash存储，那么查询时间是O(1)。既然hash比B+树更快，为什么mysql用B+树来存储索引呢？"></a>MySQL中存储索引用到的数据结构是B+树，B+树的查询时间跟树的高度有关，是log(n)，如果用hash存储，那么查询时间是O(1)。既然hash比B+树更快，为什么mysql用B+树来存储索引呢？</h4><p>一、从内存角度上说，数据库中的索引一般时在磁盘上，数据量大的情况可能无法一次性装入内存，B+树的设计可以允许数据分批加载。</p>
+<p>二、从业务场景上说，如果只选择一个数据那确实是hash更快，但是数据库中经常会选中多条这时候由于B+树索引有序，并且又有链表相连，它的查询效率比hash就快很多了。</p>
 
   
   
@@ -575,10 +606,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T18:24:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-09T19:47:04+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 25, 2021</p>
+    <p>更新于：Sep 9, 2021</p>
   </a>
 </div>
 
@@ -701,7 +732,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%91"><span class="toc-text">B树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E6%A0%91"><span class="toc-text">B+树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%91%E4%B8%8EB-%E6%A0%91%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">B树与B+树的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%91%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">B树的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E6%A0%91%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">B+树的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%91%E5%92%8CB-%E6%A0%91%E7%9A%84%E5%85%B1%E5%90%8C%E4%BC%98%E7%82%B9"><span class="toc-text">B树和B+树的共同优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E6%A0%91%E6%AF%94B%E6%A0%91%E5%A5%BD%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">B+树比B树好在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-MySQL-%E7%9A%84%E7%B4%A2%E5%BC%95%E8%A6%81%E4%BD%BF%E7%94%A8-B-%E6%A0%91%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%B6%E5%AE%83%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="toc-text">为什么 MySQL 的索引要使用 B+ 树而不是其它树形结构？</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%91"><span class="toc-text">B树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E6%A0%91"><span class="toc-text">B+树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%91%E4%B8%8EB-%E6%A0%91%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">B树与B+树的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%91%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">B树的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E6%A0%91%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">B+树的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%91%E5%92%8CB-%E6%A0%91%E7%9A%84%E5%85%B1%E5%90%8C%E4%BC%98%E7%82%B9"><span class="toc-text">B树和B+树的共同优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E6%A0%91%E6%AF%94B%E6%A0%91%E5%A5%BD%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">B+树比B树好在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-MySQL-%E7%9A%84%E7%B4%A2%E5%BC%95%E8%A6%81%E4%BD%BF%E7%94%A8-B-%E6%A0%91%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%B6%E5%AE%83%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="toc-text">为什么 MySQL 的索引要使用 B+ 树而不是其它树形结构？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E5%8F%89%E6%A0%91"><span class="toc-text">多叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B%E6%A0%91-1"><span class="toc-text">B树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-%E6%A0%91-1"><span class="toc-text">B+树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-%E6%A0%91%E4%B8%8EB%E6%A0%91%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="toc-text">B+树与B树的不同</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8B-%E6%A0%91%E5%81%9A%E7%B4%A2%E5%BC%95%E8%80%8C%E4%B8%8D%E7%94%A8%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="toc-text">为什么用B+树做索引而不用红黑树？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL%E4%B8%AD%E5%AD%98%E5%82%A8%E7%B4%A2%E5%BC%95%E7%94%A8%E5%88%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%98%AFB-%E6%A0%91%EF%BC%8CB-%E6%A0%91%E7%9A%84%E6%9F%A5%E8%AF%A2%E6%97%B6%E9%97%B4%E8%B7%9F%E6%A0%91%E7%9A%84%E9%AB%98%E5%BA%A6%E6%9C%89%E5%85%B3%EF%BC%8C%E6%98%AFlog-n-%EF%BC%8C%E5%A6%82%E6%9E%9C%E7%94%A8hash%E5%AD%98%E5%82%A8%EF%BC%8C%E9%82%A3%E4%B9%88%E6%9F%A5%E8%AF%A2%E6%97%B6%E9%97%B4%E6%98%AFO-1-%E3%80%82%E6%97%A2%E7%84%B6hash%E6%AF%94B-%E6%A0%91%E6%9B%B4%E5%BF%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88mysql%E7%94%A8B-%E6%A0%91%E6%9D%A5%E5%AD%98%E5%82%A8%E7%B4%A2%E5%BC%95%E5%91%A2%EF%BC%9F"><span class="toc-text">MySQL中存储索引用到的数据结构是B+树，B+树的查询时间跟树的高度有关，是log(n)，如果用hash存储，那么查询时间是O(1)。既然hash比B+树更快，为什么mysql用B+树来存储索引呢？</span></a></li></ol></li></ol>
     </div>
   </section>
 

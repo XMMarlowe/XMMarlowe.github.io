@@ -414,21 +414,35 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%ADSQL%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/">
-        MySQL中SQL是如何执行的？
+      <a href="/2021/03/23/%E6%95%B0%E6%8D%AE%E5%BA%93/B%E6%A0%91%E4%B8%8EB+%E6%A0%91/">
+        B树与B+树
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>简单分析sql的执行过程…</p>
+      
+        
+
+B树简介
+
+一种二叉搜索树。
+除根节点外的所有非叶节点至少含有（M/2（向上取整）-1）个关键字，每个节点最多有M-1个关键字，并且以升序排列。所以M阶B树的除根节点外的所有非叶节点的关键字取值区间为[M/2-1(向上取整),M-1]。
+每个节点最多有M-1个关键字。
+
+动图演示
+
+B+树简介
+
+有n棵子树的非叶子结点中含有n个关键字（b树是n-1个），这些关键字不保存数据，只用来索引，...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-16</time>
+        <time>2021-03-23</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
@@ -436,7 +450,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%B8%ADSQL%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/'>
+          <a class='readmore' href='/2021/03/23/%E6%95%B0%E6%8D%AE%E5%BA%93/B%E6%A0%91%E4%B8%8EB+%E6%A0%91/'>
             Read More
           </a>
         </div>
@@ -458,8 +472,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%80%82%E5%90%88%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%B8%8D%E9%80%82%E5%90%88%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9F/">
-        MySQL什么时候适合建索引，什么时候不适合建索引？
+      <a href="/2021/03/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        进程和线程相关知识点
       </a>
     </h2>
   
@@ -468,14 +482,9 @@
       
         
 
-1、什么是索引（本质：数据结构）索引是帮助MySQL高效获取数据的数据结构。
-2、优势
-提高数据检索的效率，降低数据库IO成本
-
-通过索引对数据进行排序，降低数据排序的成本，降低了CPU的消耗
-
-
-3、劣势　　降低更新表的速度，如对表进行update 、delete、insert等操作时，MySQL不仅要保存数据，还要保存一下索引文件每次添加了索引列的字段，都会调整因为更新带来的键值变化...
+何为进程？进程是程序的一次执行过程，是系统运行程序的基本单位，因此进程是动态的。系统运行一个程序即是一个进程从创建，运行到消亡的过程。
+在 Java 中，当我们启动 main 函数时其实就是启动了一个 JVM 的进程，而 main 函数所在的线程就是这个进程中的一个线程，也称主线程。
+何为线程？线程与进程相似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程。与...
       
     
   </div>
@@ -483,15 +492,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-16</time>
+        <time>2021-03-22</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%80%82%E5%90%88%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%B8%8D%E9%80%82%E5%90%88%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9F/'>
+          <a class='readmore' href='/2021/03/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
             Read More
           </a>
         </div>
@@ -513,35 +522,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E6%80%8E%E4%B9%88%E8%AE%A9%E5%B7%A6%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F/">
-        MySQL怎么让左模糊查询走索引？
+      <a href="/2021/03/22/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E7%9A%84%E6%9C%BA%E5%88%B6/">
+        线程之间同步的机制
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-需要做模糊匹配，又要用到索引，索引的最左匹配原则更是不能被打破，这时候可以增加一个字段，这个字段的内容等于USER_NAME字段内容的反转，同时加上这个字段的相关索引，如下：
-
-此时如果是要模糊搜索出用户名后几位有杰这个词的所有用户信息，可以对REVERSE_USER_NAME字段做右模糊查询，效果其实就是和对USER_NAME字段做左模糊查询是一样的，因为二者的内容是相反的，结果如下：...
-      
+      <p>待完善…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-16</time>
+        <time>2021-03-22</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E6%80%8E%E4%B9%88%E8%AE%A9%E5%B7%A6%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F/'>
+          <a class='readmore' href='/2021/03/22/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E7%9A%84%E6%9C%BA%E5%88%B6/'>
             Read More
           </a>
         </div>
@@ -563,29 +566,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93/left-join%E3%80%81right-join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        left join、right join和join的区别
+      <a href="/2021/03/20/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95Java%E5%AE%9E%E7%8E%B0/">
+        常用排序算法Java实现
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>简要介绍三种连接查询的区别…</p>
+      <p>排序算法可以分为内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-15</time>
+        <time>2021-03-20</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93/left-join%E3%80%81right-join%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/03/20/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95Java%E5%AE%9E%E7%8E%B0/'>
             Read More
           </a>
         </div>
@@ -607,29 +610,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/13/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-        初识MySQL索引实现原理
+      <a href="/2021/03/19/%E5%B9%B6%E5%8F%91/JUC-%E6%A0%B8%E5%BF%83%E4%B9%8BAQS%E4%BB%8B%E7%BB%8D/">
+        JUC 核心之AQS介绍
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>MySQL索引的实现原理，以及什么时候会走索引…</p>
+      <p>AQS 的全称为（AbstractQueuedSynchronizer），这个类在java.util.concurrent.locks包下面。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-13</time>
+        <time>2021-03-19</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/13/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%9D%E8%AF%86MySQL%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/'>
+          <a class='readmore' href='/2021/03/19/%E5%B9%B6%E5%8F%91/JUC-%E6%A0%B8%E5%BF%83%E4%B9%8BAQS%E4%BB%8B%E7%BB%8D/'>
             Read More
           </a>
         </div>
@@ -651,29 +654,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/12/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/">
-        InnoDB引擎的特点以及调优
+      <a href="/2021/03/19/%E5%B9%B6%E5%8F%91/Atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB/">
+        Atomic 原子类
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>谈谈InnoDB的特点，以及InnoDB解决的问题…</p>
+      <p>Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-12</time>
+        <time>2021-03-19</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/12/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%BC%95%E6%93%8E%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/'>
+          <a class='readmore' href='/2021/03/19/%E5%B9%B6%E5%8F%91/Atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB/'>
             Read More
           </a>
         </div>
@@ -695,29 +698,34 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/12/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95%E4%B8%8E%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95/">
-        聚集索引与非聚集索引
+      <a href="/2021/03/19/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+        线程池原理分析
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>聚集索引和非聚集索引是mysql数据库中两种主要的索引方式，不同的存储引擎支持索引类型是不一样，那这两种索引有什么不同呢？</p>
+      
+        
+
+execute方法源码：
+12345678910111213141516171819202122232425262728293031323334353637383940// 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)private final AtomicInteger ctl = new AtomicInteger(ctlOf(RU...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-12</time>
+        <time>2021-03-19</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/12/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95%E4%B8%8E%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95/'>
+          <a class='readmore' href='/2021/03/19/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/'>
             Read More
           </a>
         </div>
@@ -739,38 +747,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%8E-InnoDB-%E9%94%81%E7%AE%97%E6%B3%95/">
-        锁机制与 InnoDB 锁算法
+      <a href="/2021/03/18/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+        线程池
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-MyISAM 和 InnoDB 存储引擎使用的锁
-MyISAM 采用表级锁(table-level locking)。
-InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁
-
-表级锁和行级锁对比
-表级锁： MySQL 中锁定 粒度最大 的一种锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，...
-      
+      <p>池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。<br>三大创建方法、七大参数、四种拒绝策略…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-11</time>
+        <time>2021-03-18</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%8E-InnoDB-%E9%94%81%E7%AE%97%E6%B3%95/'>
+          <a class='readmore' href='/2021/03/18/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E6%B1%A0/'>
             Read More
           </a>
         </div>
@@ -792,36 +791,29 @@ InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql-%E4%B8%AD-MyISAM-%E5%92%8C-InnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/">
-        MySQL 中 MyISAM 和 InnoDB 的区别有哪些？
+      <a href="/2021/03/18/%E5%B9%B6%E5%8F%91/volatile-%E5%85%B3%E9%94%AE%E5%AD%97/">
+        volatile 关键字
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-区别
-InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一；
-InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败；  
-InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放在主键索引的叶子节点上，因此 InnoDB 必须要有主键...
-      
+      <p>volatile 是Java虚拟机提供的轻量级同步机制，保证可见性，不保证原子性，禁止指令重排。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-11</time>
+        <time>2021-03-18</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/11/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql-%E4%B8%AD-MyISAM-%E5%92%8C-InnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/'>
+          <a class='readmore' href='/2021/03/18/%E5%B9%B6%E5%8F%91/volatile-%E5%85%B3%E9%94%AE%E5%AD%97/'>
             Read More
           </a>
         </div>
@@ -843,29 +835,36 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%BA%8B%E5%8A%A1%E4%BB%A5%E5%8F%8A%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
-        MySQL事务以及隔离级别
+      <a href="/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        synchronized相关知识点
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>MySQL事务相关面试题…</p>
+      
+        
+
+1、synchronized 关键字
+1.1 synchronized 关键字简介synchronized 关键字解决的是多个线程之间访问资源的同步性，synchronized关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。
+另外，在 Java 早期版本中，synchronized 属于 重量级锁，效率低下。
+为什么呢？因为监视器锁（monitor）是依赖于底层的操作...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-10</time>
+        <time>2021-03-17</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/10/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E4%BA%8B%E5%8A%A1%E4%BB%A5%E5%8F%8A%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/'>
+          <a class='readmore' href='/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
             Read More
           </a>
         </div>
@@ -892,7 +891,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           </a>
         
         <p class="current">
-          22 / 23
+          22 / 27
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/23/">
@@ -997,7 +996,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1007,7 +1006,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1022,22 +1021,22 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1052,17 +1051,17 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1107,12 +1106,12 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1149,7 +1148,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1171,7 +1170,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1197,8 +1196,8 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:27 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:15 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1248,7 +1247,7 @@ InnoDB 是聚集索引，MyISAM 是非聚集索引。聚簇索引的文件存放
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

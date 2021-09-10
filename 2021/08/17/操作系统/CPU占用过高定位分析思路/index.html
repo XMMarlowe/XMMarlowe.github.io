@@ -26,7 +26,7 @@
   
 
   
-    <meta name="description" content="CPU占用过高分析思路">
+    <meta name="description" content="CPU占用过高分析思路，以及解决方案。">
   
 
   <!-- feed -->
@@ -469,7 +469,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>161 words</p>
+      <p>456 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -488,10 +488,10 @@
 
 
   
-  <p>CPU占用过高分析思路</p>
+  <p>CPU占用过高分析思路，以及解决方案。</p>
 <a id="more"></a>
 
-<ul>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
 <li>1.先用top命令找出CPU占比最高的</li>
 <li>2.<code>ps -ef</code>或者<code>jps</code>进一步定位，得知是一个怎么样的一个后台程序（ps -ef|grep java|grep -v grep）</li>
 <li>3.定位到具体线程或者代码<ul>
@@ -508,6 +508,27 @@
 <li>5.jstack 进程id | grep tid(16进制线程ID小写英文) -A60<pre><code> 前60行</code></pre>
 </li>
 </ul>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="1-先用top命令找出CPU占比最高的"><a href="#1-先用top命令找出CPU占比最高的" class="headerlink" title="1. 先用top命令找出CPU占比最高的"></a>1. 先用top命令找出CPU占比最高的</h4><p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828095105.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828095105.png" srcset="data:image/png;base64,666" alt="20210828095105"></p>
+<h4 id="2-ps-ef或者jps进一步定位，得知是一个怎么样的一个后台程序作搞屎棍"><a href="#2-ps-ef或者jps进一步定位，得知是一个怎么样的一个后台程序作搞屎棍" class="headerlink" title="2. ps -ef或者jps进一步定位，得知是一个怎么样的一个后台程序作搞屎棍"></a>2. ps -ef或者jps进一步定位，得知是一个怎么样的一个后台程序作搞屎棍</h4><p><strong>ps -ef具体什么意思：</strong></p>
+<ul>
+<li>-e和-A的意思是一样的，即显示有关其他用户进程的信息，包括那些没有控制终端的进程。</li>
+<li>-f显示用户id，进程id，父进程id，最近CPU使用情况，进程开始时间等等。</li>
+</ul>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828095534.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828095534.png" srcset="data:image/png;base64,666" alt="20210828095534"></p>
+<h4 id="3-定位到具体线程或者代码"><a href="#3-定位到具体线程或者代码" class="headerlink" title="3. 定位到具体线程或者代码"></a>3. 定位到具体线程或者代码</h4><ul>
+<li>ps -mp 进程 -o THREAD,tid,time<ul>
+<li>-m 显示所有的线程</li>
+<li>-p pid进程使用cpu的时间</li>
+<li>-o 该参数后是用户自定义格式</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828095951.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828095951.png" srcset="data:image/png;base64,666" alt="20210828095951"></p>
+<h4 id="4-将线程ID转为16进制格式（英文小写格式）"><a href="#4-将线程ID转为16进制格式（英文小写格式）" class="headerlink" title="4. 将线程ID转为16进制格式（英文小写格式）"></a>4. 将线程ID转为16进制格式（英文小写格式）</h4><p>命令<code>printf %x 3929</code> 将3929转换为十六进制(f59)</p>
+<p>上一个步骤我们找到了这个线程的ID为 3929 但是这是十进制的，所以我们要转化为16进制：为f59。</p>
+<h4 id="5-jstack-进程ID-grep-tid（16进制线程ID小写英文）-A60"><a href="#5-jstack-进程ID-grep-tid（16进制线程ID小写英文）-A60" class="headerlink" title="5. jstack 进程ID | grep tid（16进制线程ID小写英文）-A60"></a>5. jstack 进程ID | grep tid（16进制线程ID小写英文）-A60</h4><p><code>-A60</code> 显示前60行信息</p>
+<p>比如：<code>jstack 3929 | grep f59 -A60</code></p>
+<h4 id="6-最后，可以直接定位出哪一行有问题"><a href="#6-最后，可以直接定位出哪一行有问题" class="headerlink" title="6. 最后，可以直接定位出哪一行有问题"></a>6. 最后，可以直接定位出哪一行有问题</h4><p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828101304.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210828101304.png" srcset="data:image/png;base64,666" alt="20210828101304"></p>
 
   
   
@@ -553,10 +574,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-21T11:29:42+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-28T10:19:02+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 21, 2021</p>
+    <p>更新于：Aug 28, 2021</p>
   </a>
 </div>
 
@@ -570,7 +591,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/&title=CPU占用过高定位分析思路 - Marlowe&summary=CPU占用过高分析思路"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/&title=CPU占用过高定位分析思路 - Marlowe&summary=CPU占用过高分析思路，以及解决方案。"
           
           >
           
@@ -582,7 +603,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/&title=CPU占用过高定位分析思路 - Marlowe&summary=CPU占用过高分析思路"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/&title=CPU占用过高定位分析思路 - Marlowe&summary=CPU占用过高分析思路，以及解决方案。"
           
           >
           
@@ -594,7 +615,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/&title=CPU占用过高定位分析思路 - Marlowe&summary=CPU占用过高分析思路"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/&title=CPU占用过高定位分析思路 - Marlowe&summary=CPU占用过高分析思路，以及解决方案。"
           
           >
           
@@ -671,6 +692,20 @@
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%88%E7%94%A8top%E5%91%BD%E4%BB%A4%E6%89%BE%E5%87%BACPU%E5%8D%A0%E6%AF%94%E6%9C%80%E9%AB%98%E7%9A%84"><span class="toc-text">1. 先用top命令找出CPU占比最高的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ps-ef%E6%88%96%E8%80%85jps%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%AE%9A%E4%BD%8D%EF%BC%8C%E5%BE%97%E7%9F%A5%E6%98%AF%E4%B8%80%E4%B8%AA%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%E4%B8%80%E4%B8%AA%E5%90%8E%E5%8F%B0%E7%A8%8B%E5%BA%8F%E4%BD%9C%E6%90%9E%E5%B1%8E%E6%A3%8D"><span class="toc-text">2. ps -ef或者jps进一步定位，得知是一个怎么样的一个后台程序作搞屎棍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9A%E4%BD%8D%E5%88%B0%E5%85%B7%E4%BD%93%E7%BA%BF%E7%A8%8B%E6%88%96%E8%80%85%E4%BB%A3%E7%A0%81"><span class="toc-text">3. 定位到具体线程或者代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%B0%86%E7%BA%BF%E7%A8%8BID%E8%BD%AC%E4%B8%BA16%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%EF%BC%88%E8%8B%B1%E6%96%87%E5%B0%8F%E5%86%99%E6%A0%BC%E5%BC%8F%EF%BC%89"><span class="toc-text">4. 将线程ID转为16进制格式（英文小写格式）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-jstack-%E8%BF%9B%E7%A8%8BID-grep-tid%EF%BC%8816%E8%BF%9B%E5%88%B6%E7%BA%BF%E7%A8%8BID%E5%B0%8F%E5%86%99%E8%8B%B1%E6%96%87%EF%BC%89-A60"><span class="toc-text">5. jstack 进程ID | grep tid（16进制线程ID小写英文）-A60</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%9C%80%E5%90%8E%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%AE%9A%E4%BD%8D%E5%87%BA%E5%93%AA%E4%B8%80%E8%A1%8C%E6%9C%89%E9%97%AE%E9%A2%98"><span class="toc-text">6. 最后，可以直接定位出哪一行有问题</span></a></li></ol></li></ol>
+    </div>
+  </section>
 
 
   

@@ -467,13 +467,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>501 words</p>
+      <p>1.1k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>3 min</p>
     </a>
   </div>
 
@@ -493,6 +493,17 @@
 <h3 id="何为线程？"><a href="#何为线程？" class="headerlink" title="何为线程？"></a>何为线程？</h3><p>线程与进程相似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程。与进程不同的是同类的多个线程共享进程的堆和方法区资源，但<strong>每个线程有自己的程序计数器、虚拟机栈和本地方法栈</strong>，所以系统在产生一个线程，或是在各个线程之间作切换工作时，负担要比进程小得多，也正因为如此，线程也被称为轻量级进程。</p>
 <h3 id="何为协程？"><a href="#何为协程？" class="headerlink" title="何为协程？"></a>何为协程？</h3><p>协程是计算机程序的一类组件，推广了协作式多任务的子程序，允许执行被挂起与被恢复。相对子例程而言，协程更为一般和灵活，但在实践中使用没有子例程那样广泛。协程更适合于用来实现彼此熟悉的程序组件，如协作式多任务、异常处理、事件循环、迭代器、无限列表和管道。</p>
 <h3 id="线程和进程的区别是什么？"><a href="#线程和进程的区别是什么？" class="headerlink" title="线程和进程的区别是什么？"></a>线程和进程的区别是什么？</h3><p><strong>总结:</strong> 线程是进程划分成的更小的运行单位,一个进程在其执行的过程中可以产生多个线程。线程和进程最大的不同在于基本上各进程是独立的，而各线程则不一定，因为同一进程中的线程极有可能会相互影响。线程执行开销小，但不利于资源的管理和保护;而进程正相反。</p>
+<h3 id="为什么要使用多线程呢"><a href="#为什么要使用多线程呢" class="headerlink" title="为什么要使用多线程呢?"></a>为什么要使用多线程呢?</h3><p>先从总体上来说：</p>
+<ul>
+<li><strong>从计算机底层来说：</strong> 线程可以比作是轻量级的进程，是程序执行的最小单位,线程间的切换和调度的成本远远小于进程。另外，多核 CPU 时代意味着多个线程可以同时运行，这减少了线程上下文切换的开销。</li>
+<li><strong>从当代互联网发展趋势来说：</strong> 现在的系统动不动就要求百万级甚至千万级的并发量，而多线程并发编程正是开发高并发系统的基础，利用好多线程机制可以大大提高系统整体的并发能力以及性能。</li>
+</ul>
+<p>再深入到计算机底层来探讨：</p>
+<ul>
+<li><strong>单核时代：</strong> 在单核时代多线程主要是为了提高单进程利用 CPU 和 IO 系统的效率。 假设只运行了一个 Java 进程的情况，当我们请求 IO 的时候，如果 Java 进程中只有一个线程，此线程被 IO 阻塞则整个进程被阻塞。CPU 和 IO 设备只有一个在运行，那么可以简单地说系统整体效率只有 50%。当使用多线程的时候，一个线程被 IO 阻塞，其他线程还可以继续使用 CPU。从而提高了 Java 进程利用系统资源的整体效率。</li>
+<li><strong>多核时代:</strong> 多核时代多线程主要是为了提高进程利用多核 CPU 的能力。举个例子：假如我们要计算一个复杂的任务，我们只用一个线程的话，不论系统有几个 CPU 核心，都只会有一个 CPU 核心被利用到。而创建多个线程，这些线程可以被映射到底层多个 CPU 上执行，在任务中的多个线程没有资源竞争的情况下，任务执行的效率会有显著性的提高，约等于（单核时执行时间/CPU 核心数）。</li>
+</ul>
+<h3 id="使用多线程可能带来什么问题"><a href="#使用多线程可能带来什么问题" class="headerlink" title="使用多线程可能带来什么问题?"></a>使用多线程可能带来什么问题?</h3><p>并发编程的目的就是为了能提高程序的执行效率提高程序运行速度，但是并发编程并不总是能提高程序运行速度的，而且并发编程可能会遇到很多问题，比如：<strong>内存泄漏、死锁、线程不安全等等。</strong></p>
 
   
   
@@ -538,10 +549,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-22T15:48:30+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-31T07:54:28+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 22, 2021</p>
+    <p>更新于：Aug 31, 2021</p>
   </a>
 </div>
 
@@ -620,15 +631,14 @@ B树简介
         </a>
       
       
-        <a class='next' href='/2021/03/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E7%9A%84%E6%9C%BA%E5%88%B6/'>
+        <a class='next' href='/2021/03/22/%E5%B9%B6%E5%8F%91/%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E7%9A%84%E6%9C%BA%E5%88%B6/'>
           <p class='title'>线程之间同步的机制<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>待完善…
 
 
+线程同步是两个或多个共享关键资源的线程的并发执行。应该同步线程以避免关键的资源使用冲突。操作系统一般有下面三种线程同步的方式：
 
-临界区：不可以跨进程，忘记解锁会无限等待，要么存在要么没有，多线程访问独占性共享资源
-互斥量：可以跨进程，忘记解锁会自动释放，要么存在要么没有
-事件：又叫线程触发器，不可以跨进程...</p>
+临界区：不可以跨进程，忘记解锁会无限等待，要么存在...</p>
         </a>
       
     </div>
@@ -671,7 +681,7 @@ B树简介
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E8%BF%9B%E7%A8%8B%EF%BC%9F"><span class="toc-text">何为进程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-text">何为线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E5%8D%8F%E7%A8%8B%EF%BC%9F"><span class="toc-text">何为协程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">线程和进程的区别是什么？</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E8%BF%9B%E7%A8%8B%EF%BC%9F"><span class="toc-text">何为进程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-text">何为线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E5%8D%8F%E7%A8%8B%EF%BC%9F"><span class="toc-text">何为协程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">线程和进程的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%91%A2"><span class="toc-text">为什么要使用多线程呢?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%AF%E8%83%BD%E5%B8%A6%E6%9D%A5%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-text">使用多线程可能带来什么问题?</span></a></li></ol>
     </div>
   </section>
 

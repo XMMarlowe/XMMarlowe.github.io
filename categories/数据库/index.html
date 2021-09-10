@@ -440,6 +440,50 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/08/29/%E6%95%B0%E6%8D%AE%E5%BA%93/count-1-%E3%80%81count-%E3%80%81count-%E5%88%97%E5%90%8D-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        count(1)、count(*)、count(列名)的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>在平时开发，或者写sql过程中，没怎么注意过count(1)、count(*)、count(列名)的区别，本文，将结束一下这三者的区别。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-29</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/29/%E6%95%B0%E6%8D%AE%E5%BA%93/count-1-%E3%80%81count-%E3%80%81count-%E5%88%97%E5%90%8D-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/08/26/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A4%A7%E5%8E%82%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%B0%83%E4%BC%98%E7%9A%84%EF%BC%9F/">
         大厂都是怎么调优的？
       </a>
@@ -737,11 +781,11 @@
         
 
 
-如何选择索引列的顺序建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
+如何选择索引列的顺序？建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。
 
 区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）
 尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）
-使用最频繁的列放到联合索引的左侧（这样可以比较少的建立...
+使用最频繁的列放到联合索引的左侧（这样可以比较少的建...
       
     
   </div>
@@ -852,50 +896,6 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       
         <div>
           <a class='readmore' href='/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-redo-log%E3%80%81binlog%E3%80%81undo-log-%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/">
-        MySQL redo log、binlog、undo log 区别与作用
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>日志系统主要有redo log(重做日志)和binlog(归档日志)。redo log是InnoDB存储引擎层的日志，binlog是MySQL Server层记录的日志， 两者都是记录了某些操作的日志(不是所有)自然有些重复（但两者记录的格式不同）。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-29</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL-redo-log%E3%80%81binlog%E3%80%81undo-log-%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/'>
             Read More
           </a>
         </div>
@@ -1022,7 +1022,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1032,7 +1032,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1047,22 +1047,22 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1077,17 +1077,17 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1132,12 +1132,12 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1174,7 +1174,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1196,7 +1196,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1222,8 +1222,8 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:39 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:35 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1273,7 +1273,7 @@ lsn: 可以理解为数据库从创建以来产生的redo日志量，这个值�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

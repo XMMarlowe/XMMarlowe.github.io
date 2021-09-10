@@ -415,43 +415,31 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD%E5%8F%8A%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/">
-        缺页中断及页面置换算法
+      <a href="/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82HTTPS%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86/">
+        彻底搞懂HTTPS的加密原理
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-
-缺页中断在请求分页系统中，可以通过查询页表中的状态位来确定所要访问的页面是否存在于内存中。每当所要访问的页面不在内存时，会产生一次缺页中断，此时操作系统会根据页表中的外存地址在外存中找到所缺的一页，将其调入内存。
-
-缺页本身是一种中断，与一般的中断一样，需要经过4个处理步骤：    
-
-保护CPU现场  
-分析中断原因
-转入缺页中断处理程序进行处理
-恢复CPU现场，继续执行
-
-但是缺页...
-      
+      <p>HTTPS（SSL/TLS）的加密机制虽然是大家都应了解的基本知识，但网上很多相关文章总会忽略一些内容，没有阐明完整的逻辑脉络，我当年学习它的时候也废了挺大功夫。</p>
+<p>对称与非对称加密、数字签名、数字证书等，在学习过程中，除了了解“它是什么”，你是否有想过“为什么是它”？我认为理解了后者才真正理解了HTTPS的加密机制。</p>
+<p>本文以问题的形式逐步展开，一步步解开HTTPS的面纱，希望能帮助你彻底搞懂HTTPS。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-10</time>
+        <time>2021-04-29</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD%E5%8F%8A%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/'>
+          <a class='readmore' href='/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82HTTPS%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -473,41 +461,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">
-        多线程和多进程及其应用场景
+      <a href="/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%88%9D%E8%AF%86HTTP2-0/">
+        初识HTTP2.0
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-多进程多线程的区别
-进程是分配资源的基本单位；线程是系统调度和分派的基本单位。
-
-属于同一进程的线程，堆是共享的，栈是私有的。
-
-属于同一进程的所有线程都具有相同的地址空间。
-
-
-多进程的优点：①编程相对容易；通常不需要考虑锁和同步资源的问题。 ②更强的容错性：比起多线程的一个好处是一个进程崩溃了不会影响其他进程。 ③有内核保证的隔离：数据和错误隔离。 对于使用如C/C++这些语言编写的...
-      
+      <p>HTTP/2是HTTP协议自1999年HTTP 1.1发布后的首个更新，主要基于SPDY协议。由互联网<br>工程任务组(IETF) 的Hypertext Transfer Protocol Bis (httpbis) 工作小组进行开发。该组织于2014年12月将HTTP/2标准提议递交至IESG进行讨论，于2015年2月17日被批准。HTTP/2标准于2015年5月以RFC 7540正式发表。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-09</time>
+        <time>2021-04-29</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+          <a class='readmore' href='/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%88%9D%E8%AF%86HTTP2-0/'>
             Read More
           </a>
         </div>
@@ -529,276 +505,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
-        进程间的通信方式
+      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/as-if-serial%E8%A7%84%E5%88%99%E5%92%8Chappens-before%E8%A7%84%E5%88%99/">
+        as-if-serial规则和happens-before规则
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>进程间的7种通信方式概述…</p>
+      <p>我们知道为了提高并行度，优化程序性能，编译器和处理器会对代码进行指令重排序。但为了不改变程序的执行结果，尽可能地提高程序执行的并行度，我们需要了解as-if-serial规则和happens-before规则。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/">
-        死锁产生的原因以及产生的必要条件
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-死锁产生的原因
-系统资源不足。
-进程运行推进的顺序不合适。
-资源分配不当。
-
-死锁产生的四个必要条件
-互斥条件：一个资源每次只能被一个进程使用。
-请求与保持条件：一个进程因请求资源而阻塞时，对已经获得的资源保持不放。
-不剥夺条件：进程已获得的资源，在未使用完之前，不能强行剥夺。
-循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。
-
-如何避免死锁？1. 避免嵌套锁如果您已经持有...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/01/%E9%A2%98%E8%A7%A3/%E7%A0%94%E5%8F%91%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/">
-        研发高频算法题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>牛客研发最爱考、剑指offer经典题目</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/01/%E9%A2%98%E8%A7%A3/%E7%A0%94%E5%8F%91%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/27/%E9%A2%98%E8%A7%A3/Leetcode-%E5%89%91%E6%8C%87offer-40-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0/">
-        Leetcode-剑指offer 40.最小的K个数
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。
-示例 1：
-输入：arr = [3,2,1], k = 2输出：[1,2] 或者 [2,1]示例 2：
-输入：arr = [0,1,2,1], k = 1输出：[0]
- 
-限制：
-0 &lt;= k &lt;= arr.length &lt;= 10000...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-27</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/27/%E9%A2%98%E8%A7%A3/Leetcode-%E5%89%91%E6%8C%87offer-40-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/27/%E9%A2%98%E8%A7%A3/%E5%AF%8C%E9%80%94%E7%AC%94%E8%AF%95-%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E8%8A%82%E7%82%B9/">
-        富途笔试-找到搜索二叉树中两个错误的节点
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-题目描述一棵二叉树原本是搜索二叉树，但是其中有两个节点调换了位置，使得这棵二叉树不再是搜索二叉树，请按升序输出这两个错误节点的值。(每个节点的值各不相同)示例1输入{1,2,3}返回值[1,2]
-思路中序遍历可以得到搜索二叉树的升序遍历结果，题目描述其中两个节点交换了位置，因此只需在中序遍历中找到异常数据即可。
-
-中序遍历二叉树
-从前面往后找，发现当前数比后一个数大，则是异常数据，放在结...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-27</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/27/%E9%A2%98%E8%A7%A3/%E5%AF%8C%E9%80%94%E7%AC%94%E8%AF%95-%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E8%8A%82%E7%82%B9/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%88%9D%E8%AF%86CAS%E4%B8%8EABA%E9%97%AE%E9%A2%98/">
-        初识CAS与ABA问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-什么是CAS？CAS是英文单词CompareAndSwap的缩写，中文意思是：比较并替换。CAS需要有3个操作数：内存地址V，旧的预期值A，即将要更新的目标值B。 CAS指令执行时，当且仅当内存地址V的值与预期值A相等时，将内存地址V的值修改为B，否则就什么都不做。整个比较并替换的操作是一个原子操作。它体现的一种乐观锁的思想，比如多个线程要对一个共享的整型变量执行 +1 操作
-获取共享变量...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-25</time>
+        <time>2021-04-28</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -806,7 +527,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%88%9D%E8%AF%86CAS%E4%B8%8EABA%E9%97%AE%E9%A2%98/'>
+          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/as-if-serial%E8%A7%84%E5%88%99%E5%92%8Chappens-before%E8%A7%84%E5%88%99/'>
             Read More
           </a>
         </div>
@@ -828,29 +549,38 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/">
-        异步回调
+      <a href="/2021/04/28/Java/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/">
+        对象在内存中的内存布局
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>To be continue…</p>
+      
+        
+
+对象的内存布局HotSpot虚拟机中，对象在内存中存储的布局可以分为三块区域：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。
+
+从上面的这张图里面可以看出，对象在内存中的结构主要包含以下几个部分：
+
+Mark Word(标记字段)：对象的Mark Word部分占4个字节，其内容是一系列的标记位，比如轻量级锁的标记位，偏向锁标记位等等。
+Kla...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-25</time>
+        <time>2021-04-28</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/'>
+          <a class='readmore' href='/2021/04/28/Java/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/'>
             Read More
           </a>
         </div>
@@ -872,21 +602,32 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/25/%E5%B9%B6%E5%8F%91/ForkJoin/">
-        ForkJoin
+      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88AQS%E5%BA%95%E5%B1%82%E6%98%AFCAS-volatile/">
+        为什么AQS底层是CAS + volatile
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>ForkJoin 在JDK1.7， 并行执行任务！ 在大数据量下提高效率。</p>
+      
+        
+
+CAS操作和volatile简述CAS操作CAS是什么？CAS是compare and swap的缩写，从字面上理解就是比较并更新；主要是通过 处理器的指令 来保证操作的原子性 。
+CAS 操作包含三个操作数：
+
+内存位置（V）
+预期原值（A）
+更新值(B)
+
+简单来说： 从内存位置V上取到存储的值，将值和预期值A进行比较，如果值和预期值A的结果相等，那么我们就把新值B更新到内存位置V上...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-25</time>
+        <time>2021-04-28</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
@@ -894,7 +635,262 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/25/%E5%B9%B6%E5%8F%91/ForkJoin/'>
+          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%BA%E4%BB%80%E4%B9%88AQS%E5%BA%95%E5%B1%82%E6%98%AFCAS-volatile/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/Synchronized%E4%B8%8EReentrantLock/">
+        Synchronized与ReentrantLock
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>Java 里面，最基本的互斥同步手段就是 synchronized 关键字，这是一种块结构( Block Structured ）的同步语法。还有就是 Java 类库中新提供了 java. util.concurrent 包，其中的 java.util.concurrent.locks.Lock 接口便成了 Java 另一 全新的互斥 同步手段。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-28</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/Synchronized%E4%B8%8EReentrantLock/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%A4%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E6%AF%8D/">
+        两个线程交替打印数字和字母
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <ol>
+<li>使用<code>LockSupport</code>的 <code>park()</code> 和 <code>unpark()</code> 方法</li>
+<li>使用<code>wait()</code>和<code>notify()</code>方法
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-28</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/28/%E5%B9%B6%E5%8F%91/%E4%B8%A4%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E6%AF%8D/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">
+        Java如何开启线程?怎么保证线程安全?
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+线程和进程的区别进程是操作系统进行资源分配的最小单元。线程是操作系统进行任务调度分配的最小单元，线程隶属于进程。
+如何开启线程？
+继承Thread类,重写run方法。
+实现Runnable接口， 实现run方法。
+实现Callable接口， 实现call方法。通过FutureTask创建一个线程，获取到线程执行的返回值。
+通过线程池来开启线程。
+
+怎么保证线程安全？加锁
+
+JVM提供的锁...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-26</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/26/%E5%B9%B6%E5%8F%91/Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B-%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/">
+        聊聊对关系型数据库和非关系型数据库的理解
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+关系型数据库关系型数据库最典型的数据结构是表，由二维表及其之间的联系所组成的一个数据组织
+优点
+易于维护：都是使用表结构，格式一致；
+使用方便：SQL语言通用，可用于复杂查询；
+复杂操作：支持SQL，可用于一个表以及多个表之间非常复杂的查询。
+
+缺点
+读写性能比较差，尤其是海量数据的高效率读写；
+固定的表结构，灵活度稍欠；
+高并发读写需求，传统关系型数据库来说，硬盘I/O是一个很大的瓶颈...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-25</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/">
+        同一线程组下的线程，一个线程的异常会影响其他线程运行么？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+当一个线程抛出OOM异常后，它所占据的内存资源会全部被释放掉，从而不会影响其他线程的运行！
+一个线程溢出后，进程里的其他线程还能照常运行。
+同一线程组下的线程，一个线程出现异常不会影响其他线程的运行。
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -921,7 +917,7 @@
           </a>
         
         <p class="current">
-          17 / 30
+          17 / 34
         </p>
         
           <a class="next" rel="next" href="/page/18/">
@@ -1025,7 +1021,7 @@
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1035,7 +1031,7 @@
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1050,22 +1046,22 @@
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1080,17 +1076,17 @@
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1135,12 +1131,12 @@
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1177,7 +1173,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1199,7 +1195,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1225,8 +1221,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:47 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:44 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1276,7 +1272,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

@@ -415,8 +415,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/">
-        聊聊对关系型数据库和非关系型数据库的理解
+      <a href="/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+        局部性原理和工作原理
       </a>
     </h2>
   
@@ -425,16 +425,10 @@
       
         
 
-关系型数据库关系型数据库最典型的数据结构是表，由二维表及其之间的联系所组成的一个数据组织
-优点
-易于维护：都是使用表结构，格式一致；
-使用方便：SQL语言通用，可用于复杂查询；
-复杂操作：支持SQL，可用于一个表以及多个表之间非常复杂的查询。
+程序访问的局部性原理程序访问的局部性原理包括时间局部性和空间局部性。
 
-缺点
-读写性能比较差，尤其是海量数据的高效率读写；
-固定的表结构，灵活度稍欠；
-高并发读写需求，传统关系型数据库来说，硬盘I/O是一个很大的瓶颈...
+空间局部性：在最近的未来要用到的信息（指令和数据），很可能与现在正在使用的信息在存储空间上是邻近的
+时间局部性：在最近的未来要用到的信息，很可能是现在正在使用的信息高速缓冲技术是利用程序访问的局部性原理，把程序中正在使用的部分存放在一个高速的、容量较小的Cache中，使CPU的访存操作大多数针对Cache进行，从而大...
       
     
   </div>
@@ -442,58 +436,7 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/25/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%81%8A%E8%81%8A%E5%AF%B9%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%90%86%E8%A7%A3/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/">
-        同一线程组下的线程，一个线程的异常会影响其他线程运行么？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-当一个线程抛出OOM异常后，它所占据的内存资源会全部被释放掉，从而不会影响其他线程的运行！
-一个线程溢出后，进程里的其他线程还能照常运行。
-同一线程组下的线程，一个线程出现异常不会影响其他线程的运行。
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-23</time>
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
@@ -501,7 +444,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/'>
+          <a class='readmore' href='/2021/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -523,35 +466,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/">
-        线程崩溃必会使进程崩溃吗？
+      <a href="/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">
+        ThreadLocal专题学习
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-结论：线程崩溃不一定导致进程崩溃。
-线程崩溃的本质就是内存出错。而内存出错有时不会引起其他线程出错的，因为崩溃的线程，也就是出错的内存有时侯没有被其他线程访问，也就不会产生问题，但有时候会打乱其他线程的内存。
-
-      
+      <p>通过ThreadLocal源码和相关问题专题学习…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-23</time>
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/'>
+          <a class='readmore' href='/2021/05/09/%E5%B9%B6%E5%8F%91/ThreadLocal%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/'>
             Read More
           </a>
         </div>
@@ -573,27 +510,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/23/Java/Object%E7%B1%BB%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
-        Object类中常用方法
+      <a href="/2021/05/09/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+        序列化与反序列化
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-取得对象信息的方法：toString()该方法在打印对象时被调用，将对象信息变为字符串返回，默认输出对象地址。
-编译器默认调用toString()方法输出对象，但输出的是对象的地址，我们并不能看懂它的意思。那么就要通过重写Object类的toString()方法来输出对象属性信息。
-对象相等判断方法：equals()public boolean equals(Object obj);用于...
-      
+      <p>转载于美团技术团队<a target="_blank" rel="noopener" href="https://tech.meituan.com/2015/02/26/serialization-vs-deserialization.html">序列化与反序列化</a></p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-23</time>
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -601,7 +532,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/23/Java/Object%E7%B1%BB%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/'>
+          <a class='readmore' href='/2021/05/09/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/'>
             Read More
           </a>
         </div>
@@ -623,8 +554,8 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/23/%E6%95%B0%E6%8D%AE%E5%BA%93/broadcast-hash-join%E5%92%8Csort-merge-join/">
-        broadcast hash join和sort merge join
+      <a href="/2021/05/09/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+        Java序列化与反序列化
       </a>
     </h2>
   
@@ -633,8 +564,10 @@
       
         
 
-Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL技术总体可以分为简单操作（过滤操作-where、排序操作-limit等），聚合操作-groupby以及Join操作等。其中Join操作是最复杂、代价最大的操作类型，也是OLAP场景中使用相对较多的操作。因此很有必要对其进行深入研究。
-另外，从业务层面来讲，用户在数仓建设的时候也会涉及Join使用的问题。通常情况下，数据仓...
+一些问题Java序列化，反序列化序列化指将Java对象转换为字节序列的过程。
+反序列化指将字节序列转换为目标对象的过程；
+为什么要序列化?其实序列化最终的目的是为了对象可以跨平台存储，和进行网络传输。而我们进行跨平台存储和网络传输的方式就是IO，而我们的IO支持的数据格式就是字节数组。
+因为我们单方面的只把对象转成字节数组还不行，因为没有规则的字节数组我们是没办法把对象的本来面目还原回来...
       
     
   </div>
@@ -642,15 +575,15 @@ Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-23</time>
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/23/%E6%95%B0%E6%8D%AE%E5%BA%93/broadcast-hash-join%E5%92%8Csort-merge-join/'>
+          <a class='readmore' href='/2021/05/09/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/'>
             Read More
           </a>
         </div>
@@ -672,8 +605,8 @@ Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
-        操作系统之内存管理
+      <a href="/2021/05/09/Java/OOM%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%EF%BC%8CSOF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5/">
+        OOM有哪些情况，SOF有哪些情况
       </a>
     </h2>
   
@@ -681,11 +614,11 @@ Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL
     
       
         
-虚拟地址转换为物理地址
-第一步，先将虚拟地址转换为逻辑地址： 根据程序中的虚拟地址得出其所在的段，然后加上段偏移，我们就能得到一个逻辑地址
-第二步，再将逻辑地址转换为线型地址： 有了逻辑地址之后，我们需要将逻辑地址转换为线型地址（因为线型地址是逻辑地址转换到物理地址的一个中间层），只需要把逻辑地址加上段的基地址就能生成一个线型地址
-第三步，再将线型地址再转换为物理地址：
-如果启用了分页机制...
+
+OOM(OutOfMemory)1、全称为OutOfMemoryError异常，如果虚拟机在扩展栈时无法申请足够的内存空间，抛出它；
+2、Java heap异常:java.lang.OutOfMemoryError:Java heap Space；
+3、虚拟机栈和本地方法溢出；
+4、运行时常量池溢出异常信息：java.lang.OutOfMemoryError:PermGen Space...
       
     
   </div>
@@ -693,15 +626,15 @@ Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-22</time>
+        <time>2021-05-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/'>
+          <a class='readmore' href='/2021/05/09/Java/OOM%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%EF%BC%8CSOF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5/'>
             Read More
           </a>
         </div>
@@ -723,8 +656,8 @@ Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/">
-        Java并发之Unsafe类
+      <a href="/2021/05/08/Java/%E5%A6%82%E4%BD%95%E5%9C%A8List%E7%A7%8D%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
+        如何在List种移除元素
       </a>
     </h2>
   
@@ -733,7 +666,7 @@ Join背景介绍Join是数据库查询永远绕不开的话题，传统查询SQL
       
         
 
-Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级别、不安全操作的方法，如直接访问系统内存资源、自主管理内存资源等，这些方法在提升Java运行效率、增强Java语言底层资源操作能力方面起到了很大的作用。但由于Unsafe类使Java语言拥有了类似C语言指针一样操作内存空间的能力，这无疑也增加了程序发生相关指针问题的风险。在程序中过度、不正确使用Unsafe类会使得程...
+Itr对象源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667private class Itr implements Iterator&lt;E&gt; &#123;	    int c...
       
     
   </div>
@@ -741,15 +674,15 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-21</time>
+        <time>2021-05-08</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/21/%E5%B9%B6%E5%8F%91/Java%E5%B9%B6%E5%8F%91%E4%B9%8BUnsafe%E7%B1%BB/'>
+          <a class='readmore' href='/2021/05/08/Java/%E5%A6%82%E4%BD%95%E5%9C%A8List%E7%A7%8D%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/'>
             Read More
           </a>
         </div>
@@ -771,8 +704,8 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/19/%E5%B9%B6%E5%8F%91/%E7%BB%A7%E6%89%BFThread%E5%92%8C%E5%AE%9E%E7%8E%B0Runnable%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        继承Thread和实现Runnable的区别
+      <a href="/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        Java 中 a = a+b和a += b 的区别
       </a>
     </h2>
   
@@ -781,10 +714,15 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
       
         
 
+区别
+a += b执行实际过程实际是 是先计算出a的值，然后用一个temp对象存储，之后和b进行相加，然后将值赋值给a引用。
+
+a = a+b 的执行过程则是先计算 a + b，然后再赋值给a引用，给a引用的时候如果 引用a 有计算过程，则会再次计算。
+
++=如果两边的操作数的精度不一样时会自动向低转化，而a = a+b则不会自动转化，需要手动进行强制类型转化。
 
 
-当使用继承的时候，主要是为了不必重新开发，并且在不必了解实现细节的情况下拥有了父类我所需要的特征。它也有一个很大的缺点，那就是如果我们的类已经从一个类继承（如小程序必须继承自 Applet 类），则无法再继承 Thread 类，
-Java只能单继承，因此如果是采用继承Thread的方法，那么在以后进行代码重构的时候可能会遇到问题，因为你无法继承别的类了，在其他的方面，两者之间并没什么...
+
       
     
   </div>
@@ -792,15 +730,15 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-19</time>
+        <time>2021-05-08</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/19/%E5%B9%B6%E5%8F%91/%E7%BB%A7%E6%89%BFThread%E5%92%8C%E5%AE%9E%E7%8E%B0Runnable%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/05/08/Java/Java%20%E4%B8%AD%20a%20=%20a+b%E5%92%8Ca%20+=%20b%20%E7%9A%84%E5%8C%BA%E5%88%AB/'>
             Read More
           </a>
         </div>
@@ -822,8 +760,8 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/">
-        多线程Future的用法
+      <a href="/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+        Java对象创建的4种方式
       </a>
     </h2>
   
@@ -832,10 +770,9 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         
 
-在并发编程时，一般使用runnable，然后扔给线程池完事，这种情况下不需要线程的结果。
-所以run的返回值是void类型。
-如果是一个多线程协作程序，比如斐波那契数列，1，1，2，3，5，8…使用多线程来计算。但后者需要前者的结果，就需要用callable接口了。callable用法和runnable一样，只不过调用的是call方法，该方法有一个泛型返回值类型，你可以任意指定。
-线程是...
+
+1、使用 new 关键字创建对象这是常用的创建对象的方法，语法格式如下：类名 对象名=new 类名()；
+2、调用 java.lang.Class 或者 java.lang.reflect.Constuctor 类的 newlnstance() 实例方法在 Java 中，可以使用 java.lang.Class 或者 java.lang.reflect.Constuctor 类的 ne...
       
     
   </div>
@@ -843,15 +780,15 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-17</time>
+        <time>2021-05-08</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/17/%E5%B9%B6%E5%8F%91/%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E7%94%A8%E6%B3%95/'>
+          <a class='readmore' href='/2021/05/08/Java/Java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/'>
             Read More
           </a>
         </div>
@@ -873,29 +810,81 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/17/NoSQL/Redis%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
-        Redis哨兵模式
+      <a href="/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+        hashCode()与 equals()相关问题
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>主从切换技术的方法是：当主服务器宕机后，需要手动把一台从服务器切换为主服务器，这就需要人工干预，费事费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑哨兵模式…</p>
+      
+        
+
+hashCode()介绍hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode()定义在 JDK 的 Object 类中，这就意味着 Java 中的任何类都包含有 hashCode() 函数。另外需要注意的是： Object 的 hashcode 方法是本地方法，也就是用 c 语言或 c...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-17</time>
+        <time>2021-05-08</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+          <a class="category-link" href="/categories/Java/">Java</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/17/NoSQL/Redis%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/'>
+          <a class='readmore' href='/2021/05/08/Java/hashCode-%E4%B8%8E-equals-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/08/Java/Java%20AIO%20-%20%E5%BC%82%E6%AD%A5IO%E8%AF%A6%E8%A7%A3/">
+        Java AIO - 异步IO详解
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+异步IO上面两篇文章中，我们分别讲解了阻塞式同步IO、非阻塞式同步IO、多路复用IO 这三种IO模型，以及JAVA对于这三种IO模型的支持。重点说明了IO模型是由操作系统提供支持，且这三种IO模型都是同步IO，都是采用的“应用程序不询问我，我绝不会主动通知”的方式。 异步IO则是采用“订阅-通知”模式: 即应用程序向操作系统注册IO监听，然后继续做自己的事情。当操作系统发生IO事件，并且...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/08/Java/Java%20AIO%20-%20%E5%BC%82%E6%AD%A5IO%E8%AF%A6%E8%A7%A3/'>
             Read More
           </a>
         </div>
@@ -922,7 +911,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           </a>
         
         <p class="current">
-          14 / 30
+          14 / 34
         </p>
         
           <a class="next" rel="next" href="/page/15/">
@@ -1026,7 +1015,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1036,7 +1025,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1051,22 +1040,22 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1081,17 +1070,17 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1136,12 +1125,12 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1178,7 +1167,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1200,7 +1189,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1226,8 +1215,8 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:46 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:44 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1277,7 +1266,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

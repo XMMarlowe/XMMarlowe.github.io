@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1'>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>初识Nacos基本原理 - Marlowe</title>
+  
+    <meta name="keywords" content="Nacos,原理">
+  
+
+  
+    <meta name="description" content="转载于阿里巴巴中间件高级开发工程师：Nacos 注册中心的设计原理详解">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+            <i class='https://marlowe.oss-cn-beijing.aliyuncs.com/img/bitbug_favicon.ico'></i>
+          
+          
+            Marlowe
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Volantis</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/"
+              
+              
+              id="https:githubcomvolantis-xhexo-theme-volantis">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        初识Nacos基本原理
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 29, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="初识Nacos基本原理" data-path="/2021/08/29/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86Nacos%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>6.6k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>22 min</p>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <p>转载于阿里巴巴中间件高级开发工程师：<a target="_blank" rel="noopener" href="https://www.infoq.cn/article/b*6vymikao9vakisjype">Nacos 注册中心的设计原理详解</a></p>
+<a id="more"></a>
+
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>服务发现是一个古老的话题，当应用开始脱离单机运行和访问时，服务发现就诞生了。目前的网络架构是每个主机都有一个独立的 IP 地址，那么服务发现基本上都是通过某种方式获取到服务所部署的 IP 地址。DNS 协议是最早将一个网络名称翻译为网络 IP 的协议，在最初的架构选型中，DNS+LVS+Nginx 基本可以满足所有的 RESTful 服务的发现，此时服务的 IP 列表通常配置在 nginx 或者 LVS。后来出现了 RPC 服务，服务的上下线更加频繁，人们开始寻求一种能够支持动态上下线并且推送 IP 列表变化的注册中心产品。</p>
+<p>互联网软件行业普遍热捧开源产品，因为开源产品代码透明、可以参与共建、有社区进行交流和学习，当然更重要的是它们是免费的。个人开发者或者中小型公司往往会将开源产品作为选型首选。Zookeeper 是一款经典的服务注册中心产品（虽然它最初的定位并不在于此），在很长一段时间里，它是国人在提起 RPC 服务注册中心时心里想到的唯一选择，这很大程度上与 Dubbo 在中国的普及程度有关。Consul 和 Eureka 都出现于 2014 年，Consul 在设计上把很多分布式服务治理上要用到的功能都包含在内，可以支持服务注册、健康检查、配置管理、Service Mesh 等。而 Eureka 则借着微服务概念的流行，与 SpringCloud 生态的深度结合，也获取了大量的用户。去年开源的 Nacos，则携带着阿里巴巴大规模服务生产经验，试图在服务注册和配置管理这个市场上，提供给用户一个新的选择。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235328.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235328.png" srcset="data:image/png;base64,666" alt="20210829235328"></p>
+<p>开源产品的一个优势是开发人员可以去阅读源代码，理解产品的功能设计和架构设计，同时也可以通过本地部署来测试性能，随之而来的是各种产品的对比文章。不过当前关于注册中心的对比，往往停留在表面的功能对比上，对架构或者性能并没有非常深入的探讨。</p>
+<p>另一个现象是服务注册中心往往隐藏在服务框架背后，作为默默支持的产品。优秀的服务框架往往会支持多种配置中心，但是注册中心的选择依然强关联与服务框架，一种普遍的情况是一种服务框架会带一个默认的服务注册中心。这样虽然免去了用户在选型上的烦恼，但是单个注册中心的局限性，导致用户使用多个服务框架时，必须部署多套完全不同的注册中心，这些注册中心之间的数据协同也是一个问题。</p>
+<p>本文从各个角度深度介绍 Nacos 注册中心的设计原理，并试图从我们的经验和调研中总结和阐述服务注册中心产品设计上应该去遵循和考虑的要点。由于作者水平有限，文中的错误还希望大家多多指正。</p>
+<h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><p>注册中心的核心数据是服务的名字和它对应的网络地址，当服务注册了多个实例时，我们需要对不健康的实例进行过滤或者针对实例的一些特征进行流量的分配，那么就需要在实例上存储一些例如健康状态、权重等属性。随着服务规模的扩大，渐渐的又需要在整个服务级别设定一些权限规则、以及对所有实例都生效的一些开关，于是在服务级别又会设立一些属性。再往后，我们又发现单个服务的实例又会有划分为多个子集的需求，例如一个服务是多机房部署的，那么可能需要对每个机房的实例做不同的配置，这样又需要在服务和实例之间再设定一个数据级别。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235403.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235403.png" srcset="data:image/png;base64,666" alt="20210829235403"></p>
+<p>Nacos 的数据模型虽然相对复杂，但是它并不强制你使用它里面的所有数据，在大多数场景下，你可以选择忽略这些数据属。</p>
+<p>另外一个需要考虑的是数据的隔离模型，作为一个共享服务型的组件，需要能够在多个用户或者业务方使用的情况下，保证数据的隔离和安全，这在稍微大一点的业务场景中非常常见。另一方面服务注册中心往往会支持云上部署，此时就要求服务注册中心的数据模型能够适配云上的通用模型。Nacos 一开始就考虑到如何让用户能够以多种维度进行数据隔离，同时能够平滑的迁移到阿里云上对应的商业化产品。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235427.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235427.png" srcset="data:image/png;base64,666" alt="20210829235427"></p>
+<p>Nacos 提供了四层的数据逻辑隔离模型，用户账号对应的可能是一个企业或者独立的个体，这个数据一般情况下不会透传到服务注册中心。一个用户账号可以新建多个命名空间，每个命名空间对应一个客户端实例，这个命名空间对应的注册中心物理集群是可以根据规则进行路由的，这样可以让注册中心内部的升级和迁移对用户是无感知的，同时可以根据用户的级别，为用户提供不同服务级别的物理集群。再往下是服务分组和服务名组成的二维服务标识，可以满足接口级别的服务隔离。</p>
+<p>Nacos 1.0.0 介绍的另外一个新特性是：临时实例和持久化实例。在定义上区分临时实例和持久化实例的关键是健康检查的方式。临时实例使用客户端上报模式，而持久化实例使用服务端反向探测模式。临时实例需要能够自动摘除不健康实例，而且无需持久化存储实例，那么这种实例就适用于类 Gossip 的协议。右边的持久化实例使用服务端探测的健康检查方式，因为客户端不会上报心跳，那么自然就不能去自动摘除下线的实例。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235446.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235446.png" srcset="data:image/png;base64,666" alt="20210829235446"></p>
+<p>在大中型的公司里，这两种类型的服务往往都有。一些基础的组件例如数据库、缓存等，这些往往不能上报心跳，这种类型的服务在注册时，就需要作为持久化实例注册。而上层的业务服务，例如微服务或者 Dubbo 服务，服务的 Provider 端支持添加汇报心跳的逻辑，此时就可以使用动态服务的注册方式。</p>
+<h3 id="数据一致性"><a href="#数据一致性" class="headerlink" title="数据一致性"></a>数据一致性</h3><p>数据一致性是分布式系统永恒的话题，Paxos 协议的艰深更让数据一致性成为程序员大牛们吹水的常见话题。不过从协议层面上看，一致性的选型已经很长时间没有新的成员加入了。目前来看基本可以归为两家：一种是基于 Leader 的非对等部署的单点写一致性，一种是对等部署的多写一致性。当我们选用服务注册中心的时候，并没有一种协议能够覆盖所有场景，例如当注册的服务节点不会定时发送心跳到注册中心时，强一致协议看起来是唯一的选择，因为无法通过心跳来进行数据的补偿注册，第一次注册就必须保证数据不会丢失。而当客户端会定时发送心跳来汇报健康状态时，第一次的注册的成功率并不是非常关键（当然也很关键，只是相对来说我们容忍数据的少量写失败），因为后续还可以通过心跳再把数据补偿上来，此时 Paxos 协议的单点瓶颈就会不太划算了，这也是 Eureka 为什么不采用 Paxos 协议而采用自定义的 Renew 机制的原因。</p>
+<p>这两种数据一致性协议有各自的使用场景，对服务注册的需求不同，就会导致使用不同的协议。Nacos 因为要支持多种服务类型的注册，并能够具有机房容灾、集群扩展等必不可少的能力，在 1.0.0 正式支持 AP 和 CP 两种一致性协议并存。1.0.0 重构了数据的读写和同步逻辑，将与业务相关的 CRUD 与底层的一致性同步逻辑进行了分层隔离。然后将业务的读写（主要是写，因为读会直接使用业务层的缓存）抽象为 Nacos 定义的数据类型，调用一致性服务进行数据同步。在决定使用 CP 还是 AP 一致性时，使用一个代理，通过可控制的规则进行转发。</p>
+<p>目前的一致性协议实现，一个是基于简化的 Raft 的 CP 一致性，一个是基于自研协议 Distro 的 AP 一致性。Raft 协议不必多言，基于 Leader 进行写入，其 CP 也并不是严格的，只是能保证一半所见一致，以及数据的丢失概率较小。Distro 协议则是参考了内部 ConfigServer 和开源 Eureka，在不借助第三方存储的情况下，实现基本大同小异。Distro 重点是做了一些逻辑的优化和性能的调优。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235524.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235524.png" srcset="data:image/png;base64,666" alt="20210829235524"></p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>负载均衡严格的来说，并不算是传统注册中心的功能。一般来说服务发现的完整流程应该是先从注册中心获取到服务的实例列表，然后再根据自身的需求，来选择其中的部分实例或者按照一定的流量分配机制来访问不同的服务提供者，因此注册中心本身一般不限定服务消费者的访问策略。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235550.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235550.png" srcset="data:image/png;base64,666" alt="20210829235550"></p>
+<p>在阿里巴巴集团内部，却是使用的相反的思路。服务消费者往往并不关心所访问的服务提供者的负载均衡，它们只关心以最高效和正确的访问服务提供者的服务。而服务提供者，则非常关注自身被访问的流量的调配，这其中的第一个原因是，阿里巴巴集团内部服务访问流量巨大，稍有不慎就会导致流量异常压垮服务提供者的服务。因此服务提供者需要能够完全掌控服务的流量调配，并可以动态调整。</p>
+<p>服务端的负载均衡，给服务提供者更强的流量控制权，但是无法满足不同的消费者希望使用不同负载均衡策略的需求。而不同负载均衡策略的场景，确实是存在的。而客户端的负载均衡则提供了这种灵活性，并对用户扩展提供更加友好的支持。但是客户端负载均衡策略如果配置不当，可能会导致服务提供者出现热点，或者压根就拿不到任何服务提供者。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235609.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235609.png" srcset="data:image/png;base64,666" alt="20210829235609"></p>
+<p>抛开负载均衡到底是在服务提供者实现还是在服务消费者实现，我们看到目前的负载均衡有基于权重、服务提供者负载、响应时间、标签等策略。其中 Ribbon 设计的客户端负载均衡机制，主要是选择合适现有的 IRule、ServerListFilter 等接口实现，或者自己继承这些接口，实现自己的过滤逻辑。这里 Ribbon 采用的是两步负载均衡，第一步是先过滤掉不会采用的服务提供者实例，第二步是在过滤后的服务提供者实例里，实施负载均衡策略。Ribbon 内置的几种负载均衡策略功能还是比较强大的，同时又因为允许用户去扩展，这可以说是一种比较好的设计。</p>
+<p>基于标签的负载均衡策略可以做到非常灵活，Kubernetes 和 Fabio 都已经将标签运用到了对资源的过滤中，使用标签几乎可以实现任意比例和权重的服务流量调配。但是标签本身需要单独的存储以及读写功能，不管是放在注册中心本身或者对接第三方的 CMDB。</p>
+<p>在 Nacos 0.7.0 版本中，我们除了提供基于健康检查和权重的负载均衡方式外，还新提供了基于第三方 <strong>CMDB 的标签负载均衡器</strong>，具体可以参考 CMDB 功能介绍文章。使用基于标签的负载均衡器，目前可以实现同标签优先访问的流量调度策略，实际的应用场景中，可以用来实现服务的就近访问，当您的服务部署在多个地域时，这非常有用。使用这个标签负载均衡器，可以支持非常多的场景，这不是本文要详细介绍的。虽然目前 Nacos 里支持的标签表达式并不丰富，不过我们会逐步扩展它支持的语法。除此以外，Nacos 定义了 Selector，作为负载均衡的统一抽象。关于 Selector，由于篇幅关系，我们会有单独的文章进行介绍。</p>
+<p>理想的负载均衡实现应该是什么样的呢？不同的人会有不同的答案。Nacos 试图做的是将服务端负载均衡与客户端负载均衡通过某种机制结合起来，提供用户扩展性，并给予用户充分的自主选择权和轻便的使用方式。负载均衡是一个很大的话题，当我们在关注注册中心提供的负载均衡策略时，需要注意该注册中心是否有我需要的负载均衡方式，使用方式是否复杂。如果没有，那么是否允许我方便的扩展来实现我需求的负载均衡策略。</p>
+<h3 id="健康检查"><a href="#健康检查" class="headerlink" title="健康检查"></a>健康检查</h3><p>Zookeeper 和 Eureka 都实现了一种 TTL 的机制，就是如果客户端在一定时间内没有向注册中心发送心跳，则会将这个客户端摘除。Eureka 做的更好的一点在于它允许在注册服务的时候，自定义检查自身状态的健康检查方法。这在服务实例能够保持心跳上报的场景下，是一种比较好的体验，在 Dubbo 和 SpringCloud 这两大体系内，也被培养成用户心智上的默认行为。Nacos 也支持这种 TTL 机制，不过这与 ConfigServer 在阿里巴巴内部的机制又有一些区别。Nacos 目前支持临时实例使用心跳上报方式维持活性，<strong>发送心跳的周期默认是 5 秒</strong>，Nacos 服务端会<strong>在 15 秒没收到心跳后将实例设置为不健康</strong>，<strong>在 30 秒没收到心跳时将这个临时实例摘除</strong>。</p>
+<p>不过正如前文所说，有一些服务无法上报心跳，但是可以提供一个检测接口，由外部去探测。这样的服务也是广泛存在的，而且以我们的经验，这些服务对服务发现和负载均衡的需求同样强烈。服务端健康检查最常见的方式是 TCP 端口探测和 HTTP 接口返回码探测，这两种探测方式因为其协议的通用性可以支持绝大多数的健康检查场景。在其他一些特殊的场景中，可能还需要执行特殊的接口才能判断服务是否可用。例如部署了数据库的主备，数据库的主备可能会在某些情况下切换，需要通过服务名对外提供访问，保证当前访问的库是主库。此时的健康检查接口，可能就是一个检查数据库是否是主库的 MYSQL 命令了。</p>
+<p>客户端健康检查和服务端健康检查有一些不同的关注点。客户端健康检查主要关注客户端上报心跳的方式、服务端摘除不健康客户端的机制。而服务端健康检查，则关注探测客户端的方式、灵敏度及设置客户端健康状态的机制。从实现复杂性来说，服务端探测肯定是要更加复杂的，因为需要服务端根据注册服务配置的健康检查方式，去执行相应的接口，判断相应的返回结果，并做好重试机制和线程池的管理。这与客户端探测，只需要等待心跳，然后刷新 TTL 是不一样的。同时服务端健康检查无法摘除不健康实例，这意味着只要注册过的服务实例，如果不调用接口主动注销，这些服务实例都需要去维持健康检查的探测任务，而客户端则可以随时摘除不健康实例，减轻服务端的压力。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235724.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235724.png" srcset="data:image/png;base64,666" alt="20210829235724"></p>
+<p>Nacos 既支持客户端的健康检查，也支持服务端的健康检查，同一个服务可以切换健康检查模式。我们认为这种健康检查方式的多样性非常重要，这样可以支持各种类型的服务，让这些服务都可以使用到 Nacos 的负载均衡能力。Nacos 下一步要做的是实现健康检查方式的用户扩展机制，不管是服务端探测还是客户端探测。这样可以支持用户传入一条业务语义的请求，然后由 Nacos 去执行，做到健康检查的定制。</p>
+<h3 id="性能与容量"><a href="#性能与容量" class="headerlink" title="性能与容量"></a>性能与容量</h3><p>虽然大部分用户用到的性能不高，但是他们仍然希望选用的产品的性能越高越好。影响读写性能的因素很多：一致性协议、机器的配置、集群的规模、存量数据的规模、数据结构及读写逻辑的设计等等。在服务发现的场景中，我们认为读写性能都是非常关键的，但是并非性能越高就越好，因为追求性能往往需要其他方面做出牺牲。</p>
+<p>在对容量的评估时，不仅要针对企业现有的服务规模进行评估，也要对未来 3 到 5 年的扩展规模进行预测。阿里巴巴的中间件在内部支撑着集团百万级别服务实例，在容量上遇到的挑战可以说不会小于任何互联网公司。这个容量不仅仅意味着整体注册的实例数，也同时包含单个服务的实例数、整体的订阅者的数目以及查询的 QPS 等。阿里巴巴之所以字研 Nacos，容量是一个非常重要的因素。</p>
+<p>Nacos 在开源版本中，服务实例注册的支撑量约为 100 万，服务的数量可以达到 10 万以上。在实际的部署环境中，这个数字还会因为机器、网络的配置与 JVM 参数的不同，可能会有所差别。图 9 展示了 Nacos 在使用 1.0.0 版本进行压力测试后的结果总结，针对容量、并发、扩展性和延时等进行了测试和统计。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235753.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235753.png" srcset="data:image/png;base64,666" alt="20210829235753"></p>
+<p>完整的测试报告可以参考 Nacos 官网:</p>
+<p><a target="_blank" rel="noopener" href="https://nacos.io/en-us/docs/nacos-naming-benchmark.html">https://nacos.io/en-us/docs/nacos-naming-benchmark.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://nacos.io/en-us/docs/nacos-config-benchmark.html">https://nacos.io/en-us/docs/nacos-config-benchmark.html</a></p>
+<h3 id="易用性"><a href="#易用性" class="headerlink" title="易用性"></a>易用性</h3><p>易用性也是用户比较关注的一块内容。产品虽然可以在功能特性或者性能上做到非常先进，但是如果用户的使用成本极高，也会让用户望而却步。易用性包括多方面的工作，例如 API 和客户端的接入是否简单，文档是否齐全易懂，控制台界面是否完善等。对于开源产品来说，还有一块是社区是否活跃。</p>
+<p>Nacos 提供了官方的控制台来查询服务注册情况，且目前依然在建设中，除了目前支持的易用性特性以外，后续还会继续增强控制台的能力，增加控制台登录和权限的管控，监控体系和 Metrics 的暴露，持续通过官网等渠道完善使用文档，多语言 SDK 的开发等。</p>
+<h3 id="集群扩展性"><a href="#集群扩展性" class="headerlink" title="集群扩展性"></a>集群扩展性</h3><p>集群扩展性和集群容量以及读写性能关系紧密。当使用一个比较小的集群规模就可以支撑远高于现有数量的服务注册及访问时，集群的扩展能力暂时就不会那么重要。</p>
+<p>集群扩展性的另一个方面是多地域部署和容灾的支持。当讲究集群的高可用和稳定性以及网络上的跨地域延迟要求能够在每个地域都部署集群的时候，我们现有的方案有多机房容灾、异地多活、多数据中心等。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235851.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235851.png" srcset="data:image/png;base64,666" alt="20210829235851"></p>
+<p>Nacos 支持两种模式的部署，一种是和 Eureka 一样的 AP 协议的部署，这种模式只支持临时实例，并支持机房容灾。另一种是支持持久化实例的 CP 模式，这种情况下不支持双机房容灾。</p>
+<p>在谈到异地多活时，很巧的是，很多业务组件的异地多活正是依靠服务注册中心和配置中心来实现的，这其中包含流量的调度和集群的访问规则的修改等。机房容灾是异地多活的一部分，但是要让业务能够在访问服务注册中心时，动态调整访问的集群节点，这需要第三方的组件来做路由。异地多活往往是一个包含所有产品线的总体方案，很难说单个产品是否支持异地多活。</p>
+<p>多数据中心其实也算是异地多活的一部分。Nacos 基于阿里巴巴内部的使用经验，提供的解决方案是才有 Nacos-Sync 组件来做数据中心之间的数据同步，这意味着每个数据中心的 Nacos 集群都会有多个数据中心的全量数据。Nacos-Sync 是 Nacos 生态组件里的重要一环，不仅会承担 Nacos 集群与 Nacos 集群之间的数据同步，也会承担 Nacos 集群与 Eureka、Zookeeper、Kubernetes 及 Consul 之间的数据同步。</p>
+<p><img src="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235919.png" class="lazyload" data-srcset="https://marlowe.oss-cn-beijing.aliyuncs.com/img/20210829235919.png" srcset="data:image/png;base64,666" alt="20210829235919"></p>
+<h3 id="用户扩展性"><a href="#用户扩展性" class="headerlink" title="用户扩展性"></a>用户扩展性</h3><p>在框架的设计中，扩展性是一个重要的设计原则。Spring、Dubbo、Ribbon 等框架都在用户扩展性上做了比较好的设计。这些框架的扩展性往往由面向接口及动态类加载等技术，来运行用户扩展约定的接口，实现用户自定义的逻辑。在 Server 的设计中，用户扩展是比较审慎的。因为用户扩展代码的引入，可能会影响原有 Server 服务的可用性，同时如果出问题，排查的难度也是比较大的。设计良好的 SPI 是可能的，但是由此带来的稳定性和运维的风险是需要仔细考虑的。在开源软件中，往往通过直接贡献代码的方式来实现用户扩展，好的扩展会被很多人不停的更新和维护，这也是一种比较好的开发模式。</p>
+<p>那么这样的扩展性是否是有必要的呢？举一个上文提到过的例子，假如要添加一种新的健康检查方式，连接数据库执行一条 MySQL 命令，通常的方式是在代码里增加 MySQL 类型的健康检查方法、构建、测试然后最终发布。但是如果允许用户上传一个 jar 包放到 Server 部署目录下的某个位置，Server 就会自动扫描并识别到这张新的健康检查方式呢？这样不仅更酷，也让整个扩展的流程与 Server 的代码解耦，变得非常简单。所以对于系统的一些功能，如果能够通过精心的设计开放给用户在运行时去扩展，那么为什么不做呢？毕竟增加扩展的支持并不会让原有的功能有任何损失。</p>
+<p>所有产品都应该尽量支持用户运行时扩展，这需要 Server 端 SPI 机制设计的足够健壮和容错。Nacos 在这方面已经开放了对第三方 CMDB 的扩展支持，后续很快会开放健康检查及负载均衡等核心功能的用户扩展。目的就是为了能够以一种解耦的方式支持用户各种各样的需求。</p>
+<h3 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h3><p>本文并不是一篇介绍 Nacos 功能的文章，因此 Nacos 的一些特色功能并没有在文中涉及，这些特色功能其实也是 Nacos 区别与其他注册中心的重要方面，包括 Nacos 支持的 DNS 协议，打自定义标等能力。</p>
+<p>Nacos 已经在 4 月 10 号发布 GA 版本，后续将会以和社区共建的方式，持续输出新的功能，在服务发现和配置管理这两大领域继续深耕，期待与大家一起建设出最好用的服务发现和配置管理平台。</p>
+<h3 id="作者简介"><a href="#作者简介" class="headerlink" title="作者简介"></a>作者简介</h3><p>朱鹏飞，Github ID: nkorange，Nacos 注册中心等模块主要贡献者，阿里巴巴中间件高级开发工程师</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/08/29/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86Nacos%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/>https://xmmarlowe.github.io/2021/08/29/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86Nacos%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+        
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-30T00:00:06+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Aug 30, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/29/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86Nacos%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/&title=初识Nacos基本原理 - Marlowe&summary=转载于阿里巴巴中间件高级开发工程师：Nacos 注册中心的设计原理详解"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/29/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86Nacos%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/&title=初识Nacos基本原理 - Marlowe&summary=转载于阿里巴巴中间件高级开发工程师：Nacos 注册中心的设计原理详解"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/29/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86Nacos%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/&title=初识Nacos基本原理 - Marlowe&summary=转载于阿里巴巴中间件高级开发工程师：Nacos 注册中心的设计原理详解"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/08/30/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%EF%BC%9F/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>为什么需要注册中心？</p>
+          <p class='content'>微服务现在是一个很火的话题，好像不管项目的大小，适用范围都在往微服务上去靠。这也使得现在如果不会微服务出去都没法和别人聊了。本文就来谈一谈在微服务中为什么要注册中心？
+
+
+为什么需要注册中心?在...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/08/29/%E5%B9%B6%E5%8F%91/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%92%8C%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/'>
+          <p class='title'>内存泄漏和内存溢出<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+
+1. 内存泄漏是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄漏似乎不会有大的影响，但内存泄漏堆积后的后果就是内存溢出。
+2. 内存溢出指程序申请内存时，没有足够的内存供申请者使用...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-text">数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">数据一致性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5"><span class="toc-text">健康检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%B8%8E%E5%AE%B9%E9%87%8F"><span class="toc-text">性能与容量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%93%E7%94%A8%E6%80%A7"><span class="toc-text">易用性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">集群扩展性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">用户扩展性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%BE%E5%A3%B0"><span class="toc-text">尾声</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E8%80%85%E7%AE%80%E4%BB%8B"><span class="toc-text">作者简介</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="初识Nacos基本原理";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.1.1" target="_blank" class="codename">Volantis</a>
+        as theme
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2019-2021 Marlowe</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            swal({
+                title: '复制成功',
+                text: "代码已复制，请遵守相关授权协议。",
+                icon: 'success',
+                button: "我承诺遵守",
+            });
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "j60P94k1oxBXjVeNMHqSO4ny-gzGzoHsz",
+      appKey: "4AbQyRP2XQmS6K0dSMgSqPfo",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      recordIP: 'false',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2.6.4/js/search.js"></script>
+
+  
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+(function ($) {
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+})(jQuery);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'j60P94k1oxBXjVeNMHqSO4ny-gzGzoHsz',
+    app_key: '4AbQyRP2XQmS6K0dSMgSqPfo',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://xmmarlowe.github.io' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://xmmarlowe.github.io' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+

@@ -414,62 +414,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/02/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">
-        在线教育-微服务项目总结
+      <a href="/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/Springboot%E6%95%B4%E5%90%88Shiro%EF%BC%9A%E5%AE%9E%E7%8E%B0Redis%E7%BC%93%E5%AD%98/">
+        Springboot整合Shiro：实现Redis缓存
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>简单总结一下在线教育项目…</p>
+      <p>项目整合Shiro后，在没有配置缓存的时候，会存在这样的问题。每发起一个请求，就会调用一次授权方法。用户基数大请求多的时候，会对数据库造成很大的压力。所以我们需要配置缓存，将用户信息放在缓存里，从而减小数据库压力。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-02</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/02/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/30/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%88%9D%E8%AF%86oAuth2/">
-        初识oAuth2
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>OAuth全称为Open Authorization（开放授权）。OAuth协议为用户资源的授权提供了一个安全的、开放而又简易的标准。与以往的授权方式不同之处是OAuth的授权不会使第三方触及到用户的帐号信息（如用户名与密码），即第三方无需使用用户的用户名与密码就可以申请获得该用户资源的授权，因此OAUTH是安全的。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-07-30</time>
+        <time>2021-08-24</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
@@ -477,7 +436,7 @@
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/30/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/%E5%88%9D%E8%AF%86oAuth2/'>
+          <a class='readmore' href='/2021/08/24/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/Springboot%E6%95%B4%E5%90%88Shiro%EF%BC%9A%E5%AE%9E%E7%8E%B0Redis%E7%BC%93%E5%AD%98/'>
             Read More
           </a>
         </div>
@@ -499,39 +458,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">
-        Linux相关操作
+      <a href="/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud%20%E5%92%8C%20Dubbo%20%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+        Spring Cloud 和 Dubbo 有哪些区别？
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        一、Linux 基本操作
-a. 将 系统 hostname 改为 个人名称，如：zhang.san；
-
-hostnamectl set-hostname Marlowe.chen # 设置新的hostname
-
-
-b. 创建用户，用户名为：个人名称，如： zhang.san，将该用户加入root组并更改账户密码；
-
-useradd Marlowe.chen # 添加新用户passwd Mar...
-      
+      <p>SpringCloud和Dubbo都是当下流行的RPC框架，各自都集成了服务发现和治理组件。SpringCloud用Eureka，Dubbo用Zookeeper，这篇博客就将将这两个组件在各自系统中的作用机制的区别。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-07-20</time>
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/'>
+          <a class='readmore' href='/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud%20%E5%92%8C%20Dubbo%20%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F/'>
             Read More
           </a>
         </div>
@@ -553,8 +502,8 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%BB%B6%E6%97%B6%E4%BB%A5%E5%8F%8A%E8%BF%87%E6%9C%9F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%EF%BC%9F/">
-        如何解决消息队列的延时以及过期失效问题？
+      <a href="/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86RPC%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/">
+        初识RPC及其基本原理
       </a>
     </h2>
   
@@ -563,8 +512,7 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
       
         
 
-参考如何解决消息队列的延时以及过期失效问题？
-
+什么是 RPC?RPC原理是什么?什么是 RPC？RPC（Remote Procedure Call）—远程过程调用，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。比如两个不同的服务 A、B 部署在两台不同的机器上，那么服务 A 如果想要调用服务 B 中的某个方法该怎么办呢？使用 HTTP请求 当然可以，但是可能会比较慢而且一些优化做的并不好。 RPC 的出...
       
     
   </div>
@@ -572,15 +520,15 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-07-19</time>
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+          <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%BB%B6%E6%97%B6%E4%BB%A5%E5%8F%8A%E8%BF%87%E6%9C%9F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%EF%BC%9F/'>
+          <a class='readmore' href='/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%9D%E8%AF%86RPC%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -602,8 +550,8 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/17/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%80%A7%EF%BC%9F/">
-        如何保证消息的顺序性？
+      <a href="/2021/08/23/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%90%88%E8%BE%91/">
+        海量数据处理合辑
       </a>
     </h2>
   
@@ -612,9 +560,12 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
       
         
 
+如何从大量的 URL 中找出相同的 URL？题目描述给定 a、b 两个文件，各存放 50 亿个 URL，每个 URL 各占 64B，内存限制是 4G。请找出 a、b 两个文件共同的 URL。
+解答思路1. 分治策略每个 URL 占 64B，那么 50 亿个 URL 占用的空间大小约为 320GB。
 
-参考如何保证消息的顺序性？
+5, 000, 000, 000 _ 64B ≈ 5GB _ 64 = 320GB
 
+由...
       
     
   </div>
@@ -622,15 +573,15 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-07-17</time>
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+          <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/17/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%80%A7%EF%BC%9F/'>
+          <a class='readmore' href='/2021/08/23/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%90%88%E8%BE%91/'>
             Read More
           </a>
         </div>
@@ -652,34 +603,21 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/16/%E4%B8%AD%E9%97%B4%E4%BB%B6/Kafka%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
-        Kafka常见使用场景
+      <a href="/2021/08/23/%E4%B8%AD%E9%97%B4%E4%BB%B6/Kafka-%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
+        Kafka 数据丢失和数据重复的原因和解决办法
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-消息队列使用场景队列，在数据结构中是一种先进先出的结构，消息队列可以看成是一个盛放消息的容器，这些消息等待着各种业务来处理。
-消息队列是分布式系统中重要的组件，kafka就可以看做是一种消息队列，其大致使用场景：
-
-解耦
-异步通信
-削峰填谷
-
-来看一个用户注册业务，在传统的单体项目中，假如注册流程是：
-
-如果用户注册相关处理耗费30ms，发送短信又耗时30ms，那么一个完整的注册业务就耗...
-      
+      <p>Kafka的一些问题以及解决方法</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-07-16</time>
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
@@ -687,7 +625,7 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/16/%E4%B8%AD%E9%97%B4%E4%BB%B6/Kafka%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/'>
+          <a class='readmore' href='/2021/08/23/%E4%B8%AD%E9%97%B4%E4%BB%B6/Kafka-%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/'>
             Read More
           </a>
         </div>
@@ -709,29 +647,29 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/16/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E8%A2%AB%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%EF%BC%9F/">
-        如何保证消息不被重复消费？
+      <a href="/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/">
+        分布式事务，这一篇就够了
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？</p>
+      <p>转载于小米信息部技术团队：<a target="_blank" rel="noopener" href="https://xiaomi-info.github.io/2020/01/02/distributed-transaction/">分布式事务，这一篇就够了</a></p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-07-16</time>
+        <time>2021-08-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+          <a class="category-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式&微服务</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/16/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E8%A2%AB%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%EF%BC%9F/'>
+          <a class='readmore' href='/2021/08/23/%E5%88%86%E5%B8%83%E5%BC%8F&%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/'>
             Read More
           </a>
         </div>
@@ -753,29 +691,38 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/15/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B9%8BKafka%E5%AD%A6%E4%B9%A0/">
-        消息中间件之Kafka学习
+      <a href="/2021/08/22/NoSQL/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89/">
+        Redis分布式锁（二）
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>总结一些Kafka常见问题</p>
+      
+        
+
+Redis分布式锁01JVM层面的加锁，单机版的锁
+
+synchronized
+ReentraLock
+
+123456789101112131415161718192021222324252627class X &#123;    private final ReentrantLock lock = new ReentrantLock();    // ...    public voi...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-07-15</time>
+        <time>2021-08-22</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/15/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B9%8BKafka%E5%AD%A6%E4%B9%A0/'>
+          <a class='readmore' href='/2021/08/22/NoSQL/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89/'>
             Read More
           </a>
         </div>
@@ -797,29 +744,34 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
   
     
     <h2 class="article-title" >
-      <a href="/2021/07/15/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%88%9D%E8%AF%86%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
-        初识消息队列
+      <a href="/2021/08/22/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99LFU%E7%AE%97%E6%B3%95/">
+        手写LFU算法
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>“RabbitMQ？”“Kafka？”“RocketMQ？”…在日常学习与开发过程中，我们常常听到消息队列这个关键词。我也在我的多篇文章中提到了这个概念。可能你是熟练使用消息队列的老手，又或者你是不懂消息队列的新手，不论你了不了解消息队列，本文都将带你搞懂消息队列的一些基本理论。如果你是老手，你可能从本文学到你之前不曾注意的一些关于消息队列的重要概念，如果你是新手，相信本文将是你打开消息队列大门的一板砖。</p>
+      
+        
+
+
+
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-07-15</time>
+        <time>2021-08-22</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/07/15/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%88%9D%E8%AF%86%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/'>
+          <a class='readmore' href='/2021/08/22/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99LFU%E7%AE%97%E6%B3%95/'>
             Read More
           </a>
         </div>
@@ -841,29 +793,73 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
   
     
     <h2 class="article-title" >
-      <a href="/2021/06/30/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88Shiro%E6%8A%A5%E9%94%99-The-dependencies-of-some-of-the-beans-in-the-application-context-form-a-cycle/">
-        SpringBoot整合Shiro报错:The dependencies of some of the beans in the application context form a cycle
+      <a href="/2021/08/21/Spring/Spring%E9%80%9A%E8%BF%87set%E6%B3%A8%E5%85%A5%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+        Spring通过set注入解决循环依赖
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>SpringBoot整合Shiro遇到循环依赖问题…</p>
+      <p>循环依赖是指两个bean相互依赖,如下面的A和B: A依赖于B,B又依赖于A.如果未加处理这会导致无限递归程序崩溃,然而在实例项目中这种情况循环依赖的情况并不少见.为此Spring做了一些努力,<strong>解决了setter注入方式的循环依赖,对于构造器注入方式的循环只能检测并提前崩溃.</strong></p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-06-30</time>
+        <time>2021-08-21</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/06/30/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/SpringBoot%E6%95%B4%E5%90%88Shiro%E6%8A%A5%E9%94%99-The-dependencies-of-some-of-the-beans-in-the-application-context-form-a-cycle/'>
+          <a class='readmore' href='/2021/08/21/Spring/Spring%E9%80%9A%E8%BF%87set%E6%B3%A8%E5%85%A5%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/21/Java/JVM%E8%B0%83%E4%BC%98(%E4%BA%8C)/">
+        JVM调优(二)
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>JVM调优相关步骤</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-21</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/21/Java/JVM%E8%B0%83%E4%BC%98(%E4%BA%8C)/'>
             Read More
           </a>
         </div>
@@ -890,7 +886,7 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
           </a>
         
         <p class="current">
-          4 / 23
+          4 / 27
         </p>
         
           <a class="next" rel="next" href="/archives/2021/page/5/">
@@ -995,7 +991,7 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1005,7 +1001,7 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1020,22 +1016,22 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1050,17 +1046,17 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1105,12 +1101,12 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1147,7 +1143,7 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1169,7 +1165,7 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1195,8 +1191,8 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:23 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:09 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1246,7 +1242,7 @@ useradd Marlowe.chen # 添加新用户passwd Mar...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

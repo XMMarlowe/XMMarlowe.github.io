@@ -415,36 +415,26 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/16/Java/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/">
-        ConcurrentHashMap 线程安全的具体实现方式/底层具体实现
+      <a href="/2020/12/05/Spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+        依赖注入
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-JDK1.7
-首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。
-ConcurrentHashMap 是由 Segment 数组结构和 HashEntry 数组结构组成。
-Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数据...
-      
+      <p>简述依赖注入的三种方式</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+        <time>2020-12-05</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/16/Java/ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0/'>
+          <a class='readmore' href='/2020/12/05/Spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/'>
             Read More
           </a>
         </div>
@@ -466,29 +456,29 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/16/Java/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        ConcurrentHashMap 和 Hashtable 的区别
+      <a href="/2020/12/05/Spring/Bean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
+        Bean的自动装配
       </a>
     </h2>
   
   <div class='md'>
     
-      <p><code>ConcurrentHashMap</code> 和 <code>Hashtable</code> 的区别主要体现在实现线程安全的方式上不同。</p>
+      <p>bean的三种自动装配方式…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-16</time>
+        <time>2020-12-05</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/16/Java/ConcurrentHashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/12/05/Spring/Bean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/'>
             Read More
           </a>
         </div>
@@ -510,36 +500,29 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        HashMap 和 Hashtable 的区别
+      <a href="/2020/12/04/Spring/IOC%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F/">
+        IOC创建对象的方式
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-
-线程是否安全： HashMap 是非线程安全的，HashTable 是线程安全的,因为 HashTable 内部的方法基本都经过synchronized 修饰。（如果你要保证线程安全的话就使用 ConcurrentHashMap 吧！）；
-效率： 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它；
-对 N...
-      
+      <p>IOC创建对象的三种方式…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-12-04</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/12/04/Spring/IOC%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F/'>
             Read More
           </a>
         </div>
@@ -561,27 +544,21 @@ Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        ArrayList和LinkedList的区别
+      <a href="/2020/12/03/Java/%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%8D%E5%AE%89%E5%85%A8/">
+        集合类不安全
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-Arraylist 与 LinkedList 区别?
-是否保证线程安全： ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
-底层数据结构： Arraylist 底层使用的是 Object 数组；LinkedList 底层使用的是 双向链表 数据结构（JDK1.6 之前为循环链表，JDK1.7 取消了循环。）
-插入和删除是否受元素位置的影响： ① Array...
-      
+      <p>111</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-12-03</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Java/">Java</a>
@@ -589,7 +566,7 @@ Arraylist 与 LinkedList 区别?
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/12/03/Java/%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%8D%E5%AE%89%E5%85%A8/'>
             Read More
           </a>
         </div>
@@ -611,33 +588,29 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">
-        ArrayList扩容机制
+      <a href="/2020/12/03/%E5%B9%B6%E5%8F%91/8%E9%94%81%E9%97%AE%E9%A2%98/">
+        8锁问题
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-1234567891、添加元素时，首先进行判断是否大于默认容量102、如果，小于默认容量，直接在原来基础上+1，元素添加完毕3、如果，大于默认容量，则需要进行扩容，扩容核心是grow()方法   3.1 扩容之前，首先创建一个新的数组，且旧数组被复制到新的数组中       这样就得到了一个全新的副本，我们在操作时就不会影响原来数组了   3.2 然后通过位运算符将新的容量更新为旧容量的...
-      
+      <p>待完善…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-12-03</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/'>
+          <a class='readmore' href='/2020/12/03/%E5%B9%B6%E5%8F%91/8%E9%94%81%E9%97%AE%E9%A2%98/'>
             Read More
           </a>
         </div>
@@ -659,29 +632,29 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/">
-        HashMap是线程安全的吗？
+      <a href="/2020/12/02/%E5%B9%B6%E5%8F%91/synchronized%E5%92%8CLock%E5%8C%BA%E5%88%AB/">
+        synchronized和Lock区别
       </a>
     </h2>
   
   <div class='md'>
     
-      <p><code>HashMap</code>的线程不安全体现在会造成死循环、数据丢失、数据覆盖这些问题。其中死循环和数据丢失是在JDK1.7中出现的问题，在JDK1.8中已经得到解决，然而1.8中仍会有数据覆盖这样的问题。</p>
+      <p>简述 synchronized 和 Lock 区别…</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-12-02</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F/'>
+          <a class='readmore' href='/2020/12/02/%E5%B9%B6%E5%8F%91/synchronized%E5%92%8CLock%E5%8C%BA%E5%88%AB/'>
             Read More
           </a>
         </div>
@@ -703,36 +676,29 @@ Arraylist 与 LinkedList 区别?
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
-        HashMap底层原理
+      <a href="/2020/11/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5/">
+        设计模式-策略
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-JDK1.7数据结构则是采用的位桶和链表相结合的形式完成了，即拉链法。具体如下图所示：
-HashMap里面存储的是静态内部类Entry的对象，这个对象其实也是一个key-value的结构。
-hash源码：
-12345678static int hash(int h) &#123;    // This function ensures that hashCodes that differ...
-      
+      <p>在策略模式中，我们创建表示各种策略的对象和一个行为随着策略对象改变而改变的 context 对象。策略对象改变 context 对象的执行算法。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-11-29</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/Java/HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/'>
+          <a class='readmore' href='/2020/11/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5/'>
             Read More
           </a>
         </div>
@@ -754,29 +720,31 @@ hash源码：
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        常见的IO模型有哪些？Java中的BIO，NIO，AIO的区别
+      <a href="/2020/11/27/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JsonUtils/">
+        JsonUtils
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>从应用程序的视角来看的话，我们的应用程序对操作系统的内核发起 IO 调用（系统调用），操作系统负责的内核执行具体的 IO 操作。也就是说，我们的应用程序实际上只是发起了 IO 操作的调用而已，具体 IO 的执行是由操作系统的内核来完成的。</p>
+      
+        123456789101112131415161718192021222324252627282930package com.kuang.utils;import com.fasterxml.jackson.core.JsonProcessingException;import com.fasterxml.jackson.databind.ObjectMapper;import com.fa...
+      
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-15</time>
+        <time>2020-11-27</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a class="category-link" href="/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/">自定义工具类</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FJava%E4%B8%AD%E7%9A%84BIO%EF%BC%8CNIO%EF%BC%8CAIO%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/11/27/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E7%B1%BB/JsonUtils/'>
             Read More
           </a>
         </div>
@@ -798,39 +766,29 @@ hash源码：
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/13/Java/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/">
-        final,static,this,super关键字总结
+      <a href="/2020/11/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86/">
+        设计模式-代理
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-final 关键字final关键字，意思是最终的、不可修改的，最见不得变化 ，用来修饰类、方法和变量，具有以下特点：
-
-final修饰的类不能被继承，final类中的所有成员方法都会被隐式的指定为final方法；
-
-final修饰的方法不能被重写；
-
-final修饰的变量是常量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能让...
-      
+      <p>在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-13</time>
+        <time>2020-11-27</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/13/Java/final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/'>
+          <a class='readmore' href='/2020/11/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -852,29 +810,29 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
   
     
     <h2 class="article-title" >
-      <a href="/2020/03/13/Java/Arrays-asList-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-        Arrays.asList()使用指南
+      <a href="/2020/11/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B/">
+        设计模式-单例
       </a>
     </h2>
   
   <div class='md'>
     
-      <p>Arrays.asList()将数组转换为集合后,底层其实还是数组</p>
+      <p>单例模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-03-13</time>
+        <time>2020-11-23</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
+          <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/03/13/Java/Arrays-asList-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+          <a class='readmore' href='/2020/11/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B/'>
             Read More
           </a>
         </div>
@@ -901,7 +859,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           </a>
         
         <p class="current">
-          29 / 30
+          29 / 34
         </p>
         
           <a class="next" rel="next" href="/page/30/">
@@ -1005,7 +963,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(50)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(65)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/LeetCode%E9%A2%98%E8%A7%A3/" href="/categories/LeetCode%E9%A2%98%E8%A7%A3/"
@@ -1015,7 +973,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1030,22 +988,22 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           <li><a class="flat-box"
             title="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"
             id="categoriesE4B8AAE4BABAE9A1B9E79BAE"
-            ><div class='name'>个人项目</div><div class='badge'>(14)</div></a></li>
+            ><div class='name'>个人项目</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
-            ><div class='name'>分布式&微服务</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"
             id="categoriesE5A4A7E695B0E68DAE"
-            ><div class='name'>大数据</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>大数据</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
@@ -1060,17 +1018,17 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           <li><a class="flat-box"
             title="/categories/%E5%B9%B6%E5%8F%91/" href="/categories/%E5%B9%B6%E5%8F%91/"
             id="categoriesE5B9B6E58F91"
-            ><div class='name'>并发</div><div class='badge'>(44)</div></a></li>
+            ><div class='name'>并发</div><div class='badge'>(50)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
             id="categoriesE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(20)</div></a></li>
+            ><div class='name'>操作系统</div><div class='badge'>(23)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
             id="categoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(27)</div></a></li>
+            ><div class='name'>数据库</div><div class='badge'>(29)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/" href="/categories/%E6%98%A5%E6%8B%9B%E9%9D%A2%E8%AF%95/"
@@ -1115,12 +1073,12 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           <li><a class="flat-box"
             title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
             id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9C"
-            ><div class='name'>计算机网络</div><div class='badge'>(18)</div></a></li>
+            ><div class='name'>计算机网络</div><div class='badge'>(20)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
             id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>设计模式</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"
@@ -1157,7 +1115,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>293 篇</div>
+          <div>335 篇</div>
         </div>
       
 
@@ -1179,7 +1137,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>479.5k 字</div>
+          <div>611.4k 字</div>
         </div>
       
 
@@ -1205,8 +1163,8 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Aug 27 2021 15:18:49 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-08-27 日</div>
+            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:48 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-10 日</div>
           
         </div>
         
@@ -1256,7 +1214,7 @@ final修饰的变量是常量，如果是基本数据类型的变量，则其数
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-08-27 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
           }
         </script>
         

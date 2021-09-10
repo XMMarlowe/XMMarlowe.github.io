@@ -469,13 +469,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>859 words</p>
+      <p>2k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>2 min</p>
+      <p>6 min</p>
     </a>
   </div>
 
@@ -492,6 +492,76 @@
 <a id="more"></a>
 
 <h3 id="1、微服务"><a href="#1、微服务" class="headerlink" title="1、微服务"></a>1、微服务</h3><p>微服务的意思也就是将模块拆分成一个独立的服务单元通过接口来实现数据的交互。简单来说微服务就是很小的服务，小到一个服务只对应一个单一的功能，只做一件事。这个服务可以单独部署运行，服务之间可以通过RPC来相互交互，每个微服务都是由独立的小团队开发，测试，部署，上线，负责它的整个生命周期。</p>
+<h4 id="为什么微服务会这么火？"><a href="#为什么微服务会这么火？" class="headerlink" title="为什么微服务会这么火？"></a>为什么微服务会这么火？</h4><p>要学习微服务，首先，我们要了解为什么使用微服务。</p>
+<ul>
+<li><p>代码难以理解？</p>
+</li>
+<li><p>构建和部署耗时长，难以定位问题，开发效率低？</p>
+</li>
+<li><p>单体只能按整体横向扩展，无法分模块垂直扩展？</p>
+</li>
+<li><p>一个bug有可能引起整个应用的崩溃？</p>
+</li>
+<li><p>受技术栈限制，团队成员使用同一框架和语言？</p>
+</li>
+</ul>
+<p><strong>那么如何解决单体的不足呢，通过迁移到微服务架构来解决，我们看一下什么是微服务。</strong></p>
+<p>微服务架构:将单体应用拆分为多个高内聚低耦合的小型服务，每个小服务运行在独立进程，由不同的团队开发和维护，服务间采用轻量级通信机制，独立自动部署，可以采用不同的语言及存储。</p>
+<p>单体架构整个团队维护开发一个大工程及一个单库，到了微服务架构，用户请求经过API Gateway被路由到下游服务，服务之间以轻量级通信协议进行通信，服务通过注册中心发现彼此，每个服务都有专门的开发维护团队，每个服务对应独立的数据库，服务独立开发，独立部署和上线。</p>
+<h4 id="微服务的优点"><a href="#微服务的优点" class="headerlink" title="微服务的优点"></a>微服务的优点</h4><ul>
+<li>单一职责</li>
+</ul>
+<p>每个微服务都需要满足单一职责原则，微服务本身是内聚的，因此微服务通常比较小。比如示例中每个微服务按业务逻辑划分，每个微服务仅负责自己归属于自己业务领域的功能。</p>
+<p>微服务的开发通常与DevOps结合在一起，比如根据亚马逊给出的经验，一个微服务应该可以由一个Two Pizza Team负责设计、开发、测试和运维。</p>
+<ul>
+<li>自治</li>
+</ul>
+<p>一个微服务就是一个独立的实体，它可以独立部署、升级，服务与服务之间通过REST等形式的标准接口进行通信，并且一个微服务实例可以被替换成另一种实现，而对其它的微服务不产生影响。</p>
+<p>比如，我们可以对示例中的Account Service替换成一个具备相同接口不同实现方式的实例，在替换后将不会对其它服务产生影响。或者在我们修正了它的一个BUG时，可以通过灰度升级技术保证其它服务在升级期间仍然可以使用Account Service提供的服务。</p>
+<ul>
+<li><p>易于开发与维护</p>
+</li>
+<li><p>微服务相对小，易于理解</p>
+</li>
+<li><p>启动时间短，开发效率高</p>
+</li>
+<li><p>独立部署</p>
+</li>
+<li><p>一个微服务的修改不需要协调其它服务</p>
+</li>
+<li><p>伸缩性强</p>
+</li>
+<li><p>每个服务都可以在横向和纵向上扩展</p>
+</li>
+<li><p>每个服务都可按硬件资源的需求进行独立扩容</p>
+</li>
+<li><p>v与组织结构相匹配</p>
+</li>
+<li><p>微服务架构可以更好将架构和组织相匹配</p>
+</li>
+<li><p>每个团队独立负责某些服务，获得更高的生产力</p>
+</li>
+<li><p>技术异构性</p>
+</li>
+<li><p>使用最适合该服务的技术</p>
+</li>
+<li><p>降低尝试新技术的成本 </p>
+</li>
+</ul>
+<h4 id="微服务的缺点"><a href="#微服务的缺点" class="headerlink" title="微服务的缺点"></a>微服务的缺点</h4><ul>
+<li>复杂度高</li>
+</ul>
+<p>微服务间通过REST、RPC等形式交互，相对于Monolithic模式下的API形式，需要考虑被调用方故障、过载、消息丢失等各种异常情况，代码逻辑更加复杂。</p>
+<p>对于微服务间的事务性操作，因为不同的微服务采用了不同的数据库，将无法利用数据库本身的事务机制保证一致性，需要引入二阶段提交等技术。</p>
+<p>同时，在微服务间存在少部分共用功能但又无法提取成微服务时，各个微服务对于这部分功能通常需要重复开发，或至少要做代码复制，以避免微服务间的耦合，增加了开发成本。</p>
+<ul>
+<li>运维复杂</li>
+</ul>
+<p>在采用微服务架构时，系统由多个独立运行的微服务构成，需要一个设计良好的监控系统对各个微服务的运行状态进行监控。运维人员需要对系统有细致的了解才对够更好的运维系统。</p>
+<ul>
+<li>影响性能</li>
+</ul>
+<p>相对于Monolithic架构，微服务的间通过REST、RPC等形式进行交互，通信的时延会受到较大的影响。</p>
 <h3 id="2、分布式"><a href="#2、分布式" class="headerlink" title="2、分布式"></a>2、分布式</h3><p>分布式服务顾名思义服务是分散部署在不同的机器上的，一个服务可能负责几个功能，是一种面向SOA架构的，服务之间也是通过rpc来交互或者是webservice来交互的。逻辑架构设计完后就该做物理架构设计，系统应用部署在超过一台服务器或虚拟机上，且各分开部署的部分彼此通过各种通讯协议交互信息，就可算作分布式部署，生产环境下的微服务肯定是分布式部署的，分布式部署的应用不一定是微服务架构的，比如集群部署，它是把相同应用复制到不同服务器上，但是逻辑功能上还是单体应用。</p>
 <h3 id="3、关系"><a href="#3、关系" class="headerlink" title="3、关系"></a>3、关系</h3><p>联系：分布式只是一种手段，把不同的机器分散在不同的地方，然后这些机器间相互协助完成业务。微服务是一种特殊的分布式，换句话说，微服务架构是分布式服务架构的子集。微服务架构通过更细粒度的服务切分，使得整个系统的迭代速度并行程度更高，但是运维的复杂度和性能会随着服务的粒度更细而增加。微服务重在解耦合，使每个模块都独立。分布式重在资源共享与加快计算机计算速度。</p>
 <h3 id="4、区别"><a href="#4、区别" class="headerlink" title="4、区别"></a>4、区别</h3><p>（1）架构不同：微服务的设计是为了不因为某个模块的升级和BUG影响现有的系统业务。微服务与分布式的细微差别是，微服务的应用不一定是分散在多个服务器上，他也可以是同一个服务器。<br>　　<br>（2）作用不同：分布式：不同模块部署在不同服务器上，分布式主要解决的是网站高并发带来问题。微服务：各服务可独立应用，组合服务也可系统应用。<br>　　<br>（3）粒度不同：微服务相比分布式服务来说，它的粒度更小，服务之间耦合度更低，由于每个微服务都由独立的小团队负责，因此它敏捷性更高，分布式服务最后都会向微服务架构演化，这是一种趋势， 不过服务微服务化后带来的挑战也是显而易见的，例如服务粒度小，数量大，后期运维将会很难。</p>
@@ -541,10 +611,10 @@
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-27T15:04:38+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-01T19:31:02+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 27, 2021</p>
+    <p>更新于：Sep 1, 2021</p>
   </a>
 </div>
 
@@ -612,6 +682,16 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/2021/08/27/%E4%B8%AD%E9%97%B4%E4%BB%B6/Kafka%E9%AB%98%E5%90%9E%E5%90%90%E9%87%8F%E7%9A%84%E5%8E%9F%E5%9B%A0/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Kafka高吞吐量的原因</p>
+          <p class='content'>简单介绍一下Kafka高吞吐量的原因。
+
+
+1、顺序读写
+kafka的消息是不断追加到文件中的，这个特性使kafka可以充分利用磁盘的顺序读写性能。
+顺序读写不需要硬盘磁头的寻道时间，只需很少的...</p>
+        </a>
+      
       
         <a class='next' href='/2021/08/26/NoSQL/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3Redis%E4%B8%ADBigKey%E3%80%81HotKey%E7%9A%84%E5%8F%91%E7%8E%B0%E4%B8%8E%E5%A4%84%E7%90%86/'>
           <p class='title'>一文详解Redis中BigKey、HotKey的发现与处理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
@@ -661,7 +741,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-text">1、微服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">2、分布式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%85%B3%E7%B3%BB"><span class="toc-text">3、关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%8C%BA%E5%88%AB"><span class="toc-text">4、区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-text">1、微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BC%9A%E8%BF%99%E4%B9%88%E7%81%AB%EF%BC%9F"><span class="toc-text">为什么微服务会这么火？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">微服务的优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">微服务的缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">2、分布式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%85%B3%E7%B3%BB"><span class="toc-text">3、关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%8C%BA%E5%88%AB"><span class="toc-text">4、区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </section>
 
