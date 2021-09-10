@@ -415,6 +415,57 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/06/NoSQL/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
+        Redis 单线程模型
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+Redis单线程模型文件事件处理器
+Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做文件事件处理器(file event handler).这个文件事件处理器是单线程的,所以Redis才叫做单线程的模型,文件事件处理器采用了IO多路复用机制同时监听多个socket,根据socket上的事件来选择对应的事件处理器来处理这个事件;
+
+如果被监听的socket准备好执行a...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-06</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/06/NoSQL/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
         Linux常用命令总结
       </a>
@@ -867,63 +918,6 @@ EXPIRE key locktime: 设置key的...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/">
-        SQL执行过慢，如何排查以及调优
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-导致SQL执行慢的原因
-硬件问题。如网络速度慢，内存不足，I/O吞吐量小，磁盘空间满了等。
-
-没有索引或者索引失效。（一般在互联网公司，DBA会在半夜把表锁了，重新建立一遍索引，因为当你删除某个数据的时候，索引的树结构就不完整了。所以互联网公司的数据做的是假删除，一是为了做数据分析,二是为了不破坏索引 ）
-
-数据过多（分库分表）
-
-服务器调优及各个参数设置（调整my.cnf）
-
-查询出的...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-29</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1052,7 +1046,7 @@ EXPIRE key locktime: 设置key的...
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1072,7 +1066,7 @@ EXPIRE key locktime: 设置key的...
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
@@ -1194,7 +1188,7 @@ EXPIRE key locktime: 设置key的...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>335 篇</div>
+          <div>336 篇</div>
         </div>
       
 
@@ -1216,7 +1210,7 @@ EXPIRE key locktime: 设置key的...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>611.4k 字</div>
+          <div>614.2k 字</div>
         </div>
       
 
@@ -1242,8 +1236,8 @@ EXPIRE key locktime: 设置key的...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:44 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-09-10 日</div>
+            <div id="last-update" style="display: none;">Sat Sep 11 2021 02:26:24 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-11 日</div>
           
         </div>
         
@@ -1293,7 +1287,7 @@ EXPIRE key locktime: 设置key的...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-11 日';
           }
         </script>
         

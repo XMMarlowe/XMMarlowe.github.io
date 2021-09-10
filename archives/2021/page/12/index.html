@@ -414,6 +414,50 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/16/Spring/Spring%E4%B8%ADBeanFactory%E5%92%8CFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        Spring中BeanFactory和FactoryBean的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p>BeanFactory是个Factory，也就是IOC容器或对象工厂，FactoryBean是个Bean。在Spring中，所有的Bean都是由BeanFactory(也就是IOC容器)来进行管理的。但对FactoryBean而言，这个Bean不是简单的Bean，而是一个能生产或者修饰对象生成的工厂Bean,它的实现与设计模式中的工厂模式和修饰器模式类似。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Spring/">Spring</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/16/Spring/Spring%E4%B8%ADBeanFactory%E5%92%8CFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/16/Spring/Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/">
         Spring的启动过程
       </a>
@@ -831,58 +875,6 @@ REST并没有创造新的技术，组件或服务，只是使用Web的现有特�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/14/Spring/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
-        spring循环依赖
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-什么是循环依赖?循环依赖其实就是循环引用，也就是两个或则两个以上的bean互相持有对方，最终形成闭环。比如A依赖于B，B依赖于C，C又依赖于A。如下图：
-
-注意：这里不是函数的循环调用，是对象的相互依赖关系。循环调用其实就是一个死循环，除非有终结条件。
-Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属性的循环依赖。
-怎么检测是否存在循环依赖?检测循环依赖相对比较容易...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-14</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/14/Spring/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1012,7 +1004,7 @@ Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属�
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1032,7 +1024,7 @@ Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属�
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
@@ -1154,7 +1146,7 @@ Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>335 篇</div>
+          <div>336 篇</div>
         </div>
       
 
@@ -1176,7 +1168,7 @@ Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>611.4k 字</div>
+          <div>614.2k 字</div>
         </div>
       
 
@@ -1202,8 +1194,8 @@ Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:12 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-09-10 日</div>
+            <div id="last-update" style="display: none;">Sat Sep 11 2021 02:25:53 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-11 日</div>
           
         </div>
         
@@ -1253,7 +1245,7 @@ Spring中循环依赖场景有：（1）构造器的循环依赖（2）field属�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-11 日';
           }
         </script>
         

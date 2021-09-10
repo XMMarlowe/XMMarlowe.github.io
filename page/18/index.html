@@ -415,6 +415,57 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/">
+        同一线程组下的线程，一个线程的异常会影响其他线程运行么？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+当一个线程抛出OOM异常后，它所占据的内存资源会全部被释放掉，从而不会影响其他线程的运行！
+一个线程溢出后，进程里的其他线程还能照常运行。
+同一线程组下的线程，一个线程出现异常不会影响其他线程的运行。
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%BF%85%E4%BC%9A%E4%BD%BF%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%E5%90%97%EF%BC%9F/">
         线程崩溃必会使进程崩溃吗？
       </a>
@@ -842,54 +893,6 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/">
-        如何保证缓存和数据库数据的一致性？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-如何保证缓存和数据库数据的一致性？当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库?1、如果先删缓存，再写数据库: 在高并发场景下，当第一个线程删除了缓存，还没有来得及写数据库，第二个线程来读取数据，会发现缓存中的数据为空，那就会去读数据库中的数据(旧值，脏数据)，读完之后，把读到的结果写入缓存(此时，第一个线程已经将新的值写到缓存里面了)，这样缓存中的值就会被覆盖为修改前的脏...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1018,7 +1021,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/NoSQL/" href="/categories/NoSQL/"
             id="categoriesNoSQL"
-            ><div class='name'>NoSQL</div><div class='badge'>(29)</div></a></li>
+            ><div class='name'>NoSQL</div><div class='badge'>(28)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1038,7 +1041,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           <li><a class="flat-box"
             title="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"
             id="categoriesE4B8ADE997B4E4BBB6"
-            ><div class='name'>中间件</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>中间件</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
@@ -1160,7 +1163,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>335 篇</div>
+          <div>336 篇</div>
         </div>
       
 
@@ -1182,7 +1185,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>611.4k 字</div>
+          <div>614.2k 字</div>
         </div>
       
 
@@ -1208,8 +1211,8 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Sep 10 2021 22:45:45 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-09-10 日</div>
+            <div id="last-update" style="display: none;">Sat Sep 11 2021 02:26:25 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-09-11 日</div>
           
         </div>
         
@@ -1259,7 +1262,7 @@ Java只能单继承，因此如果是采用继承Thread的方法，那么在以�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-09-10 日';
+            document.getElementById('last-update-show').innerHTML = '2021-09-11 日';
           }
         </script>
         
