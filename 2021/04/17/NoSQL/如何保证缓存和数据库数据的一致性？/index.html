@@ -20,17 +20,11 @@
 
   <!-- 页面元数据 -->
   
-  <title>Marlowe</title>
+  <title>如何保证缓存和数据库数据的一致性？ - Marlowe</title>
+  
+    <meta name="keywords" content="缓存,数据库">
   
 
-  
-    <meta name="description" content="
-title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2021-04-17 15:30:13tags: 
-
-缓存
-数据库categories: NoSQL
-
-">
   
 
   <!-- feed -->
@@ -414,18 +408,85 @@ title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2
     
     
     
+      <h1 class="title">
+        如何保证缓存和数据库数据的一致性？
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/XMMarlowe.github.io" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg">
+    <p>Marlowe</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Apr 17, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="如何保证缓存和数据库数据的一致性？" data-path="/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>2.4k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>8 min</p>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
   </div>
 
 
   
-  <hr>
-<p>title: 如何保证缓存和数据库数据的一致性？<br>author: Marlowe<br>date: 2021-04-17 15:30:13<br>tags: </p>
-<ul>
-<li>缓存</li>
-<li>数据库<br>categories: NoSQL</li>
-</ul>
-<hr>
-<a id="more"></a>
+  <a id="more"></a>
 
 <h3 id="如何保证缓存和数据库数据的一致性？"><a href="#如何保证缓存和数据库数据的一致性？" class="headerlink" title="如何保证缓存和数据库数据的一致性？"></a>如何保证缓存和数据库数据的一致性？</h3><h4 id="当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库"><a href="#当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库" class="headerlink" title="当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库?"></a>当我们对数据进行修改的时候，到底是先删缓存，还是先写数据库?</h4><p>1、<strong>如果先删缓存，再写数据库:</strong> 在高并发场景下，当第一个线程删除了缓存，还没有来得及写数据库，第二个线程来读取数据，会发现缓存中的数据为空，那就会去读数据库中的数据(旧值，脏数据)，读完之后，把读到的结果写入缓存(此时，第一个线程已经将新的值写到缓存里面了)，这样缓存中的值就会被覆盖为修改前的脏数据。</p>
 <p><strong>总结:</strong> 在这种方式下，通常要求写操作不会太频繁。</p>
@@ -527,7 +588,7 @@ title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2
               
             
               
-                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/08/30/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/>https://xmmarlowe.github.io/2021/08/30/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/</a></p>
+                <p>本文永久链接是：<a href=https://xmmarlowe.github.io/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/>https://xmmarlowe.github.io/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/</a></p>
               
             
           </blockquote>
@@ -555,10 +616,10 @@ title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2
         
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-10T22:44:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-16T22:34:04+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 10, 2021</p>
+    <p>更新于：Sep 16, 2021</p>
   </a>
 </div>
 
@@ -572,13 +633,7 @@ title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/08/30/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/&title= - Marlowe&summary=
-title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2021-04-17 15:30:13tags: 
-
-缓存
-数据库categories: NoSQL
-
-"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xmmarlowe.github.io/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/&title=如何保证缓存和数据库数据的一致性？ - Marlowe&summary="
           
           >
           
@@ -590,13 +645,7 @@ title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/08/30/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/&title= - Marlowe&summary=
-title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2021-04-17 15:30:13tags: 
-
-缓存
-数据库categories: NoSQL
-
-"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xmmarlowe.github.io/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/&title=如何保证缓存和数据库数据的一致性？ - Marlowe&summary="
           
           >
           
@@ -608,13 +657,7 @@ title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/08/30/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/&title= - Marlowe&summary=
-title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2021-04-17 15:30:13tags: 
-
-缓存
-数据库categories: NoSQL
-
-"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xmmarlowe.github.io/2021/04/17/NoSQL/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F/&title=如何保证缓存和数据库数据的一致性？ - Marlowe&summary="
           
           >
           
@@ -644,18 +687,20 @@ title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/08/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%B7%A8%E5%9F%9F/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>彻底理解浏览器的跨域</p>
-          <p class='content'>讲讲为什么要跨域，以及跨域的方式。
+        <a class='prev' href='/2021/04/17/NoSQL/Redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis主从复制</p>
+          <p class='content'>为了分担读压力，Redis支持主从复制，Redis的主从结构可以采用一主多从或者级联结构，Redis主从复制可以根据是否是全量分为全量同步和增量同步…
 
 
-同源策略1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策。最初，它的含义是指，A 网页设置的 Cookie，B 网...</p>
+概念主从复制： 指将一台Redis服务...</p>
         </a>
       
       
-        <a class='next' href='/2021/08/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/kafka%E7%9A%84Controller-Broker%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/'>
-          <p class='title'>kafka的Controller Broker是什么？<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>控制器组件（Controller），是 Apache Kafka 的核心组件。它的主要作用是在 Apache ZooKeeper 的帮助下管理和协调整个 Kafka 集群。集群中任意一台 Bro...</p>
+        <a class='next' href='/2021/04/17/NoSQL/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/'>
+          <p class='title'>布隆过滤器<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+
+简介布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查...</p>
         </a>
       
     </div>
@@ -717,8 +762,8 @@ title: 如何保证缓存和数据库数据的一致性？author: Marlowedate: 2
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="如何保证缓存和数据库数据的一致性？";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
