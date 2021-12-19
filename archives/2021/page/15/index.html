@@ -414,6 +414,54 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/05/08/Java/Java%20AIO%20-%20%E5%BC%82%E6%AD%A5IO%E8%AF%A6%E8%A7%A3/">
+        Java AIO - 异步IO详解
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+异步IO上面两篇文章中，我们分别讲解了阻塞式同步IO、非阻塞式同步IO、多路复用IO 这三种IO模型，以及JAVA对于这三种IO模型的支持。重点说明了IO模型是由操作系统提供支持，且这三种IO模型都是同步IO，都是采用的“应用程序不询问我，我绝不会主动通知”的方式。 异步IO则是采用“订阅-通知”模式: 即应用程序向操作系统注册IO监听，然后继续做自己的事情。当操作系统发生IO事件，并且...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/08/Java/Java%20AIO%20-%20%E5%BC%82%E6%AD%A5IO%E8%AF%A6%E8%A7%A3/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/InnoDB%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6/">
         InnoDB崩溃恢复机制
       </a>
@@ -858,57 +906,6 @@ Redis6.0之前为...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/06/NoSQL/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
-        Redis 单线程模型
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-Redis单线程模型文件事件处理器
-Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做文件事件处理器(file event handler).这个文件事件处理器是单线程的,所以Redis才叫做单线程的模型,文件事件处理器采用了IO多路复用机制同时监听多个socket,根据socket上的事件来选择对应的事件处理器来处理这个事件;
-
-如果被监听的socket准备好执行a...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/NoSQL/">NoSQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/06/NoSQL/Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1061,6 +1058,11 @@ Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做�
             ><div class='name'>中间件</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7/" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7/"
+            id="categoriesE585ACE4BC97E58FB7"
+            ><div class='name'>公众号</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
             ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
@@ -1180,7 +1182,7 @@ Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>336 篇</div>
+          <div>337 篇</div>
         </div>
       
 
@@ -1202,7 +1204,7 @@ Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>614.1k 字</div>
+          <div>615.3k 字</div>
         </div>
       
 
@@ -1228,8 +1230,8 @@ Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Sep 16 2021 22:35:23 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-09-16 日</div>
+            <div id="last-update" style="display: none;">Sun Dec 19 2021 16:52:51 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-12-19 日</div>
           
         </div>
         
@@ -1279,7 +1281,7 @@ Redis基于Reactor模式开发了网络事件处理器,这个处理器就叫做�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-09-16 日';
+            document.getElementById('last-update-show').innerHTML = '2021-12-19 日';
           }
         </script>
         

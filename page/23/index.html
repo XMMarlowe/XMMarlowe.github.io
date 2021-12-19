@@ -415,6 +415,57 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        synchronized相关知识点
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+1、synchronized 关键字
+1.1 synchronized 关键字简介synchronized 关键字解决的是多个线程之间访问资源的同步性，synchronized关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。
+另外，在 Java 早期版本中，synchronized 属于 重量级锁，效率低下。
+为什么呢？因为监视器锁（monitor）是依赖于底层的操作...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/03/17/%E5%B9%B6%E5%8F%91/synchronized%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/03/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
         JDK动态代理和CGLIB动态代理
       </a>
@@ -820,56 +871,6 @@ maxinumPoolsize代表的是最...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/09/%E5%B9%B6%E5%8F%91/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        sleep(),wait(),join(),yield()的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-sleepwaitjoinyield
-锁池所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就绪队列进行等待cpu资源分配。
-等待池当我们调用wait()方法后，线程会放到等待池当中，等待池的线程是不会去竞争同步锁。只有调用了notify()或notify...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/09/%E5%B9%B6%E5%8F%91/sleep-wait-join-yield-%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1021,6 +1022,11 @@ sleepwaitjoinyield
             ><div class='name'>中间件</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7/" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7/"
+            id="categoriesE585ACE4BC97E58FB7"
+            ><div class='name'>公众号</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
             ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
@@ -1140,7 +1146,7 @@ sleepwaitjoinyield
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>336 篇</div>
+          <div>337 篇</div>
         </div>
       
 
@@ -1162,7 +1168,7 @@ sleepwaitjoinyield
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>614.1k 字</div>
+          <div>615.3k 字</div>
         </div>
       
 
@@ -1188,8 +1194,8 @@ sleepwaitjoinyield
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Thu Sep 16 2021 22:35:43 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-09-16 日</div>
+            <div id="last-update" style="display: none;">Sun Dec 19 2021 16:53:29 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2021-12-19 日</div>
           
         </div>
         
@@ -1239,7 +1245,7 @@ sleepwaitjoinyield
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-09-16 日';
+            document.getElementById('last-update-show').innerHTML = '2021-12-19 日';
           }
         </script>
         
