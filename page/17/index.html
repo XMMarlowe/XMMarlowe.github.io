@@ -415,27 +415,16 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/">
-        SQL执行过慢，如何排查以及调优
+      <a href="/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82HTTPS%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86/">
+        彻底搞懂HTTPS的加密原理
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        
-
-导致SQL执行慢的原因
-硬件问题。如网络速度慢，内存不足，I/O吞吐量小，磁盘空间满了等。
-
-没有索引或者索引失效。（一般在互联网公司，DBA会在半夜把表锁了，重新建立一遍索引，因为当你删除某个数据的时候，索引的树结构就不完整了。所以互联网公司的数据做的是假删除，一是为了做数据分析,二是为了不破坏索引 ）
-
-数据过多（分库分表）
-
-服务器调优及各个参数设置（调整my.cnf）
-
-查询出的...
-      
+      <p>HTTPS（SSL/TLS）的加密机制虽然是大家都应了解的基本知识，但网上很多相关文章总会忽略一些内容，没有阐明完整的逻辑脉络，我当年学习它的时候也废了挺大功夫。</p>
+<p>对称与非对称加密、数字签名、数字证书等，在学习过程中，除了了解“它是什么”，你是否有想过“为什么是它”？我认为理解了后者才真正理解了HTTPS的加密机制。</p>
+<p>本文以问题的形式逐步展开，一步步解开HTTPS的面纱，希望能帮助你彻底搞懂HTTPS。</p>
     
   </div>
   
@@ -445,12 +434,12 @@
         <time>2021-04-29</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL%E6%89%A7%E8%A1%8C%E8%BF%87%E6%85%A2%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%BB%A5%E5%8F%8A%E8%B0%83%E4%BC%98/'>
+          <a class='readmore' href='/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82HTTPS%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -495,52 +484,6 @@
       
         <div>
           <a class='readmore' href='/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%88%9D%E8%AF%86HTTP2-0/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82HTTPS%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86/">
-        彻底搞懂HTTPS的加密原理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>HTTPS（SSL/TLS）的加密机制虽然是大家都应了解的基本知识，但网上很多相关文章总会忽略一些内容，没有阐明完整的逻辑脉络，我当年学习它的时候也废了挺大功夫。</p>
-<p>对称与非对称加密、数字签名、数字证书等，在学习过程中，除了了解“它是什么”，你是否有想过“为什么是它”？我认为理解了后者才真正理解了HTTPS的加密机制。</p>
-<p>本文以问题的形式逐步展开，一步步解开HTTPS的面纱，希望能帮助你彻底搞懂HTTPS。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-29</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82HTTPS%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86/'>
             Read More
           </a>
         </div>
@@ -909,6 +852,57 @@ JVM提供的锁...
           </div>
         
       
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/">
+        同一线程组下的线程，一个线程的异常会影响其他线程运行么？
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+
+当一个线程抛出OOM异常后，它所占据的内存资源会全部被释放掉，从而不会影响其他线程的运行！
+一个线程溢出后，进程里的其他线程还能照常运行。
+同一线程组下的线程，一个线程出现异常不会影响其他线程的运行。
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/04/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%BB%84%E4%B8%8B%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%BF%90%E8%A1%8C%E4%B9%88%EF%BC%9F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
     
   </section>
   
@@ -1060,11 +1054,6 @@ JVM提供的锁...
             ><div class='name'>中间件</div><div class='badge'>(13)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7/" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7/"
-            id="categoriesE585ACE4BC97E58FB7"
-            ><div class='name'>公众号</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
             title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
             id="categoriesE58886E5B883E5BC8F-E5BEAEE69C8DE58AA1"
             ><div class='name'>分布式&微服务</div><div class='badge'>(15)</div></a></li>
@@ -1184,7 +1173,7 @@ JVM提供的锁...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>337 篇</div>
+          <div>336 篇</div>
         </div>
       
 
@@ -1206,7 +1195,7 @@ JVM提供的锁...
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>615.3k 字</div>
+          <div>614.1k 字</div>
         </div>
       
 
@@ -1232,8 +1221,8 @@ JVM提供的锁...
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sun Dec 19 2021 16:53:27 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-12-19 日</div>
+            <div id="last-update" style="display: none;">Sun Jan 23 2022 11:50:34 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2022-01-23 日</div>
           
         </div>
         
@@ -1283,7 +1272,7 @@ JVM提供的锁...
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-12-19 日';
+            document.getElementById('last-update-show').innerHTML = '2022-01-23 日';
           }
         </script>
         
